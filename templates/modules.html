@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}<div class="page-heading"><div><p class="eyebrow">چرخهٔ عمر کارکنان</p><h1>بخش‌های منابع انسانی</h1><p class="muted">بخش موردنظر را برای ثبت و پیگیری اطلاعات انتخاب کنید.</p></div></div>
+<div class="module-grid">
+{% if user.role != 'viewer' %}
+{% for title,url,text in [('پرونده و ساختار سازمانی','/employees','کارکنان، شعبه‌ها، واحدها، سمت‌ها و تاریخچهٔ انتساب'),('استخدام و پذیرش','/hr/candidates','متقاضیان، مصاحبه‌ها و چک‌لیست نیروی جدید'),('حضور و مأموریت','/hr/attendance','تردد، شیفت، اضافه‌کاری و درخواست مأموریت'),('مرخصی و درخواست‌ها','/hr/leave','ثبت درخواست و پیگیری تأیید مدیر'),('قرارداد و همکاری','/hr/contracts','پیش‌نویس، فعال‌سازی، تمدید و خاتمهٔ همکاری'),('عملکرد و آموزش','/hr/evaluations','ارزیابی، دوره‌های آموزشی و برنامهٔ توسعهٔ شغلی')] %}<a class="panel module-card" href="{{ url }}"><h2>{{ title }}</h2><p class="muted">{{ text }}</p><span class="text-link">ورود به بخش ←</span></a>{% endfor %}
+{% endif %}
+{% if user.role == 'admin' %}<a class="panel module-card" href="/payroll"><h2>حقوق و فیش‌های آموزشی</h2><p class="muted">قواعد قابل تنظیم، کارکرد، مزایا، کسورات و فیش‌های محفوظ</p><span class="text-link">ورود به بخش ←</span></a>{% endif %}
+<a class="panel module-card" href="/reports"><h2>گزارش و دسترسی</h2><p class="muted">گزارش‌های سازمانی در محدودهٔ دسترسی شما{% if user.role == 'admin' %}؛ کاربران و سابقهٔ تغییرات{% endif %}</p><span class="text-link">ورود به بخش ←</span></a>
+</div>{% endblock %}

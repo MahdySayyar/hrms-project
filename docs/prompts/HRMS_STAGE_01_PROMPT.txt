@@ -1,0 +1,39 @@
+You are helping me build a university project named "سامانه مدیریت منابع انسانی" (Human Resource Management System) for a Systems Analysis and Design course. I am a beginner using Windows. Implement ONLY Stage 1: project setup and employee records.
+
+EXECUTION EXPECTATION
+Act as the coding agent for the connected local project folder. Carry out the authorized work yourself: inspect the environment, create and edit project files, install project dependencies, configure the development database, initialize fictional data, start the app, verify it, and fix problems. If a required development tool is missing, perform a suitable installation when the available permissions allow it, rather than simply handing me an installation checklist. Keep computer changes related to this project. If installation needs Windows administrator consent or additional filesystem/network permission, request the specific permission and explain its purpose. Do not promise control outside your actual tools or permissions. Preserve unrelated data. Complete this stage autonomously, while asking about essential unresolved requirements or permissions.
+
+COURSE CONTEXT
+We will first build a simple working monolithic website, then evolve its architecture through measured experiments. Later technologies are Docker, Docker Compose, Kubernetes with kind/kubectl, Locust, Prometheus, Grafana, Redis, and RabbitMQ. A later baseline experiment must run FastAPI and PostgreSQL inside one Docker container before separating them. Do not implement those later stages now.
+
+The eventual HR system has eight modules: employee records and organizational structure; recruitment/onboarding; attendance/shifts/overtime/business travel; leave and administrative approvals; payroll/benefits/deductions/payslips; contract lifecycle and employment changes; performance/training/career development; reports/access control/audit history. These are background requirements. Implement only the Stage 1 scope below.
+
+STACK AND STYLE
+- Python, FastAPI, Uvicorn, PostgreSQL, a small SQLAlchemy setup, and Jinja2 templates.
+- Ordinary HTML/CSS with minimal JavaScript. Persian text, RTL layout, and a simple usable interface.
+- A small beginner-readable monolith: a few Python files, direct route/database logic, templates, and static files. Use clear names and brief useful comments.
+- One web process and one local PostgreSQL instance. No SQLite substitution, React, microservices, queues, caches, Kubernetes, Docker configuration, or elaborate architecture layers in this stage.
+- Keep ordinary validation, foreign keys, unique employee codes, password hashing, and protected routes. Architectural simplicity must not break basic functionality.
+
+STAGE 1 FEATURES
+1. Create a runnable project with requirements.txt, .env.example, .gitignore, and a Persian README. Keep credentials in environment variables. Inspect the workspace before editing and preserve unrelated files.
+2. Implement minimal organization reference data: branches, units belonging to branches, and positions with a job title and job description. Provide simple list/add/edit pages. Populate small fictional examples.
+3. Implement employee list, create, detail, edit, and deactivate/reactivate pages. Include employee code, first/last name, national ID, phone, email, hire date, branch, unit, position, current contract type, and active status. Use a stable primary key. Contract type is just a current field here; full contracts and contract history belong to a later stage.
+4. Add employee search by name or employee code and filters for branch, unit, and active status. Reject duplicate employee codes and invalid branch/unit combinations. Show understandable Persian validation messages. Store only the current branch/unit/position assignments in this baseline; temporal history will be designed later.
+5. Add a minimal login/logout for one seeded HR administrator with a hashed password. Protect the dashboard and employee/organization pages on the server. A simple process-local session store is acceptable for this baseline. Include expiry, HttpOnly and SameSite cookies, and basic CSRF protection for state-changing browser forms. Detailed roles and branch/unit access rules are outside this stage.
+6. Create a simple dashboard showing employee, branch, and unit counts. Navigation must link to working Stage 1 pages. If future modules appear in navigation, clearly disable them and label them as planned.
+7. Provide GET /health and GET /instance for later experiments. Return a basic status and instance/hostname identifier, without credentials or employee data.
+8. Provide an explicit repeatable initialization/seed command with fictional branches, units, positions, around ten employees, and the demo HR-admin account. Re-running it must not duplicate records or erase existing data. Do not seed on every web request or reset existing administrator credentials silently.
+
+ACCEPTANCE AND WINDOWS INSTRUCTIONS
+- Record exact PowerShell commands for virtual-environment setup, installing dependencies, configuring/creating the PostgreSQL database, initializing/seeding, and launching the app. Execute setup steps yourself where tools and permissions allow. If a prerequisite cannot be installed or configured, explain the blocker, give the minimum necessary manual step, and identify which checks could not run.
+- Saving an employee must persist to PostgreSQL and survive a web-process restart. Deactivation must retain the record.
+- Verify application startup, login, protected-page behavior, employee create/edit/search/filter/deactivation, duplicate-code rejection, and invalid branch/unit rejection. Use proportionate smoke checks and report what actually ran. Do not claim success for checks you did not execute.
+- If you have filesystem and execution tools, create the actual files, run available checks, and fix discovered problems. If you only have chat access, supply complete file contents and beginner-friendly execution steps. Do not return just a plan, pseudocode, TODOs, mock-only pages, or truncated code.
+
+HANDOFF DOCUMENTATION
+Create docs/project-context.md recording the confirmed scope, stack, decisions, and future course direction. Create docs/stage-status.md recording completed work, changed files, actual checks/results, run commands, remaining issues, and the next-stage boundary.
+
+Create docs/baseline-notes.md with a small architecture diagram and honestly described initial limitations: coupled route/business/database code, one web process, process-local sessions, current-only organizational assignments, and no asynchronous processing. Mark untested performance/failure concerns as hypotheses. Do not invent load results or intentionally add broken behavior, artificial delays, or data loss. Record that future experiments must preserve prompts, AI output, actual student modifications, and measured before/after evidence for a Persian Word report.
+
+At the end, explain in Persian what you built, how to run it, the demo login setup, and what was verified. Ask me only about essential missing information; resolve routine implementation details yourself. Stop after Stage 1 and its handoff. Do not implement recruitment or any later module.

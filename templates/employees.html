@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">پرونده‌های پرسنلی</p><h1>کارکنان</h1><p class="muted">{{ rows|length|fa }} پرونده با شرایط انتخاب‌شده</p></div><a class="button primary" href="/employees/new">＋ افزودن کارمند</a></div>
+<form class="filter-panel panel" method="get" action="/employees" data-unit-filter>
+  <div class="field search-field"><label for="q">جست‌وجوی کارمند</label><input id="q" name="q" value="{{ filters.q }}" placeholder="نام یا کد پرسنلی" maxlength="100"></div>
+  <div class="field"><label for="branch">شعبه</label><select id="branch" name="branch" data-branch><option value="">همهٔ شعبه‌ها</option>{% for branch in branches %}<option value="{{ branch.id }}" {% if filters.branch == branch.id|string %}selected{% endif %}>{{ branch.name }}</option>{% endfor %}</select></div>
+  <div class="field"><label for="unit">واحد</label><select id="unit" name="unit" data-unit><option value="">همهٔ واحدها</option>{% for unit in units %}<option value="{{ unit.id }}" data-branch-id="{{ unit.branch_id }}" {% if filters.unit == unit.id|string %}selected{% endif %}>{{ unit.name }}</option>{% endfor %}</select></div>
+  <div class="field"><label for="status">وضعیت</label><select id="status" name="status"><option value="">همه</option><option value="active" {% if filters.status == 'active' %}selected{% endif %}>فعال</option><option value="inactive" {% if filters.status == 'inactive' %}selected{% endif %}>غیرفعال</option></select></div>
+  <div class="filter-actions"><button type="submit" class="button primary">اعمال فیلتر</button><a class="text-link" href="/employees">پاک کردن</a></div>
+</form>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>کارمند</th><th>کد پرسنلی</th><th>شعبه و واحد</th><th>سمت</th><th>قرارداد</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>
+{% for row in rows %}{% set employee = row.Employee %}<tr><td><strong>{{ employee.first_name }} {{ employee.last_name }}</strong><small class="cell-subtitle">استخدام: {{ employee.hire_date|fa }} (میلادی)</small></td><td dir="ltr" class="code">{{ employee.employee_code }}</td><td>{{ row.branch_name }}<small class="cell-subtitle">{{ row.unit_name }}</small></td><td>{{ row.position_title }}</td><td>{{ employee.contract_type }}</td><td><span class="badge {{ 'active' if employee.active else 'inactive' }}">{{ 'فعال' if employee.active else 'غیرفعال' }}</span></td><td class="row-actions"><a href="/employees/{{ employee.id }}" class="text-link">مشاهده</a><a href="/employees/{{ employee.id }}/edit" class="text-link">ویرایش</a></td></tr>
+{% else %}<tr><td colspan="7" class="empty-state">کارمندی با این شرایط پیدا نشد.<br><a href="/employees" class="text-link">پاک کردن فیلترها</a></td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

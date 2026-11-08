@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">پروندهٔ پرسنلی</p><h1>{{ title }}</h1><p class="muted">اطلاعات ستاره‌دار را تکمیل کنید. وضعیت کارمند در صفحهٔ پرونده تغییر می‌کند.</p></div><a href="{{ '/employees/' ~ employee.id if employee else '/employees' }}" class="button secondary">بازگشت</a></div>
+<form method="post" action="{{ '/employees/' ~ employee.id ~ '/edit' if employee else '/employees/new' }}" class="panel form-panel" data-unit-filter>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <h2>اطلاعات فردی</h2><div class="form-grid">
+  {% for key, label, length in [('employee_code', 'کد پرسنلی', 32), ('first_name', 'نام', 80), ('last_name', 'نام خانوادگی', 80), ('national_id', 'کد ملی', 10), ('phone', 'شمارهٔ همراه', 11)] %}
+  <div class="field"><label for="{{ key }}">{{ label }} <span class="required">*</span></label><input id="{{ key }}" name="{{ key }}" value="{{ values.get(key, '') }}" maxlength="{{ length }}" required {% if key in ['employee_code','national_id','phone'] %}dir="ltr"{% endif %} {% if key in ['national_id','phone'] %}inputmode="numeric"{% endif %}></div>
+  {% endfor %}
+  <div class="field"><label for="email">ایمیل <span class="optional">اختیاری</span></label><input id="email" name="email" type="email" value="{{ values.get('email', '') }}" maxlength="254" dir="ltr"></div></div>
+  <div class="form-divider"></div><h2>اطلاعات همکاری</h2><div class="form-grid">
+  <div class="field"><label for="hire_date">تاریخ استخدام (میلادی) <span class="required">*</span></label><input type="date" id="hire_date" name="hire_date" value="{{ values.get('hire_date', '') }}" required dir="ltr"><small>تاریخ در پایگاه داده به صورت میلادی ذخیره می‌شود.</small></div>
+  <div class="field"><label for="branch_id">شعبه <span class="required">*</span></label><select id="branch_id" name="branch_id" required data-branch><option value="">انتخاب شعبه</option>{% for branch in branches %}<option value="{{ branch.id }}" {% if values.get('branch_id') == branch.id|string %}selected{% endif %}>{{ branch.name }}</option>{% endfor %}</select></div>
+  <div class="field"><label for="unit_id">واحد <span class="required">*</span></label><select id="unit_id" name="unit_id" required data-unit><option value="">انتخاب واحد</option>{% for unit in units %}<option value="{{ unit.id }}" data-branch-id="{{ unit.branch_id }}" {% if values.get('unit_id') == unit.id|string %}selected{% endif %}>{{ unit.name }}</option>{% endfor %}</select><small>واحد باید متعلق به شعبهٔ انتخاب‌شده باشد.</small></div>
+  <div class="field"><label for="position_id">سمت <span class="required">*</span></label><select id="position_id" name="position_id" required><option value="">انتخاب سمت</option>{% for position in positions %}<option value="{{ position.id }}" {% if values.get('position_id') == position.id|string %}selected{% endif %}>{{ position.title }}</option>{% endfor %}</select></div>
+  <div class="field"><label for="contract_type">نوع قرارداد فعلی <span class="required">*</span></label><select id="contract_type" name="contract_type" required><option value="">انتخاب نوع قرارداد</option>{% for contract_type in contract_types %}<option value="{{ contract_type }}" {% if values.get('contract_type') == contract_type %}selected{% endif %}>{{ contract_type }}</option>{% endfor %}</select></div>
+  </div><div class="form-actions"><button type="submit" class="button primary">{{ 'ذخیرهٔ تغییرات' if employee else 'ثبت کارمند' }}</button><a class="button secondary" href="{{ '/employees/' ~ employee.id if employee else '/employees' }}">انصراف</a></div>
+</form>
+{% endblock %}

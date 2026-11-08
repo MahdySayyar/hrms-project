@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">نمای کلی سازمان</p><h1>داشبورد منابع انسانی</h1><p class="muted">پرونده‌های کارکنان و اطلاعات سازمانی را از اینجا مدیریت کنید.</p></div><a class="button primary" href="/modules">مشاهدهٔ بخش‌ها</a></div>
+<div class="stats-grid">
+  <a class="stat-card" href="{{ '/reports' if user.role == 'viewer' else '/employees' }}"><span>کل کارکنان</span><strong>{{ counts.employees|fa }}</strong><small>پرونده‌های ثبت‌شده</small></a>
+  <a class="stat-card" href="{{ '/reports' if user.role == 'viewer' else '/employees?status=active' }}"><span>کارکنان فعال</span><strong>{{ counts.active|fa }}</strong><small>در وضعیت فعال</small></a>
+  <a class="stat-card" href="{{ '/reports' if user.role == 'viewer' else '/organization/branches' }}"><span>شعبه‌ها</span><strong>{{ counts.branches|fa }}</strong><small>شعبه‌های سازمان</small></a>
+  <a class="stat-card" href="{{ '/reports' if user.role == 'viewer' else '/organization/units' }}"><span>واحدها</span><strong>{{ counts.units|fa }}</strong><small>واحدهای سازمانی</small></a>
+</div>
+{% if user.role != 'viewer' %}<section class="panel"><div class="panel-heading"><div><h2>آخرین پرونده‌های ثبت‌شده</h2><p class="muted">برای مشاهدهٔ اطلاعات، پروندهٔ کارمند را باز کنید.</p></div><a class="text-link" href="/employees">مشاهدهٔ همه ←</a></div>
+<div class="table-wrap"><table><thead><tr><th>نام کارمند</th><th>کد پرسنلی</th><th>وضعیت</th><th>پرونده</th></tr></thead><tbody>
+{% for employee in recent %}<tr><td><strong>{{ employee.first_name }} {{ employee.last_name }}</strong></td><td dir="ltr" class="code">{{ employee.employee_code }}</td><td><span class="badge {{ 'active' if employee.active else 'inactive' }}">{{ 'فعال' if employee.active else 'غیرفعال' }}</span></td><td><a class="text-link" href="/employees/{{ employee.id }}">مشاهده</a></td></tr>{% else %}<tr><td colspan="4" class="empty-state">هنوز پرونده‌ای ثبت نشده است.</td></tr>{% endfor %}
+</tbody></table></div></section>{% endif %}
+<div class="info-note"><strong>چرخهٔ عمر کارکنان</strong><p>بخش‌های استخدام، حضور، درخواست‌ها، قرارداد، عملکرد، آموزش و گزارش از منوی سمت راست در دسترس‌اند. حقوق و مدیریت دسترسی برای مدیر منابع انسانی نمایش داده می‌شود.</p><a class="text-link" href="/modules">مشاهدهٔ همهٔ بخش‌ها ←</a></div>
+{% endblock %}

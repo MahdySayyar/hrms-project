@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if saved %}<div class="alert success" role="status">اطلاعات با موفقیت ذخیره شد.</div>{% endif %}
+<div class="page-heading"><div><p class="eyebrow">ساختار سازمانی</p><h1>{{ config.label }}</h1><p class="muted">{{ rows|length|fa }} مورد ثبت‌شده</p></div>{% if user.role == 'admin' %}<a href="/organization/{{ kind }}/new" class="button primary">＋ افزودن {{ config.singular }}</a>{% endif %}</div>
+<nav class="module-tabs"><a href="/organization/branches" class="{{ 'current' if kind == 'branches' else '' }}">شعبه‌ها</a><a href="/organization/units" class="{{ 'current' if kind == 'units' else '' }}">واحدها</a><a href="/organization/positions" class="{{ 'current' if kind == 'positions' else '' }}">سمت‌ها و شرح شغل</a></nav>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>{{ 'عنوان شغل' if kind == 'positions' else 'نام ' ~ config.singular }}</th>{% if kind == 'units' %}<th>شعبه</th>{% elif kind == 'positions' %}<th>شرح شغل</th>{% endif %}<th>عملیات</th></tr></thead><tbody>
+{% for row in rows %}<tr><td><strong>{{ row[config.name_field] }}</strong></td>{% if kind == 'units' %}<td>{{ branch_names[row.branch_id] }}</td>{% elif kind == 'positions' %}<td class="description-cell">{{ row.description }}</td>{% endif %}<td>{% if user.role == 'admin' %}<a href="/organization/{{ kind }}/{{ row.id }}/edit" class="text-link">ویرایش</a>{% else %}مشاهده{% endif %}</td></tr>{% else %}<tr><td colspan="3" class="empty-state">هنوز موردی ثبت نشده است.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

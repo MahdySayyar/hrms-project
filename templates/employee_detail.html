@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if saved %}<div class="alert success" role="status">اطلاعات کارمند با موفقیت ذخیره شد.</div>{% endif %}
+{% if changed %}<div class="alert success" role="status">وضعیت کارمند با موفقیت تغییر کرد. پرونده همچنان محفوظ است.</div>{% endif %}
+<div class="page-heading"><div><p class="eyebrow">پروندهٔ کارمند</p><h1>{{ employee.first_name }} {{ employee.last_name }}</h1><p class="muted">کد پرسنلی: <bdi>{{ employee.employee_code }}</bdi></p></div><div class="heading-actions"><a href="/employees/{{ employee.id }}/edit" class="button primary">ویرایش پرونده</a><a href="/employees" class="button secondary">فهرست کارکنان</a></div></div>
+<nav class="module-tabs"><a href="/history/{{ employee.id }}">تاریخچهٔ انتساب سازمانی</a><a href="/hr/contracts">قراردادها</a><a href="/hr/evaluations">ارزیابی‌ها</a></nav>
+<section class="panel detail-panel"><div class="panel-heading"><h2>اطلاعات فردی و سازمانی</h2><span class="badge {{ 'active' if employee.active else 'inactive' }}">{{ 'فعال' if employee.active else 'غیرفعال' }}</span></div>
+<dl class="detail-grid">
+{% for label, value in [('نام', employee.first_name), ('نام خانوادگی', employee.last_name), ('کد ملی', employee.national_id|fa), ('شمارهٔ همراه', employee.phone|fa), ('ایمیل', employee.email or 'ثبت نشده'), ('تاریخ استخدام (میلادی)', employee.hire_date|fa), ('شعبه', branch.name), ('واحد', unit.name), ('سمت', position.title), ('نوع قرارداد فعلی', employee.contract_type)] %}<div><dt>{{ label }}</dt><dd><bdi>{{ value }}</bdi></dd></div>{% endfor %}
+</dl><div class="job-description"><h3>شرح شغل</h3><p>{{ position.description }}</p></div></section>
+<section class="status-panel panel"><div><h2>{{ 'غیرفعال کردن کارمند' if employee.active else 'فعال کردن کارمند' }}</h2><p class="muted">{{ 'غیرفعال‌سازی فقط وضعیت را تغییر می‌دهد و پرونده حذف نمی‌شود.' if employee.active else 'با فعال‌سازی، وضعیت همکاری این کارمند دوباره فعال می‌شود.' }}</p></div>
+<form method="post" action="/employees/{{ employee.id }}/status"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><input type="hidden" name="active" value="{{ 'false' if employee.active else 'true' }}"><button type="submit" class="button {{ 'danger' if employee.active else 'primary' }}">{{ 'غیرفعال کردن' if employee.active else 'فعال کردن' }}</button></form></section>
+{% endblock %}

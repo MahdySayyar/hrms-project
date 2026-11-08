@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="login-card">
+  <span class="brand-mark large">م</span><p class="eyebrow">پروژهٔ دانشگاهی</p>
+  <h1>سامانه مدیریت منابع انسانی</h1><p class="muted">برای مدیریت پرونده‌های کارکنان وارد شوید.</p>
+  <form method="post" action="/login" class="login-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="username">نام کاربری</label><input id="username" name="username" value="{{ username|default('') }}" autocomplete="username" maxlength="50" required dir="ltr">
+    <label for="password">رمز عبور</label><input id="password" name="password" type="password" autocomplete="current-password" required dir="ltr">
+    <button class="button primary full" type="submit">ورود به سامانه</button>
+  </form>
+  <p class="login-note">دسترسی این مرحله مخصوص مدیر منابع انسانی است.<br>اطلاعات نمونهٔ سامانه ساختگی است.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} | سامانه مدیریت منابع انسانی</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='modules.css') }}">
+  <script src="{{ url_for('static', path='forms.js') }}" defer></script>
+</head>
+<body class="{% if admin_name %}app-layout{% else %}guest-layout{% endif %}">
+{% if admin_name %}
+<aside class="sidebar">
+  <a href="/" class="brand"><span class="brand-mark">م</span><span>مدیریت منابع انسانی<small>پروژهٔ دانشگاهی · نسخهٔ کاربردی</small></span></a>
+  <div class="nav-label">محیط کار</div>
+  <nav aria-label="ناوبری اصلی">
+    <a href="/" class="{% if request.url.path == '/' %}selected{% endif %}"><span>▦</span> داشبورد</a>
+    <a href="/modules" class="{% if request.url.path == '/modules' %}selected{% endif %}"><span>◇</span> همهٔ بخش‌ها</a>
+    {% if user.role != 'viewer' %}
+    <a href="/employees" class="{% if request.url.path.startswith('/employees') %}selected{% endif %}"><span>◉</span> پروندهٔ کارکنان</a>
+    <a href="/organization/branches" class="{% if request.url.path.startswith('/organization') %}selected{% endif %}"><span>▤</span> ساختار سازمانی</a>
+    <a href="/hr/candidates" class="{% if '/candidates' in request.url.path or '/interviews' in request.url.path %}selected{% endif %}"><span>◇</span> استخدام و پذیرش</a>
+    <a href="/hr/attendance" class="{% if '/attendance' in request.url.path or '/shifts' in request.url.path or '/travel' in request.url.path %}selected{% endif %}"><span>◷</span> حضور و مأموریت</a>
+    <a href="/hr/leave" class="{% if '/leave' in request.url.path or '/administrative' in request.url.path %}selected{% endif %}"><span>▱</span> مرخصی و درخواست‌ها</a>
+    {% if user.role == 'admin' %}<a href="/payroll" class="{% if '/payroll' in request.url.path %}selected{% endif %}"><span>▤</span> حقوق آموزشی</a>{% endif %}
+    <a href="/hr/contracts" class="{% if '/contracts' in request.url.path %}selected{% endif %}"><span>▱</span> قرارداد و همکاری</a>
+    <a href="/hr/evaluations" class="{% if '/evaluations' in request.url.path or '/trainings' in request.url.path or '/enrollments' in request.url.path or '/career' in request.url.path %}selected{% endif %}"><span>◇</span> عملکرد و آموزش</a>
+    {% endif %}
+    <a href="/reports" class="{% if '/reports' in request.url.path %}selected{% endif %}"><span>▦</span> گزارش‌ها</a>
+    {% if user.role == 'admin' %}<a href="/hr/users" class="{% if '/users' in request.url.path or '/audit' in request.url.path %}selected{% endif %}"><span>◉</span> دسترسی و سابقه</a>{% endif %}
+  </nav>
+  <div class="sidebar-note">اطلاعات اولیهٔ این سامانه ساختگی است و برای تمرین آموزشی ثبت شده است.</div>
+  <div class="account"><span class="avatar">م</span><div>{{ admin_name }}<small>{{ role_labels.get(user.role, 'کاربر سامانه') }}</small></div></div>
+  <form method="post" action="/logout" class="logout-form"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit">خروج از حساب</button></form>
+</aside>
+{% endif %}
+<main class="main-content">
+{% if admin_name %}<header class="topbar"><span>سامانه مدیریت منابع انسانی</span><span class="environment">محیط آموزشی</span></header>{% endif %}
+<div class="page-content">
+{% if errors %}<div class="alert error" role="alert"><strong>لطفاً موارد زیر را بررسی کنید:</strong><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul></div>{% endif %}
+{% block content %}{% endblock %}
+</div>
+{% if admin_name %}<footer>سامانه مدیریت منابع انسانی · نسخهٔ آموزشی دانشگاهی</footer>{% endif %}
+</main>
+</body>
+</html>

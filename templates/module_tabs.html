@@ -1,0 +1,14 @@
+<nav class="module-tabs" aria-label="زیر‌بخش‌های ماژول">
+{% if module in ['candidates','interviews'] %}
+<a href="/hr/candidates" class="{{ 'current' if module == 'candidates' else '' }}">متقاضیان و پذیرش</a><a href="/hr/interviews" class="{{ 'current' if module == 'interviews' else '' }}">مصاحبه‌ها</a>
+{% elif module in ['attendance','shifts','travel'] %}
+<a href="/hr/attendance" class="{{ 'current' if module == 'attendance' else '' }}">حضور و اضافه‌کاری</a><a href="/hr/shifts" class="{{ 'current' if module == 'shifts' else '' }}">شیفت‌ها</a><a href="/hr/travel" class="{{ 'current' if module == 'travel' else '' }}">مأموریت‌ها</a>
+{% elif module in ['leave','administrative'] %}
+<a href="/hr/leave" class="{{ 'current' if module == 'leave' else '' }}">مرخصی</a><a href="/hr/administrative" class="{{ 'current' if module == 'administrative' else '' }}">درخواست اداری</a><a href="/hr/travel">مأموریت</a>
+{% elif module in ['evaluations','trainings','enrollments','career'] %}
+<a href="/hr/evaluations" class="{{ 'current' if module == 'evaluations' else '' }}">ارزیابی عملکرد</a><a href="/hr/trainings" class="{{ 'current' if module == 'trainings' else '' }}">دوره‌ها</a><a href="/hr/enrollments" class="{{ 'current' if module == 'enrollments' else '' }}">سوابق آموزش</a><a href="/hr/career" class="{{ 'current' if module == 'career' else '' }}">توسعهٔ شغلی</a>
+{% elif module in ['payroll-rules','payroll-profiles'] %}
+<a href="/payroll">محاسبه و فیش‌ها</a><a href="/hr/payroll-rules" class="{{ 'current' if module == 'payroll-rules' else '' }}">قواعد آموزشی</a><a href="/hr/payroll-profiles" class="{{ 'current' if module == 'payroll-profiles' else '' }}">اطلاعات پرداخت</a>
+{% elif module == 'users' %}<a class="current" href="/hr/users">کاربران و دسترسی‌ها</a><a href="/audit">سابقهٔ تغییرات</a>
+{% endif %}
+</nav>

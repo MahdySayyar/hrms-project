@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">ثبت و به‌روزرسانی اطلاعات</p><h1>{{ title }}</h1></div><a class="button secondary" href="{{ back }}">بازگشت</a></div>
+{% include 'module_tabs.html' %}
+{% if description %}<div class="info-note module-info">{{ description }}</div>{% endif %}
+<form method="post" action="{{ action }}" class="panel form-panel">
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}"><div class="form-grid">
+{% for field in fields %}<div class="field {{ 'wide-field' if field.kind == 'textarea' else '' }}"><label for="{{ field.name }}">{{ field.label }} {% if field.required %}<span class="required">*</span>{% endif %}</label>
+{% if field.kind == 'select' %}<select id="{{ field.name }}" name="{{ field.name }}" {% if field.required %}required{% endif %}><option value="">{{ 'انتخاب کنید' if field.required else 'بدون محدودیت / ثبت نشده' }}</option>{% for key,label in field.options %}<option value="{{ key }}" {% if values.get(field.name, field.default|default(''))|string == key|string %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+{% elif field.kind == 'textarea' %}<textarea id="{{ field.name }}" name="{{ field.name }}" rows="4" maxlength="{{ field.maximum_length|default(3000) }}" {% if field.required %}required{% endif %}>{{ values.get(field.name, '') }}</textarea>
+{% else %}<input id="{{ field.name }}" name="{{ field.name }}" type="{{ 'number' if field.kind == 'decimal' else field.kind }}" value="{{ values.get(field.name, '') }}" {% if field.required %}required{% endif %} {% if field.kind in ['number','decimal'] %}min="{{ field.minimum|default(0) }}" max="{{ field.maximum|default(1000000000) }}" step="{{ '0.01' if field.kind == 'decimal' else '1' }}" dir="ltr"{% elif field.kind in ['date','time','datetime-local','email','password'] or field.name in ['phone','national_id','employee_code','username'] %}dir="ltr"{% endif %} {% if field.maximum_length %}maxlength="{{ field.maximum_length }}"{% endif %} {% if field.kind == 'password' %}autocomplete="new-password"{% endif %}>
+{% endif %}</div>{% endfor %}</div>
+<div class="form-actions"><button class="button primary" type="submit">ذخیرهٔ اطلاعات</button><a class="button secondary" href="{{ back }}">انصراف</a></div>
+</form>
+{% endblock %}

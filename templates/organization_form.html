@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">ساختار سازمانی</p><h1>{{ title }}</h1><p class="muted">اطلاعات {{ config.singular }} را ثبت یا به‌روز کنید.</p></div><a href="/organization/{{ kind }}" class="button secondary">بازگشت</a></div>
+<form method="post" action="{{ '/organization/' ~ kind ~ '/' ~ record.id ~ '/edit' if record else '/organization/' ~ kind ~ '/new' }}" class="panel form-panel narrow-form">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <div class="field"><label for="{{ config.name_field }}">{{ 'عنوان شغل' if kind == 'positions' else 'نام ' ~ config.singular }} <span class="required">*</span></label><input id="{{ config.name_field }}" name="{{ config.name_field }}" value="{{ values.get(config.name_field, '') }}" maxlength="100" required></div>
+  {% if kind == 'units' %}<div class="field"><label for="branch_id">شعبه <span class="required">*</span></label><select id="branch_id" name="branch_id" required><option value="">انتخاب شعبه</option>{% for branch in branches %}<option value="{{ branch.id }}" {% if values.get('branch_id') == branch.id|string %}selected{% endif %}>{{ branch.name }}</option>{% endfor %}</select><small>شعبهٔ واحدی که کارمند دارد، مستقیماً قابل تغییر نیست.</small></div>{% endif %}
+  {% if kind == 'positions' %}<div class="field"><label for="description">شرح شغل <span class="required">*</span></label><textarea id="description" name="description" rows="5" maxlength="3000" required>{{ values.get('description', '') }}</textarea></div>{% endif %}
+  <div class="form-actions"><button type="submit" class="button primary">ذخیرهٔ اطلاعات</button><a href="/organization/{{ kind }}" class="button secondary">انصراف</a></div>
+</form>
+{% endblock %}
