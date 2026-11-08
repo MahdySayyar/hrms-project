@@ -1,0 +1,988 @@
+id: TR-CAT-01
+version: 1
+traceability:
+- id: TR-01
+  requirement: FR-01
+  specification: FS-01
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-01
+  - BR-02
+  use_cases:
+  - UC-01
+  models:
+  - ACT-01
+  - DM-01
+  - SEQ-01
+  - ST-01
+  - UCM-01
+  design:
+  - D-01
+  api:
+  - API-01
+  code:
+  - app/main.py#login
+  tests:
+  - TC-01-01
+  - TC-01-03
+  - TC-REG-01
+  regression_assertion_indices:
+  - 1
+  - 82
+  - 88
+  - 91
+  - 97
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-02
+  requirement: FR-02
+  specification: FS-02
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-02
+  use_cases:
+  - UC-01
+  models:
+  - ACT-01
+  - DM-01
+  - SEQ-01
+  - ST-01
+  - UCM-01
+  design:
+  - D-01
+  api:
+  - API-01
+  code:
+  - app/main.py#logout
+  tests:
+  - TC-01-01
+  regression_assertion_indices: []
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-03
+  requirement: FR-03
+  specification: FS-03
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-03
+  - BR-04
+  use_cases:
+  - UC-01
+  - UC-02
+  - UC-03
+  models:
+  - ACT-01
+  - ACT-02
+  - ACT-03
+  - DM-01
+  - SEQ-01
+  - SEQ-02
+  - SEQ-03
+  - ST-01
+  - ST-02
+  - ST-03
+  - UCM-01
+  design:
+  - D-01
+  - D-02
+  - D-03
+  api:
+  - API-01
+  - API-02
+  - API-03
+  code:
+  - app/access.py#require_hr
+  - app/access.py#require_admin
+  - app/access.py#scoped_employee
+  tests:
+  - TC-01-02
+  - TC-REG-01
+  regression_assertion_indices:
+  - 83
+  - 84
+  - 85
+  - 86
+  - 87
+  - 88
+  - 89
+  - 90
+  - 91
+  - 92
+  - 93
+  - 94
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-04
+  requirement: FR-04
+  specification: FS-04
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-05
+  - BR-06
+  use_cases:
+  - UC-04
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-04
+  code:
+  - app/main.py#employee_create
+  - app/main.py#employee_edit
+  tests:
+  - TC-HIST-01
+  - TC-REG-01
+  regression_assertion_indices:
+  - 25
+  - 74
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-05
+  requirement: FR-05
+  specification: FS-05
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-03
+  - BR-04
+  use_cases:
+  - UC-04
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-04
+  code:
+  - app/main.py#employee_status
+  tests:
+  - TC-HIST-01
+  - TC-REG-01
+  regression_assertion_indices:
+  - 66
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-06
+  requirement: FR-06
+  specification: FS-06
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-04
+  use_cases:
+  - UC-04
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-04
+  code:
+  - app/main.py#employee_list
+  tests:
+  - TC-HIST-01
+  regression_assertion_indices: []
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-07
+  requirement: FR-07
+  specification: FS-07
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-06
+  use_cases:
+  - UC-05
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-05
+  code:
+  - app/main.py#save_organization
+  tests:
+  - TC-HIST-01
+  - TC-REG-01
+  regression_assertion_indices:
+  - 19
+  - 75
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-08
+  requirement: FR-08
+  specification: FS-08
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-06
+  - BR-15
+  use_cases:
+  - UC-06
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-06
+  code:
+  - app/modules.py#validate_record
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 2
+  - 20
+  - 21
+  - 23
+  - 28
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-09
+  requirement: FR-09
+  specification: FS-09
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-15
+  use_cases:
+  - UC-06
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-06
+  code:
+  - app/modules.py#save_record
+  - app/modules.py#validate_record
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 3
+  - 22
+  - 23
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-10
+  requirement: FR-10
+  specification: FS-10
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-05
+  - BR-15
+  - BR-14
+  use_cases:
+  - UC-06
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-06
+  code:
+  - app/modules.py#hire_candidate
+  - app/modules.py#complete_onboarding
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-11
+  requirement: FR-11
+  specification: FS-11
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-16
+  use_cases:
+  - UC-07
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-07
+  code:
+  - app/modules.py#validate_record
+  - app/modules.py#minutes_between
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 30
+  - 31
+  - 32
+  - 33
+  - 34
+  - 35
+  - 36
+  - 37
+  - 38
+  - 39
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-12
+  requirement: FR-12
+  specification: FS-12
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-04
+  - BR-07
+  - BR-14
+  use_cases:
+  - UC-02
+  models:
+  - ACT-02
+  - DM-01
+  - SEQ-02
+  - ST-02
+  - UCM-01
+  design:
+  - D-02
+  api:
+  - API-02
+  code:
+  - app/modules.py#save_record
+  tests:
+  - TC-02-01
+  - TC-REG-01
+  regression_assertion_indices:
+  - 40
+  - 44
+  - 48
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-13
+  requirement: FR-13
+  specification: FS-13
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-08
+  - BR-09
+  - BR-10
+  - BR-14
+  use_cases:
+  - UC-02
+  models:
+  - ACT-02
+  - DM-01
+  - SEQ-02
+  - ST-02
+  - UCM-01
+  design:
+  - D-02
+  api:
+  - API-02
+  code:
+  - app/modules.py#review_request
+  - app/request_workflow/service.py#RequestReviewService.review
+  tests:
+  - TC-02-02
+  - TC-02-03
+  - TC-02-04
+  - TC-02-05
+  - TC-02-06
+  - TC-02-07
+  - TC-02-08
+  - TC-02-09
+  - TC-REG-01
+  regression_assertion_indices:
+  - 41
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46
+  - 47
+  - 48
+  - 49
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-14
+  requirement: FR-14
+  specification: FS-14
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-11
+  - BR-12
+  use_cases:
+  - UC-03
+  models:
+  - ACT-03
+  - DM-01
+  - SEQ-03
+  - ST-03
+  - UCM-01
+  design:
+  - D-03
+  api:
+  - API-03
+  code:
+  - app/module_forms.py
+  - app/modules.py#validate_record
+  - app/hr_models.py#PayrollRule
+  tests:
+  - TC-03-01
+  - TC-03-02
+  - TC-REG-01
+  regression_assertion_indices:
+  - 9
+  - 51
+  - 53
+  - 55
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-15
+  requirement: FR-15
+  specification: FS-15
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-11
+  use_cases:
+  - UC-03
+  models:
+  - ACT-03
+  - DM-01
+  - SEQ-03
+  - ST-03
+  - UCM-01
+  design:
+  - D-03
+  api:
+  - API-03
+  code:
+  - app/module_forms.py
+  - app/hr_models.py#PayrollProfile
+  tests:
+  - TC-03-04
+  - TC-REG-01
+  regression_assertion_indices:
+  - 10
+  - 50
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-16
+  requirement: FR-16
+  specification: FS-16
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-11
+  - BR-12
+  - BR-13
+  - BR-14
+  use_cases:
+  - UC-03
+  models:
+  - ACT-03
+  - DM-01
+  - SEQ-03
+  - ST-03
+  - UCM-01
+  design:
+  - D-03
+  api:
+  - API-03
+  code:
+  - app/modules.py#calculate_payroll
+  - app/modules.py#payslip_detail
+  tests:
+  - TC-03-01
+  - TC-03-02
+  - TC-03-03
+  - TC-03-04
+  - TC-03-05
+  - TC-REG-01
+  regression_assertion_indices:
+  - 52
+  - 53
+  - 54
+  - 55
+  - 56
+  - 57
+  - 58
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-17
+  requirement: FR-17
+  specification: FS-17
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-17
+  - BR-14
+  use_cases:
+  - UC-08
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-08
+  code:
+  - app/modules.py#activate_contract
+  - app/modules.py#renew_contract
+  - app/modules.py#terminate_contract
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 59
+  - 60
+  - 61
+  - 62
+  - 63
+  - 64
+  - 65
+  - 66
+  - 67
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-18
+  requirement: FR-18
+  specification: FS-18
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-18
+  use_cases:
+  - UC-09
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-09
+  code:
+  - app/module_forms.py
+  - app/hr_models.py#Evaluation
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 68
+  - 69
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-19
+  requirement: FR-19
+  specification: FS-19
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-19
+  use_cases:
+  - UC-09
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-09
+  code:
+  - app/modules.py#validate_record
+  - app/hr_models.py#TrainingEnrollment
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 70
+  - 71
+  - 72
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-20
+  requirement: FR-20
+  specification: FS-20
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-18
+  use_cases:
+  - UC-09
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-09
+  code:
+  - app/module_forms.py
+  - app/hr_models.py#CareerPlan
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 73
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-21
+  requirement: FR-21
+  specification: FS-21
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-20
+  use_cases:
+  - UC-10
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-10
+  code:
+  - app/access.py#sync_assignment
+  - app/modules.py#employee_history
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 74
+  - 75
+  - 76
+  - 77
+  - 78
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-22
+  requirement: FR-22
+  specification: FS-22
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-04
+  use_cases:
+  - UC-11
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-11
+  code:
+  - app/modules.py#reports
+  tests:
+  - TC-01-02
+  - TC-REG-01
+  regression_assertion_indices:
+  - 78
+  - 92
+  - 94
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-23
+  requirement: FR-23
+  specification: FS-23
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-03
+  - BR-04
+  - BR-21
+  use_cases:
+  - UC-11
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-11
+  code:
+  - app/modules.py#export_employees
+  - app/modules.py#safe_csv
+  tests:
+  - TC-01-02
+  - TC-REG-01
+  regression_assertion_indices:
+  - 79
+  - 93
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-24
+  requirement: FR-24
+  specification: FS-24
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-14
+  use_cases:
+  - UC-02
+  - UC-03
+  - UC-12
+  models:
+  - ACT-02
+  - ACT-03
+  - DM-01
+  - SEQ-02
+  - SEQ-03
+  - ST-02
+  - ST-03
+  - UCM-01
+  design:
+  - D-02
+  - D-03
+  - D-04
+  api:
+  - API-02
+  - API-03
+  - API-12
+  code:
+  - app/access.py#audit
+  - app/modules.py#audit_page
+  - app/request_workflow/repository.py#RequestReviewRepository.save_decision
+  tests:
+  - TC-02-02
+  - TC-02-08
+  - TC-REG-01
+  regression_assertion_indices:
+  - 42
+  - 95
+  - 96
+  verification: core_test_samples_and_broad_regression
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+- id: TR-25
+  requirement: FR-25
+  specification: FS-25
+  sources:
+  - SRC-C01
+  business_rules:
+  - BR-22
+  use_cases:
+  - UC-12
+  models:
+  - DM-01
+  - UCM-01
+  design:
+  - D-04
+  api:
+  - API-12
+  code:
+  - app/modules.py#validate_record
+  - app/database.py#Admin
+  tests:
+  - TC-REG-01
+  regression_assertion_indices:
+  - 16
+  - 80
+  - 81
+  - 87
+  - 89
+  - 90
+  verification: extended_partial_or_historical_evidence
+  human_review: pending
+  coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
+    paths
+nonfunctional_traceability:
+- id: TR-NFR-01
+  requirement: NFR-01
+  status: proposed_not_verified
+  tests: []
+  evidence:
+  - docs/08-testing/evidence/native-load.json
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-02
+  requirement: NFR-P-02
+  status: proposed_not_verified
+  tests: []
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-03
+  requirement: NFR-S-01
+  status: partially_verified
+  tests:
+  - TC-01-02
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-04
+  requirement: NFR-S-02
+  status: partially_verified
+  tests:
+  - TC-01-01
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-05
+  requirement: NFR-AU-01
+  status: verified_for_request_decisions
+  tests:
+  - TC-02-02
+  - TC-02-04
+  - TC-02-08
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-06
+  requirement: NFR-A-01
+  status: proposed_not_verified
+  tests: []
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-07
+  requirement: NFR-M-01
+  status: verified_for_request_module_pending_human_review
+  tests:
+  - TC-M-01
+  - TC-M-02
+  evidence:
+  - docs/08-testing/evidence/all-tests-final.json
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-08
+  requirement: NFR-T-01
+  status: measured_request_package_threshold_passed
+  tests: []
+  evidence:
+  - docs/08-testing/evidence/coverage-request-workflow.json
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-09
+  requirement: NFR-U-01
+  status: proposed_not_verified
+  tests: []
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-10
+  requirement: NFR-L-01
+  status: implemented_historical_browser_evidence
+  tests: []
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+- id: TR-NFR-11
+  requirement: NFR-R-01
+  status: proposed_not_verified
+  tests: []
+  evidence: []
+  architecture:
+  - ARCH-01
+  - QA-01
+  - EXP-CAT-01
+test_code_symbols:
+  TC-M-01: tests/test_architecture_boundaries.py#ArchitectureBoundaries.test_tc_m01_domain_has_no_web_or_storage_dependency
+  TC-M-02: tests/test_architecture_boundaries.py#ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql
+  TC-01-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
+  TC-01-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope
+  TC-01-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_03_inactive_account_is_rejected
+  TC-02-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_01_creation_and_invalid_date_range
+  TC-02-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_02_approval_and_atomic_audit
+  TC-02-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_03_rejection_requires_reason
+  TC-02-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_04_same_decision_is_idempotent
+  TC-02-05: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_05_conflicting_final_decision_is_explicitly_rejected
+  TC-02-06: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_06_overlap_includes_shared_boundary_day
+  TC-02-07: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_07_parallel_overlapping_approvals_have_one_winner
+  TC-02-08: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_08_failed_audit_rolls_back_decision
+  TC-02-09: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_09_missing_invalid_and_notes_boundary
+  TC-03-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_01_monthly_formula_and_immutable_retry
+  TC-03-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_02_hourly_formula_counts_overtime_once
+  TC-03-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_03_invalid_period_and_missing_profile
+  TC-03-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_04_zero_hourly_rate_is_rejected
+  TC-03-05: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
+  TC-02-U01: tests/test_request_rules.py#RequestRules.test_tc_02_u01_pending_accepts_both_final_decisions
+  TC-02-U02: tests/test_request_rules.py#RequestRules.test_tc_02_u02_final_identical_retry_does_not_change
+  TC-02-U03: tests/test_request_rules.py#RequestRules.test_tc_02_u03_both_opposite_final_transitions_are_rejected
+  TC-02-U04: tests/test_request_rules.py#RequestRules.test_tc_02_u04_unknown_stored_state_is_rejected
+  TC-02-U05: tests/test_request_rules.py#RequestRules.test_tc_02_u05_invalid_target_is_rejected
+  TC-02-U06: tests/test_request_rules.py#RequestRules.test_tc_02_u06_admin_can_approve_without_notes
+  TC-02-U07: tests/test_request_rules.py#RequestRules.test_tc_02_u07_rejection_requires_nonblank_reason
+  TC-02-U08: tests/test_request_rules.py#RequestRules.test_tc_02_u08_notes_length_boundary
+  TC-02-U09: tests/test_request_rules.py#RequestRules.test_tc_02_u09_non_admin_cannot_decide
+  TC-02-U10: tests/test_request_rules.py#RequestRules.test_tc_02_u10_invalid_decision_format

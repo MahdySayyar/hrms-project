@@ -1,0 +1,19 @@
+%% ST-01 — Session lifecycle
+stateDiagram-v2
+    [*] --> Anonymous: GET login
+    Anonymous --> Authenticated: valid active credentials + CSRF + audit
+    Anonymous --> Anonymous: invalid credentials / 401
+    Anonymous --> Anonymous: invalid CSRF / 403
+    Anonymous --> Expired: anonymous lifetime ends
+    Authenticated --> Invalidated: logout + CSRF + audit
+    Authenticated --> Expired: configured lifetime ends
+    Authenticated --> Invalidated: account inactive or missing
+    Authenticated --> Lost: process restart
+    Invalidated --> Anonymous: next login page
+    Expired --> Anonymous: next login page
+    Lost --> Anonymous: next login page
+    note right of Authenticated
+      New cookie after login
+      Session is process-local
+      Roles live in account data
+    end note

@@ -1,0 +1,21 @@
+%% ACT-02 — HR request activity
+flowchart TD
+    Start(["شروع"]) --> Form["ثبت فرم توسط HR"]
+    Form --> Date{"تاریخ و محدوده معتبر؟"}
+    Date -->|"خیر"| CreationError["400/403/404؛ ثبت نشود"]
+    Date -->|"بله"| Pending["ثبت pending و audit"]
+    Pending --> Review["admin تصمیم می‌فرستد"]
+    Review --> Input{"نقش، CSRF، تصمیم و notes معتبر؟"}
+    Input -->|"خیر"| E400["400/403؛ بدون تغییر"]
+    Input -->|"بله"| Lock["تراکنش؛ قفل request سپس employee"]
+    Lock --> Found{"رکورد/نوع/محدوده معتبر؟"}
+    Found -->|"خیر"| E404["404 یا 409"]
+    Found -->|"بله"| Final{"وضعیت نهایی؟"}
+    Final -->|"همان تصمیم"| Retry["303 بدون write/audit"]
+    Final -->|"تصمیم مخالف یا state نامعتبر"| Conflict["409؛ تصمیم اولیه حفظ"]
+    Final -->|"pending"| Overlap{"approval مرخصی/مأموریت هم‌پوشان؟"}
+    Overlap -->|"بله"| EOverlap["400؛ rollback"]
+    Overlap -->|"خیر"| Save["تصمیم، actor/time و audit"]
+    Save --> Commit{"commit موفق؟"}
+    Commit -->|"خیر"| Rollback["500؛ rollback همه"]
+    Commit -->|"بله"| Done(["303؛ یک تصمیم نهایی"])

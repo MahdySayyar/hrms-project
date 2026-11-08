@@ -1,0 +1,52 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-08T11:10:23.794241+00:00",
+  "finished_at": "2026-11-08T11:10:23.858810+00:00",
+  "git_parent_commit": "326f77bb0c3808f7d2db65c1b0a49d27c2cf3959",
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 10,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u01_pending_accepts_both_final_decisions",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u02_final_identical_retry_does_not_change",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u03_both_opposite_final_transitions_are_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u04_unknown_stored_state_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u05_invalid_target_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u06_admin_can_approve_without_notes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u07_rejection_requires_nonblank_reason",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u08_notes_length_boundary",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u09_non_admin_cannot_decide",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u10_invalid_decision_format",
+      "status": "passed"
+    }
+  ]
+}

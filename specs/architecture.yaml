@@ -1,0 +1,46 @@
+id: ARCH-SPEC-01
+version: 1
+status: specified_before_boundary_hardening_pending_human_review
+deployment: single native FastAPI process + local PostgreSQL
+governed_module: request decisions only
+layers:
+- name: route
+  file: app/modules.py
+  symbol: review_request
+  responsibility: form/session/CSRF/error translation
+- name: domain
+  file: app/request_workflow/domain.py
+  responsibility: role/input/state rules
+  forbidden_dependencies:
+  - fastapi
+  - sqlalchemy
+  - database
+  - hr_models
+  - repository
+  - service
+- name: service
+  file: app/request_workflow/service.py
+  responsibility: workflow/transaction orchestration through injected repository and
+    clock
+  forbidden_dependencies:
+  - fastapi
+  - sqlalchemy
+  - database
+  - hr_models
+  - access
+  - security
+- name: repository
+  file: app/request_workflow/repository.py
+  responsibility: PostgreSQL reads/locks/decision and audit writes
+invariants:
+- same UC-02 browser responses and lock order
+- request lock before employee lock
+- decision and audit share transaction
+- default clock uses standard library UTC, not ORM module
+tests:
+- TC-M-01
+- TC-M-02
+- TC-02-02
+- TC-02-07
+- TC-02-08
+decision: ADR-04

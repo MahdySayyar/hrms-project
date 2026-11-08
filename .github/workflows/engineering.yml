@@ -1,0 +1,47 @@
+name: HRMS engineering checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: hrms_ci
+          POSTGRES_USER: synthetic_ci
+          POSTGRES_PASSWORD: disposable-ci-only-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U synthetic_ci -d hrms_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://synthetic_ci:disposable-ci-only-password@127.0.0.1:5432/hrms_ci
+      COOKIE_SECURE: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python -m pip install -r requirements-lock.txt -r requirements-dev.txt
+      - run: python -m pip check
+      - name: Core contracts and architecture coverage
+        run: python -m coverage run --source app/request_workflow --data-file artifacts/ci/coverage scripts/run_core_checks.py --phase after --pattern "test_*.py" --output artifacts/ci/core.json
+      - run: python -m coverage report --data-file artifacts/ci/coverage --fail-under=80
+      - run: python -m coverage json --data-file artifacts/ci/coverage -o artifacts/ci/coverage.json
+      - run: python scripts/check_engineering.py --output artifacts/ci/doc-checks.json
+      - run: npm install --prefix artifacts/diagram-validator --ignore-scripts --no-audit --no-fund mermaid@11 jsdom@26
+      - run: node scripts/validate_diagrams.mjs --output artifacts/ci/diagram-checks.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: synthetic-core-evidence
+          path: artifacts/ci/

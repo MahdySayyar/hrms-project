@@ -1,0 +1,35 @@
+%% SEQ-01 — Authenticate and logout sequence
+sequenceDiagram
+    actor User as کاربر
+    participant Browser
+    participant Route as main.py
+    participant Security as security.py
+    participant DB as PostgreSQL
+    User->>Browser: بازکردن login
+    Browser->>Route: GET /login
+    Route->>Security: anonymous session + CSRF
+    Route-->>Browser: 200 HTML + HttpOnly cookie
+    Browser->>Route: POST /login (username,password,csrf)
+    Route->>Security: check_csrf
+    alt CSRF نامعتبر
+      Route-->>Browser: 403
+    else فرم معتبر
+      Route->>DB: read active account
+      Route->>Security: verify_password
+      alt حساب یا رمز نامعتبر
+        Route-->>Browser: 401 generic message
+      else حساب فعال و رمز صحیح
+        Route->>DB: INSERT login audit + COMMIT
+        Route->>Security: discard old + new authenticated session
+        Route-->>Browser: 303 / + rotated cookie
+        Browser->>Route: GET /
+        Route->>Security: require_login
+        Security->>DB: verify account still active
+        Route-->>Browser: 200 dashboard
+        Browser->>Route: POST /logout + CSRF
+        Route->>Security: validate session + CSRF
+        Route->>DB: INSERT logout audit + COMMIT
+        Route->>Security: discard_session
+        Route-->>Browser: 303 /login + delete cookie
+      end
+    end

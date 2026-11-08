@@ -1,0 +1,36 @@
+date: '2026-11-08'
+ai_tool:
+  name: Codex coding agent based on GPT-6
+  build_version: not exposed
+  temperature: not exposed
+human_review:
+  status: pending
+  reviewer: null
+  decision: null
+human_modifications: None reported; no individual modifications inferred
+final_status: technically_validated_pending_human_review
+id: TRF-02
+task: Remove default-clock ORM dependency and strengthen existing architecture boundary
+  check
+origin: Prompt and architecture models saved and read before this bounded code edit
+input_artifacts_at_implementation:
+- ARCH-SPEC-01
+- UC-02
+- CMP-01
+- CLS-01
+- ADR-04
+- TC-M-02
+prompt: docs/07-ai-transformation/prompts/TRF-02.txt
+output: docs/07-ai-transformation/outputs/TRF-02.patch
+output_source_files:
+- app/request_workflow/service.py
+- tests/test_architecture_boundaries.py
+validation:
+- docs/08-testing/evidence/all-tests-final.json
+- docs/08-testing/evidence/coverage-request-workflow.json
+limitations:
+- Previous coupling was observed by import inspection; no pre-edit failing run recorded
+- Current YAML inputs were subsequently formatted without changing the specified boundary
+  decision
+- Only request-decision module was hardened
+output_sha256: 9e19f2c50d939b0491ce27f7177b5c9adcf60b4c4397e23b56c5f3322d186e87

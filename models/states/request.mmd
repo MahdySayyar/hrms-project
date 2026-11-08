@@ -1,0 +1,17 @@
+%% ST-02 — Request decision lifecycle
+stateDiagram-v2
+    [*] --> Pending: valid creation + audit
+    Pending --> Pending: valid edit
+    Pending --> Approved: admin approval; no approved overlap; atomic audit
+    Pending --> Rejected: admin rejection; nonblank reason; atomic audit
+    Pending --> Pending: invalid input / overlap / audit failure
+    Approved --> Approved: identical retry; no new write/audit
+    Rejected --> Rejected: identical retry; no new write/audit
+    note right of Approved
+      Opposite final decision returns 409
+      Editing finalized request is rejected
+    end note
+    note right of Rejected
+      Opposite final decision returns 409
+      No cancelled state is implemented
+    end note

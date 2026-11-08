@@ -1,0 +1,2378 @@
+{
+  "id": "DB-01",
+  "captured_at": "2026-11-08T12:12:06.691367+00:00",
+  "origin": "Read-only SQLAlchemy reflection of the running PostgreSQL schema; no row data",
+  "postgresql_version": "17.6",
+  "schema": "public",
+  "table_count": 21,
+  "tables": [
+    {
+      "name": "admins",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".admins_id_seq'::regclass)"
+        },
+        {
+          "name": "username",
+          "type": "VARCHAR(50)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "display_name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "password_hash",
+          "type": "VARCHAR(256)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": "'admin'::character varying"
+        },
+        {
+          "name": "is_active",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "server_default": "true"
+        },
+        {
+          "name": "branch_scope_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "unit_scope_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "admins_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "admins_branch_scope_id_fkey",
+          "constrained_columns": [
+            "branch_scope_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "branches",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "admins_unit_scope_id_fkey",
+          "constrained_columns": [
+            "unit_scope_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "units",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "username"
+          ],
+          "name": "admins_username_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "admins_username_key",
+          "unique": true,
+          "column_names": [
+            "username"
+          ],
+          "duplicates_constraint": "admins_username_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "assignment_history",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".assignment_history_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "branch_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "unit_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "position_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "start_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "end_date",
+          "type": "DATE",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "reason",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "branch_name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": "''::character varying"
+        },
+        {
+          "name": "unit_name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": "''::character varying"
+        },
+        {
+          "name": "position_title",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": "''::character varying"
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "assignment_history_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "assignment_history_branch_id_fkey",
+          "constrained_columns": [
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "branches",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "assignment_history_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "assignment_history_position_id_fkey",
+          "constrained_columns": [
+            "position_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "positions",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "assignment_history_unit_id_branch_id_fkey",
+          "constrained_columns": [
+            "unit_id",
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "units",
+          "referred_columns": [
+            "id",
+            "branch_id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "uq_employee_current_assignment",
+          "unique": true,
+          "column_names": [
+            "employee_id"
+          ],
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_where": "(end_date IS NULL)",
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "attendance",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".attendance_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "work_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "shift_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "clock_in",
+          "type": "TIME WITHOUT TIME ZONE",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "clock_out",
+          "type": "TIME WITHOUT TIME ZONE",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "worked_minutes",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "overtime_minutes",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "required_minutes",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "presence_status",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": "'present'::character varying"
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "attendance_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "attendance_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "attendance_shift_id_fkey",
+          "constrained_columns": [
+            "shift_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "shifts",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "employee_id",
+            "work_date"
+          ],
+          "name": "attendance_employee_id_work_date_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [
+        {
+          "name": "attendance_check",
+          "sqltext": "worked_minutes >= 0 AND overtime_minutes >= 0",
+          "comment": null
+        }
+      ],
+      "indexes": [
+        {
+          "name": "attendance_employee_id_work_date_key",
+          "unique": true,
+          "column_names": [
+            "employee_id",
+            "work_date"
+          ],
+          "duplicates_constraint": "attendance_employee_id_work_date_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "audit_log",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".audit_log_id_seq'::regclass)"
+        },
+        {
+          "name": "actor_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "action",
+          "type": "VARCHAR(40)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "entity",
+          "type": "VARCHAR(60)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "record_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "details",
+          "type": "JSON",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "created_at",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "audit_log_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "audit_log_actor_id_fkey",
+          "constrained_columns": [
+            "actor_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "admins",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": []
+    },
+    {
+      "name": "branches",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".branches_id_seq'::regclass)"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "seed_key",
+          "type": "VARCHAR(32)",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "branches_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "name"
+          ],
+          "name": "branches_name_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "seed_key"
+          ],
+          "name": "branches_seed_key_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "branches_name_key",
+          "unique": true,
+          "column_names": [
+            "name"
+          ],
+          "duplicates_constraint": "branches_name_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "branches_seed_key_key",
+          "unique": true,
+          "column_names": [
+            "seed_key"
+          ],
+          "duplicates_constraint": "branches_seed_key_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "candidates",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".candidates_id_seq'::regclass)"
+        },
+        {
+          "name": "first_name",
+          "type": "VARCHAR(80)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "last_name",
+          "type": "VARCHAR(80)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "national_id",
+          "type": "VARCHAR(10)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "phone",
+          "type": "VARCHAR(11)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR(254)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "branch_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "unit_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "position_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "application_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "seed_key",
+          "type": "VARCHAR(40)",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "candidates_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "candidates_branch_id_fkey",
+          "constrained_columns": [
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "branches",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "candidates_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "candidates_position_id_fkey",
+          "constrained_columns": [
+            "position_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "positions",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "candidates_unit_id_branch_id_fkey",
+          "constrained_columns": [
+            "unit_id",
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "units",
+          "referred_columns": [
+            "id",
+            "branch_id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "employee_id"
+          ],
+          "name": "candidates_employee_id_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "seed_key"
+          ],
+          "name": "candidates_seed_key_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "candidates_employee_id_key",
+          "unique": true,
+          "column_names": [
+            "employee_id"
+          ],
+          "duplicates_constraint": "candidates_employee_id_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "candidates_seed_key_key",
+          "unique": true,
+          "column_names": [
+            "seed_key"
+          ],
+          "duplicates_constraint": "candidates_seed_key_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "career_plans",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".career_plans_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "target_position_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "target_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "progress",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "actions",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "career_plans_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "career_plans_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "career_plans_target_position_id_fkey",
+          "constrained_columns": [
+            "target_position_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "positions",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [
+        {
+          "name": "career_plans_progress_check",
+          "sqltext": "progress >= 0 AND progress <= 100",
+          "comment": null
+        }
+      ],
+      "indexes": []
+    },
+    {
+      "name": "employees",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".employees_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_code",
+          "type": "VARCHAR(32)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "first_name",
+          "type": "VARCHAR(80)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "last_name",
+          "type": "VARCHAR(80)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "national_id",
+          "type": "VARCHAR(10)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "phone",
+          "type": "VARCHAR(11)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR(254)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "hire_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "branch_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "unit_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "position_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "contract_type",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "active",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "seed_key",
+          "type": "VARCHAR(32)",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "employees_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "employees_branch_id_fkey",
+          "constrained_columns": [
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "branches",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "employees_position_id_fkey",
+          "constrained_columns": [
+            "position_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "positions",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "fk_employee_unit_branch",
+          "constrained_columns": [
+            "unit_id",
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "units",
+          "referred_columns": [
+            "id",
+            "branch_id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "employee_code"
+          ],
+          "name": "employees_employee_code_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "seed_key"
+          ],
+          "name": "employees_seed_key_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "employees_employee_code_key",
+          "unique": true,
+          "column_names": [
+            "employee_code"
+          ],
+          "duplicates_constraint": "employees_employee_code_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "employees_seed_key_key",
+          "unique": true,
+          "column_names": [
+            "seed_key"
+          ],
+          "duplicates_constraint": "employees_seed_key_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "employment_contracts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".employment_contracts_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "contract_type",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "start_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "end_date",
+          "type": "DATE",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "base_salary",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "renewed_from_id",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "termination_reason",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "employment_contracts_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "employment_contracts_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "employment_contracts_renewed_from_id_fkey",
+          "constrained_columns": [
+            "renewed_from_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employment_contracts",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "uq_employee_active_contract",
+          "unique": true,
+          "column_names": [
+            "employee_id"
+          ],
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_where": "((status)::text = 'active'::text)",
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "evaluations",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".evaluations_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "review_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "score",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "feedback",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "goals",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "evaluations_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "evaluations_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [
+        {
+          "name": "evaluations_score_check",
+          "sqltext": "score >= 0 AND score <= 100",
+          "comment": null
+        }
+      ],
+      "indexes": []
+    },
+    {
+      "name": "hr_requests",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".hr_requests_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "kind",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "start_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "end_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "leave_type",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "destination",
+          "type": "VARCHAR(150)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "review_notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "reviewed_by",
+          "type": "INTEGER",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "reviewed_at",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": true,
+          "server_default": null
+        },
+        {
+          "name": "created_at",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "hr_requests_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "hr_requests_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "hr_requests_reviewed_by_fkey",
+          "constrained_columns": [
+            "reviewed_by"
+          ],
+          "referred_schema": "public",
+          "referred_table": "admins",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": []
+    },
+    {
+      "name": "interviews",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".interviews_id_seq'::regclass)"
+        },
+        {
+          "name": "candidate_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "scheduled_at",
+          "type": "TIMESTAMP WITHOUT TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "interviewer",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "result",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "interviews_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "interviews_candidate_id_fkey",
+          "constrained_columns": [
+            "candidate_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "candidates",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": []
+    },
+    {
+      "name": "onboarding_tasks",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".onboarding_tasks_id_seq'::regclass)"
+        },
+        {
+          "name": "candidate_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR(150)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "completed",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "completed_at",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "onboarding_tasks_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "onboarding_tasks_candidate_id_fkey",
+          "constrained_columns": [
+            "candidate_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "candidates",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "candidate_id",
+            "title"
+          ],
+          "name": "onboarding_tasks_candidate_id_title_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "onboarding_tasks_candidate_id_title_key",
+          "unique": true,
+          "column_names": [
+            "candidate_id",
+            "title"
+          ],
+          "duplicates_constraint": "onboarding_tasks_candidate_id_title_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "payroll_profiles",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".payroll_profiles_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "base_salary",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "hourly_rate",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "benefits",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "deductions",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "payroll_profiles_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "payroll_profiles_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "employee_id"
+          ],
+          "name": "payroll_profiles_employee_id_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "payroll_profiles_employee_id_key",
+          "unique": true,
+          "column_names": [
+            "employee_id"
+          ],
+          "duplicates_constraint": "payroll_profiles_employee_id_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "payroll_rules",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".payroll_rules_id_seq'::regclass)"
+        },
+        {
+          "name": "contract_type",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "calculation_mode",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "monthly_hours",
+          "type": "NUMERIC(10, 2)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "overtime_factor",
+          "type": "NUMERIC(6, 2)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "insurance_percent",
+          "type": "NUMERIC(6, 2)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "tax_percent",
+          "type": "NUMERIC(6, 2)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "payroll_rules_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "contract_type"
+          ],
+          "name": "payroll_rules_contract_type_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [
+        {
+          "name": "payroll_rules_check",
+          "sqltext": "monthly_hours > 0::numeric AND overtime_factor >= 1::numeric AND insurance_percent >= 0::numeric AND insurance_percent <= 100::numeric AND tax_percent >= 0::numeric AND tax_percent <= 100::numeric",
+          "comment": null
+        }
+      ],
+      "indexes": [
+        {
+          "name": "payroll_rules_contract_type_key",
+          "unique": true,
+          "column_names": [
+            "contract_type"
+          ],
+          "duplicates_constraint": "payroll_rules_contract_type_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "payslips",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".payslips_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "period",
+          "type": "VARCHAR(7)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "base_amount",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "overtime_amount",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "benefits",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "insurance",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "tax",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "deductions",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "net_amount",
+          "type": "BIGINT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "input_snapshot",
+          "type": "JSON",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "rule_snapshot",
+          "type": "JSON",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "created_by",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "created_at",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "payslips_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "payslips_created_by_fkey",
+          "constrained_columns": [
+            "created_by"
+          ],
+          "referred_schema": "public",
+          "referred_table": "admins",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "payslips_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "employee_id",
+            "period"
+          ],
+          "name": "payslips_employee_id_period_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "payslips_employee_id_period_key",
+          "unique": true,
+          "column_names": [
+            "employee_id",
+            "period"
+          ],
+          "duplicates_constraint": "payslips_employee_id_period_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "positions",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".positions_id_seq'::regclass)"
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "seed_key",
+          "type": "VARCHAR(32)",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "positions_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "seed_key"
+          ],
+          "name": "positions_seed_key_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "title"
+          ],
+          "name": "positions_title_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "positions_seed_key_key",
+          "unique": true,
+          "column_names": [
+            "seed_key"
+          ],
+          "duplicates_constraint": "positions_seed_key_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "positions_title_key",
+          "unique": true,
+          "column_names": [
+            "title"
+          ],
+          "duplicates_constraint": "positions_title_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "shifts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".shifts_id_seq'::regclass)"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "start_time",
+          "type": "TIME WITHOUT TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "end_time",
+          "type": "TIME WITHOUT TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "break_minutes",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "seed_key",
+          "type": "VARCHAR(40)",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "shifts_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "name"
+          ],
+          "name": "shifts_name_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "seed_key"
+          ],
+          "name": "shifts_seed_key_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "shifts_name_key",
+          "unique": true,
+          "column_names": [
+            "name"
+          ],
+          "duplicates_constraint": "shifts_name_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "shifts_seed_key_key",
+          "unique": true,
+          "column_names": [
+            "seed_key"
+          ],
+          "duplicates_constraint": "shifts_seed_key_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "training_enrollments",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".training_enrollments_id_seq'::regclass)"
+        },
+        {
+          "name": "employee_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "training_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "notes",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "training_enrollments_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "training_enrollments_employee_id_fkey",
+          "constrained_columns": [
+            "employee_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "employees",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        },
+        {
+          "name": "training_enrollments_training_id_fkey",
+          "constrained_columns": [
+            "training_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "trainings",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "employee_id",
+            "training_id"
+          ],
+          "name": "training_enrollments_employee_id_training_id_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "training_enrollments_employee_id_training_id_key",
+          "unique": true,
+          "column_names": [
+            "employee_id",
+            "training_id"
+          ],
+          "duplicates_constraint": "training_enrollments_employee_id_training_id_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "trainings",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".trainings_id_seq'::regclass)"
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR(150)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "training_date",
+          "type": "DATE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "capacity",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "description",
+          "type": "TEXT",
+          "nullable": false,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "trainings_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": []
+    },
+    {
+      "name": "units",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": "nextval('\"public\".units_id_seq'::regclass)"
+        },
+        {
+          "name": "name",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "branch_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "seed_key",
+          "type": "VARCHAR(32)",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "id"
+        ],
+        "name": "units_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "units_branch_id_fkey",
+          "constrained_columns": [
+            "branch_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "branches",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [
+        {
+          "column_names": [
+            "seed_key"
+          ],
+          "name": "units_seed_key_key",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "branch_id",
+            "name"
+          ],
+          "name": "uq_unit_branch_name",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        },
+        {
+          "column_names": [
+            "id",
+            "branch_id"
+          ],
+          "name": "uq_unit_id_branch",
+          "comment": null,
+          "dialect_options": {
+            "postgresql_include": [],
+            "postgresql_nulls_not_distinct": false
+          }
+        }
+      ],
+      "check_constraints": [],
+      "indexes": [
+        {
+          "name": "units_seed_key_key",
+          "unique": true,
+          "column_names": [
+            "seed_key"
+          ],
+          "duplicates_constraint": "units_seed_key_key",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "uq_unit_branch_name",
+          "unique": true,
+          "column_names": [
+            "branch_id",
+            "name"
+          ],
+          "duplicates_constraint": "uq_unit_branch_name",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        },
+        {
+          "name": "uq_unit_id_branch",
+          "unique": true,
+          "column_names": [
+            "id",
+            "branch_id"
+          ],
+          "duplicates_constraint": "uq_unit_id_branch",
+          "include_columns": [],
+          "dialect_options": {
+            "postgresql_include": []
+          }
+        }
+      ]
+    }
+  ]
+}

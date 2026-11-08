@@ -1,0 +1,27 @@
+--- a/app/request_workflow/service.py
++++ b/app/request_workflow/service.py
+@@ -1,8 +1,11 @@
+ """UC-02 transaction and workflow orchestration; no HTTP or direct SQL."""
+ from dataclasses import dataclass
++from datetime import datetime, timezone
++from .domain import ReviewError, decision_changes_state, validate_decision
+ 
+-from ..hr_models import utc_now
+-from .domain import ReviewError, decision_changes_state, validate_decision
++
++def utc_now():
++    return datetime.now(timezone.utc)
+ 
+ 
+ @dataclass(frozen=True)
+--- a/tests/test_architecture_boundaries.py
++++ b/tests/test_architecture_boundaries.py
+@@ -17,7 +17,7 @@
+ 
+     def test_tc_m02_service_has_no_http_or_direct_sql(self):
+         for module in self.imports("app/request_workflow/service.py"):
+-            self.assertFalse(any(x in module for x in ("fastapi", "sqlalchemy", "access", "security")), module)
++            self.assertFalse(any(x in module for x in ("fastapi", "sqlalchemy", "database", "hr_models", "access", "security")), module)
+         tree = ast.parse((ROOT / "app/modules.py").read_text(encoding="utf-8"))
+         route = next(x for x in tree.body if isinstance(x, ast.FunctionDef) and x.name == "review_request")
+         names = {x.id for x in ast.walk(route) if isinstance(x, ast.Name)}

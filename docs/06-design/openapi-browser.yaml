@@ -1,0 +1,2300 @@
+openapi: 3.1.0
+info:
+  title: سامانه مدیریت منابع انسانی
+  version: 0.1.0
+  description: 'Current HRMS browser contracts: HTML/forms/cookie/redirects. Exported
+    offline; the runtime OpenAPI endpoint is disabled.'
+paths:
+  /health:
+    get:
+      summary: Health
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '503':
+          description: PostgreSQL connection unavailable
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    const: unavailable
+      x-code-symbol: app/main.py#health
+  /instance:
+    get:
+      summary: Instance
+      operationId: instance_instance_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      x-code-symbol: app/main.py#instance
+  /login:
+    get:
+      summary: Login Page
+      operationId: login_page_login_get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#login_page
+      x-hrms-contracts:
+      - id: API-01
+        method: GET
+        path: /login
+        success:
+        - 200
+        - 303
+        auth: optional
+        side_effect: Issue an anonymous cookie and CSRF if absent
+    post:
+      summary: Login
+      operationId: login_login_post
+      responses:
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '401':
+          description: Documented browser error 401; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/main.py#login
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                csrf_token:
+                  type: string
+              required:
+              - username
+              - password
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                csrf_token:
+                  type: string
+              required:
+              - username
+              - password
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-01
+        method: POST
+        path: /login
+        auth: anonymous_session_csrf
+        fields:
+          username:
+            type: string
+            required: true
+          password:
+            type: string
+            required: true
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 401
+        - 403
+        - 500
+        redirect: /
+  /logout:
+    post:
+      summary: Logout
+      operationId: logout_logout_post
+      responses:
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/main.py#logout
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-01
+        method: POST
+        path: /logout
+        auth: active_session_csrf
+        fields:
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 403
+        - 500
+        redirect: /login
+  /:
+    get:
+      summary: Dashboard
+      operationId: dashboard__get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#dashboard
+      security:
+      - SessionCookie: []
+  /employees:
+    get:
+      summary: Employee List
+      operationId: employee_list_employees_get
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Q
+      - name: branch
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Branch
+      - name: unit
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Unit
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Status
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#employee_list
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-04
+        method: GET
+        path: /employees
+        auth: hr_or_admin_scope
+        success:
+        - 200
+        query:
+        - q
+        - branch
+        - unit
+        - status
+  /employees/new:
+    get:
+      summary: Employee New
+      operationId: employee_new_employees_new_get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#employee_new
+      security:
+      - SessionCookie: []
+    post:
+      summary: Employee Create
+      operationId: employee_create_employees_new_post
+      responses:
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/main.py#employee_create
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-04
+        method: POST
+        path: /employees/new
+        auth: hr_or_admin_scope_csrf
+        fields_from: templates/employee_form.html
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 500
+  /employees/{employee_id}:
+    get:
+      summary: Employee Detail
+      operationId: employee_detail_employees__employee_id__get
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Employee Id
+      - name: saved
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Saved
+      - name: changed
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Changed
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#employee_detail
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-04
+        method: GET
+        path: /employees/{employee_id}
+        auth: hr_or_admin_scope
+        success:
+        - 200
+        errors:
+        - 403
+        - 404
+  /employees/{employee_id}/edit:
+    get:
+      summary: Employee Edit Page
+      operationId: employee_edit_page_employees__employee_id__edit_get
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Employee Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#employee_edit_page
+      security:
+      - SessionCookie: []
+    post:
+      summary: Employee Edit
+      operationId: employee_edit_employees__employee_id__edit_post
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Employee Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/main.py#employee_edit
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-04
+        method: POST
+        path: /employees/{employee_id}/edit
+        auth: hr_or_admin_scope_csrf
+        fields_from: templates/employee_form.html
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+        - 500
+  /employees/{employee_id}/status:
+    post:
+      summary: Employee Status
+      operationId: employee_status_employees__employee_id__status_post
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Employee Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#employee_status
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                active:
+                  type: string
+                  enum: &id001
+                  - 'true'
+                  - 'false'
+                csrf_token:
+                  type: string
+              required:
+              - active
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                active:
+                  type: string
+                  enum:
+                  - 'true'
+                  - 'false'
+                csrf_token:
+                  type: string
+              required:
+              - active
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-04
+        method: POST
+        path: /employees/{employee_id}/status
+        auth: hr_or_admin_scope_csrf
+        fields:
+          active:
+            type: string
+            enum: *id001
+            required: true
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /organization/{kind}:
+    get:
+      summary: Organization List
+      operationId: organization_list_organization__kind__get
+      parameters:
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Kind
+      - name: saved
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Saved
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#organization_list
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-05
+        method: GET
+        path: /organization/{kind}
+        kind_subset:
+        - branches
+        - units
+        - positions
+        auth: hr_or_admin
+        success:
+        - 200
+  /organization/{kind}/new:
+    get:
+      summary: Organization New
+      operationId: organization_new_organization__kind__new_get
+      parameters:
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Kind
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#organization_new
+      security:
+      - SessionCookie: []
+    post:
+      summary: Organization Create
+      operationId: organization_create_organization__kind__new_post
+      parameters:
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Kind
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#organization_create
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-05
+        method: POST
+        path: /organization/{kind}/new
+        auth: hr_or_admin_scope_csrf
+        fields_from: templates/organization_form.html
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /organization/{kind}/{record_id}/edit:
+    get:
+      summary: Organization Edit Page
+      operationId: organization_edit_page_organization__kind___record_id__edit_get
+      parameters:
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Kind
+      - name: record_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Record Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#organization_edit_page
+      security:
+      - SessionCookie: []
+    post:
+      summary: Organization Edit
+      operationId: organization_edit_organization__kind___record_id__edit_post
+      parameters:
+      - name: kind
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Kind
+      - name: record_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Record Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Invalid CSRF or insufficient role
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#organization_edit
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+  /modules:
+    get:
+      summary: Module Index
+      operationId: module_index_modules_get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#module_index
+      security:
+      - SessionCookie: []
+  /hr/{module}:
+    get:
+      summary: Module List
+      operationId: module_list_hr__module__get
+      parameters:
+      - name: module
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Module
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Q
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Status
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#module_list
+      security:
+      - SessionCookie: []
+  /hr/{module}/new:
+    get:
+      summary: Module New
+      operationId: module_new_hr__module__new_get
+      parameters:
+      - name: module
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Module
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#module_new
+      security:
+      - SessionCookie: []
+    post:
+      summary: Module Create
+      operationId: module_create_hr__module__new_post
+      parameters:
+      - name: module
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Module
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/modules.py#module_create
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-02
+        method: POST
+        path: /hr/{module}/new
+        module_subset:
+        - leave
+        - travel
+        - administrative
+        auth: hr_or_admin_scope_csrf
+        fields_from: app/module_forms.py#MODULES
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+        - 500
+        redirect: /hr/{module}/{record_id}?saved=1
+      - id: API-07
+        method: POST
+        path: /hr/{module}/new
+        module_subset:
+        - shifts
+        - attendance
+        auth: hr_or_admin_scope_csrf
+        fields_from: app/module_forms.py#MODULES
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+      - id: API-09
+        method: POST
+        path: /hr/{module}/new
+        module_subset:
+        - evaluations
+        - trainings
+        - enrollments
+        - career
+        auth: hr_or_admin_scope_csrf
+        fields_from: app/module_forms.py#MODULES
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+      - id: API-12
+        method: POST
+        path: /hr/{module}/new
+        module_subset:
+        - users
+        auth: admin_csrf
+        fields_from: app/module_forms.py#MODULES
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /hr/{module}/{record_id}/edit:
+    get:
+      summary: Module Edit Page
+      operationId: module_edit_page_hr__module___record_id__edit_get
+      parameters:
+      - name: module
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Module
+      - name: record_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Record Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#module_edit_page
+      security:
+      - SessionCookie: []
+    post:
+      summary: Module Edit
+      operationId: module_edit_hr__module___record_id__edit_post
+      parameters:
+      - name: module
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Module
+      - name: record_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Record Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Invalid CSRF or insufficient role
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#module_edit
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+  /hr/{module}/{record_id}:
+    get:
+      summary: Module Detail
+      operationId: module_detail_hr__module___record_id__get
+      parameters:
+      - name: module
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Module
+      - name: record_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Record Id
+      - name: saved
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Saved
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#module_detail
+      security:
+      - SessionCookie: []
+  /hire/{candidate_id}:
+    get:
+      summary: Hire Page
+      operationId: hire_page_hire__candidate_id__get
+      parameters:
+      - name: candidate_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Candidate Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#hire_page
+      security:
+      - SessionCookie: []
+    post:
+      summary: Hire Candidate
+      operationId: hire_candidate_hire__candidate_id__post
+      parameters:
+      - name: candidate_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Candidate Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/modules.py#hire_candidate
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-06
+        method: POST
+        path: /hire/{candidate_id}
+        auth: hr_or_admin_scope_csrf
+        fields_from: app/modules.py#hire_fields
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+        - 500
+  /onboarding/{task_id}:
+    post:
+      summary: Complete Onboarding
+      operationId: complete_onboarding_onboarding__task_id__post
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Task Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#complete_onboarding
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                completed:
+                  type: string
+                  enum: &id002
+                  - 'true'
+                  - 'false'
+                csrf_token:
+                  type: string
+              required:
+              - completed
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                completed:
+                  type: string
+                  enum:
+                  - 'true'
+                  - 'false'
+                csrf_token:
+                  type: string
+              required:
+              - completed
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-06
+        method: POST
+        path: /onboarding/{task_id}
+        auth: hr_or_admin_scope_csrf
+        fields:
+          completed:
+            type: string
+            enum: *id002
+            required: true
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /requests/{request_id}/review:
+    post:
+      summary: Review Request
+      operationId: review_request_requests__request_id__review_post
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Request Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '409':
+          description: Documented browser error 409; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/modules.py#review_request
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  enum: &id003
+                  - approved
+                  - rejected
+                review_notes:
+                  type: string
+                  maxLength: 3000
+                csrf_token:
+                  type: string
+              required:
+              - decision
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  enum:
+                  - approved
+                  - rejected
+                review_notes:
+                  type: string
+                  maxLength: 3000
+                csrf_token:
+                  type: string
+              required:
+              - decision
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-02
+        method: POST
+        path: /requests/{request_id}/review
+        auth: admin_csrf
+        fields:
+          decision:
+            type: string
+            enum: *id003
+            required: true
+          review_notes:
+            type: string
+            maxLength: 3000
+            required: false
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+        - 409
+        - 500
+        conditions:
+          rejection_reason: nonblank review_notes required for rejected
+          same_final_decision: 303; original decision/notes/audit preserved
+          opposite_final_decision: 409; original preserved
+          overlap: 400; inclusive approved leave/travel intersection
+        redirect: /hr/{kind}/{request_id}?saved=1
+  /contracts/{contract_id}/activate:
+    post:
+      summary: Activate Contract
+      operationId: activate_contract_contracts__contract_id__activate_post
+      parameters:
+      - name: contract_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Contract Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#activate_contract
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-08
+        method: POST
+        path: /contracts/{contract_id}/activate
+        auth: hr_or_admin_scope_csrf
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /contracts/{contract_id}/renew:
+    get:
+      summary: Renew Contract Page
+      operationId: renew_contract_page_contracts__contract_id__renew_get
+      parameters:
+      - name: contract_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Contract Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#renew_contract_page
+      security:
+      - SessionCookie: []
+    post:
+      summary: Renew Contract
+      operationId: renew_contract_contracts__contract_id__renew_post
+      parameters:
+      - name: contract_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Contract Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#renew_contract
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-08
+        method: POST
+        path: /contracts/{contract_id}/renew
+        auth: hr_or_admin_scope_csrf
+        fields_from: app/modules.py#renew_contract_page
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /contracts/{contract_id}/terminate:
+    post:
+      summary: Terminate Contract
+      operationId: terminate_contract_contracts__contract_id__terminate_post
+      parameters:
+      - name: contract_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Contract Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#terminate_contract
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                csrf_token:
+                  type: string
+              required:
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-08
+        method: POST
+        path: /contracts/{contract_id}/terminate
+        auth: hr_or_admin_scope_csrf
+        fields_from: app/modules.py#terminate_contract
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+  /payroll:
+    get:
+      summary: Payroll Page
+      operationId: payroll_page_payroll_get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#payroll_page
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-03
+        method: GET
+        path: /payroll
+        auth: admin
+        success:
+        - 200
+        errors:
+        - 403
+  /payroll/calculate:
+    post:
+      summary: Calculate Payroll
+      operationId: calculate_payroll_payroll_calculate_post
+      responses:
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/modules.py#calculate_payroll
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                employee_id:
+                  type: integer
+                period:
+                  type: string
+                  pattern: ^[0-9]{4}-[0-9]{2}$
+                csrf_token:
+                  type: string
+              required:
+              - employee_id
+              - period
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                employee_id:
+                  type: integer
+                period:
+                  type: string
+                  pattern: ^[0-9]{4}-[0-9]{2}$
+                csrf_token:
+                  type: string
+              required:
+              - employee_id
+              - period
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-03
+        method: POST
+        path: /payroll/calculate
+        auth: admin_csrf
+        fields:
+          employee_id:
+            type: integer
+            required: true
+          period:
+            type: string
+            pattern: ^[0-9]{4}-[0-9]{2}$
+            required: true
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+        - 500
+        conditions:
+          calendar: Gregorian month, actual month validity checked
+          existing_snapshot: Return existing id without recalculation
+        redirect: /payroll/{payslip_id}
+  /payroll/{payslip_id}:
+    get:
+      summary: Payslip Detail
+      operationId: payslip_detail_payroll__payslip_id__get
+      parameters:
+      - name: payslip_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Payslip Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#payslip_detail
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-03
+        method: GET
+        path: /payroll/{payslip_id}
+        auth: admin_scope
+        success:
+        - 200
+        errors:
+        - 403
+        - 404
+  /history/{employee_id}:
+    get:
+      summary: Employee History
+      operationId: employee_history_history__employee_id__get
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Employee Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#employee_history
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-10
+        method: GET
+        path: /history/{employee_id}
+        auth: hr_or_admin_scope
+        success:
+        - 200
+        errors:
+        - 403
+        - 404
+  /reports:
+    get:
+      summary: Reports
+      operationId: reports_reports_get
+      parameters:
+      - name: period
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Period
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#reports
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-11
+        method: GET
+        path: /reports
+        auth: active_role_scope
+        query:
+        - period
+        success:
+        - 200
+        errors:
+        - 400
+  /reports/employees.csv:
+    get:
+      summary: Export Employees
+      operationId: export_employees_reports_employees_csv_get
+      responses:
+        '200':
+          description: UTF-8 BOM employee CSV; scoped HR/admin only; writes an export
+            audit
+          content:
+            text/csv:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '500':
+          description: Unexpected persistence/server failure
+      x-code-symbol: app/modules.py#export_employees
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-11
+        method: GET
+        path: /reports/employees.csv
+        auth: hr_or_admin_scope
+        media_type: text/csv; charset=utf-8
+        success:
+        - 200
+        errors:
+        - 403
+        - 500
+        side_effect: Export audit is written even though method is GET
+  /audit:
+    get:
+      summary: Audit Page
+      operationId: audit_page_audit_get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/modules.py#audit_page
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-12
+        method: GET
+        path: /audit
+        auth: admin
+        success:
+        - 200
+        errors:
+        - 403
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    SessionCookie:
+      type: apiKey
+      in: cookie
+      name: hrms_session
+      description: Process-local opaque session; POST additionally requires a session-bound
+        CSRF form token

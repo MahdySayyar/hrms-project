@@ -1,0 +1,1061 @@
+{
+  "id": "ROUTE-CAT-01",
+  "route_count": 40,
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "code": "app/main.py#health"
+    },
+    {
+      "method": "GET",
+      "path": "/instance",
+      "code": "app/main.py#instance"
+    },
+    {
+      "method": "GET",
+      "path": "/login",
+      "code": "app/main.py#login_page"
+    },
+    {
+      "method": "POST",
+      "path": "/login",
+      "code": "app/main.py#login"
+    },
+    {
+      "method": "POST",
+      "path": "/logout",
+      "code": "app/main.py#logout"
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "code": "app/main.py#dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/employees",
+      "code": "app/main.py#employee_list"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/new",
+      "code": "app/main.py#employee_new"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/new",
+      "code": "app/main.py#employee_create"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/{employee_id}",
+      "code": "app/main.py#employee_detail"
+    },
+    {
+      "method": "GET",
+      "path": "/employees/{employee_id}/edit",
+      "code": "app/main.py#employee_edit_page"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/{employee_id}/edit",
+      "code": "app/main.py#employee_edit"
+    },
+    {
+      "method": "POST",
+      "path": "/employees/{employee_id}/status",
+      "code": "app/main.py#employee_status"
+    },
+    {
+      "method": "GET",
+      "path": "/organization/{kind}",
+      "code": "app/main.py#organization_list"
+    },
+    {
+      "method": "GET",
+      "path": "/organization/{kind}/new",
+      "code": "app/main.py#organization_new"
+    },
+    {
+      "method": "POST",
+      "path": "/organization/{kind}/new",
+      "code": "app/main.py#organization_create"
+    },
+    {
+      "method": "GET",
+      "path": "/organization/{kind}/{record_id}/edit",
+      "code": "app/main.py#organization_edit_page"
+    },
+    {
+      "method": "POST",
+      "path": "/organization/{kind}/{record_id}/edit",
+      "code": "app/main.py#organization_edit"
+    },
+    {
+      "method": "GET",
+      "path": "/modules",
+      "code": "app/modules.py#module_index"
+    },
+    {
+      "method": "GET",
+      "path": "/hr/{module}",
+      "code": "app/modules.py#module_list"
+    },
+    {
+      "method": "GET",
+      "path": "/hr/{module}/new",
+      "code": "app/modules.py#module_new"
+    },
+    {
+      "method": "POST",
+      "path": "/hr/{module}/new",
+      "code": "app/modules.py#module_create"
+    },
+    {
+      "method": "GET",
+      "path": "/hr/{module}/{record_id}/edit",
+      "code": "app/modules.py#module_edit_page"
+    },
+    {
+      "method": "POST",
+      "path": "/hr/{module}/{record_id}/edit",
+      "code": "app/modules.py#module_edit"
+    },
+    {
+      "method": "GET",
+      "path": "/hr/{module}/{record_id}",
+      "code": "app/modules.py#module_detail"
+    },
+    {
+      "method": "GET",
+      "path": "/hire/{candidate_id}",
+      "code": "app/modules.py#hire_page"
+    },
+    {
+      "method": "POST",
+      "path": "/hire/{candidate_id}",
+      "code": "app/modules.py#hire_candidate"
+    },
+    {
+      "method": "POST",
+      "path": "/onboarding/{task_id}",
+      "code": "app/modules.py#complete_onboarding"
+    },
+    {
+      "method": "POST",
+      "path": "/requests/{request_id}/review",
+      "code": "app/modules.py#review_request"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/{contract_id}/activate",
+      "code": "app/modules.py#activate_contract"
+    },
+    {
+      "method": "GET",
+      "path": "/contracts/{contract_id}/renew",
+      "code": "app/modules.py#renew_contract_page"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/{contract_id}/renew",
+      "code": "app/modules.py#renew_contract"
+    },
+    {
+      "method": "POST",
+      "path": "/contracts/{contract_id}/terminate",
+      "code": "app/modules.py#terminate_contract"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll",
+      "code": "app/modules.py#payroll_page"
+    },
+    {
+      "method": "POST",
+      "path": "/payroll/calculate",
+      "code": "app/modules.py#calculate_payroll"
+    },
+    {
+      "method": "GET",
+      "path": "/payroll/{payslip_id}",
+      "code": "app/modules.py#payslip_detail"
+    },
+    {
+      "method": "GET",
+      "path": "/history/{employee_id}",
+      "code": "app/modules.py#employee_history"
+    },
+    {
+      "method": "GET",
+      "path": "/reports",
+      "code": "app/modules.py#reports"
+    },
+    {
+      "method": "GET",
+      "path": "/reports/employees.csv",
+      "code": "app/modules.py#export_employees"
+    },
+    {
+      "method": "GET",
+      "path": "/audit",
+      "code": "app/modules.py#audit_page"
+    }
+  ],
+  "module_forms_from_current_code": [
+    {
+      "module": "candidates",
+      "table": "candidates",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "first_name",
+          "label": "نام",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 80
+        },
+        {
+          "name": "last_name",
+          "label": "نام خانوادگی",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 80
+        },
+        {
+          "name": "national_id",
+          "label": "کد ملی",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 10
+        },
+        {
+          "name": "phone",
+          "label": "شمارهٔ همراه",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 11
+        },
+        {
+          "name": "email",
+          "label": "ایمیل",
+          "kind": "email",
+          "required": false,
+          "maximum_length": 254
+        },
+        {
+          "name": "branch_id",
+          "label": "شعبه",
+          "kind": "select",
+          "required": true,
+          "source": "branches",
+          "choices": null
+        },
+        {
+          "name": "unit_id",
+          "label": "واحد",
+          "kind": "select",
+          "required": true,
+          "source": "units",
+          "choices": null
+        },
+        {
+          "name": "position_id",
+          "label": "سمت مورد تقاضا",
+          "kind": "select",
+          "required": true,
+          "source": "positions",
+          "choices": null
+        },
+        {
+          "name": "application_date",
+          "label": "تاریخ درخواست (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "status",
+          "label": "وضعیت بررسی",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "new": "ثبت اولیه",
+            "review": "بررسی رزومه",
+            "interview": "مصاحبه",
+            "accepted": "پذیرفته‌شده",
+            "rejected": "ردشده"
+          }
+        },
+        {
+          "name": "notes",
+          "label": "یادداشت",
+          "kind": "textarea",
+          "required": false,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "first_name",
+        "last_name",
+        "position_id",
+        "application_date",
+        "status"
+      ]
+    },
+    {
+      "module": "interviews",
+      "table": "interviews",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "candidate_id",
+          "label": "متقاضی",
+          "kind": "select",
+          "required": true,
+          "source": "candidates",
+          "choices": null
+        },
+        {
+          "name": "scheduled_at",
+          "label": "زمان مصاحبه (میلادی، ساعت محلی)",
+          "kind": "datetime-local",
+          "required": true
+        },
+        {
+          "name": "interviewer",
+          "label": "نام مصاحبه‌کننده",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 100
+        },
+        {
+          "name": "result",
+          "label": "نتیجه",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "pending": "در انتظار مصاحبه",
+            "passed": "قبول",
+            "failed": "رد"
+          }
+        },
+        {
+          "name": "notes",
+          "label": "یادداشت",
+          "kind": "textarea",
+          "required": false,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "candidate_id",
+        "scheduled_at",
+        "interviewer",
+        "result"
+      ]
+    },
+    {
+      "module": "shifts",
+      "table": "shifts",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "name",
+          "label": "نام شیفت",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 100
+        },
+        {
+          "name": "start_time",
+          "label": "ساعت شروع",
+          "kind": "time",
+          "required": true
+        },
+        {
+          "name": "end_time",
+          "label": "ساعت پایان",
+          "kind": "time",
+          "required": true
+        },
+        {
+          "name": "break_minutes",
+          "label": "استراحت بدون کار (دقیقه)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 240
+        }
+      ],
+      "columns": [
+        "name",
+        "start_time",
+        "end_time",
+        "break_minutes"
+      ]
+    },
+    {
+      "module": "attendance",
+      "table": "attendance",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "work_date",
+          "label": "روز شروع کار (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "shift_id",
+          "label": "شیفت",
+          "kind": "select",
+          "required": true,
+          "source": "shifts",
+          "choices": null
+        },
+        {
+          "name": "presence_status",
+          "label": "وضعیت حضور",
+          "kind": "select",
+          "required": true,
+          "choices": {
+            "present": "حاضر",
+            "absent": "غایب"
+          },
+          "default": "present"
+        },
+        {
+          "name": "clock_in",
+          "label": "ساعت ورود؛ برای حضور الزامی",
+          "kind": "time",
+          "required": false
+        },
+        {
+          "name": "clock_out",
+          "label": "ساعت خروج؛ برای حضور الزامی",
+          "kind": "time",
+          "required": false
+        },
+        {
+          "name": "notes",
+          "label": "یادداشت",
+          "kind": "textarea",
+          "required": false,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "work_date",
+        "presence_status",
+        "shift_id",
+        "worked_minutes",
+        "overtime_minutes"
+      ]
+    },
+    {
+      "module": "leave",
+      "table": "hr_requests",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "start_date",
+          "label": "شروع مرخصی (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "end_date",
+          "label": "پایان مرخصی (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "leave_type",
+          "label": "نوع مرخصی",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "annual": "استحقاقی",
+            "sick": "استعلاجی",
+            "unpaid": "بدون حقوق"
+          }
+        },
+        {
+          "name": "description",
+          "label": "علت درخواست",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "start_date",
+        "end_date",
+        "leave_type",
+        "status"
+      ]
+    },
+    {
+      "module": "administrative",
+      "table": "hr_requests",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "start_date",
+          "label": "تاریخ درخواست (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "description",
+          "label": "موضوع و شرح درخواست",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "start_date",
+        "description",
+        "status"
+      ]
+    },
+    {
+      "module": "travel",
+      "table": "hr_requests",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "start_date",
+          "label": "شروع مأموریت (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "end_date",
+          "label": "پایان مأموریت (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "destination",
+          "label": "مقصد",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 150
+        },
+        {
+          "name": "description",
+          "label": "هدف مأموریت",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "start_date",
+        "end_date",
+        "destination",
+        "status"
+      ]
+    },
+    {
+      "module": "payroll-rules",
+      "table": "payroll_rules",
+      "admin_only": true,
+      "fields": [
+        {
+          "name": "contract_type",
+          "label": "نوع قرارداد",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "دائم": "دائم",
+            "مدت‌معین": "مدت‌معین",
+            "پیمانکاری": "پیمانکاری",
+            "آزمایشی": "آزمایشی"
+          }
+        },
+        {
+          "name": "calculation_mode",
+          "label": "مبنای محاسبه",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "monthly": "حقوق ثابت ماهانه",
+            "hourly": "کارکرد ساعتی"
+          }
+        },
+        {
+          "name": "monthly_hours",
+          "label": "ساعت مبنای ماهانه",
+          "kind": "decimal",
+          "required": true,
+          "minimum": 1,
+          "maximum": 744
+        },
+        {
+          "name": "overtime_factor",
+          "label": "ضریب اضافه‌کاری",
+          "kind": "decimal",
+          "required": true,
+          "minimum": 1,
+          "maximum": 10
+        },
+        {
+          "name": "insurance_percent",
+          "label": "درصد کسر بیمه از ناخالص",
+          "kind": "decimal",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "tax_percent",
+          "label": "درصد کسر مالیات از ناخالص",
+          "kind": "decimal",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "notes",
+          "label": "یادداشت",
+          "kind": "textarea",
+          "required": false,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "contract_type",
+        "calculation_mode",
+        "overtime_factor",
+        "insurance_percent",
+        "tax_percent"
+      ]
+    },
+    {
+      "module": "payroll-profiles",
+      "table": "payroll_profiles",
+      "admin_only": true,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "base_salary",
+          "label": "حقوق پایهٔ ماهانه (ریال)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        {
+          "name": "hourly_rate",
+          "label": "نرخ کارکرد ساعتی (ریال)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        {
+          "name": "benefits",
+          "label": "مزایای ثابت دوره (ریال)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        {
+          "name": "deductions",
+          "label": "سایر کسورات دوره (ریال)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 1000000000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "base_salary",
+        "hourly_rate",
+        "benefits",
+        "deductions"
+      ]
+    },
+    {
+      "module": "contracts",
+      "table": "employment_contracts",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "contract_type",
+          "label": "نوع قرارداد",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "دائم": "دائم",
+            "مدت‌معین": "مدت‌معین",
+            "پیمانکاری": "پیمانکاری",
+            "آزمایشی": "آزمایشی"
+          }
+        },
+        {
+          "name": "start_date",
+          "label": "شروع قرارداد (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "end_date",
+          "label": "پایان قرارداد (میلادی، اختیاری برای دائم)",
+          "kind": "date",
+          "required": false
+        },
+        {
+          "name": "base_salary",
+          "label": "حقوق پایهٔ توافقی (ریال)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 1000000000
+        },
+        {
+          "name": "notes",
+          "label": "یادداشت",
+          "kind": "textarea",
+          "required": false,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "contract_type",
+        "start_date",
+        "end_date",
+        "status"
+      ]
+    },
+    {
+      "module": "evaluations",
+      "table": "evaluations",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "review_date",
+          "label": "تاریخ ارزیابی (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "score",
+          "label": "امتیاز از ۱۰۰",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "feedback",
+          "label": "بازخورد ارزیابی",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        },
+        {
+          "name": "goals",
+          "label": "هدف‌های دورهٔ بعد",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "review_date",
+        "score",
+        "goals"
+      ]
+    },
+    {
+      "module": "trainings",
+      "table": "trainings",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "title",
+          "label": "عنوان دوره",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 150
+        },
+        {
+          "name": "training_date",
+          "label": "تاریخ دوره (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "capacity",
+          "label": "ظرفیت دوره",
+          "kind": "number",
+          "required": true,
+          "minimum": 1,
+          "maximum": 10000
+        },
+        {
+          "name": "description",
+          "label": "شرح دوره",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "title",
+        "training_date",
+        "capacity",
+        "description"
+      ]
+    },
+    {
+      "module": "enrollments",
+      "table": "training_enrollments",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "training_id",
+          "label": "دوره",
+          "kind": "select",
+          "required": true,
+          "source": "trainings",
+          "choices": null
+        },
+        {
+          "name": "status",
+          "label": "وضعیت شرکت",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "planned": "ثبت‌نام‌شده",
+            "completed": "تکمیل‌شده",
+            "cancelled": "لغوشده"
+          }
+        },
+        {
+          "name": "notes",
+          "label": "یادداشت",
+          "kind": "textarea",
+          "required": false,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "training_id",
+        "status"
+      ]
+    },
+    {
+      "module": "career",
+      "table": "career_plans",
+      "admin_only": false,
+      "fields": [
+        {
+          "name": "employee_id",
+          "label": "کارمند",
+          "kind": "select",
+          "required": true,
+          "source": "employees",
+          "choices": null
+        },
+        {
+          "name": "target_position_id",
+          "label": "سمت هدف",
+          "kind": "select",
+          "required": true,
+          "source": "positions",
+          "choices": null
+        },
+        {
+          "name": "target_date",
+          "label": "تاریخ هدف (میلادی)",
+          "kind": "date",
+          "required": true
+        },
+        {
+          "name": "progress",
+          "label": "پیشرفت (درصد)",
+          "kind": "number",
+          "required": true,
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "name": "actions",
+          "label": "اقدام‌های لازم برای توسعه",
+          "kind": "textarea",
+          "required": true,
+          "maximum_length": 3000
+        }
+      ],
+      "columns": [
+        "employee_id",
+        "target_position_id",
+        "target_date",
+        "progress"
+      ]
+    },
+    {
+      "module": "users",
+      "table": "admins",
+      "admin_only": true,
+      "fields": [
+        {
+          "name": "username",
+          "label": "نام کاربری",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 50
+        },
+        {
+          "name": "display_name",
+          "label": "نام نمایشی",
+          "kind": "text",
+          "required": true,
+          "maximum_length": 100
+        },
+        {
+          "name": "password",
+          "label": "رمز اولیه؛ در ویرایش خالی بگذارید",
+          "kind": "password",
+          "required": false
+        },
+        {
+          "name": "role",
+          "label": "نقش",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "admin": "مدیر منابع انسانی",
+            "hr": "کارشناس منابع انسانی",
+            "viewer": "مشاهده‌گر گزارش‌های کلی"
+          }
+        },
+        {
+          "name": "branch_scope_id",
+          "label": "محدودهٔ شعبه؛ خالی یعنی کل سازمان",
+          "kind": "select",
+          "required": false,
+          "source": "branches_all",
+          "choices": null
+        },
+        {
+          "name": "unit_scope_id",
+          "label": "محدودهٔ واحد؛ اختیاری",
+          "kind": "select",
+          "required": false,
+          "source": "units_all",
+          "choices": null
+        },
+        {
+          "name": "is_active",
+          "label": "وضعیت حساب",
+          "kind": "select",
+          "required": true,
+          "source": null,
+          "choices": {
+            "true": "فعال",
+            "false": "غیرفعال"
+          }
+        }
+      ],
+      "columns": [
+        "username",
+        "display_name",
+        "role",
+        "branch_scope_id",
+        "unit_scope_id",
+        "is_active"
+      ]
+    }
+  ],
+  "notes": [
+    "Dynamic generic /hr routes choose forms/roles by module",
+    "Form metadata is implementation-derived; human review still pending"
+  ]
+}

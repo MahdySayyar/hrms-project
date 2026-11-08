@@ -17,6 +17,9 @@ from .hr_models import (AssignmentHistory, Attendance, AuditLog, Candidate, Care
                         OnboardingTask, PayrollProfile, PayrollRule, Payslip, Shift, Training, TrainingEnrollment, utc_now)
 from .module_forms import (CANDIDATE_STATES, CONTRACT_STATES, CONTRACT_TYPES, INTERVIEW_RESULTS, LABELS, MODULES, REQUEST_STATES, DATE, EMPLOYEE, field, money, pick)
 from .security import check_csrf, hash_password, require_login
+from .request_workflow.domain import ReviewError, Reviewer
+from .request_workflow.repository import RequestReviewRepository
+from .request_workflow.service import RequestReviewService
 
 router = APIRouter()
 DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
@@ -473,28 +476,17 @@ def complete_onboarding(request: Request, task_id: int, form: dict = Depends(bro
 
 @router.post("/requests/{request_id}/review")
 def review_request(request: Request, request_id: int, form: dict = Depends(browser_form)):
-    reviewer = require_admin(request)
+    user = require_admin(request)
+    reviewer = Reviewer(user.id, user.role, user.branch_scope_id, user.unit_scope_id)
     decision, notes = form.get("decision"), normalized(form.get("review_notes"))
-    if decision not in ("approved", "rejected") or len(notes) > 3000:
-        raise HTTPException(400, "نتیجه یا توضیح بررسی معتبر نیست.")
-    if decision == "rejected" and not notes:
-        raise HTTPException(400, "علت رد درخواست را بنویسید.")
     with SessionLocal() as db:
-        item = db.scalar(select(HrRequest).where(HrRequest.id == request_id).with_for_update())
-        if not item:
-            raise HTTPException(404)
-        scoped_employee(db, request, item.employee_id, lock=True)
-        if item.status != "pending":
-            return redirect(f"/hr/{item.kind}/{item.id}")
-        if decision == "approved" and item.kind in ("leave", "travel"):
-            overlap = db.scalar(select(HrRequest.id).where(HrRequest.employee_id == item.employee_id, HrRequest.id != item.id,
-                HrRequest.kind.in_(["leave", "travel"]), HrRequest.status == "approved", HrRequest.start_date <= item.end_date, HrRequest.end_date >= item.start_date))
-            if overlap:
-                raise HTTPException(400, "بازهٔ درخواست با مرخصی یا مأموریت تأییدشدهٔ دیگری هم‌پوشانی دارد.")
-        item.status, item.review_notes, item.reviewed_by, item.reviewed_at = decision, notes, reviewer.id, utc_now()
-        audit(db, request, "review", "hr_requests", item.id, {"decision": decision})
-        db.commit()
-    return redirect(f"/hr/{item.kind}/{item.id}?saved=1")
+        service = RequestReviewService(RequestReviewRepository(db))
+        try:
+            result = service.review(request_id, decision, notes, reviewer)
+        except ReviewError as exc:
+            raise HTTPException(exc.status_code, exc.message) from exc
+    suffix = "?saved=1" if result.changed else ""
+    return redirect(f"/hr/{result.kind}/{result.id}{suffix}")
 
 
 @router.post("/contracts/{contract_id}/activate")

@@ -1,0 +1,31 @@
+%% SEQ-03 — Payroll calculation and saved retry
+sequenceDiagram
+    actor Admin
+    participant Route as calculate_payroll
+    participant DB as PostgreSQL
+    participant Detail as payslip_detail
+    Admin->>Route: POST /payroll/calculate + employee/month/CSRF
+    Route->>Route: active admin + CSRF + valid Gregorian month
+    Route->>DB: SELECT employee FOR UPDATE
+    Route->>DB: existing payslip(employee,period)?
+    alt existing
+      Route-->>Admin: 303 existing id
+    else no existing
+      Route->>DB: read current profile and current contract rule
+      alt missing prerequisites or nonpositive hourly rate
+        Route-->>Admin: 400, no payslip
+      else valid inputs
+        Route->>DB: monthly attendance
+        Route->>Route: regular/overtime, HALF_UP rial, gross/net
+        alt negative net
+          Route-->>Admin: 400, no payslip
+        else valid net
+          Route->>DB: INSERT snapshots + amounts + audit, COMMIT
+          Route-->>Admin: 303 saved id
+        end
+      end
+    end
+    Admin->>Detail: GET /payroll/id
+    Detail->>DB: read saved record (admin/scope)
+    Detail-->>Admin: 200 from snapshots
+    Note over Route,DB: First historical calculation uses current profile/rule, no effective-date model

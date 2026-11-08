@@ -1,0 +1,40 @@
+date: '2026-11-08'
+ai_tool:
+  name: Codex coding agent based on GPT-6
+  build_version: not exposed
+  temperature: not exposed
+human_review:
+  status: pending
+  reviewer: null
+  decision: null
+human_modifications: None reported; no individual modifications inferred
+final_status: technically_validated_pending_human_review
+id: TRF-01
+task: Specify and correct final-request-decision conflict; isolate decision workflow
+origin: User-authorized project framework application; record reconstructed from this
+  task evidence
+input_artifacts_at_implementation:
+- SRC-U01
+- SRC-U02
+- UC-02
+- ADR-04
+- TC-02-05
+prompt: docs/07-ai-transformation/prompts/TRF-01-user-request.txt
+output: docs/07-ai-transformation/outputs/TRF-01.patch
+output_source_files:
+- app/modules.py
+- app/request_workflow/domain.py
+- app/request_workflow/repository.py
+- app/request_workflow/service.py
+validation:
+- docs/08-testing/evidence/core-before.json
+- docs/08-testing/evidence/core-after.json
+- docs/08-testing/evidence/unit-after.json
+- docs/08-testing/evidence/boundaries-after.json
+- docs/08-testing/evidence/full-smoke-after.json
+limitations:
+- Full historical prompt/response transcript is not included
+- Most analysis models were reconstructed after existing implementation
+- Stored pre-TRF-02 source is normalized from the observed version and known bounded
+  patch; not a byte-for-byte original conversation export
+output_sha256: c8baec62a65c9c517fe6bee741c6389e83f75c29100bce95647f67d11f5a6035

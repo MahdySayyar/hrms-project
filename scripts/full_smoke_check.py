@@ -23,8 +23,8 @@ results, created = [], {}
 run_id = uuid.uuid4().hex[:8]
 completed = False
 server = None
-artifacts = root / "artifacts"
-artifacts.mkdir(exist_ok=True)
+artifacts = Path(os.getenv("HRMS_ARTIFACT_DIR", str(root / "artifacts")))
+artifacts.mkdir(parents=True, exist_ok=True)
 log = (artifacts / "full-smoke-server.log").open("w", encoding="utf-8")
 with socket.socket() as sock:
     sock.bind(("127.0.0.1", 0))

@@ -1,0 +1,24 @@
+%% UCM-01 — Use-case model
+flowchart LR
+    Admin["admin"]
+    HR["hr"]
+    Viewer["viewer"]
+    subgraph System["مرز HRMS"]
+      U1(["UC-01 ورود و خروج"])
+      U2(["UC-02 ثبت و تصمیم درخواست"])
+      U3(["UC-03 فیش آموزشی"])
+      U4(["UC-04 پرونده و جست‌وجو"])
+      U5(["UC-05 سازمان"])
+      U6(["UC-06 استخدام و پذیرش"])
+      U7(["UC-07 تردد"])
+      U8(["UC-08 قرارداد"])
+      U9(["UC-09 ارزیابی و آموزش"])
+      U10(["UC-10 تاریخچه"])
+      U11(["UC-11 گزارش و CSV"])
+      U12(["UC-12 حساب و ممیزی"])
+    end
+    Admin --> U1 & U2 & U3 & U4 & U5 & U6 & U7 & U8 & U9 & U10 & U11 & U12
+    HR --> U1 & U2 & U4 & U5 & U6 & U7 & U8 & U9 & U10 & U11
+    Viewer --> U1 & U11
+    U2 -.->|"تصمیم فقط admin"| Admin
+    U11 -.->|"CSV فقط admin و hr"| HR

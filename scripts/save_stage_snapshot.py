@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE_FOLDERS = ("app", "templates", "static", "scripts", "docs", "tests", "specs", "models", "prompts", "deployments", ".github")
-ROOT_FILES = ("README.md", "requirements.txt", "requirements-lock.txt", "requirements-dev.txt", ".gitignore", ".env.example", "اجرای سامانه.cmd")
+ROOT_FILES = ("README.md", "AGENTS.md", "requirements.txt", "requirements-lock.txt", "requirements-dev.txt", "requirements-dev-lock.txt", ".gitignore", ".gitattributes", ".env.example", "اجرای سامانه.cmd")
 
 
 def save_snapshot(name, description):

@@ -1,0 +1,11 @@
+%% CMP-01 — Request workflow components
+flowchart LR
+    Form["HTML form / session"] --> Route["modules.review_request"]
+    Route -->|"Reviewer + normalized fields"| Service["RequestReviewService"]
+    Service --> Domain["validate_decision / decision_changes_state"]
+    Service -->|"injected object"| Repo["RequestReviewRepository"]
+    Service -->|"injected clock / stdlib UTC"| Clock["clock"]
+    Repo -->|"SQLAlchemy session"| DB[("PostgreSQL")]
+    DB --- Request["hr_requests"]
+    DB --- Audit["audit_log"]
+    DB --- Employee["employees"]

@@ -1,0 +1,10 @@
+%% CTX-01 — HRMS context
+flowchart LR
+    Admin["مدیر HR / admin"] -->|"حساب، تصمیم، حقوق، ممیزی"| HRMS["سامانه HRMS"]
+    HR["کارشناس HR / hr"] -->|"عملیات پرونده در scope"| HRMS
+    Viewer["مشاهده‌گر / viewer"] -->|"گزارش کلی در scope"| HRMS
+    HRMS -->|"صفحه فارسی / نتیجه / CSV"| Admin
+    HRMS -->|"صفحه فارسی / نتیجه / CSV"| HR
+    HRMS -->|"گزارش کلی"| Viewer
+    Employee["کارکنان؛ صاحبان داده، بدون ورود فعلی"] -.->|"پرونده و درخواست از طریق HR"| HR
+    Operator["مسئول اجرا"] -->|"راه‌اندازی و backup"| HRMS

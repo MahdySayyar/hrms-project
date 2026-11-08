@@ -1,0 +1,20 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-08T11:17:11.105210+00:00",
+  "finished_at": "2026-11-08T11:17:11.189210+00:00",
+  "git_parent_commit": "326f77bb0c3808f7d2db65c1b0a49d27c2cf3959",
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 2,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_architecture_boundaries.ArchitectureBoundaries.test_tc_m01_domain_has_no_web_or_storage_dependency",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_architecture_boundaries.ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql",
+      "status": "passed"
+    }
+  ]
+}

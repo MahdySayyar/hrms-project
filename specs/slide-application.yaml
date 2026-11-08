@@ -1,0 +1,634 @@
+id: SLIDE-REVIEW-01
+source: https://sadprojectdocs.space-z.ai/
+slides_read: 93
+original_diagrams_checked: 23
+applications:
+- number: 1
+  application: هدف تحلیل→specification→کد در منشور و محدودیت reconstruction ثبت شد.
+  artifacts:
+  - CH-01
+  - AI-CAT-01
+  status: prepared_review_open
+- number: 2
+  application: مالکیت تصمیم/پذیرش انسانی از تولید و آزمون عامل جدا ثبت شد؛ review
+    ساختگی نداریم.
+  artifacts:
+  - AI-REVIEW-01
+  - CONTRIB-01
+  status: human_review_open
+- number: 3
+  application: نمونهٔ HR، چارچوب artifactها، تقویم و Rubric در بستهٔ گزارش فراهم شد.
+  artifacts:
+  - REPORT-01
+  - MILESTONE-CAT-01
+  - RUBRIC-01
+  status: prepared_review_open
+- number: 4
+  application: مسئله، vision، ذی‌نفع، scope و محدودیت در منشور HR نوشته شد.
+  artifacts:
+  - CH-01
+  status: prepared_review_open
+- number: 5
+  application: 25 FR، 22 BR و 11 NFR با منشأ/فرض و معیار پذیرش ثبت شد.
+  artifacts:
+  - REQ-CAT-01
+  - SRC-01
+  status: prepared_review_open
+- number: 6
+  application: برای همهٔ FRها قرارداد ساختاریافته و برای سه Core جریان کامل YAML ثبت
+    شد.
+  artifacts:
+  - FS-CAT-01
+  - UC-01
+  - UC-02
+  - UC-03
+  status: specified_review_open
+- number: 7
+  application: Context، Use Case و Domain مفهومی با نگاشت همهٔ 21 جدول HR آماده شد.
+  artifacts:
+  - CTX-01
+  - UCM-01
+  - DM-01
+  - DB-01
+  status: modelled_review_open
+- number: 8
+  application: سه sequence، سه activity و سه state model مطابق رفتار HR نوشته و parse
+    شدند.
+  artifacts:
+  - SEQ-01
+  - SEQ-02
+  - SEQ-03
+  - ACT-01
+  - ACT-02
+  - ACT-03
+  - ST-01
+  - ST-02
+  - ST-03
+  status: modelled_syntax_checked
+- number: 9
+  application: سه alternative و ADRهای مبنا، DB، نشست و تصمیم با دلیل/اثر ثبت شد.
+  artifacts:
+  - ARCH-01
+  - ADR-01
+  - ADR-02
+  - ADR-03
+  - ADR-04
+  status: implemented_limited_boundary
+- number: 10
+  application: طراحی component/class ماژول تصمیم و طراحی واقعی سایر Coreها ثبت شد.
+  artifacts:
+  - DESIGN-CAT-01
+  - CMP-01
+  - CLS-01
+  status: prepared_review_open
+- number: 11
+  application: OpenAPI واقعی، overlay فرم/کوکی/redirect، route inventory و schema
+    reflection صادر شد.
+  artifacts:
+  - API-CAT-01
+  - DB-01
+  - ROUTE-CAT-01
+  status: exported_from_current_code
+- number: 12
+  application: ورودی/طرح/prompt پیش از تغییر TRF-02 ثبت شد؛ مدل‌های تاریخیِ قبل کد
+    جعل نشدند.
+  artifacts:
+  - TRF-02
+  - ARCH-SPEC-01
+  status: bounded_transformation_executed
+- number: 13
+  application: دو رکورد واقعی task/input/output/validation و review انسانیِ باز فراهم
+    شد.
+  artifacts:
+  - TRF-01
+  - TRF-02
+  - AI-REVIEW-01
+  status: recorded_human_review_open
+- number: 14
+  application: زنجیرهٔ مدل/طرح ماژول تصمیم به کد و آزمون مرز وصل شد.
+  artifacts:
+  - CMP-01
+  - CLS-01
+  - TRF-02
+  - TC-M-02
+  status: implemented_and_tested
+- number: 15
+  application: ماتریس 25 FR و 11 NFR با symbol و evidence و شناسهٔ پایدار ساخته شد.
+  artifacts:
+  - TR-CAT-01
+  status: linked_semantic_review_open
+- number: 16
+  application: AI برای تولید/آزمون/بازبینی فنی استفاده شد؛ تصمیم و یادگیری دانشجو
+    تأیید نشده است.
+  artifacts:
+  - AI-CAT-01
+  - CONTRIB-01
+  status: recorded_human_review_open
+- number: 17
+  application: برنامهٔ جزئی 14 هفته جدا از milestoneهای دو هفته‌ای حفظ شد؛ تاریخ شروع
+    نامشخص است.
+  artifacts:
+  - MILESTONE-CAT-01
+  status: calendar_prepared
+- number: 18
+  application: Gate با معیار review و وضعیت artifact تعریف شد؛ Passed انسانی اعلام
+    نشد.
+  artifacts:
+  - MILESTONE-CAT-01
+  status: gates_not_human_accepted
+- number: 19
+  application: وزن‌های Rubric اسلاید 19/93 مبنای کاری؛ اختلاف نسخهٔ 61 حفظ شد.
+  artifacts:
+  - RUBRIC-01
+  status: rubric_selection_pending
+- number: 20
+  application: کنترل identifier/link/code/schema انجام می‌شود؛ سازگاری semantic نیازمند
+    review است.
+  artifacts:
+  - TR-CAT-01
+  - DB-01
+  - AI-REVIEW-01
+  status: technical_checks_partial
+- number: 21
+  application: آزمون conflict از spec قبل اصلاح نوشته/اجرا شد؛ مثبت، منفی و مرزی در
+    Core ثبت شد.
+  artifacts:
+  - TEST-CAT-01
+  - TEST-REPORT-01
+  status: tests_executed
+- number: 22
+  application: حدود استفاده از AI، output و لزوم human review در log ثبت شد.
+  artifacts:
+  - AI-CAT-01
+  - AI-REVIEW-01
+  status: human_review_open
+- number: 23
+  application: پرسش‌های دفاع دربارهٔ lock، retry، نشست، متریک و منشأ مدارک آماده شد.
+  artifacts:
+  - DEMO-01
+  status: oral_review_not_performed
+- number: 24
+  application: نقش‌های تیم پیشنهاد شد؛ تعداد/نام/مشارکت هشت نفر برای این پروژه فرض
+    نشد.
+  artifacts:
+  - CONTRIB-01
+  status: actual_team_details_unknown
+- number: 25
+  application: مجوز تفاوت موضوع رعایت شد؛ Common Meta-Model به HRMS ترجمه شد.
+  artifacts:
+  - CH-01
+  - REPORT-01
+  status: adapted_to_hrms
+- number: 26
+  application: دامنهٔ موجود HR حفظ و Core/Extended/Advanced روشن شد.
+  artifacts:
+  - CH-01
+  status: adapted_to_existing_domain
+- number: 27
+  application: ساختار رسمی اسناد در 10 پوشه و گزارش 20 بخشی به کار رفت.
+  artifacts:
+  - REPORT-01
+  status: documentation_prepared
+- number: 28
+  application: زنجیرهٔ منشأ→FR/BR→UC/model/design/API→code→test در traceability ثبت
+    شد.
+  artifacts:
+  - TR-CAT-01
+  status: linked_semantic_review_open
+- number: 29
+  application: سند نمونهٔ UFMS الگوی فرآیند شد؛ دامنه و تاریخچهٔ HR حفظ شد.
+  artifacts:
+  - CH-01
+  - AI-CAT-01
+  status: framework_adapted
+- number: 30
+  application: تعریف مسئله و چشم‌انداز HR با منشأ استنباط و هدف مستقیم کاربر ثبت شد.
+  artifacts:
+  - CH-01
+  - SRC-01
+  status: prepared_review_open
+- number: 31
+  application: stakeholderهای واقعیِ قابل تشخیص از نقش‌ها ثبت شدند؛ مصاحبهٔ انجام‌نشده
+    ادعا نشد.
+  artifacts:
+  - CH-01
+  - SRC-01
+  status: stakeholder_validation_open
+- number: 32
+  application: اهداف و scope و محدودیت دامنه از فناوری/آزمایش‌های آینده جدا ثبت شد.
+  artifacts:
+  - CH-01
+  - OPEN-01
+  status: prepared_review_open
+- number: 33
+  application: FRها با شمارهٔ ثابت و پذیرش قابل آزمون نوشته شدند؛ هر FR به UC وصل
+    است.
+  artifacts:
+  - REQ-CAT-01
+  - FS-CAT-01
+  - TR-CAT-01
+  status: specified_review_open
+- number: 34
+  application: NFR با بار/عدد/روش سنجش و BR مستقل تطبیق HR شد؛ اهداف فاقد شاهد بازند.
+  artifacts:
+  - REQ-CAT-01
+  - QA-01
+  - TEST-REPORT-01
+  status: partial_quality_verification
+- number: 35
+  application: 12 کاربرد هدف‌محور و حداقل سه Fully Specified Core تعریف شد.
+  artifacts:
+  - UCM-01
+  - UC-CAT-01
+  - UC-01
+  - UC-02
+  - UC-03
+  status: modelled_review_open
+- number: 36
+  application: الگوی مشخصات کامل برای تصمیم درخواست HR با precondition/flow/alternative/postcondition
+    اعمال شد.
+  artifacts:
+  - UC-02
+  status: specified_review_open
+- number: 37
+  application: مدل مفهومی HR و mapping مفهوم UserAccount به admins و سایر 20 مفهوم
+    نوشته شد.
+  artifacts:
+  - DM-01
+  - DB-01
+  status: modelled_schema_mapped
+- number: 38
+  application: رفتارهای Core با sequence/activity/state و محدودیت‌های واقعی رسم شد.
+  artifacts:
+  - SEQ-01
+  - SEQ-02
+  - SEQ-03
+  - ACT-02
+  - ST-02
+  status: modelled_syntax_checked
+- number: 39
+  application: Traditional Monolith، مرز داخلی و Microservices با هزینه و نیاز مقایسه
+    شدند.
+  artifacts:
+  - ADR-01
+  - ADR-04
+  status: alternatives_documented
+- number: 40
+  application: معماری موجود دقیق توصیف شد؛ انتخاب Modular Monolith مثال را برای کل
+    HRMS ادعا نکردیم.
+  artifacts:
+  - ARCH-01
+  - ADR-01
+  - ADR-04
+  status: implemented_limited_boundary
+- number: 41
+  application: سناریوهای کیفیت با محرک/محیط/پاسخ/معیار و شواهد یا وضعیت آینده ثبت
+    شدند.
+  artifacts:
+  - QA-01
+  status: partial_quality_verification
+- number: 42
+  application: Controller/Service/Repository در ماژول تصمیم نقش مشخص دارند؛ سایر routeها
+    هنوز مستقیم‌اند.
+  artifacts:
+  - D-02
+  - CMP-01
+  - CLS-01
+  status: implemented_limited_boundary
+- number: 43
+  application: سه YAML spec قابل ماشین‌خوان، version و شناسه/پیوند دارند؛ review انسانی
+    باز است.
+  artifacts:
+  - UC-01
+  - UC-02
+  - UC-03
+  - FS-CAT-01
+  status: specified_review_open
+- number: 44
+  application: API فرم و DB واقعی صادر شد؛ داده و credentials در export نیستند.
+  artifacts:
+  - API-CAT-01
+  - DB-01
+  status: exported_from_current_code
+- number: 45
+  application: task محدود TRF-02 با ورودی موجود و validation واقعی اجرا شد.
+  artifacts:
+  - TRF-02
+  - ARCH-SPEC-01
+  status: bounded_transformation_executed
+- number: 46
+  application: رکورد تحول با actual prompt/output و حدود سوابق ثبت شد؛ final human
+    acceptance باز است.
+  artifacts:
+  - TRF-01
+  - TRF-02
+  status: recorded_human_review_open
+- number: 47
+  application: کد عامل با 29 آزمون، coverage و رگرسیون بررسی شد؛ خوداظهاری موفقیت
+    کافی نیست.
+  artifacts:
+  - TEST-REPORT-01
+  - TEST-CAT-01
+  status: tests_executed
+- number: 48
+  application: سطوح unit، integration، HTTP، regression، load، boundary و acceptance
+    انسانی مشخص شدند.
+  artifacts:
+  - TEST-STRATEGY-01
+  status: strategy_applied_partially
+- number: 49
+  application: برای testها شناسه، پیش‌شرط، سناریو و نتیجه ثبت شد؛ 98 assertion با
+    unit شمارش نشد.
+  artifacts:
+  - TEST-CAT-01
+  status: test_contracts_recorded
+- number: 50
+  application: ماتریس traceability دارای فایل ماشین‌خوان و نسخهٔ قابل مشاهده و evidence
+    است.
+  artifacts:
+  - TR-CAT-01
+  status: linked_semantic_review_open
+- number: 51
+  application: CR-01 برای ایراد مشاهده‌شده ثبت شد؛ مثال delegation غذا یا تغییر ابلاغی
+    استاد جعل نشد.
+  artifacts:
+  - CR-01
+  status: change_executed
+- number: 52
+  application: FR/BR/UC/API/code/tests تغییرکرده و DB/auth/payroll/سایر بخش‌های بی‌اثر
+    مشخص شدند.
+  artifacts:
+  - CR-01
+  status: impact_documented
+- number: 53
+  application: هفت milestone در هفته‌های 1–14 با Gate و وضعیت واقعی آماده شد.
+  artifacts:
+  - MILESTONE-CAT-01
+  status: gates_not_human_accepted
+- number: 54
+  application: منشور، requirements و مدل‌های اولیه فراهم شد؛ نبود review انسانی در
+    Gate باقی است.
+  artifacts:
+  - CH-01
+  - REQ-CAT-01
+  - MODEL-CAT-01
+  status: prepared_review_open
+- number: 55
+  application: architecture/design/spec/AI/test/report آماده‌اند؛ پذیرش و آزمایش‌های
+    آینده بازند.
+  artifacts:
+  - ARCH-01
+  - DESIGN-CAT-01
+  - AI-CAT-01
+  - OPEN-01
+  status: framework_prepared_partial_completion
+- number: 56
+  application: Git محلی، baseline مستقل و پوشه‌های استاندارد ایجاد شد؛ remote/CI اجرای
+    واقعی ندارد.
+  artifacts:
+  - AI-CAT-01
+  - REPORT-01
+  status: local_repository_prepared
+- number: 57
+  application: FR/BR/UC/DM/SEQ/ACT/ST/ADR/API/TC/CR و TR از TRF متمایز ثبت شدند.
+  artifacts:
+  - TR-CAT-01
+  status: stable_identifiers_applied
+- number: 58
+  application: هفت شرط DoD ثبت شد؛ artifact موجود و آزموده را خودکار human-reviewed
+    ننامیدیم.
+  artifacts:
+  - MILESTONE-CAT-01
+  status: human_dod_condition_open
+- number: 59
+  application: درستی/کامل بودن/سازگاری/ردیابی/توجیه در review و Rubric به کار رفت.
+  artifacts:
+  - RUBRIC-01
+  - AI-REVIEW-01
+  status: technical_review_partial
+- number: 60
+  application: دوری از کد بدون spec، نمودار ناسازگار، microservices نمایشی و شواهد
+    ساختگی ثبت شد.
+  artifacts:
+  - AI-CAT-01
+  - REPORT-01
+  status: anti_patterns_addressed
+- number: 61
+  application: نسخهٔ Testing=10٪ و بدون Specification مستقل حفظ و با 19/93 مخلوط نشد.
+  artifacts:
+  - RUBRIC-01
+  status: rubric_difference_documented
+- number: 62
+  application: وزن‌های M1..M7 و شرایط Gate جدا از Rubric دسته‌ای ثبت شد؛ نمره ساخته
+    نشد.
+  artifacts:
+  - MILESTONE-CAT-01
+  - RUBRIC-01
+  status: assessment_pending
+- number: 63
+  application: قالب مشارکت و cross-functional آماده شد؛ مشارکت واقعی اعضا هنوز نامشخص
+    است.
+  artifacts:
+  - CONTRIB-01
+  status: actual_contributions_open
+- number: 64
+  application: برنامهٔ 15 دقیقه‌ای با هشت بخش و تصمیم‌های مهندسی آماده شد؛ PPTX و
+    ارائه انجام نشده.
+  artifacts:
+  - DEMO-01
+  status: presentation_plan_prepared
+- number: 65
+  application: دموی end-to-end و failure در schema ساختگی و تمرین تحلیل تغییر تعریف
+    شد.
+  artifacts:
+  - DEMO-01
+  - CR-01
+  status: human_demo_not_performed
+- number: 66
+  application: گزارش زندهٔ 20 بخش با لینک artifactها و limits/lessons فنی نوشته شد.
+  artifacts:
+  - REPORT-01
+  status: report_prepared
+- number: 67
+  application: زنجیرهٔ کامل نیاز تا test از فایل‌های واقعی ساخته شد؛ ترتیب تاریخیِ
+    reconstruction روشن است.
+  artifacts:
+  - TR-CAT-01
+  - AI-CAT-01
+  status: linked_with_history_limits
+- number: 68
+  application: توان یادگیری/دفاع دانشجو در بازبینی آینده باقی است؛ آزمون عامل جای
+    آن نیست.
+  artifacts:
+  - DEMO-01
+  - CONTRIB-01
+  status: learning_not_agent_certified
+- number: 69
+  application: اصل مالکیت استدلال انسانی و AI ابزار در منشور، log و Gateها ثبت شد.
+  artifacts:
+  - CH-01
+  - AI-REVIEW-01
+  status: human_review_open
+- number: 70
+  application: مثال کامل غذا به الگوی گزارش/roadmap HR ترجمه شد؛ ویژگی غذایی وارد
+    HR نشد.
+  artifacts:
+  - REPORT-01
+  - EXP-CAT-01
+  status: example_framework_adapted
+- number: 71
+  application: Project Charter/مسئله HR به‌جای Food Charter با assumptions شفاف نوشته
+    شد.
+  artifacts:
+  - CH-01
+  status: prepared_review_open
+- number: 72
+  application: Student/Vendor/SSO مثال با admin/hr/viewer و صاحب پرونده HR تطبیق داده
+    شد.
+  artifacts:
+  - CH-01
+  - CTX-01
+  status: roles_adapted
+- number: 73
+  application: Core سه UC، Extended حوزه‌های موجود و Advanced آزمایش‌های آینده جدا
+    شدند.
+  artifacts:
+  - CH-01
+  - OPEN-01
+  status: scope_adapted
+- number: 74
+  application: FRهای HR با شمارهٔ ثابت و کد واقعی ثبت شدند؛ food FRها کپی نشدند.
+  artifacts:
+  - REQ-CAT-01
+  - TR-CAT-01
+  status: specified_review_open
+- number: 75
+  application: اهداف measurable HR و coverage package سنجیده شد؛ 300ms/wallet/vendor
+    الزام HR فرض نشد.
+  artifacts:
+  - REQ-CAT-01
+  - TEST-REPORT-01
+  - OPEN-01
+  status: nfr_targets_partially_verified
+- number: 76
+  application: اعتبارسنجی، قواعد، success/failure در قراردادهای FS و UC-02 ثبت شد.
+  artifacts:
+  - FS-CAT-01
+  - UC-02
+  status: specified_review_open
+- number: 77
+  application: Context HR با نقش‌های موجود و محدودهٔ سامانه آماده شد.
+  artifacts:
+  - CTX-01
+  status: modelled_review_open
+- number: 78
+  application: Use Case Model هدف‌محور HR و مجوز viewer/CSV/decision نشان داده شد.
+  artifacts:
+  - UCM-01
+  status: modelled_review_open
+- number: 79
+  application: Fully Specified UC-02 شامل flow و alternatives و idempotency و پیوند
+    test است.
+  artifacts:
+  - UC-02
+  - API-02
+  - TEST-CAT-01
+  status: specified_and_tested
+- number: 80
+  application: Domain HR به 21 جدول تطبیق داده شد؛ wallet/order/vendor اضافه نشده‌اند.
+  artifacts:
+  - DM-01
+  - DB-01
+  status: modelled_schema_mapped
+- number: 81
+  application: Sequence تصمیم request قفل، state، overlap، audit و rollback واقعی
+    را نشان می‌دهد.
+  artifacts:
+  - SEQ-02
+  - ADR-04
+  status: modelled_and_tested
+- number: 82
+  application: ST-02 فقط pending/approved/rejected واقعی دارد؛ ST-03 وضعیت ستونی فیش
+    اختراع نمی‌کند.
+  artifacts:
+  - ST-02
+  - ST-03
+  status: states_adapted_to_code
+- number: 83
+  application: ADR انتخاب معماری بر هدف مبتدی و مسئلهٔ واقعی است؛ Microservices نمایشی
+    ساخته نشد.
+  artifacts:
+  - ADR-01
+  - ADR-04
+  status: decision_documented
+- number: 84
+  application: ADR PostgreSQL 17.6 و session cookie موجود ثبت شد؛ SSO نمونهٔ استاد
+    ساخته‌شده نیست.
+  artifacts:
+  - ADR-02
+  - ADR-03
+  status: existing_decisions_reconstructed
+- number: 85
+  application: طراحی واقعی component/class/Repository و حدود routeهای مستقیم نوشته
+    شد.
+  artifacts:
+  - DESIGN-CAT-01
+  - CMP-01
+  - CLS-01
+  status: prepared_review_open
+- number: 86
+  application: API واقعی HTML/form/cookie/303/400/403/404/409 با export آفلاین توصیف
+    شد.
+  artifacts:
+  - API-CAT-01
+  - HTTP-CAT-01
+  status: exported_from_current_code
+- number: 87
+  application: DDL و constraint/index از PostgreSQL واقعی صادر شد؛ migration/backup
+    ادعا نشده است.
+  artifacts:
+  - DB-01
+  status: schema_exported_read_only
+- number: 88
+  application: ورودی‌های ARCH-SPEC/CMP/CLS/prompt پیش از TRF-02 ثبت و اجرا شد.
+  artifacts:
+  - TRF-02
+  - ARCH-SPEC-01
+  status: bounded_transformation_executed
+- number: 89
+  application: log ابزار، task، prompt، output، validation و reviewer نامشخص ثبت شد؛
+    درصد/دستکاری انسان جعل نشد.
+  artifacts:
+  - TRF-01
+  - TRF-02
+  - AI-REVIEW-01
+  status: recorded_human_review_open
+- number: 90
+  application: کد واقعی request workflow و transaction/audit/lock بررسی شد؛ مثال TypeScript
+    شاهد HR نیست.
+  artifacts:
+  - D-02
+  - ADR-04
+  - TEST-REPORT-01
+  status: implemented_and_tested
+- number: 91
+  application: آزمون‌های success/failure/boundary از Core spec و failure قبل/بعد ثبت
+    شدند؛ Extended gaps بازند.
+  artifacts:
+  - TEST-CAT-01
+  - TEST-REPORT-01
+  - OPEN-01
+  status: core_verified_extended_partial
+- number: 92
+  application: 25 ردیف FR→UC/Spec/Model/API/Code/Test و 11 ردیف NFR با code symbol
+    واقعی ساخته شد.
+  artifacts:
+  - TR-CAT-01
+  status: linked_semantic_review_open
+- number: 93
+  application: Rubric مثال با نمرهٔ HR اشتباه گرفته نشد؛ اختلاف وزن/جمع مثال و نیاز
+    review ثبت شد.
+  artifacts:
+  - RUBRIC-01
+  - REPORT-01
+  status: assessment_not_fabricated

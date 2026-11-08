@@ -1,0 +1,35 @@
+%% CLS-01 — Request workflow classes
+classDiagram
+    class Reviewer {
+      int id
+      str role
+      branch_scope_id
+      unit_scope_id
+    }
+    class ReviewError {
+      str code
+      str message
+      int status_code
+    }
+    class ReviewResult {
+      int id
+      str kind
+      bool changed
+    }
+    class RequestReviewService {
+      repository
+      clock
+      review(request_id, decision, notes, reviewer)
+    }
+    class RequestReviewRepository {
+      session
+      transaction()
+      locked_request(request_id)
+      locked_employee(employee_id, reviewer)
+      has_approved_overlap(item)
+      save_decision(item, decision, notes, reviewer_id, reviewed_at)
+    }
+    RequestReviewService ..> Reviewer : input
+    RequestReviewService ..> ReviewResult : result
+    RequestReviewService ..> ReviewError : rule failures
+    RequestReviewService --> RequestReviewRepository : injected

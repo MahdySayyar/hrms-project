@@ -1,0 +1,78 @@
+{
+  "id": "20261108T112431-a0acbf",
+  "started_at": "2026-11-08T11:24:32.912426+00:00",
+  "finished_at": "2026-11-08T11:24:56.294261+00:00",
+  "topology": "One native FastAPI process and local PostgreSQL; no container resource isolation",
+  "isolation": "Disposable PostgreSQL schema and synthetic accounts/employees; separate web port",
+  "users_requested": 10,
+  "spawn_rate_per_second": 5,
+  "duration_requested_seconds": 20,
+  "initial_employee_count": 100,
+  "locust_version": "2.47.0",
+  "python_version": "3.12.14",
+  "os": "Windows-10-10.0.19045-SP0",
+  "logical_cpus": 8,
+  "metrics": {
+    "task_weights": {
+      "read": 4,
+      "write": 1
+    },
+    "requests": 1418,
+    "failures": 0,
+    "peak_authenticated_users": 10,
+    "spawning_completed": {
+      "user_count": 10,
+      "timestamp": 1794137077.1872206
+    },
+    "read_requests": 1116,
+    "write_requests": 302,
+    "observed_read_fraction": 0.7870239774330042,
+    "wall_window_seconds_including_login": 19.92909336090088,
+    "rps_over_wall_window": 71.15225837528519,
+    "p50_ms": 38,
+    "p95_ms": 210,
+    "p99_ms": 560,
+    "percentile_method": "Merged Locust response-time buckets; setup requests excluded",
+    "endpoints": [
+      {
+        "name": "read.dashboard",
+        "method": "GET",
+        "requests": 289,
+        "failures": 0
+      },
+      {
+        "name": "read.requests",
+        "method": "GET",
+        "requests": 263,
+        "failures": 0
+      },
+      {
+        "name": "read.employees",
+        "method": "GET",
+        "requests": 286,
+        "failures": 0
+      },
+      {
+        "name": "read.reports",
+        "method": "GET",
+        "requests": 278,
+        "failures": 0
+      },
+      {
+        "name": "write.employee_status",
+        "method": "POST",
+        "requests": 302,
+        "failures": 0
+      }
+    ]
+  },
+  "locust_exit_code": 0,
+  "nfr_500_users_verified": false,
+  "limitations": [
+    "Generator and application share the same host",
+    "Short local experiment; not a production capacity or uptime measurement",
+    "Task weights are 80/20; the observed HTTP ratio is reported separately",
+    "NFR-01 requires a separate acceptance run with 500 authenticated concurrent users and five minutes of steady workload; this lab does not certify that target"
+  ],
+  "raw_evidence_directory": "artifacts/evidence/load-20261108T112431-a0acbf"
+}

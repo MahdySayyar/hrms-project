@@ -1,135 +1,108 @@
-# سامانه مدیریت منابع انسانی
+# سامانهٔ مدیریت منابع انسانی — پروژهٔ معماری
 
-مرحلهٔ اول پروژهٔ درس تحلیل و طراحی سیستم‌ها: یک وب‌سایت فارسی و راست‌به‌چپ برای مدیریت پروندهٔ کارکنان و اطلاعات پایهٔ سازمان.
+وب‌سایت فارسی و RTL با FastAPI، Jinja2 و PostgreSQL. هشت حوزهٔ HR پیاده‌سازی شده‌اند و چارچوب مهندسی درس به پروژه اضافه شده است. هدف، حفظ نسخهٔ ساده و اصلاح تدریجی معماری با مشکل و evidence واقعی است.
 
-## استفاده از نسخهٔ آماده
+شروع بررسی: [گزارش جاری](docs/10-final-report/report.md)، [تطبیق هر 93 اسلاید استاد](docs/project-framework-slide-review.md)، [فهرست مستندات](docs/README.md).
 
-برنامه روی همین رایانه در نشانی **http://127.0.0.1:8000** اجرا شده است. ورود فقط برای مدیر منابع انسانی است. نام کاربری اولیه `hradmin` است؛ رمز اولیه را در مقدار `ADMIN_PASSWORD` فایل محلی `.env` بخوانید. این فایل حاوی رمز پایگاه داده نیز هست؛ آن را همراه پروژه منتشر نکنید.
+## سایت و اجرا
 
-برای اجرا پس از خاموش کردن یا راه‌اندازی مجدد رایانه، PowerShell را باز کنید و بنویسید:
+نشانی محلی: [صفحهٔ ورود](http://127.0.0.1:8000/login). فایل «اجرای سامانه.cmd» برنامه را روشن و مرورگر را باز می‌کند. اجرای PowerShell از ریشهٔ پروژه:
 
 ```powershell
-Set-Location -LiteralPath 'C:\Users\mahdy\Desktop\MP'
+Set-Location -LiteralPath 'C:/Users/mahdy/Desktop/MP'
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\launch.ps1
 ```
 
-این فرمان PostgreSQL پروژه را در صورت نیاز روشن می‌کند و یک پردازهٔ وب روی درگاه ۸۰۰۰ اجرا می‌کند. اجرای پس‌زمینه از طریق مدیریت فرایند Windows آغاز می‌شود و به باز ماندن پنجرهٔ PowerShell یا ابزار اجرای گفت‌وگو وابسته نیست. اگر سامانه از قبل سالم اجرا باشد، پردازهٔ دوم ساخته نمی‌شود. صفحهٔ ورود: http://127.0.0.1:8000/login . گزینهٔ `Bypass` فقط برای اجرای همین فرمان است و سیاست عمومی اجرای اسکریپت ویندوز را تغییر نمی‌دهد.
+راه‌انداز PostgreSQL همین پروژه و یک وب روی localhost:8000 را اجرا می‌کند؛ پردازهٔ سالم دوم نمی‌سازد. برای بارگذاری کد جدید، scripts/restart.ps1 فقط پردازهٔ شناخته‌شدهٔ همین پروژه را restart می‌کند. توقف foreground با Ctrl+C در scripts/start.ps1؛ توقف DB با setup-postgres.ps1 -Action stop.
 
-برای اجرای ساده‌تر، فایل **«اجرای سامانه.cmd»** در پوشهٔ پروژه را دوبار کلیک کنید؛ برنامه را روشن می‌کند و صفحهٔ ورود را در مرورگر پیش‌فرض باز می‌کند. پس از خاموش کردن رایانه، دوباره همین فایل را اجرا کنید. شروع خودکار هنگام روشن شدن Windows تنظیم نشده است.
+نام کاربری اولیه hradmin است؛ رمز و تنظیمات را از فایل محلی .env بخوانید. .env حاوی credential پایگاه است و وارد Git/گزارش نمی‌شود. حساب‌های admin، hr و viewer قابل مدیریت‌اند. نشانی 127.0.0.1 فقط روی همین رایانه در دسترس است.
 
-اگر می‌خواهید برنامه در پنجرهٔ PowerShell اجرا شود، به جای `launch.ps1` از `scripts/start.ps1` استفاده کنید و پنجره را باز نگه دارید؛ برای توقف آن `Ctrl+C` بزنید. برای توقف پایگاه دادهٔ همین پروژه:
+## وضعیت واقعی
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-postgres.ps1 -Action stop
-```
+| بخش | وضعیت |
+|---|---|
+| استخدام و پذیرش | متقاضی، مصاحبه، استخدام و چک‌لیست |
+| اطلاعات پرسنل | پرونده/جست‌وجو/فعالیت و سازمان |
+| تردد | شیفت، حضور/غیاب، دقیقهٔ کار و اضافه‌کاری/شیفت شب |
+| درخواست | مرخصی، مأموریت و اداری؛ تصمیم و منع overlap |
+| حقوق آموزشی | rule/profile، محاسبه و snapshot فیش یکتا |
+| قرارداد | draft، فعال‌سازی، تمدید و خاتمه با حفظ سابقه |
+| رشد حرفه‌ای | ارزیابی، آموزش/ظرفیت و مسیر شغلی |
+| گزارش/تاریخچه/دسترسی | تاریخچهٔ انتساب، گزارش کلی، CSV، نقش/محدوده، audit و حساب |
 
-اجرای وب و پایگاه داده به `127.0.0.1` محدود است. ورود نمونه برای کار محلی و آموزشی در نظر گرفته شده است.
+معماری فعلی یک مونولیت با یک وب و DB محلی است. فقط تصمیم درخواست به Domain / Service / Repository منتقل شده؛ تصمیم مخالف نهایی اکنون 409 می‌گیرد و retry یکسان بدون تغییر دوباره است. سایر قواعد عمدتاً در route هستند.
 
-## امکانات ساخته‌شده
+تاریخ‌ها میلادی، مبالغ ریال آموزشی و قواعد حقوق قانونی نیستند. محاسبهٔ اولیهٔ دورهٔ تاریخی از profile/rule فعلی استفاده می‌کند؛ گزارش از سازمان فعلی. نشست‌ها در حافظهٔ یک وب‌اند. صفحه‌بندی، Docker/Compose/Kubernetes، Redis/RabbitMQ/gateway/monitoring و HA هنوز پیاده نشده‌اند.
 
-- ورود و خروج مدیر، رمز هش‌شده، نشست دارای انقضا، کوکی `HttpOnly` و `SameSite=Lax` و محافظت CSRF فرم‌ها.
-- داشبورد با تعداد کل کارکنان، کارکنان فعال، شعبه‌ها و واحدها.
-- فهرست، افزودن، مشاهده و ویرایش کارکنان؛ تغییر وضعیت فعال/غیرفعال بدون حذف پرونده.
-- جست‌وجوی نام یا کد پرسنلی و فیلتر شعبه، واحد و وضعیت.
-- ثبت و ویرایش شعبه‌ها، واحدهای وابسته به شعبه و سمت‌ها با شرح شغل.
-- کنترل تکراری نبودن کد پرسنلی و تعلق واحد به شعبه، در فرم و پایگاه داده.
-- فرمان صریح ورود داده‌های ساختگی: ۲ شعبه، ۴ واحد، ۴ سمت، ۱۰ کارمند و یک مدیر. ۹ کارمند فعال و یک کارمند غیرفعال است.
-- مسیرهای `GET /health` و `GET /instance` برای بررسی سلامت و شناسهٔ نمونه.
+## مدارک و شواهد
 
-نوع قرارداد فقط یک مقدار فعلی در پرونده است. تاریخ استخدام فعلاً با تاریخ میلادی ثبت می‌شود و برچسب فرم این موضوع را مشخص می‌کند. کد ملی از نظر داشتن ۱۰ رقم بررسی می‌شود؛ اعتبار حقوقی، تعلق به فرد و رقم کنترل آن در این مرحله تأیید نمی‌شود. داده‌های نمونه برای شبیه‌سازی‌اند، نه هویت‌های واقعی.
+25 FR، 22 BR و 11 NFR؛ سه کاربرد کامل YAML و مدل‌های Context/Use Case/Domain، سه sequence/activity/state؛ architecture alternatives و ADR؛ design و OpenAPI/schema واقعی؛ دو AI record؛ traceability و CR-01؛ Gate/DoD/Rubric و برنامهٔ ارائه.
 
-## ساختار فایل‌ها
+[آزمون‌های واقعی](docs/08-testing/report.md): 16/17 قبل اصلاح → 17/17 بعد؛ 29/29 پس از تکمیل مرز، 98/98 assertion رگرسیون؛ coverage package تصمیم 96.6٪. load سبک 10 کاربر، 1418 درخواست و خطای صفر با P95=210ms. این load ظرفیت 500 کاربر را تأیید نمی‌کند.
 
-```text
-app/
-  main.py          مسیرها، اعتبارسنجی و منطق مستقیم برنامه
-  database.py      اتصال PostgreSQL و مدل جدول‌ها
-  security.py      هش رمز، نشست و CSRF
-  seed.py          ایجاد جدول‌ها و داده‌های نمونه
-templates/         صفحه‌های Jinja2 به زبان فارسی
-static/            CSS و جاوااسکریپت کوچک انتخاب واحد
-scripts/           آماده‌سازی Windows، اجرا و بررسی‌های واقعی
-docs/              محدوده، وضعیت مرحله، معماری و نسخهٔ پرامپت‌ها
-artifacts/         خروجی آزمون‌ها و تصویرهای مرورگر؛ محلی و خارج از Git
-.runtime/          PostgreSQL، داده‌ها و گزارش اجرای محلی؛ خارج از Git
-.venv/             محیط مجزای Python؛ خارج از Git
-.env               تنظیمات و رمزهای محلی؛ خارج از Git
-```
+[کارهای باز](docs/10-final-report/remaining-work.md): review انسانی و یادگیری/مشارکت، NFRهای کامل و آزمایش‌های مرحله‌ای معماری. «مدرک آماده» یا «test passed» معادل پذیرش استاد نیست.
 
-## راه‌اندازی از ابتدا در PowerShell
+## نصب تازه و وابستگی‌ها
 
-در این رایانه محیط با **Python 3.12.14 همراه Codex** ساخته شد. مسیر دقیق فرمان اجراشده:
+Python 3.12 و محیط مجزا:
 
 ```powershell
-Set-Location -LiteralPath 'C:\Users\mahdy\Desktop\MP'
-& 'C:\Users\mahdy\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-postgres.ps1 -Action setup
 .\.venv\Scripts\python.exe -m app.seed
-.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 ```
 
-نیازی به فعال کردن محیط مجازی نیست؛ مسیر مستقیم Python آن استفاده می‌شود. برای تکرار دقیق نسخه‌های وابستگی ثبت‌شده، به جای `requirements.txt` از `requirements-lock.txt` استفاده کنید. روی رایانهٔ دیگری ابتدا Python مناسب نصب کنید و با مسیر همان Python فرمان `-m venv .venv` را اجرا کنید؛ مسیر همراه Codex مخصوص همین رایانه است.
+setup-postgres بستهٔ رسمی PostgreSQL 17.6 را داخل .runtime نصب و روی 127.0.0.1:55432 آماده می‌کند؛ نصب سراسری یا reset دادهٔ موجود ندارد. seed صریح و تکرارپذیر است و password حساب موجود را خودکار عوض نمی‌کند. برای database از قبل دارای جدول‌های نسخهٔ قدیمی، ارتقای مرحله‌ای مستندشده لازم است؛ create_all مهاجرت نسخه‌دار نیست.
 
-اسکریپت `setup-postgres.ps1` به ترتیب این کارها را انجام می‌دهد:
+requirements-lock.txt نسخهٔ تولید و requirements-dev-lock.txt snapshot محیط توسعه است. محیط توسعه Locust/PyYAML/coverage دارد. تغییر وابستگی production در این نوبت انجام نشده است.
 
-۱. اگر `.env` وجود نداشته باشد، رمزهای تصادفی و مستقل برای برنامه و مدیر می‌سازد. فایل موجود را بازنویسی نمی‌کند.
+## تکرار آزمون و تولید مدارک
 
-۲. بستهٔ رسمی PostgreSQL 17.6 برای Windows را دریافت می‌کند و فقط پوشه‌های لازم را زیر `.runtime/postgresql` استخراج می‌کند. نصب سراسری یا سرویس Windows ایجاد نمی‌کند.
-
-۳. با `initdb` داده‌های محلی را با UTF-8 و احراز هویت `scram-sha-256` آماده می‌کند. رمز کاربر راه‌انداز PostgreSQL در `.runtime/postgres-superuser.secret` می‌ماند.
-
-۴. با `pg_ctl` پایگاه را روی `127.0.0.1:55432` روشن می‌کند؛ با `scripts/create_database.py` نقش محدود `hrms_app` و پایگاه `hrms_stage1` را می‌سازد. نقش برنامه دسترسی ابرکاربر، ساخت پایگاه یا ساخت نقش ندارد. پایگاه‌ها و نقش‌های موجود را حذف یا بازنشانی نمی‌کند.
-
-فرمان‌های زیر نیز در همین مرحله واقعاً اجرا شدند:
+خروجی‌ها نام جدید می‌خواهند؛ نمونه‌های زیر برای اجرای بعدی‌اند و فایل فعلی را overwrite نمی‌کنند.
 
 ```powershell
-.\.runtime\postgresql\bin\initdb.exe -D .\.runtime\pgdata -U postgres --pwfile=.\.runtime\postgres-superuser.secret --encoding=UTF8 --locale=C --auth=scram-sha-256
-.\.runtime\postgresql\bin\pg_ctl.exe start -D .\.runtime\pgdata -l .\.runtime\postgresql.log -o '-h 127.0.0.1 -p 55432' -w
-.\.venv\Scripts\python.exe .\scripts\create_database.py
-```
-
-این سه فرمان برای توضیح کار اسکریپت‌اند؛ `initdb` را روی پایگاه آماده دوباره اجرا نکنید. خود اسکریپت وجود پایگاه را بررسی می‌کند و داده‌ها را حفظ می‌کند.
-
-## داده‌های اولیه و حساب مدیر
-
-```powershell
-.\.venv\Scripts\python.exe -m app.seed
-```
-
-جدول‌ها فقط با این فرمان ایجاد می‌شوند؛ برنامه روی هر درخواست داده‌گذاری نمی‌کند. اجرای دوباره رکوردهای نمونه را تکثیر یا اطلاعات موجود را پاک نمی‌کند. کلیدهای داخلی `seed_key` برای نمونه‌ها ثابت‌اند، بنابراین ویرایش نام شعبه، واحد، سمت یا کد پرسنلی نمونه هم باعث ساخت نسخهٔ تکراری نمی‌شود. رمز مدیر موجود با اجرای دوباره، حتی پس از تغییر `ADMIN_PASSWORD` در محیط، بازنشانی نمی‌شود.
-
-مقادیر `ADMIN_USERNAME`، `ADMIN_PASSWORD` و `ADMIN_DISPLAY_NAME` فقط هنگام ساخت اولین حساب استفاده می‌شوند. تغییر نام کاربری در `.env` برای ساخت مدیر دوم پذیرفته نیست؛ این مرحله فقط یک مدیر دارد. قابلیت تغییر رمز از رابط کاربری هنوز بخشی از محدودهٔ مرحله نیست.
-
-`COOKIE_SECURE=false` برای اجرای محلی HTTP است. در استقرار HTTPS آینده باید `true` شود. مقدار `SESSION_HOURS=8` مدت نشست ورود را تعیین می‌کند. با خروج یا انقضا نشست باطل می‌شود. راه‌اندازی مجدد پردازهٔ وب هم نشست حافظه‌ای را پاک می‌کند و ورود دوباره لازم است؛ اطلاعات کارکنان در PostgreSQL باقی می‌ماند.
-
-## بررسی‌ها و مدارک
-
-```powershell
-.\.venv\Scripts\python.exe -m compileall -q app scripts
-.\.venv\Scripts\python.exe .\scripts\smoke_check.py
+.\.venv\Scripts\python.exe .\scripts\run_core_checks.py --phase after --pattern 'test_*.py' --output docs/08-testing/evidence/core-next.json
+.\.venv\Scripts\python.exe .\scripts\run_isolated_smoke.py --output docs/08-testing/evidence/smoke-next.json
+.\.venv\Scripts\python.exe .\scripts\run_load_lab.py --users 10 --seconds 20 --employees 100 --output docs/08-testing/evidence/load-next.json
+.\.venv\Scripts\python.exe .\scripts\export_engineering_artifacts.py --refresh
+.\.venv\Scripts\python.exe .\scripts\build_traceability.py --refresh
+.\.venv\Scripts\python.exe .\scripts\render_slide_review.py --refresh
+.\.venv\Scripts\python.exe .\scripts\check_engineering.py --output docs/08-testing/evidence/docs-next.json
 .\.venv\Scripts\python.exe -m pip check
 ```
 
-آزمون HTTP یک پردازهٔ وب مجزا روی درگاه آزاد اجرا می‌کند و به PostgreSQL واقعی متصل می‌شود. فقط داده‌های ساختگی خودِ آزمون را ایجاد و در پایان حذف می‌کند. برای بررسی حفظ ویرایش نمونه‌ها، چند فیلد ساختگی را موقتاً تغییر می‌دهد و در پایان به مقدار اولیه برمی‌گرداند. هنگام آزمون، داده‌ها را هم‌زمان از مرورگر ویرایش نکنید.
+Core/رگرسیون/بار در schema PostgreSQL مستقل و دادهٔ ساختگی اجرا می‌شوند؛ بار نوشتنی فقط localhost دارای marker آزمایش را قبول می‌کند. برای اندازه‌گیری coverage از coverage run --source app/request_workflow روی run_core_checks.py و report --fail-under=80 استفاده کنید؛ فایل داده را زیر artifacts نگه دارید.
 
-۴۵ بررسی HTTP/پایگاه داده و ۱۱ بررسی مرورگر در این مرحله موفق شدند. خروجی‌ها:
-
-- `artifacts/smoke-results.json` و `artifacts/smoke-server.log`
-- `artifacts/browser-results.json`
-- `artifacts/screenshots/` شامل صفحهٔ ورود، داشبورد، فهرست کارکنان و فرم در اندازهٔ رایانه و موبایل
-
-مرورگر با Playwright همراه محیط Codex و Chrome موجود در همین رایانه بررسی شد. برای تکرار این بخش پس از روشن کردن وب:
+برای parse نمودار بدون کنترل مرورگر:
 
 ```powershell
-$env:HRMS_PLAYWRIGHT_PATH = 'C:\Users\mahdy\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\playwright'
-& 'C:\Users\mahdy\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' .\scripts\browser_check.cjs
+npm.cmd install --prefix .\artifacts\diagram-validator --ignore-scripts --no-audit --no-fund mermaid@11 jsdom@26
+node .\scripts\validate_diagrams.mjs --output docs/08-testing/evidence/diagrams-next.json
 ```
 
-دو آزمون مرورگر و HTTP را به‌ترتیب اجرا کنید. مرورگر نیز فقط پروندهٔ ساختگی خودش را ایجاد و در پایان حذف می‌کند. نتیجهٔ هر آزمون را از خروجی واقعی همان اجرا بخوانید.
+workflow CI در .github/workflows/engineering.yml آماده است؛ اجرا/انتشار remote در این نوبت انجام نشده. legacy browser_check.cjs برای UI با ابزارهای قدیمی اجرا نشده است؛ شواهد مرورگر قبلی تاریخی‌اند.
 
-هیچ آزمون بار، ادعای سرعت یا اثبات تحمل خرابی در این مرحله انجام نشده است. جزئیات در `docs/stage-status.md` و محدودیت‌ها در `docs/baseline-notes.md` آمده است.
+## نسخه‌ها و ساختار
 
-## مرحله‌های بعد
+```text
+app/                 برنامه و مرز داخلی request_workflow
+templates/, static/  UI فارسی
+specs/, models/      قرارداد و مدل editable
+docs/01..10/         زنجیرهٔ مهندسی و evidence
+docs/history/        اسناد اولیهٔ حفظ‌شده
+scripts/, tests/     اجرا، export، آزمون و load
+.github/workflows/   CI آمادهٔ اجرای آینده
+artifacts/           فایل‌های خام و archive محلی، خارج Git
+.runtime/, .venv/    اجرای محلی و وابستگی، خارج Git
+.env                 تنظیمات خصوصی، خارج Git
+```
 
-مرحلهٔ اول همین‌جا پایان می‌یابد. استخدام، حضور و غیاب، مرخصی، حقوق، چرخهٔ قرارداد، ارزیابی و گزارش‌های پیشرفته پیاده‌سازی نشده‌اند. مرحلهٔ دوم، فقط با پرامپت مستقل، استخدام و ورود به سازمان خواهد بود. پس از تکمیل نسخهٔ کاربردی، آزمایش استقرار FastAPI و PostgreSQL در یک کانتینر واحد باید قبل از تفکیک با Docker Compose انجام شود.
+baseline پیش از framework در commit 326f77b و artifacts/baseline-before-framework-20261108-source.zip محفوظ است. آرشیو Stage 1 قدیمی overwrite نشده. برای snapshot تازه:
+
+```powershell
+.\.venv\Scripts\python.exe .\scripts\save_stage_snapshot.py --name hrms-next-baseline --description 'A separately named validated source baseline'
+```
+
+فایل‌های فعلی و مدارک، توسط عامل کدنویسی تهیه شده‌اند؛ student review/contribution بدون شاهد گزارش نمی‌شود.

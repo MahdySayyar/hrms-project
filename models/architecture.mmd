@@ -1,0 +1,10 @@
+%% ARCH-01 — Actual deployment
+flowchart LR
+    Browser["Persian RTL browser"] -->|"localhost HTTP"| Web["one FastAPI / Uvicorn process"]
+    Web --> Direct["main.py / modules.py"]
+    Direct --> DB[("local PostgreSQL")]
+    Direct --> Service["request decision service"]
+    Service --> Domain["pure domain"]
+    Service --> Repository["repository"]
+    Repository --> DB
+    Web --- Memory["process-local sessions"]

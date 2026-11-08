@@ -1,0 +1,68 @@
+id: UC-01
+version: 1
+name: Authenticate and end an active account session
+status: reconstructed_from_current_code_pending_student_review
+requirements:
+- FR-01
+- FR-02
+- FR-03
+business_rules:
+- BR-01
+- BR-02
+- BR-03
+primary_actor: admin_or_hr_or_viewer
+trigger: Submit the login form
+preconditions:
+- The login page has issued an anonymous session and a CSRF token
+input:
+  username: normalized nonempty account name
+  password: unchanged password string
+  csrf_token: token bound to the current session
+main_flow:
+- Check CSRF before authenticating
+- Read the account and verify its active flag and PBKDF2 password hash
+- Persist the login audit entry
+- Discard the anonymous session and issue a new authenticated session
+- Redirect to the dashboard
+- On logout, validate CSRF, record audit, invalidate session and remove the cookie
+alternatives:
+- condition: invalid_credentials_or_inactive_account
+  response: 401 with a generic Persian login message
+- condition: missing_or_invalid_csrf
+  response: 403 with no authentication state change
+- condition: protected_page_without_valid_session
+  response: 303 redirect to /login
+- condition: authenticated_role_lacks_permission
+  response: 403; an out-of-scope employee is concealed with 404
+success:
+- A rotated HttpOnly, SameSite=Lax session cookie exists
+- The assigned role and organizational scope govern subsequent requests
+failure:
+- No authenticated session is granted
+limitations:
+- Sessions are process-local and disappear on restart
+- COOKIE_SECURE is false for the localhost HTTP development environment
+- Successful login is audited; a comprehensive denied-access security log is a future
+  requirement
+traceability:
+  models:
+  - SEQ-01
+  - ACT-01
+  - ST-01
+  - DM-01
+  design: D-01
+  api: API-01
+  code:
+  - app/main.py#login
+  - app/main.py#logout
+  - app/security.py
+  - app/access.py
+  tests:
+  - TC-01-01
+  - TC-01-02
+  - TC-01-03
+goal: Grant an active account a scoped authenticated session and end it safely
+secondary_actors: []
+quality_attributes:
+- NFR-S-01
+- NFR-S-02

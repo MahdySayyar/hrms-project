@@ -1,0 +1,307 @@
+id: TEST-CAT-01
+version: 1
+human_review: pending
+core_tests:
+- id: TC-01-01
+  use_case: UC-01
+  requirements:
+  - FR-01
+  - FR-02
+  business_rules:
+  - BR-01
+  - BR-02
+  preconditions: Anonymous session, active synthetic admin
+  scenario: Missing session, missing CSRF, wrong password, correct login, logout
+  expected: 303 login redirect; 403/401 failures; rotated cookie; protected page succeeds;
+    logout invalidates
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-01-02
+  use_case: UC-01
+  requirements:
+  - FR-03
+  - FR-22
+  - FR-23
+  business_rules:
+  - BR-03
+  - BR-04
+  preconditions: Synthetic admin/hr/viewer and two branches
+  scenario: Out-of-scope employee and forbidden payroll/audit/users/CSV/decision
+  expected: 404 hidden record; 403 forbidden capabilities; allowed report and scoped
+    employee 200
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-01-03
+  use_case: UC-01
+  requirements:
+  - FR-01
+  - FR-03
+  business_rules:
+  - BR-01
+  preconditions: HR logged in
+  scenario: Deactivate account in isolated schema
+  expected: Next protected request redirects 303 to login
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-01
+  use_case: UC-02
+  requirements:
+  - FR-12
+  business_rules:
+  - BR-07
+  - BR-14
+  preconditions: Scoped HR and employee
+  scenario: End before start; then valid leave
+  expected: 400 and zero requests; valid request is pending
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-02
+  use_case: UC-02
+  requirements:
+  - FR-13
+  - FR-24
+  business_rules:
+  - BR-08
+  - BR-14
+  preconditions: Pending request and active admin
+  scenario: Approve once
+  expected: 303; approved; reviewer/time populated; exactly one review audit
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-03
+  use_case: UC-02
+  requirements:
+  - FR-13
+  business_rules:
+  - BR-09
+  preconditions: Pending request and admin
+  scenario: Reject with whitespace then nonblank notes
+  expected: 400 without review audit; valid rejection 303
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-04
+  use_case: UC-02
+  requirements:
+  - FR-13
+  - FR-24
+  business_rules:
+  - BR-08
+  - BR-14
+  preconditions: Approved request with initial notes
+  scenario: Repeat approval with different notes
+  expected: 303; one audit; original notes preserved
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-05
+  use_case: UC-02
+  requirements:
+  - FR-13
+  business_rules:
+  - BR-08
+  preconditions: Approved request
+  scenario: Submit opposite rejected decision
+  expected: 409; approved retained; one audit; baseline returned 303
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-06
+  use_case: UC-02
+  requirements:
+  - FR-13
+  business_rules:
+  - BR-10
+  preconditions: Approved leave 2030-01-01..02
+  scenario: Approve travel 2030-01-02..03
+  expected: 400 at shared boundary; pending travel and no review audit
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-07
+  use_case: UC-02
+  requirements:
+  - FR-13
+  business_rules:
+  - BR-10
+  - BR-14
+  preconditions: Two overlapping pending requests for one employee
+  scenario: Two parallel HTTP approval submissions
+  expected: One 303 and one 400; exactly one review audit
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-08
+  use_case: UC-02
+  requirements:
+  - FR-13
+  - FR-24
+  business_rules:
+  - BR-14
+  preconditions: Pending request in isolated schema
+  scenario: Inject INSERT audit_log failure
+  expected: 500; request remains pending; no review audit
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-02-09
+  use_case: UC-02
+  requirements:
+  - FR-13
+  business_rules:
+  - BR-08
+  - BR-09
+  preconditions: Admin and pending request
+  scenario: Missing id; target pending; 3001 and 3000 character notes
+  expected: 404; 400; 400; accepted 303 at maximum
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-03-01
+  use_case: UC-03
+  requirements:
+  - FR-14
+  - FR-16
+  business_rules:
+  - BR-12
+  - BR-13
+  preconditions: Monthly fixture profile/rule/attendance
+  scenario: Calculate then change rule/profile and retry
+  expected: Overtime 900000 and net 55015000 rial; same id/snapshots and one payslip
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-03-02
+  use_case: UC-03
+  requirements:
+  - FR-14
+  - FR-16
+  business_rules:
+  - BR-12
+  preconditions: Hourly fixture, 600 worked and 120 overtime minutes
+  scenario: Calculate February 2025
+  expected: Base 2400000, overtime 900000, net 6055000 rial
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-03-03
+  use_case: UC-03
+  requirements:
+  - FR-16
+  business_rules:
+  - BR-11
+  preconditions: Admin; no profile
+  scenario: 2025-13, not-a-month and valid month without prerequisites
+  expected: All 400; no payslip
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-03-04
+  use_case: UC-03
+  requirements:
+  - FR-15
+  - FR-16
+  business_rules:
+  - BR-11
+  preconditions: Hourly fixture with rate zero
+  scenario: Calculate valid period
+  expected: 400; rate must be positive
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-03-05
+  use_case: UC-03
+  requirements:
+  - FR-16
+  business_rules:
+  - BR-11
+  - BR-12
+  preconditions: Fixture deductions 1000000000
+  scenario: Calculate negative net
+  expected: 400 and zero saved payslips
+  evidence: docs/08-testing/evidence/all-tests-final.json
+domain_tests:
+- id: TC-02-U01
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Pending accepts approved and rejected
+  expected: Both transitions return true
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-08
+- id: TC-02-U02
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Repeat either final decision
+  expected: Both return false
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-08
+- id: TC-02-U03
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Both opposite final transitions
+  expected: ReviewError status 409
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-08
+- id: TC-02-U04
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Unknown stored state
+  expected: INVALID_REQUEST_STATE 409
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-08
+- id: TC-02-U05
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: 'Invalid target: pending/cancelled/None/empty'
+  expected: ReviewError; no allowed transition
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-08
+- id: TC-02-U06
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Admin approves with empty notes
+  expected: Valid
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-03
+  - BR-09
+- id: TC-02-U07
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Reject with empty/whitespace notes
+  expected: REJECTION_REASON_REQUIRED
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-09
+- id: TC-02-U08
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Review notes at 3000 and 3001 characters
+  expected: 3000 accepted; 3001 rejected
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-09
+- id: TC-02-U09
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Non-admin roles submit a decision
+  expected: '403'
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-03
+  - BR-09
+- id: TC-02-U10
+  use_case: UC-02
+  preconditions: Pure functions, synthetic Reviewer
+  scenario: Invalid decision format
+  expected: '400'
+  evidence: docs/08-testing/evidence/all-tests-final.json
+  business_rules:
+  - BR-08
+  - BR-09
+boundary_tests:
+- id: TC-M-01
+  requirement: NFR-M-01
+  preconditions: Current source AST
+  scenario: Domain imports only allowed independent dependencies
+  expected: No HTTP/ORM/repository/service imports
+  evidence: docs/08-testing/evidence/all-tests-final.json
+- id: TC-M-02
+  requirement: NFR-M-01
+  preconditions: Current source AST
+  scenario: Service and route obey ARCH-SPEC-01
+  expected: No HTTP/SQL/database/hr_models import in service; no direct SQL model
+    names in review route
+  evidence: docs/08-testing/evidence/all-tests-final.json
+other_tests:
+- id: TC-REG-01
+  runner: scripts/run_isolated_smoke.py
+  assertions: 98
+  evidence: docs/08-testing/evidence/full-smoke-after.json
+  scope: Existing eight-module regression; not 98 standalone unit tests
+- id: TC-PERF-01
+  runner: scripts/run_load_lab.py
+  evidence: docs/08-testing/evidence/native-load.json
+  scope: 10 authenticated users, 20s, 100 employees; not NFR-01 acceptance
+- id: TC-HIST-01
+  runner: scripts/smoke_check.py
+  evidence: docs/08-testing/evidence/historical-stage01-summary.json
+  scope: 45 historical Stage 1 checks; no fresh execution claimed

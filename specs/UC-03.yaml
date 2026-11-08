@@ -1,0 +1,84 @@
+id: UC-03
+version: 1
+name: Calculate and preserve an educational payslip
+status: reconstructed_from_current_code_pending_student_review
+requirements:
+- FR-03
+- FR-14
+- FR-15
+- FR-16
+- FR-24
+business_rules:
+- BR-02
+- BR-03
+- BR-04
+- BR-11
+- BR-12
+- BR-13
+- BR-14
+primary_actor: admin
+trigger: Submit an employee and a Gregorian month to the payroll form
+preconditions:
+- Active administrator session and valid CSRF
+- Employee exists
+input:
+  employee_id: integer
+  period: YYYY-MM Gregorian month
+main_flow:
+- Validate the employee and month
+- Lock the employee
+- Return an existing payslip for this employee and month without recalculation
+- Load the current payment profile and the current contract type's educational rule
+- Sum worked and overtime minutes from attendance within the month
+- Calculate regular minutes as worked minus overtime
+- Calculate amounts using the selected monthly or hourly rule, rounding half up to
+  whole rial
+- Reject a negative net amount
+- Persist input and rule snapshots, amounts, creator and audit in one transaction
+formula:
+  monthly_hourly_rate: base_salary / monthly_hours
+  hourly_base: round_half_up(regular_minutes / 60 * hourly_rate)
+  overtime: round_half_up(overtime_minutes / 60 * effective_hourly_rate * overtime_factor)
+  gross: base_amount + overtime_amount + benefits
+  insurance: round_half_up(gross * insurance_percent / 100)
+  tax: round_half_up(gross * tax_percent / 100)
+  net: gross - insurance - tax - deductions
+alternatives:
+- condition: invalid_month_or_employee_input
+  response: 400
+- condition: missing_profile_or_rule_or_nonpositive_hourly_rate_or_negative_net
+  response: 400; no payslip created
+- condition: non_admin
+  response: 403
+- condition: valid_integer_employee_or_payslip_not_found_or_out_of_scope
+  response: 404; no new payslip
+success:
+- A single immutable saved payslip is displayed using its snapshots
+failure:
+- No new payslip or calculation audit is persisted
+limitations:
+- Rules are educational inputs, not legal payroll rates
+- First calculation of a historical period uses the current profile and contract type
+- Effective-dated profiles and automatic statutory leave deductions are not implemented
+traceability:
+  models:
+  - SEQ-03
+  - ACT-03
+  - ST-03
+  - DM-01
+  design: D-03
+  api: API-03
+  code:
+  - app/modules.py#calculate_payroll
+  - app/modules.py#payslip_detail
+  - app/hr_models.py#Payslip
+  tests:
+  - TC-03-01
+  - TC-03-02
+  - TC-03-03
+  - TC-03-04
+  - TC-03-05
+goal: Create exactly one educational monthly payslip and preserve its input/rule snapshots
+secondary_actors: []
+quality_attributes:
+- NFR-AU-01

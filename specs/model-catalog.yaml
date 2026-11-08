@@ -1,0 +1,127 @@
+id: MODEL-CAT-01
+version: 1
+status: reconstructed_current_behavior_except_declared_boundary_target_pending_human_review
+models:
+- id: CTX-01
+  name: HRMS context
+  path: models/context.mmd
+  use_cases:
+  - UC-01
+  - UC-02
+  - UC-03
+- id: UCM-01
+  name: Use-case model
+  path: models/use-cases.mmd
+  use_cases:
+  - UC-01
+  - UC-02
+  - UC-03
+  - UC-04
+  - UC-05
+  - UC-06
+  - UC-07
+  - UC-08
+  - UC-09
+  - UC-10
+  - UC-11
+  - UC-12
+- id: DM-01
+  name: Conceptual domain
+  path: models/domain.mmd
+  use_cases:
+  - UC-01
+  - UC-02
+  - UC-03
+  - UC-04
+  - UC-05
+  - UC-06
+  - UC-07
+  - UC-08
+  - UC-09
+  - UC-10
+  - UC-11
+  - UC-12
+- id: SEQ-01
+  name: Authenticate and logout sequence
+  path: models/sequences/UC-01.mmd
+  use_cases:
+  - UC-01
+- id: SEQ-02
+  name: Request creation and decision sequence
+  path: models/sequences/UC-02.mmd
+  use_cases:
+  - UC-02
+- id: SEQ-03
+  name: Payroll calculation and saved retry
+  path: models/sequences/UC-03.mmd
+  use_cases:
+  - UC-03
+- id: ACT-01
+  name: Authentication activity
+  path: models/activities/UC-01.mmd
+  use_cases:
+  - UC-01
+- id: ACT-02
+  name: HR request activity
+  path: models/activities/UC-02.mmd
+  use_cases:
+  - UC-02
+- id: ACT-03
+  name: Payroll activity
+  path: models/activities/UC-03.mmd
+  use_cases:
+  - UC-03
+- id: ST-01
+  name: Session lifecycle
+  path: models/states/session.mmd
+  use_cases:
+  - UC-01
+- id: ST-02
+  name: Request decision lifecycle
+  path: models/states/request.mmd
+  use_cases:
+  - UC-02
+- id: ST-03
+  name: Payslip persistence lifecycle
+  path: models/states/payslip.mmd
+  use_cases:
+  - UC-03
+- id: CMP-01
+  name: Request workflow components
+  path: models/design/components.mmd
+  use_cases:
+  - UC-02
+- id: CLS-01
+  name: Request workflow classes
+  path: models/design/classes.mmd
+  use_cases:
+  - UC-02
+- id: ARCH-01
+  name: Actual deployment
+  path: models/architecture.mmd
+  use_cases:
+  - UC-01
+  - UC-02
+  - UC-03
+domain_mapping:
+  UserAccount: admins
+  Branch: branches
+  Unit: units
+  Position: positions
+  Employee: employees
+  Candidate: candidates
+  Interview: interviews
+  OnboardingTask: onboarding_tasks
+  Shift: shifts
+  Attendance: attendance
+  HrRequest: hr_requests
+  PayrollRule: payroll_rules
+  PayrollProfile: payroll_profiles
+  Payslip: payslips
+  EmploymentContract: employment_contracts
+  Evaluation: evaluations
+  Training: trainings
+  TrainingEnrollment: training_enrollments
+  CareerPlan: career_plans
+  AssignmentHistory: assignment_history
+  AuditLog: audit_log

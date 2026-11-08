@@ -1,0 +1,13 @@
+%% ST-03 — Payslip persistence lifecycle
+stateDiagram-v2
+    [*] --> NoPayslip
+    NoPayslip --> NoPayslip: invalid input / missing profile or rule / negative net
+    NoPayslip --> Saved: valid calculation; snapshots + audit commit
+    Saved --> Saved: same employee/month retry
+    Saved --> Saved: display from saved snapshots
+    note right of Saved
+      These are conceptual persistence states
+      Payslip has no status column
+      No update/recalculate route exists
+      Direct SQL UPDATE is not prevented
+    end note

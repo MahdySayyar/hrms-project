@@ -1,0 +1,18 @@
+%% ACT-03 — Payroll activity
+flowchart TD
+    Start(["شروع"]) --> Input["admin فرم employee/month + CSRF"]
+    Input --> Valid{"نقش/CSRF/ورودی معتبر؟"}
+    Valid -->|"خیر"| EInput["400/403 یا 303 login"]
+    Valid -->|"بله"| Lock["قفل کارمند در scope"]
+    Lock --> Existing{"فیش employee/month موجود؟"}
+    Existing -->|"بله"| Saved["همان فیش snapshot"]
+    Existing -->|"خیر"| Prereq{"profile و rule و نرخ معتبر؟"}
+    Prereq -->|"خیر"| E400["400؛ بدون فیش"]
+    Prereq -->|"بله"| Attendance["خواندن attendance ماه"]
+    Attendance --> Calculate["regular و overtime؛ محاسبه HALF_UP"]
+    Calculate --> Net{"net نامنفی؟"}
+    Net -->|"خیر"| E400
+    Net -->|"بله"| Persist["ذخیره input/rule snapshots و audit"]
+    Persist --> Commit["commit؛ 303 فیش"]
+    Commit --> Saved
+    Saved --> End(["نمایش مبلغ تاریخی ذخیره‌شده"])

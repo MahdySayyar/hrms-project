@@ -75,7 +75,7 @@ function check(name, result) { checks.push({ check: name, passed: !!result }); i
   } finally {
     await browser.close();
     if (employeeId) {
-      const cleanup = "import sys; from app.database import SessionLocal,Employee; db=SessionLocal(); row=db.get(Employee,int(sys.argv[1])); assert row and row.employee_code==sys.argv[2]; db.delete(row); db.commit(); db.close()";
+      const cleanup = "import sys; from sqlalchemy import delete; from app.database import SessionLocal,Employee; from app.hr_models import AssignmentHistory; db=SessionLocal(); row=db.get(Employee,int(sys.argv[1])); assert row and row.employee_code==sys.argv[2]; db.execute(delete(AssignmentHistory).where(AssignmentHistory.employee_id==row.id)); db.delete(row); db.commit(); db.close()";
       execFileSync(path.join(root, '.venv', 'Scripts', 'python.exe'), ['-c', cleanup, String(employeeId), code], { cwd: root, encoding: 'utf8' });
     }
     fs.writeFileSync(path.join(root, 'artifacts', 'browser-results.json'), JSON.stringify({ browser: 'Google Chrome via Playwright', checks, all_passed: completed && checks.every(item => item.passed) }, null, 2));

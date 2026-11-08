@@ -1,0 +1,102 @@
+id: UC-02
+version: 2
+name: Create and decide an HR request
+status: specified_for_CR-01_pending_student_review
+requirements:
+- FR-03
+- FR-12
+- FR-13
+- FR-24
+business_rules:
+- BR-02
+- BR-03
+- BR-04
+- BR-07
+- BR-08
+- BR-09
+- BR-10
+- BR-14
+primary_actor: hr_for_creation_admin_for_review
+trigger: Submit a leave, travel or administrative request; then submit an administrator
+  decision
+preconditions:
+- The actor is active and authenticated
+- The employee exists within the actor's scope
+input:
+  request_id: integer identifier for review
+  decision: approved or rejected
+  review_notes: normalized text of length 0..3000; nonempty for rejection
+creation:
+- Validate fields and start_date <= end_date; administrative requests use a single
+  date
+- Persist the request with pending status and a creation audit entry
+main_flow:
+- Validate the actor, CSRF and decision format
+- Begin one database transaction
+- Lock the request, then lock its employee to serialize competing approvals
+- If the same final decision already exists, return the original record without a
+  new audit entry
+- If a different final decision already exists, reject with 409 and preserve the original
+  decision
+- For an approval of leave or travel, reject an overlapping approved leave or travel
+  for the same employee
+- Persist the decision, notes, reviewer and UTC review time with exactly one audit
+  entry
+- Commit and redirect to the request detail
+alternatives:
+- condition: missing_or_out_of_scope_record
+  response: 404
+- condition: non_admin_reviewer
+  response: 403
+- condition: invalid_decision_or_notes_or_missing_rejection_reason
+  response: 400
+- condition: opposite_final_decision_or_invalid_stored_state
+  response: 409
+- condition: overlapping_approved_leave_or_travel
+  response: 400; shared boundary days count as overlap
+- condition: persistence_or_audit_failure
+  response: 500; the transaction rolls back
+success:
+- pending transitions once to approved or rejected
+- A repeat of the same decision is idempotent
+failure:
+- The request and its review audit state do not change
+traceability:
+  models:
+  - SEQ-02
+  - ACT-02
+  - ST-02
+  - DM-01
+  design: D-02
+  architecture_decision: ADR-04
+  api: API-02
+  code:
+  - app/modules.py#review_request
+  - app/request_workflow/domain.py
+  - app/request_workflow/repository.py
+  - app/request_workflow/service.py
+  tests:
+  - TC-02-01
+  - TC-02-02
+  - TC-02-03
+  - TC-02-04
+  - TC-02-05
+  - TC-02-06
+  - TC-02-07
+  - TC-02-08
+  - TC-02-09
+goal: Create a pending HR request and preserve one valid final administrator decision
+secondary_actors:
+- admin reviewer after hr or admin creation
+creation_input:
+  employee_id: existing in-scope employee integer
+  kind: leave/travel/administrative chosen by route
+  start_date: Gregorian ISO date
+  end_date: Gregorian ISO date; administrative uses start_date
+  description: normalized nonempty text, at most 3000 characters
+  leave_type: annual/sick/unpaid for leave
+  destination: nonempty text, at most 150 characters for travel
+  csrf_token: session-bound token
+quality_attributes:
+- NFR-AU-01
+- NFR-M-01

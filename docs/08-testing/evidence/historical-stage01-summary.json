@@ -1,0 +1,192 @@
+{
+  "classification": "Historical Stage 1 evidence; not a newly executed test",
+  "source": "artifacts/smoke-results.json",
+  "source_sha256": "601dbd8616b5dd9afecc7d1ebf059c7f63ee932653a2e50800241df814c20c4d",
+  "original_run_id": "44f907ef",
+  "original_run_time": "not available in source",
+  "summary_created_at": "2026-11-08T11:54:26.102797+00:00",
+  "database": "PostgreSQL",
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "seed is repeatable and preserves administrator hash",
+      "passed": true
+    },
+    {
+      "check": "seed preserves edited sample names and employee codes without duplicates",
+      "passed": true
+    },
+    {
+      "check": "seed never silently resets an existing administrator password",
+      "passed": true
+    },
+    {
+      "check": "password hash accepts correct password and rejects wrong password",
+      "passed": true
+    },
+    {
+      "check": "health and instance expose only basic status and identity",
+      "passed": true
+    },
+    {
+      "check": "all dashboard, employee and organization pages require login",
+      "passed": true
+    },
+    {
+      "check": "state-changing employee routes require login",
+      "passed": true
+    },
+    {
+      "check": "login form is Persian and right-to-left",
+      "passed": true
+    },
+    {
+      "check": "login rejects missing CSRF",
+      "passed": true
+    },
+    {
+      "check": "incorrect password shows Persian validation",
+      "passed": true
+    },
+    {
+      "check": "administrator login rotates session and sets HttpOnly SameSite cookie",
+      "passed": true
+    },
+    {
+      "check": "dashboard and all reference lists render",
+      "passed": true
+    },
+    {
+      "check": "employee creation rejects forged CSRF",
+      "passed": true
+    },
+    {
+      "check": "mismatched branch and unit rejected in Persian",
+      "passed": true
+    },
+    {
+      "check": "national ID, phone, email and date validation reject malformed data",
+      "passed": true
+    },
+    {
+      "check": "employee create persists and redirects to stable primary key",
+      "passed": true
+    },
+    {
+      "check": "PostgreSQL contains normalized Persian digits and employee values",
+      "passed": true
+    },
+    {
+      "check": "detail and edit pages show saved employee",
+      "passed": true
+    },
+    {
+      "check": "duplicate employee code rejected with Persian message",
+      "passed": true
+    },
+    {
+      "check": "employee editing succeeds",
+      "passed": true
+    },
+    {
+      "check": "stored text is escaped against HTML injection",
+      "passed": true
+    },
+    {
+      "check": "search works by employee code and Persian full name",
+      "passed": true
+    },
+    {
+      "check": "search escapes SQL wildcard characters",
+      "passed": true
+    },
+    {
+      "check": "branch and unit filters include matches and exclude other branches",
+      "passed": true
+    },
+    {
+      "check": "deactivation succeeds",
+      "passed": true
+    },
+    {
+      "check": "deactivation retains PostgreSQL record",
+      "passed": true
+    },
+    {
+      "check": "active and inactive filters reflect deactivation",
+      "passed": true
+    },
+    {
+      "check": "reactivation succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization branches create succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization branches edit succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization branches duplicates rejected",
+      "passed": true
+    },
+    {
+      "check": "organization units create succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization units edit succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization units duplicates rejected",
+      "passed": true
+    },
+    {
+      "check": "organization positions create succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization positions edit succeeds",
+      "passed": true
+    },
+    {
+      "check": "organization positions duplicates rejected",
+      "passed": true
+    },
+    {
+      "check": "moving an occupied unit to another branch is rejected",
+      "passed": true
+    },
+    {
+      "check": "PostgreSQL composite foreign key rejects inconsistent assignments",
+      "passed": true
+    },
+    {
+      "check": "process-local session is invalid after web restart",
+      "passed": true
+    },
+    {
+      "check": "login succeeds again after restart",
+      "passed": true
+    },
+    {
+      "check": "created and edited employee survives web-process restart",
+      "passed": true
+    },
+    {
+      "check": "reactivated employee state survives restart in PostgreSQL",
+      "passed": true
+    },
+    {
+      "check": "logout rejects missing CSRF",
+      "passed": true
+    },
+    {
+      "check": "logout revokes authenticated session",
+      "passed": true
+    }
+  ]
+}

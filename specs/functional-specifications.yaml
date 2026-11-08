@@ -1,0 +1,451 @@
+id: FS-CAT-01
+version: 1
+status: reconstructed_pending_human_review
+note: All 25 FR have structured acceptance contracts; UC-01..03 provide detailed flows
+specifications:
+- id: FS-01
+  requirement: FR-01
+  use_case: UC-01
+  preconditions:
+  - anonymous session and CSRF issued
+  rules:
+  - BR-01
+  - BR-02
+  success: حساب فعال با رمز صحیح وارد شود؛ ورودی نادرست 401 و CSRF نامعتبر 403.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/main.py#login
+  source:
+  - SRC-C01
+- id: FS-02
+  requirement: FR-02
+  use_case: UC-01
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-02
+  success: خروج معتبر نشست را باطل و صفحهٔ محافظت‌شده را به login هدایت کند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/main.py#logout
+  source:
+  - SRC-C01
+- id: FS-03
+  requirement: FR-03
+  use_case: UC-01
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-03
+  - BR-04
+  success: viewer فقط گزارش کلی؛ hr عملیات مجاز در شعبه/واحد؛ admin قابلیت‌های مدیریتی.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/access.py#require_hr
+  - app/access.py#require_admin
+  - app/access.py#scoped_employee
+  source:
+  - SRC-C01
+- id: FS-04
+  requirement: FR-04
+  use_case: UC-04
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-05
+  - BR-06
+  success: ثبت و ویرایش پرونده با کد یکتا و شعبه/واحد سازگار؛ ورودی نامعتبر 400.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/main.py#employee_create
+  - app/main.py#employee_edit
+  source:
+  - SRC-C01
+- id: FS-05
+  requirement: FR-05
+  use_case: UC-04
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-03
+  - BR-04
+  success: تغییر active بدون حذف پرونده؛ مقادیر غیر true/false رد شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/main.py#employee_status
+  source:
+  - SRC-C01
+- id: FS-06
+  requirement: FR-06
+  use_case: UC-04
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-04
+  success: نام یا کد و فیلتر شعبه/واحد/وضعیت در محدودهٔ کاربر اعمال شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/main.py#employee_list
+  source:
+  - SRC-C01
+- id: FS-07
+  requirement: FR-07
+  use_case: UC-05
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-06
+  success: شعبه، واحد وابسته و سمت با کنترل تکرار/وابستگی ثبت و ویرایش شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/main.py#save_organization
+  source:
+  - SRC-C01
+- id: FS-08
+  requirement: FR-08
+  use_case: UC-06
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-06
+  - BR-15
+  success: متقاضی با اطلاعات معتبر و محدودهٔ مجاز ثبت شود؛ پذیرش بدون مصاحبهٔ قبول
+    رد شود.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#validate_record
+  source:
+  - SRC-C01
+- id: FS-09
+  requirement: FR-09
+  use_case: UC-06
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-15
+  success: مصاحبه ثبت شود؛ نتیجهٔ آینده و مصاحبه برای فرد hired/rejected رد شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#save_record
+  - app/modules.py#validate_record
+  source:
+  - SRC-C01
+- id: FS-10
+  requirement: FR-10
+  use_case: UC-06
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-05
+  - BR-15
+  - BR-14
+  success: accepted به کارمند و سه وظیفهٔ پذیرش تبدیل شود؛ تکرار استخدام رکورد دوم
+    نسازد.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#hire_candidate
+  - app/modules.py#complete_onboarding
+  source:
+  - SRC-C01
+- id: FS-11
+  requirement: FR-11
+  use_case: UC-07
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-16
+  success: حضور/غیاب و دقیقهٔ کار/اضافه‌کاری با شیفت شب محاسبه؛ تردد آینده/قبل استخدام
+    رد شود.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#validate_record
+  - app/modules.py#minutes_between
+  source:
+  - SRC-C01
+- id: FS-12
+  requirement: FR-12
+  use_case: UC-02
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-04
+  - BR-07
+  - BR-14
+  success: مرخصی/مأموریت/اداری با تاریخ معتبر، pending و audit ثبت شود.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#save_record
+  source:
+  - SRC-C01
+- id: FS-13
+  requirement: FR-13
+  use_case: UC-02
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-08
+  - BR-09
+  - BR-10
+  - BR-14
+  success: admin یک تصمیم نهایی دهد؛ retry یکسان بی‌نوشتن و retry مخالف 409؛ هم‌پوشانی
+    رد شود.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#review_request
+  - app/request_workflow/service.py#RequestReviewService.review
+  source:
+  - SRC-C01
+- id: FS-14
+  requirement: FR-14
+  use_case: UC-03
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-11
+  - BR-12
+  success: admin برای نوع قرارداد rule ماهانه/ساعتی و درصد/ضریب معتبر ثبت کند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/module_forms.py
+  - app/modules.py#validate_record
+  - app/hr_models.py#PayrollRule
+  source:
+  - SRC-C01
+- id: FS-15
+  requirement: FR-15
+  use_case: UC-03
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-11
+  success: admin یک پروفایل مبلغ ریالی نامنفی برای کارمند بسازد؛ نرخ ساعتی مثبت هنگام
+    محاسبه لازم است.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/module_forms.py
+  - app/hr_models.py#PayrollProfile
+  source:
+  - SRC-C01
+- id: FS-16
+  requirement: FR-16
+  use_case: UC-03
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-11
+  - BR-12
+  - BR-13
+  - BR-14
+  success: محاسبهٔ employee/month یکتا و immutable با snapshot؛ ماه/پیش‌نیاز/خالص
+    نامعتبر رد شود.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#calculate_payroll
+  - app/modules.py#payslip_detail
+  source:
+  - SRC-C01
+- id: FS-17
+  requirement: FR-17
+  use_case: UC-08
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-17
+  - BR-14
+  success: ثبت draft، فعال‌سازی، تمدید و خاتمه با حداکثر یک قرارداد فعال برای هر کارمند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#activate_contract
+  - app/modules.py#renew_contract
+  - app/modules.py#terminate_contract
+  source:
+  - SRC-C01
+- id: FS-18
+  requirement: FR-18
+  use_case: UC-09
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-18
+  success: امتیاز 0..100، بازخورد و هدف برای کارمند در محدوده ثبت شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/module_forms.py
+  - app/hr_models.py#Evaluation
+  source:
+  - SRC-C01
+- id: FS-19
+  requirement: FR-19
+  use_case: UC-09
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-19
+  success: دوره و ثبت‌نام با ظرفیت، بدون ثبت‌نام تکراری و منع کاهش ظرفیت زیر اشغال.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#validate_record
+  - app/hr_models.py#TrainingEnrollment
+  source:
+  - SRC-C01
+- id: FS-20
+  requirement: FR-20
+  use_case: UC-09
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-18
+  success: سمت هدف، تاریخ، اقدامات و progress در 0..100 ثبت شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/module_forms.py
+  - app/hr_models.py#CareerPlan
+  source:
+  - SRC-C01
+- id: FS-21
+  requirement: FR-21
+  use_case: UC-10
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-20
+  success: تغییر انتساب رکورد قبلی را ببندد و یک انتساب جاری با نام‌های snapshot بسازد.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/access.py#sync_assignment
+  - app/modules.py#employee_history
+  source:
+  - SRC-C01
+- id: FS-22
+  requirement: FR-22
+  use_case: UC-11
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-04
+  success: تعداد/وضعیت/کارکرد/فیش دوره در محدودهٔ نقش نمایش داده شوند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#reports
+  source:
+  - SRC-C01
+- id: FS-23
+  requirement: FR-23
+  use_case: UC-11
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-03
+  - BR-04
+  - BR-21
+  success: CSV فارسی UTF-8 BOM در محدوده و با خنثی‌سازی فرمول، فقط برای hr/admin.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#export_employees
+  - app/modules.py#safe_csv
+  source:
+  - SRC-C01
+- id: FS-24
+  requirement: FR-24
+  use_case: UC-12
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-14
+  success: تغییر حساس همراه actor/time ثبت شود؛ نمایش audit فقط admin؛ شکست audit
+    تصمیم را rollback کند.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/access.py#audit
+  - app/modules.py#audit_page
+  - app/request_workflow/repository.py#RequestReviewRepository.save_decision
+  source:
+  - SRC-C01
+- id: FS-25
+  requirement: FR-25
+  use_case: UC-12
+  preconditions:
+  - active authenticated session
+  - authorized role and scope
+  - CSRF for mutation
+  rules:
+  - BR-22
+  success: admin حساب/نقش/محدوده مدیریت کند؛ حذف آخرین مدیر/تنزل خود و تغییر نام/رمز
+    موجود رد شود.
+  failure: Reject invalid/unauthorized input with the documented browser contract;
+    no partial operational change
+  implementation:
+  - app/modules.py#validate_record
+  - app/database.py#Admin
+  source:
+  - SRC-C01

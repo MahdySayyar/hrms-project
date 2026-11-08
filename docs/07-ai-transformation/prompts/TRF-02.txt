@@ -1,0 +1,15 @@
+TRF-02 — bounded architecture hardening
+Recorded before implementation, 2026-11-08.
+This is the actual bounded instruction followed by the current coding agent; it is not a historical student prompt.
+
+Inputs: specs/architecture.yaml (ARCH-SPEC-01), specs/UC-02.yaml,
+models/design/components.mmd (CMP-01), models/design/classes.mmd (CLS-01),
+docs/05-architecture/ADRs/ADR-04-request-workflow.md, existing TC-M-01/02 and TC-02 tests.
+
+Make RequestReviewService independent of app.hr_models and any ORM/database module.
+Its default reviewed_at clock must return an aware UTC datetime using Python's standard library.
+Preserve clock injection, repository injection, lock order, transaction semantics, all UC-02 outcomes and existing public method signatures.
+Strengthen the existing service dependency-boundary check to reject imports of hr_models and database.
+Run the specified workflow/boundary tests and record measured coverage in app/request_workflow.
+Do not claim that the full application is modular, stateless, production-scalable or human-approved.
+Output: the service change, stricter boundary check, a source diff and real test/coverage evidence.

@@ -1,0 +1,53 @@
+%% SEQ-02 — Request creation and decision sequence
+sequenceDiagram
+    actor HR
+    actor Admin
+    participant Route as modules.py
+    participant Service as RequestReviewService
+    participant Domain
+    participant Repo as RequestReviewRepository
+    participant DB as PostgreSQL
+    HR->>Route: POST /hr/leave/new + fields + CSRF
+    Route->>Route: role/scope/fields/date validation
+    Route->>DB: INSERT pending request + audit, COMMIT
+    Route-->>HR: 303 detail
+    Admin->>Route: POST /requests/id/review + CSRF
+    Route->>Route: normalize form, validate active admin
+    Route->>Service: review(id,decision,notes,Reviewer)
+    Service->>Domain: validate_decision
+    Service->>Repo: transaction()
+    Repo->>DB: BEGIN
+    Service->>Repo: locked_request then locked_employee(scope)
+    Repo->>DB: SELECT FOR UPDATE request, employee
+    alt رکورد ناموجود یا خارج از محدوده
+      Repo->>DB: ROLLBACK
+      Service-->>Route: ReviewError 404
+    else رکورد معتبر
+      Service->>Domain: decision_changes_state
+      alt تصمیم نهایی مخالف / state نامعتبر
+        Repo->>DB: ROLLBACK
+        Service-->>Route: ReviewError 409
+      else همان تصمیم نهایی
+        Repo->>DB: COMMIT without write
+        Service-->>Route: changed=false
+      else pending
+        Service->>Repo: has_approved_overlap for leave/travel
+        Repo->>DB: inclusive overlap query
+        alt هم‌پوشانی
+          Repo->>DB: ROLLBACK
+          Service-->>Route: ReviewError 400
+        else قابل تصمیم
+          Service->>Repo: save_decision + UTC clock
+          Repo->>DB: UPDATE request + INSERT audit
+          alt failure in persistence/audit
+            Repo->>DB: ROLLBACK
+            Service-->>Route: unhandled persistence exception
+            Route-->>Admin: 500
+          else commit
+            Repo->>DB: COMMIT
+            Service-->>Route: changed=true
+          end
+        end
+      end
+    end
+    Note over Route,Admin: success and identical retry: 303 detail, ReviewError maps to 400/403/404/409

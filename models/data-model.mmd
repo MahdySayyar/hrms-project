@@ -1,0 +1,241 @@
+%% DB-01 — reflected PostgreSQL relationships
+erDiagram
+    admins {
+        INTEGER id PK
+        VARCHAR_50 username
+        VARCHAR_100 display_name
+        VARCHAR_256 password_hash
+        VARCHAR_20 role
+        BOOLEAN is_active
+        INTEGER branch_scope_id
+        INTEGER unit_scope_id
+    }
+    assignment_history {
+        INTEGER id PK
+        INTEGER employee_id
+        INTEGER branch_id
+        INTEGER unit_id
+        INTEGER position_id
+        DATE start_date
+        DATE end_date
+        TEXT reason
+        VARCHAR_100 branch_name
+        VARCHAR_100 unit_name
+        VARCHAR_100 position_title
+    }
+    attendance {
+        INTEGER id PK
+        INTEGER employee_id
+        DATE work_date
+        INTEGER shift_id
+        TIME_WITHOUT_TIME_ZONE clock_in
+        TIME_WITHOUT_TIME_ZONE clock_out
+        INTEGER worked_minutes
+        INTEGER overtime_minutes
+        INTEGER required_minutes
+        TEXT notes
+        VARCHAR_20 presence_status
+    }
+    audit_log {
+        INTEGER id PK
+        INTEGER actor_id
+        VARCHAR_40 action
+        VARCHAR_60 entity
+        INTEGER record_id
+        JSON details
+        TIMESTAMP_WITH_TIME_ZONE created_at
+    }
+    branches {
+        INTEGER id PK
+        VARCHAR_100 name
+        VARCHAR_32 seed_key
+    }
+    candidates {
+        INTEGER id PK
+        VARCHAR_80 first_name
+        VARCHAR_80 last_name
+        VARCHAR_10 national_id
+        VARCHAR_11 phone
+        VARCHAR_254 email
+        INTEGER branch_id
+        INTEGER unit_id
+        INTEGER position_id
+        DATE application_date
+        VARCHAR_20 status
+        TEXT notes
+        INTEGER employee_id
+        VARCHAR_40 seed_key
+    }
+    career_plans {
+        INTEGER id PK
+        INTEGER employee_id
+        INTEGER target_position_id
+        DATE target_date
+        INTEGER progress
+        TEXT actions
+    }
+    employees {
+        INTEGER id PK
+        VARCHAR_32 employee_code
+        VARCHAR_80 first_name
+        VARCHAR_80 last_name
+        VARCHAR_10 national_id
+        VARCHAR_11 phone
+        VARCHAR_254 email
+        DATE hire_date
+        INTEGER branch_id
+        INTEGER unit_id
+        INTEGER position_id
+        VARCHAR_30 contract_type
+        BOOLEAN active
+        VARCHAR_32 seed_key
+    }
+    employment_contracts {
+        INTEGER id PK
+        INTEGER employee_id
+        VARCHAR_30 contract_type
+        DATE start_date
+        DATE end_date
+        VARCHAR_20 status
+        BIGINT base_salary
+        TEXT notes
+        INTEGER renewed_from_id
+        TEXT termination_reason
+    }
+    evaluations {
+        INTEGER id PK
+        INTEGER employee_id
+        DATE review_date
+        INTEGER score
+        TEXT feedback
+        TEXT goals
+    }
+    hr_requests {
+        INTEGER id PK
+        INTEGER employee_id
+        VARCHAR_20 kind
+        DATE start_date
+        DATE end_date
+        VARCHAR_20 leave_type
+        VARCHAR_150 destination
+        TEXT description
+        VARCHAR_20 status
+        TEXT review_notes
+        INTEGER reviewed_by
+        TIMESTAMP_WITH_TIME_ZONE reviewed_at
+        TIMESTAMP_WITH_TIME_ZONE created_at
+    }
+    interviews {
+        INTEGER id PK
+        INTEGER candidate_id
+        TIMESTAMP_WITHOUT_TIME_ZONE scheduled_at
+        VARCHAR_100 interviewer
+        VARCHAR_20 result
+        TEXT notes
+    }
+    onboarding_tasks {
+        INTEGER id PK
+        INTEGER candidate_id
+        VARCHAR_150 title
+        BOOLEAN completed
+        TIMESTAMP_WITH_TIME_ZONE completed_at
+    }
+    payroll_profiles {
+        INTEGER id PK
+        INTEGER employee_id
+        BIGINT base_salary
+        BIGINT hourly_rate
+        BIGINT benefits
+        BIGINT deductions
+    }
+    payroll_rules {
+        INTEGER id PK
+        VARCHAR_30 contract_type
+        VARCHAR_20 calculation_mode
+        NUMERIC_10__2 monthly_hours
+        NUMERIC_6__2 overtime_factor
+        NUMERIC_6__2 insurance_percent
+        NUMERIC_6__2 tax_percent
+        TEXT notes
+    }
+    payslips {
+        INTEGER id PK
+        INTEGER employee_id
+        VARCHAR_7 period
+        BIGINT base_amount
+        BIGINT overtime_amount
+        BIGINT benefits
+        BIGINT insurance
+        BIGINT tax
+        BIGINT deductions
+        BIGINT net_amount
+        JSON input_snapshot
+        JSON rule_snapshot
+        INTEGER created_by
+        TIMESTAMP_WITH_TIME_ZONE created_at
+    }
+    positions {
+        INTEGER id PK
+        VARCHAR_100 title
+        TEXT description
+        VARCHAR_32 seed_key
+    }
+    shifts {
+        INTEGER id PK
+        VARCHAR_100 name
+        TIME_WITHOUT_TIME_ZONE start_time
+        TIME_WITHOUT_TIME_ZONE end_time
+        INTEGER break_minutes
+        VARCHAR_40 seed_key
+    }
+    training_enrollments {
+        INTEGER id PK
+        INTEGER employee_id
+        INTEGER training_id
+        VARCHAR_20 status
+        TEXT notes
+    }
+    trainings {
+        INTEGER id PK
+        VARCHAR_150 title
+        DATE training_date
+        INTEGER capacity
+        TEXT description
+    }
+    units {
+        INTEGER id PK
+        VARCHAR_100 name
+        INTEGER branch_id
+        VARCHAR_32 seed_key
+    }
+    branches |o--o{ admins : "branch_scope_id"
+    units |o--o{ admins : "unit_scope_id"
+    branches ||--o{ assignment_history : "branch_id"
+    employees ||--o{ assignment_history : "employee_id"
+    positions ||--o{ assignment_history : "position_id"
+    units ||--o{ assignment_history : "unit_id_branch_id"
+    employees ||--o{ attendance : "employee_id"
+    shifts ||--o{ attendance : "shift_id"
+    admins |o--o{ audit_log : "actor_id"
+    branches ||--o{ candidates : "branch_id"
+    employees |o--o{ candidates : "employee_id"
+    positions ||--o{ candidates : "position_id"
+    units ||--o{ candidates : "unit_id_branch_id"
+    employees ||--o{ career_plans : "employee_id"
+    positions ||--o{ career_plans : "target_position_id"
+    branches ||--o{ employees : "branch_id"
+    positions ||--o{ employees : "position_id"
+    units ||--o{ employees : "unit_id_branch_id"
+    employees ||--o{ employment_contracts : "employee_id"
+    employment_contracts |o--o{ employment_contracts : "renewed_from_id"
+    employees ||--o{ evaluations : "employee_id"
+    employees ||--o{ hr_requests : "employee_id"
+    admins |o--o{ hr_requests : "reviewed_by"
+    candidates ||--o{ interviews : "candidate_id"
+    candidates ||--o{ onboarding_tasks : "candidate_id"
+    employees ||--o{ payroll_profiles : "employee_id"
+    admins ||--o{ payslips : "created_by"
+    employees ||--o{ payslips : "employee_id"
+    employees ||--o{ training_enrollments : "employee_id"
+    trainings ||--o{ training_enrollments : "training_id"
+    branches ||--o{ units : "branch_id"

@@ -1,0 +1,16 @@
+%% ACT-01 — Authentication activity
+flowchart TD
+    Start(["شروع"]) --> Page["GET login و token نشست"]
+    Page --> Submit["POST نام کاربری، رمز و CSRF"]
+    Submit --> CSRF{"CSRF معتبر؟"}
+    CSRF -->|"خیر"| E403["403؛ بدون ورود"]
+    CSRF -->|"بله"| Valid{"حساب فعال و رمز صحیح؟"}
+    Valid -->|"خیر"| E401["401؛ پیام عمومی"]
+    Valid -->|"بله"| Audit["ثبت audit و commit"]
+    Audit --> Rotate["ابطال نشست قدیمی؛ نشست جدید"]
+    Rotate --> Dashboard["303 سپس داشبورد"]
+    Dashboard --> Logout["POST logout با CSRF"]
+    Logout --> Remove["audit؛ ابطال نشست؛ حذف cookie"]
+    Remove --> Finish(["بازگشت login"])
+    E401 --> Page
+    E403 --> Page

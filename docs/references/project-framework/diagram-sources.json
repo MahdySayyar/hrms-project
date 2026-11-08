@@ -1,0 +1,144 @@
+{
+  "source": "https://sadprojectdocs.space-z.ai/",
+  "kind": "Original lecture references, not HRMS design models",
+  "assets": [
+    {
+      "name": "process-pipeline.svg",
+      "path": "diagrams/process-pipeline.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/process-pipeline.svg",
+      "sha256": "4cb77ace178506a9aabdd48a6c7818514fd30fcdc104bf5044ccc5ab7d32a45b"
+    },
+    {
+      "name": "context-diagram-generic.svg",
+      "path": "diagrams/context-diagram-generic.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/context-diagram-generic.svg",
+      "sha256": "b81c838b850375eb81bdb77112557daf5e024f539ebea5f6b766752eea066558"
+    },
+    {
+      "name": "domain-model-ufms.svg",
+      "path": "diagrams/domain-model-ufms.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/domain-model-ufms.svg",
+      "sha256": "5caf58cebc3765439614b58882d2ee634700287056ff26a2997c12b39e6dd4d2"
+    },
+    {
+      "name": "use-case-model.svg",
+      "path": "diagrams/use-case-model.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/use-case-model.svg",
+      "sha256": "305d8f6e33fc2714f4c3b694a1520d585bd1bfe10bcfe5f8d49ce85b78efa08c"
+    },
+    {
+      "name": "sequence-place-order.svg",
+      "path": "diagrams/sequence-place-order.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/sequence-place-order.svg",
+      "sha256": "bafe459a3a33d24fb030c0ffac66839848a533cb55bf7bf602243c964b9a7541"
+    },
+    {
+      "name": "architecture-ufms.svg",
+      "path": "diagrams/architecture-ufms.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/architecture-ufms.svg",
+      "sha256": "a7ed70cfe7fcb3eedf0f109ed1b3cc758fe2b8b47498078d88c285b6fcc66c65"
+    },
+    {
+      "name": "model-to-code-pipeline.svg",
+      "path": "diagrams/model-to-code-pipeline.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/model-to-code-pipeline.svg",
+      "sha256": "63e2b1aab28e36dba731b9e13ce2f559e0c83c315e295716bc27f9b5884e721e"
+    },
+    {
+      "name": "ai-pipeline.svg",
+      "path": "diagrams/ai-pipeline.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/ai-pipeline.svg",
+      "sha256": "60d69aa584cf04b604ca9d9a8df54ba5220a24e743f3f3fa7f9cc2e469b82a8b"
+    },
+    {
+      "name": "milestone-gate.svg",
+      "path": "diagrams/milestone-gate.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/milestone-gate.svg",
+      "sha256": "99656087820753474fab6133b52f6e2774196ce5a236ca4827f6f0ac8b3609a0"
+    },
+    {
+      "name": "common-framework.svg",
+      "path": "diagrams/common-framework.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/common-framework.svg",
+      "sha256": "2afaac37a83a464f237f9dbc533ab83de845fb4e09ef837de4338020c919e146"
+    },
+    {
+      "name": "engineering-chain.svg",
+      "path": "diagrams/engineering-chain.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/engineering-chain.svg",
+      "sha256": "82cd2be07f925da68a917caaea7fd6dea103825d78adb187d78f662f616baa52"
+    },
+    {
+      "name": "human-ai-workflow.svg",
+      "path": "diagrams/human-ai-workflow.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/human-ai-workflow.svg",
+      "sha256": "70b7e9fb00700c82fbc5c793b6387516633e9f8d3308b92eac38d065201a10b2"
+    },
+    {
+      "name": "activity-reserve-meal.svg",
+      "path": "diagrams/activity-reserve-meal.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/activity-reserve-meal.svg",
+      "sha256": "41faefa1dc5c4d0f6b4c24788b72a52843c38f3d60cd5b0f40f013a6db398de6"
+    },
+    {
+      "name": "state-machine-reservation.svg",
+      "path": "diagrams/state-machine-reservation.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/state-machine-reservation.svg",
+      "sha256": "d6562c313fcdb2cc9182cae480445c84f069e9a2fb2cbb96878a072745be972f"
+    },
+    {
+      "name": "traceability-chain.svg",
+      "path": "diagrams/traceability-chain.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/traceability-chain.svg",
+      "sha256": "c6e0f2f29e5dbcd3ff398190a3eda7d35f30b9a8d5772f245ed835e2ba4bac43"
+    },
+    {
+      "name": "change-management-flow.svg",
+      "path": "diagrams/change-management-flow.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/change-management-flow.svg",
+      "sha256": "5b81488ea2b8e36df95ca5e6d2f3e116bdea6de693b9b2ef200d55b6d3067d02"
+    },
+    {
+      "name": "milestone-timeline.svg",
+      "path": "diagrams/milestone-timeline.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/milestone-timeline.svg",
+      "sha256": "b3c35a76c5ac02a6f47d546fa75c8211ef59e78951898a9f33b0fce2d97d1e42"
+    },
+    {
+      "name": "git-repo-structure.svg",
+      "path": "diagrams/git-repo-structure.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/git-repo-structure.svg",
+      "sha256": "8bb8fdd9f005d21fae99aba8a46d08dfdc4ad2dbde762cccfe7d9d3962e31e37"
+    },
+    {
+      "name": "final-demo-flow.svg",
+      "path": "diagrams/final-demo-flow.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/final-demo-flow.svg",
+      "sha256": "5f4f56042b41cb4d1589df9493f269439222568f7feb5f381d6a4376d2ad2f5b"
+    },
+    {
+      "name": "final-principle-chain.svg",
+      "path": "diagrams/final-principle-chain.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/final-principle-chain.svg",
+      "sha256": "25b345128e47af96844e00411b10c4700a93e96e3ac2cda3b935f12cd7e6bb06"
+    },
+    {
+      "name": "roadmap-example.svg",
+      "path": "diagrams/roadmap-example.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/roadmap-example.svg",
+      "sha256": "e1fc213d568c689b195397fb80f6c92ed26cf6125a74a9471fe046c35e51014f"
+    },
+    {
+      "name": "context-diagram-ufms.svg",
+      "path": "diagrams/context-diagram-ufms.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/context-diagram-ufms.svg",
+      "sha256": "71d3fa12cb4b9ba450bd50e235ef36460a3aa2a6237062656cb24258193b4146"
+    },
+    {
+      "name": "state-machine-order.svg",
+      "path": "diagrams/state-machine-order.svg",
+      "url": "https://sadprojectdocs.space-z.ai/diagrams/state-machine-order.svg",
+      "sha256": "39f4b20fd1113e5cd48cb3301c0e190a35531ee5949bf502566b4f505ce2c3b1"
+    }
+  ]
+}

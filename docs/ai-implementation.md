@@ -1,9 +1,15 @@
-# حفظ خروجی عامل کدنویسی
+# حفظ خروجی AI و نسخه‌های پروژه
 
-فایل‌های منبع این مرحله با عامل کدنویسی ساخته شده‌اند. نسخهٔ دقیق فایل زمینه و پرامپت مرحله در `docs/prompts/` نگهداری می‌شود. کاربر فارسی بودن مکالمه و پروژه و انجام نصب‌های لازم را تأیید کرده است. هیچ تغییر دستی دانشجو در کد این مرحله گزارش نشده است.
+سوابق Stage 1 در [نسخهٔ تاریخی](history/ai-implementation-stage01.md)، docs/prompts/ و archive قدیمی حفظ شده‌اند. آن‌ها منبع اولیه‌اند؛ رونوشت کامل همهٔ پاسخ‌های AI یا مشارکت دانشجو نیستند.
 
-خروجی منبع به صورت `artifacts/stage01-source.zip` حفظ شده و فهرست مسیر و SHA-256 فایل‌ها در `docs/stage01-source-manifest.json` آمده است. این بسته شامل کد، قالب، سبک، اسکریپت‌ها، مستندات و پرامپت‌هاست؛ `.env`، رمزها، محیط مجازی، فایل‌های PostgreSQL و داده‌های آن را شامل نمی‌شود. بسته، نسخهٔ منبع مرحله است؛ رونوشت کامل مکالمه نیست.
+رکوردهای جدید [TRF-01/TRF-02](07-ai-transformation/README.md) شامل task، prompt واقعی، input، output/diff، validation و review انسانیِ باز هستند. اصلاح clock با prompt/model پیش از تغییر ثبت شد؛ reconstruction بعد از کد قدیمی صریح گزارش شده است.
 
-برای ساخت دوبارهٔ تصویر منبعِ یک مرحله فقط هنگام ثبت نسخهٔ جدید، `python scripts/save_stage_snapshot.py` را اجرا کنید. این فرمان بستهٔ محلی همین نام را با نسخهٔ فعلی جایگزین می‌کند؛ نسخه‌های آزمایش‌های آینده باید نام مستقل داشته باشند.
+scripts/save_stage_snapshot.py اکنون --name الزامی دارد و نام موجود را رد می‌کند. فرمان بدون آرگومان دیگر معتبر نیست و archive قدیمی جایگزین نمی‌شود:
 
-مدارک عملکردی واقعی در `artifacts/smoke-results.json`، `artifacts/browser-results.json`، logها و تصویرهای مرورگر باقی‌اند. این خروجی‌ها اندازه‌گیری کارایی نیستند. برای گزارش Word آینده، بسته و مدارک این مرحله را همراه تغییرات واقعی بعدی دانشجو حفظ کنید.
+```powershell
+.\.venv\Scripts\python.exe .\scripts\save_stage_snapshot.py --name hrms-next-baseline --description 'Validated named source baseline'
+```
+
+snapshot source شامل code/docs/tests/specs/models و manifest hash است؛ credentials/.env/runtime/venv/raw artifacts را کپی نمی‌کند. metadata baseline در docs/snapshots/ و zip محلی در artifacts/ می‌ماند. evidence امن جدید در docs/08-testing/evidence/ ثبت و raw log/CSV محلی نگهداری می‌شود.
+
+human review، modification و contribution باید فقط با شاهد واقعی وارد log شوند. نمره، تست موفق، screenshot یا stage تاریخی به‌صورت فرضی ساخته نمی‌شود.

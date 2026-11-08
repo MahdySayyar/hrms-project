@@ -1,0 +1,135 @@
+{
+  "tool": "Mermaid syntax parser only; no visual rendering or browser interaction",
+  "recorded_at": "2026-11-08T11:47:06.684Z",
+  "all_passed": false,
+  "checks": [
+    {
+      "path": "models/activities/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/activities/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/activities/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/architecture.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/context.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/data-model.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/domain.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/sequences/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/sequences/UC-02.mmd",
+      "passed": false,
+      "error": "Parse error on line 11:\n...uest + audit; COMMIT    Route-->>HR: 30\n-----------------------^\nExpecting '()', 'SOLID_OPEN_ARROW', 'DOTTED_OPEN_ARROW', 'SOLID_ARROW', 'SOLID_ARROW_TOP', 'SOLID_ARROW_BOTTOM', 'STICK_ARROW_TOP', 'STICK_ARROW_BOTTOM', 'SOLID_ARROW_TOP_DOTTED', 'SOLID_ARROW_BOTTOM_DOTTED', 'STICK_ARROW_TOP_DOTTED', 'STICK_ARROW_BOTTOM_DOTTED', 'SOLID_ARROW_TOP_REVERSE', 'SOLID_ARROW_BOTTOM_REVERSE', 'STICK_ARROW_TOP_REVERSE', 'STICK_ARROW_BOTTOM_REVERSE', 'SOLID_ARROW_TOP_REVERSE_DOTTED', 'SOLID_ARROW_BOTTOM_REVERSE_DOTTED', 'STICK_ARROW_TOP_REVERSE_DOTTED', 'STICK_ARROW_BOTTOM_REVERSE_DOTTED', 'BIDIRECTIONAL_SOLID_ARROW', 'DOTTED_ARROW', 'BIDIRECTIONAL_DOTTED_ARROW', 'SOLID_CROSS', 'DOTTED_CROSS', 'SOLID_POINT', 'DOTTED_POINT', got 'NEWLINE'"
+    },
+    {
+      "path": "models/sequences/UC-03.mmd",
+      "passed": false,
+      "error": "Parse error on line 15:\n...min: 400; no payslip      else valid in\n-----------------------^\nExpecting '()', 'SOLID_OPEN_ARROW', 'DOTTED_OPEN_ARROW', 'SOLID_ARROW', 'SOLID_ARROW_TOP', 'SOLID_ARROW_BOTTOM', 'STICK_ARROW_TOP', 'STICK_ARROW_BOTTOM', 'SOLID_ARROW_TOP_DOTTED', 'SOLID_ARROW_BOTTOM_DOTTED', 'STICK_ARROW_TOP_DOTTED', 'STICK_ARROW_BOTTOM_DOTTED', 'SOLID_ARROW_TOP_REVERSE', 'SOLID_ARROW_BOTTOM_REVERSE', 'STICK_ARROW_TOP_REVERSE', 'STICK_ARROW_BOTTOM_REVERSE', 'SOLID_ARROW_TOP_REVERSE_DOTTED', 'SOLID_ARROW_BOTTOM_REVERSE_DOTTED', 'STICK_ARROW_TOP_REVERSE_DOTTED', 'STICK_ARROW_BOTTOM_REVERSE_DOTTED', 'BIDIRECTIONAL_SOLID_ARROW', 'DOTTED_ARROW', 'BIDIRECTIONAL_DOTTED_ARROW', 'SOLID_CROSS', 'DOTTED_CROSS', 'SOLID_POINT', 'DOTTED_POINT', got 'NEWLINE'"
+    },
+    {
+      "path": "models/states/payslip.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/states/request.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/states/session.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/use-cases.mmd",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/analysis-models.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/analysis-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/analysis-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-01-models.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-01-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-01-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-02-models.md:diagram-1",
+      "passed": false,
+      "error": "Parse error on line 11:\n...uest + audit; COMMIT    Route-->>HR: 30\n-----------------------^\nExpecting '()', 'SOLID_OPEN_ARROW', 'DOTTED_OPEN_ARROW', 'SOLID_ARROW', 'SOLID_ARROW_TOP', 'SOLID_ARROW_BOTTOM', 'STICK_ARROW_TOP', 'STICK_ARROW_BOTTOM', 'SOLID_ARROW_TOP_DOTTED', 'SOLID_ARROW_BOTTOM_DOTTED', 'STICK_ARROW_TOP_DOTTED', 'STICK_ARROW_BOTTOM_DOTTED', 'SOLID_ARROW_TOP_REVERSE', 'SOLID_ARROW_BOTTOM_REVERSE', 'STICK_ARROW_TOP_REVERSE', 'STICK_ARROW_BOTTOM_REVERSE', 'SOLID_ARROW_TOP_REVERSE_DOTTED', 'SOLID_ARROW_BOTTOM_REVERSE_DOTTED', 'STICK_ARROW_TOP_REVERSE_DOTTED', 'STICK_ARROW_BOTTOM_REVERSE_DOTTED', 'BIDIRECTIONAL_SOLID_ARROW', 'DOTTED_ARROW', 'BIDIRECTIONAL_DOTTED_ARROW', 'SOLID_CROSS', 'DOTTED_CROSS', 'SOLID_POINT', 'DOTTED_POINT', got 'NEWLINE'"
+    },
+    {
+      "path": "docs/04-models/UC-02-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-02-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-03-models.md:diagram-1",
+      "passed": false,
+      "error": "Parse error on line 15:\n...min: 400; no payslip      else valid in\n-----------------------^\nExpecting '()', 'SOLID_OPEN_ARROW', 'DOTTED_OPEN_ARROW', 'SOLID_ARROW', 'SOLID_ARROW_TOP', 'SOLID_ARROW_BOTTOM', 'STICK_ARROW_TOP', 'STICK_ARROW_BOTTOM', 'SOLID_ARROW_TOP_DOTTED', 'SOLID_ARROW_BOTTOM_DOTTED', 'STICK_ARROW_TOP_DOTTED', 'STICK_ARROW_BOTTOM_DOTTED', 'SOLID_ARROW_TOP_REVERSE', 'SOLID_ARROW_BOTTOM_REVERSE', 'STICK_ARROW_TOP_REVERSE', 'STICK_ARROW_BOTTOM_REVERSE', 'SOLID_ARROW_TOP_REVERSE_DOTTED', 'SOLID_ARROW_BOTTOM_REVERSE_DOTTED', 'STICK_ARROW_TOP_REVERSE_DOTTED', 'STICK_ARROW_BOTTOM_REVERSE_DOTTED', 'BIDIRECTIONAL_SOLID_ARROW', 'DOTTED_ARROW', 'BIDIRECTIONAL_DOTTED_ARROW', 'SOLID_CROSS', 'DOTTED_CROSS', 'SOLID_POINT', 'DOTTED_POINT', got 'NEWLINE'"
+    },
+    {
+      "path": "docs/04-models/UC-03-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-03-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/05-architecture/architecture.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/06-design/design.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/baseline-notes.md:diagram-1",
+      "passed": true
+    }
+  ]
+}

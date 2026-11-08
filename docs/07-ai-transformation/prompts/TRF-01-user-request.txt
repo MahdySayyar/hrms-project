@@ -1,0 +1,8 @@
+User-authored request for this task, recorded verbatim from the conversation:
+[https://sadprojectdocs.space-z.ai/](https://sadprojectdocs.space-z.ai/) این موارد هم با دقت بخون تمام الاید هاشو چیز هایی که گفته رو چک و اونا رئ در پروژه بکار ببر
+
+Persisting user preference, verbatim:
+فکر کنم بادت رفته پروژه چجوری بود قرار بود اول پروژه رو مثل یک فرد مبتدی بزنی و بعد به مشکل بخوریم و بعد با راه حل های معماری که در این اسلاید ها گفته شدع مشکل رو حل کنی و برای هرکدام از این رفع مشکل ها سند بنویسی مثلا یکی از این مشکلات میتونه اور فلو باشه موقعی ای که تعداد افراد ورود کننده به سایت زیاد میشه هدف اصلی این پروژه معماری هسنت
+
+Agent-derived task scope: preserve the beginner baseline, specify and reproduce a concrete request-decision conflict, isolate its workflow rules and document genuine before/after checks.
+This scope explanation is not a separate historical human prompt.

@@ -1,0 +1,780 @@
+version: 1
+review_status: pending_student_and_instructor_review
+functional_requirements:
+- id: FR-01
+  name: Authenticate
+  acceptance: حساب فعال با رمز صحیح وارد شود؛ ورودی نادرست 401 و CSRF نامعتبر 403.
+  use_case: UC-01
+  business_rules:
+  - BR-01
+  - BR-02
+  code:
+  - app/main.py#login
+  core_tests:
+  - TC-01-01
+  - TC-01-03
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-02
+  name: End session
+  acceptance: خروج معتبر نشست را باطل و صفحهٔ محافظت‌شده را به login هدایت کند.
+  use_case: UC-01
+  business_rules:
+  - BR-02
+  code:
+  - app/main.py#logout
+  core_tests:
+  - TC-01-01
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-03
+  name: Roles and organizational scope
+  acceptance: viewer فقط گزارش کلی؛ hr عملیات مجاز در شعبه/واحد؛ admin قابلیت‌های
+    مدیریتی.
+  use_case: UC-01
+  business_rules:
+  - BR-03
+  - BR-04
+  code:
+  - app/access.py#require_hr
+  - app/access.py#require_admin
+  - app/access.py#scoped_employee
+  core_tests:
+  - TC-01-02
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-04
+  name: Employee records
+  acceptance: ثبت و ویرایش پرونده با کد یکتا و شعبه/واحد سازگار؛ ورودی نامعتبر 400.
+  use_case: UC-04
+  business_rules:
+  - BR-05
+  - BR-06
+  code:
+  - app/main.py#employee_create
+  - app/main.py#employee_edit
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-05
+  name: Employee activity
+  acceptance: تغییر active بدون حذف پرونده؛ مقادیر غیر true/false رد شوند.
+  use_case: UC-04
+  business_rules:
+  - BR-03
+  - BR-04
+  code:
+  - app/main.py#employee_status
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-06
+  name: Employee search
+  acceptance: نام یا کد و فیلتر شعبه/واحد/وضعیت در محدودهٔ کاربر اعمال شوند.
+  use_case: UC-04
+  business_rules:
+  - BR-04
+  code:
+  - app/main.py#employee_list
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-07
+  name: Organization data
+  acceptance: شعبه، واحد وابسته و سمت با کنترل تکرار/وابستگی ثبت و ویرایش شوند.
+  use_case: UC-05
+  business_rules:
+  - BR-06
+  code:
+  - app/main.py#save_organization
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-08
+  name: Recruitment candidates
+  acceptance: متقاضی با اطلاعات معتبر و محدودهٔ مجاز ثبت شود؛ پذیرش بدون مصاحبهٔ قبول
+    رد شود.
+  use_case: UC-06
+  business_rules:
+  - BR-06
+  - BR-15
+  code:
+  - app/modules.py#validate_record
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-09
+  name: Interviews
+  acceptance: مصاحبه ثبت شود؛ نتیجهٔ آینده و مصاحبه برای فرد hired/rejected رد شوند.
+  use_case: UC-06
+  business_rules:
+  - BR-15
+  code:
+  - app/modules.py#save_record
+  - app/modules.py#validate_record
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-10
+  name: Hire and onboard
+  acceptance: accepted به کارمند و سه وظیفهٔ پذیرش تبدیل شود؛ تکرار استخدام رکورد
+    دوم نسازد.
+  use_case: UC-06
+  business_rules:
+  - BR-05
+  - BR-15
+  - BR-14
+  code:
+  - app/modules.py#hire_candidate
+  - app/modules.py#complete_onboarding
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-11
+  name: Attendance and shifts
+  acceptance: حضور/غیاب و دقیقهٔ کار/اضافه‌کاری با شیفت شب محاسبه؛ تردد آینده/قبل
+    استخدام رد شود.
+  use_case: UC-07
+  business_rules:
+  - BR-16
+  code:
+  - app/modules.py#validate_record
+  - app/modules.py#minutes_between
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-12
+  name: Create HR request
+  acceptance: مرخصی/مأموریت/اداری با تاریخ معتبر، pending و audit ثبت شود.
+  use_case: UC-02
+  business_rules:
+  - BR-04
+  - BR-07
+  - BR-14
+  code:
+  - app/modules.py#save_record
+  core_tests:
+  - TC-02-01
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-13
+  name: Decide HR request
+  acceptance: admin یک تصمیم نهایی دهد؛ retry یکسان بی‌نوشتن و retry مخالف 409؛ هم‌پوشانی
+    رد شود.
+  use_case: UC-02
+  business_rules:
+  - BR-08
+  - BR-09
+  - BR-10
+  - BR-14
+  code:
+  - app/modules.py#review_request
+  - app/request_workflow/service.py#RequestReviewService.review
+  core_tests:
+  - TC-02-02
+  - TC-02-03
+  - TC-02-04
+  - TC-02-05
+  - TC-02-06
+  - TC-02-07
+  - TC-02-08
+  - TC-02-09
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-14
+  name: Educational payroll rules
+  acceptance: admin برای نوع قرارداد rule ماهانه/ساعتی و درصد/ضریب معتبر ثبت کند.
+  use_case: UC-03
+  business_rules:
+  - BR-11
+  - BR-12
+  code:
+  - app/module_forms.py
+  - app/modules.py#validate_record
+  - app/hr_models.py#PayrollRule
+  core_tests:
+  - TC-03-01
+  - TC-03-02
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-15
+  name: Payment profile
+  acceptance: admin یک پروفایل مبلغ ریالی نامنفی برای کارمند بسازد؛ نرخ ساعتی مثبت
+    هنگام محاسبه لازم است.
+  use_case: UC-03
+  business_rules:
+  - BR-11
+  code:
+  - app/module_forms.py
+  - app/hr_models.py#PayrollProfile
+  core_tests:
+  - TC-03-04
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-16
+  name: Payslip snapshots
+  acceptance: محاسبهٔ employee/month یکتا و immutable با snapshot؛ ماه/پیش‌نیاز/خالص
+    نامعتبر رد شود.
+  use_case: UC-03
+  business_rules:
+  - BR-11
+  - BR-12
+  - BR-13
+  - BR-14
+  code:
+  - app/modules.py#calculate_payroll
+  - app/modules.py#payslip_detail
+  core_tests:
+  - TC-03-01
+  - TC-03-02
+  - TC-03-03
+  - TC-03-04
+  - TC-03-05
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-17
+  name: Contract lifecycle
+  acceptance: ثبت draft، فعال‌سازی، تمدید و خاتمه با حداکثر یک قرارداد فعال برای هر
+    کارمند.
+  use_case: UC-08
+  business_rules:
+  - BR-17
+  - BR-14
+  code:
+  - app/modules.py#activate_contract
+  - app/modules.py#renew_contract
+  - app/modules.py#terminate_contract
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-18
+  name: Employee evaluations
+  acceptance: امتیاز 0..100، بازخورد و هدف برای کارمند در محدوده ثبت شوند.
+  use_case: UC-09
+  business_rules:
+  - BR-18
+  code:
+  - app/module_forms.py
+  - app/hr_models.py#Evaluation
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-19
+  name: Training and enrollment
+  acceptance: دوره و ثبت‌نام با ظرفیت، بدون ثبت‌نام تکراری و منع کاهش ظرفیت زیر اشغال.
+  use_case: UC-09
+  business_rules:
+  - BR-19
+  code:
+  - app/modules.py#validate_record
+  - app/hr_models.py#TrainingEnrollment
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-20
+  name: Career plans
+  acceptance: سمت هدف، تاریخ، اقدامات و progress در 0..100 ثبت شوند.
+  use_case: UC-09
+  business_rules:
+  - BR-18
+  code:
+  - app/module_forms.py
+  - app/hr_models.py#CareerPlan
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-21
+  name: Assignment history
+  acceptance: تغییر انتساب رکورد قبلی را ببندد و یک انتساب جاری با نام‌های snapshot
+    بسازد.
+  use_case: UC-10
+  business_rules:
+  - BR-20
+  code:
+  - app/access.py#sync_assignment
+  - app/modules.py#employee_history
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-22
+  name: Aggregate reports
+  acceptance: تعداد/وضعیت/کارکرد/فیش دوره در محدودهٔ نقش نمایش داده شوند.
+  use_case: UC-11
+  business_rules:
+  - BR-04
+  code:
+  - app/modules.py#reports
+  core_tests:
+  - TC-01-02
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-23
+  name: Employee CSV
+  acceptance: CSV فارسی UTF-8 BOM در محدوده و با خنثی‌سازی فرمول، فقط برای hr/admin.
+  use_case: UC-11
+  business_rules:
+  - BR-03
+  - BR-04
+  - BR-21
+  code:
+  - app/modules.py#export_employees
+  - app/modules.py#safe_csv
+  core_tests:
+  - TC-01-02
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+- id: FR-24
+  name: Operational audit
+  acceptance: تغییر حساس همراه actor/time ثبت شود؛ نمایش audit فقط admin؛ شکست audit
+    تصمیم را rollback کند.
+  use_case: UC-12
+  business_rules:
+  - BR-14
+  code:
+  - app/access.py#audit
+  - app/modules.py#audit_page
+  - app/request_workflow/repository.py#RequestReviewRepository.save_decision
+  core_tests:
+  - TC-02-02
+  - TC-02-08
+  source:
+  - SRC-C01
+  priority: core
+  status: implemented_reconstructed_pending_human_review
+- id: FR-25
+  name: Manage accounts
+  acceptance: admin حساب/نقش/محدوده مدیریت کند؛ حذف آخرین مدیر/تنزل خود و تغییر نام/رمز
+    موجود رد شود.
+  use_case: UC-12
+  business_rules:
+  - BR-22
+  code:
+  - app/modules.py#validate_record
+  - app/database.py#Admin
+  core_tests: []
+  source:
+  - SRC-C01
+  priority: extended
+  status: implemented_reconstructed_pending_human_review
+business_rules:
+- id: BR-01
+  name: Only active valid accounts authenticate
+  rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است.
+  requirements:
+  - FR-01
+  - FR-03
+  code:
+  - app/security.py#require_login
+  - app/main.py#login
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-02
+  name: CSRF in forms
+  rule: POST مرورگر token وابسته به نشست می‌خواهد؛ login نیز مستثنا نیست.
+  requirements:
+  - FR-01
+  - FR-02
+  - FR-12
+  - FR-13
+  - FR-16
+  code:
+  - app/security.py#check_csrf
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-03
+  name: Role authorization
+  rule: viewer گزارش کلی؛ hr عملیات HR؛ admin تصمیم/حقوق/حساب/audit.
+  requirements:
+  - FR-03
+  code:
+  - app/access.py#require_hr
+  - app/access.py#require_admin
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-04
+  name: Organizational scope
+  rule: پرونده خارج از scope با 404 پنهان و انتخاب سازمان خارج از scope با 403 رد
+    شود.
+  requirements:
+  - FR-03
+  code:
+  - app/access.py#scoped_employee
+  - app/access.py#check_scope
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-05
+  name: Unique employee code
+  rule: کد پرسنلی یکتا در برنامه و پایگاه است.
+  requirements:
+  - FR-04
+  - FR-10
+  code:
+  - app/main.py#validate_employee
+  - app/database.py#Employee
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-06
+  name: Unit belongs to branch
+  rule: unit/branch در فرم و foreign key مرکب باید سازگار باشند.
+  requirements:
+  - FR-04
+  - FR-07
+  - FR-08
+  code:
+  - app/database.py#Employee
+  - app/main.py#validate_employee
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-07
+  name: Request dates
+  rule: start <= end؛ administrative یک روز دارد؛ وضعیت اولیه pending.
+  requirements:
+  - FR-12
+  code:
+  - app/modules.py#validate_record
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-08
+  name: Final request lifecycle
+  rule: pending یک بار نهایی می‌شود؛ retry یکسان بدون تغییر؛ تصمیم مخالف یا state
+    نامعتبر 409.
+  requirements:
+  - FR-13
+  code:
+  - app/request_workflow/domain.py#decision_changes_state
+  source:
+  - SRC-C01
+  - SRC-U02
+  status: specified_and_implemented_CR-01_pending_review
+- id: BR-09
+  name: Rejection reason
+  rule: rejected توضیح غیرخالی می‌خواهد؛ review_notes حداکثر 3000 نویسه.
+  requirements:
+  - FR-13
+  code:
+  - app/request_workflow/domain.py#validate_decision
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-10
+  name: Inclusive approved overlap
+  rule: approved leave/travel همان کارمند با بازهٔ inclusive هم‌پوشان رد شود؛ قفل
+    کارمند تأییدها را سری می‌کند.
+  requirements:
+  - FR-13
+  code:
+  - app/request_workflow/repository.py#RequestReviewRepository.has_approved_overlap
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-11
+  name: Payroll prerequisites
+  rule: profile و rule لازم‌اند؛ در حالت hourly نرخ مثبت؛ ورودی مبلغ نامنفی.
+  requirements:
+  - FR-14
+  - FR-15
+  - FR-16
+  code:
+  - app/modules.py#calculate_payroll
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-12
+  name: Educational payroll formulas
+  rule: regular=worked-overtime؛ gross=base+overtime+benefits؛ net=gross-insurance-tax-deductions؛
+    گردکردن HALF_UP به ریال.
+  requirements:
+  - FR-14
+  - FR-16
+  code:
+  - app/modules.py#calculate_payroll
+  - app/modules.py#rounded
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-13
+  name: Immutable unique payslip
+  rule: یک فیش employee/ماه؛ retry از snapshot؛ edit route فیش وجود ندارد؛ حفاظت در
+    سطح DB از UPDATE مستقیم نیست.
+  requirements:
+  - FR-16
+  code:
+  - app/hr_models.py#Payslip
+  - app/modules.py#calculate_payroll
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-14
+  name: Atomic change and audit
+  rule: تغییر عملیاتی و audit در یک transaction؛ failure عملیات تصمیم هیچ وضعیت جزئی
+    نسازد.
+  requirements:
+  - FR-10
+  - FR-12
+  - FR-13
+  - FR-16
+  - FR-17
+  - FR-24
+  code:
+  - app/access.py#audit
+  - app/request_workflow/repository.py#RequestReviewRepository.save_decision
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-15
+  name: Recruitment eligibility
+  rule: accepted نیازمند interview passed؛ استخدام فقط accepted؛ تکرار استخدام رکورد
+    دوم نسازد.
+  requirements:
+  - FR-08
+  - FR-09
+  - FR-10
+  code:
+  - app/modules.py#validate_record
+  - app/modules.py#hire_candidate
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-16
+  name: Attendance validity
+  rule: یک attendance در روز/کارمند؛ آینده و قبل hire ممنوع؛ کارکرد/اضافه‌کاری از
+    شیفت و استراحت.
+  requirements:
+  - FR-11
+  code:
+  - app/modules.py#validate_record
+  - app/hr_models.py#Attendance
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-17
+  name: Contract lifecycle
+  rule: ویرایش فقط draft؛ قرارداد غیر دائم تاریخ پایان می‌خواهد؛ حداکثر یک active؛
+    تمدید زنجیره می‌سازد.
+  requirements:
+  - FR-17
+  code:
+  - app/modules.py#activate_contract
+  - app/hr_models.py#EmploymentContract
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-18
+  name: Score and progress bounds
+  rule: evaluation score و career progress در 0..100.
+  requirements:
+  - FR-18
+  - FR-20
+  code:
+  - app/hr_models.py#Evaluation
+  - app/hr_models.py#CareerPlan
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-19
+  name: Training capacity
+  rule: ثبت‌نام یکتا employee/training؛ غیر cancelled ظرفیت مصرف می‌کند؛ کاهش زیر
+    اشغال مجاز نیست.
+  requirements:
+  - FR-19
+  code:
+  - app/modules.py#validate_record
+  - app/hr_models.py#TrainingEnrollment
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-20
+  name: Current assignment uniqueness
+  rule: حداکثر یک انتساب end_date NULL؛ تغییر سازمان، قبلی را ببندد و نام‌ها را snapshot
+    کند.
+  requirements:
+  - FR-21
+  code:
+  - app/access.py#sync_assignment
+  - app/hr_models.py#AssignmentHistory
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-21
+  name: CSV formula safety
+  rule: مقدار با =، +، - یا @ پس از فضای آغازین با apostrophe خنثی شود.
+  requirements:
+  - FR-23
+  code:
+  - app/modules.py#safe_csv
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+- id: BR-22
+  name: Account safeguards
+  rule: نام کاربری ثابت؛ رمز اولیه حداقل 12 نویسه؛ رمز در edit تغییر نمی‌کند؛ یک admin
+    فعال باقی بماند.
+  requirements:
+  - FR-25
+  code:
+  - app/modules.py#validate_record
+  source:
+  - SRC-C01
+  status: reconstructed_pending_review
+nonfunctional_requirements:
+- id: NFR-01
+  name: Response time
+  criterion: p95 < 2000ms; error fraction < 0.01; 500 authenticated concurrent users;
+    10000 employees; 80/20 read/write workload; 5 minutes steady after ramp
+  source:
+  - SRC-S01
+  - SRC-S02
+  status: proposed_not_verified
+  evidence:
+  - docs/08-testing/evidence/native-load.json
+  limitation: 10-user/20-second run does not meet acceptance conditions; 300ms food-order
+    example is not an HR requirement
+- id: NFR-P-02
+  name: Concurrent workload
+  criterion: 500 authenticated users complete the defined read/write workload without
+    incorrect scope, lost writes or duplicate transitions
+  source:
+  - SRC-S02
+  status: proposed_not_verified
+  evidence: []
+- id: NFR-S-01
+  name: Authorization
+  criterion: Every protected capability follows the role/scope matrix; negative role
+    and scope samples all rejected
+  source:
+  - SRC-C01
+  - SRC-S02
+  status: partially_verified
+  tests:
+  - TC-01-02
+- id: NFR-S-02
+  name: Browser security
+  criterion: All mutation forms validate session CSRF; session cookie is HttpOnly/SameSite=Lax;
+    non-static pages no-store and self CSP
+  source:
+  - SRC-C01
+  status: partially_verified
+  tests:
+  - TC-01-01
+  limitation: No full OWASP scan, TLS or login rate limiting yet
+- id: NFR-AU-01
+  name: Audit atomicity
+  criterion: Each changed request decision has one actor/time audit; identical retry
+    none; injected audit failure leaves no decision
+  source:
+  - SRC-S02
+  - SRC-C01
+  status: verified_for_request_decisions
+  tests:
+  - TC-02-02
+  - TC-02-04
+  - TC-02-08
+- id: NFR-A-01
+  name: Availability
+  criterion: 99.5% during a defined 30-day service window, measured by external probes
+  source:
+  - SRC-S02
+  status: proposed_not_verified
+  limitation: Service hours and real SLA remain unconfirmed; one local host is not
+    HA
+- id: NFR-M-01
+  name: Internal architecture boundary
+  criterion: Request decision domain and service import no HTTP/ORM/persistence module;
+    route delegates decision rules and SQL
+  source:
+  - SRC-S02
+  status: verified_for_request_module_pending_human_review
+  tests:
+  - TC-M-01
+  - TC-M-02
+  evidence:
+  - docs/08-testing/evidence/all-tests-final.json
+- id: NFR-T-01
+  name: Measured test coverage
+  criterion: At least 80% statement coverage in the explicitly governed package app/request_workflow,
+    with positive/negative/boundary tests; report scope and uncovered lines
+  source:
+  - SRC-S02
+  status: measured_request_package_threshold_passed
+  limitation: This target does not claim 80% coverage of the whole HRMS
+  evidence:
+  - docs/08-testing/evidence/coverage-request-workflow.json
+  measured_statement_coverage_percent: 96.62921348314607
+- id: NFR-U-01
+  name: Task usability
+  criterion: Five representative HR users can create a valid request within 60 seconds
+    without assistance
+  source:
+  - SRC-S02
+  status: proposed_not_verified
+  limitation: No real user trial has been performed
+- id: NFR-L-01
+  name: Persian localization
+  criterion: Browser UI is Persian/RTL with Persian display numbers; Gregorian date
+    labels remain explicit
+  source:
+  - SRC-U01
+  - SRC-C01
+  status: implemented_historical_browser_evidence
+  limitation: No new full visual accessibility audit; dates are not Jalali
+- id: NFR-R-01
+  name: Backup recovery
+  criterion: Proposed RPO 24 hours and RTO 30 minutes, tested by restoring a copy
+    into an isolated lab
+  source:
+  - SRC-C01
+  status: proposed_not_verified
+  limitation: backup_database.py exists; timed recovery acceptance has not run

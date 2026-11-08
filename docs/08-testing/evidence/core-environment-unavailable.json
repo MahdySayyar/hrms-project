@@ -1,0 +1,17 @@
+{
+  "phase": "before",
+  "started_at": "2026-11-08T11:00:14.788236+00:00",
+  "finished_at": "2026-11-08T11:02:24.981084+00:00",
+  "git_parent_commit": "326f77bb0c3808f7d2db65c1b0a49d27c2cf3959",
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 0,
+  "all_passed": false,
+  "checks": [
+    {
+      "test": "setUpClass (tests.test_core_workflows.CoreWorkflows)",
+      "status": "error",
+      "reason": "OperationalError"
+    }
+  ]
+}

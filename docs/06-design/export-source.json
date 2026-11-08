@@ -1,0 +1,87 @@
+{
+  "id": "EXPORT-SOURCE-01",
+  "captured_at": "2026-11-08T12:12:06.691367+00:00",
+  "hash_normalization": "UTF-8 text with LF line endings",
+  "files": [
+    {
+      "path": "app/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256": "61f82cd8c377b72775c564a3a0186afd3543b7f1752216f5d58627272ddbede7"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/main.py",
+      "sha256": "2ec26bf7b568bb3bc78ffa31966fbc1adb9455c40c9d5a5c21de14f239d6f4de"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256": "f35644404a853dccbdd85ab699705c7f82d91875ac975b46fba7fedf2cc76a91"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256": "ed32916da89f208171ad82aa460c66800403c5e6af50f2c5997d3129ca99a136"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    },
+    {
+      "path": "specs/architecture.yaml",
+      "sha256": "0896bfd45e6ec4a51ce8c6d2495a04d369f0a30766a8473adf69fb67a8c2d6c7"
+    },
+    {
+      "path": "specs/UC-01.yaml",
+      "sha256": "f5cfcc731591840317f448b9bba43583097d06477d78594d5f6faf9efa98fee0"
+    },
+    {
+      "path": "specs/UC-02.yaml",
+      "sha256": "8e416a978d20ffb01d9a7494d0812f9aff00c1f728a80c25f8c34bbed32c3b52"
+    },
+    {
+      "path": "specs/UC-03.yaml",
+      "sha256": "90d83a7764530be860d454a3213922ba80fed45298769072ed70107516ad0e15"
+    },
+    {
+      "path": "tests/test_architecture_boundaries.py",
+      "sha256": "d7d0746829dce0bd1b79d175acaf0741cdb9d7b073ed5e206b5de9c9e8c3a2c6"
+    },
+    {
+      "path": "tests/test_core_workflows.py",
+      "sha256": "0e67553eaf13e790cba36cc887154b0abbb4a63db32f8a9c6964d534de43ccfe"
+    },
+    {
+      "path": "tests/test_request_rules.py",
+      "sha256": "e957bdf57341992b9ba18528ab94fc8bda00cf8cf8798063a6bdecb07790d2ae"
+    }
+  ]
+}

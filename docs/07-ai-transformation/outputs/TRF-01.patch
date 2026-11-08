@@ -1,0 +1,180 @@
+diff --git a/app/modules.py b/app/modules.py
+index 9a2e808..af7b4eb 100644
+--- a/app/modules.py
++++ b/app/modules.py
+@@ -17,6 +17,9 @@ from .hr_models import (AssignmentHistory, Attendance, AuditLog, Candidate, Care
+                         OnboardingTask, PayrollProfile, PayrollRule, Payslip, Shift, Training, TrainingEnrollment, utc_now)
+ from .module_forms import (CANDIDATE_STATES, CONTRACT_STATES, CONTRACT_TYPES, INTERVIEW_RESULTS, LABELS, MODULES, REQUEST_STATES, DATE, EMPLOYEE, field, money, pick)
+ from .security import check_csrf, hash_password, require_login
++from .request_workflow.domain import ReviewError, Reviewer
++from .request_workflow.repository import RequestReviewRepository
++from .request_workflow.service import RequestReviewService
+ 
+ router = APIRouter()
+ DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
+@@ -473,28 +476,17 @@ def complete_onboarding(request: Request, task_id: int, form: dict = Depends(bro
+ 
+ @router.post("/requests/{request_id}/review")
+ def review_request(request: Request, request_id: int, form: dict = Depends(browser_form)):
+-    reviewer = require_admin(request)
++    user = require_admin(request)
++    reviewer = Reviewer(user.id, user.role, user.branch_scope_id, user.unit_scope_id)
+     decision, notes = form.get("decision"), normalized(form.get("review_notes"))
+-    if decision not in ("approved", "rejected") or len(notes) > 3000:
+-        raise HTTPException(400, "نتیجه یا توضیح بررسی معتبر نیست.")
+-    if decision == "rejected" and not notes:
+-        raise HTTPException(400, "علت رد درخواست را بنویسید.")
+     with SessionLocal() as db:
+-        item = db.scalar(select(HrRequest).where(HrRequest.id == request_id).with_for_update())
+-        if not item:
+-            raise HTTPException(404)
+-        scoped_employee(db, request, item.employee_id, lock=True)
+-        if item.status != "pending":
+-            return redirect(f"/hr/{item.kind}/{item.id}")
+-        if decision == "approved" and item.kind in ("leave", "travel"):
+-            overlap = db.scalar(select(HrRequest.id).where(HrRequest.employee_id == item.employee_id, HrRequest.id != item.id,
+-                HrRequest.kind.in_(["leave", "travel"]), HrRequest.status == "approved", HrRequest.start_date <= item.end_date, HrRequest.end_date >= item.start_date))
+-            if overlap:
+-                raise HTTPException(400, "بازهٔ درخواست با مرخصی یا مأموریت تأییدشدهٔ دیگری هم‌پوشانی دارد.")
+-        item.status, item.review_notes, item.reviewed_by, item.reviewed_at = decision, notes, reviewer.id, utc_now()
+-        audit(db, request, "review", "hr_requests", item.id, {"decision": decision})
+-        db.commit()
+-    return redirect(f"/hr/{item.kind}/{item.id}?saved=1")
++        service = RequestReviewService(RequestReviewRepository(db))
++        try:
++            result = service.review(request_id, decision, notes, reviewer)
++        except ReviewError as exc:
++            raise HTTPException(exc.status_code, exc.message) from exc
++    suffix = "?saved=1" if result.changed else ""
++    return redirect(f"/hr/{result.kind}/{result.id}{suffix}")
+ 
+ 
+ @router.post("/contracts/{contract_id}/activate")
+--- /dev/null
++++ b/app/request_workflow/domain.py
+@@ -0,0 +1,49 @@
++"""BR-08 and BR-09: request decisions without HTTP or database dependencies."""
++from dataclasses import dataclass
++from enum import Enum
++
++
++class RequestState(str, Enum):
++    PENDING = "pending"
++    APPROVED = "approved"
++    REJECTED = "rejected"
++
++
++class ReviewError(Exception):
++    def __init__(self, code, message, status_code):
++        self.code = code
++        self.message = message
++        self.status_code = status_code
++        super().__init__(message)
++
++
++@dataclass(frozen=True)
++class Reviewer:
++    id: int
++    role: str
++    branch_scope_id: int | None = None
++    unit_scope_id: int | None = None
++
++
++def validate_decision(decision, notes, reviewer):
++    if reviewer.role != "admin":
++        raise ReviewError("REVIEW_FORBIDDEN", "این بخش فقط برای مدیر منابع انسانی در دسترس است.", 403)
++    if decision not in (RequestState.APPROVED.value, RequestState.REJECTED.value) or len(notes) > 3000:
++        raise ReviewError("INVALID_REVIEW", "نتیجه یا توضیح بررسی معتبر نیست.", 400)
++    if decision == RequestState.REJECTED.value and not notes.strip():
++        raise ReviewError("REJECTION_REASON_REQUIRED", "علت رد درخواست را بنویسید.", 400)
++
++
++def decision_changes_state(current, desired):
++    """Return false for an identical retry; reject any conflicting final transition."""
++    if desired not in (RequestState.APPROVED.value, RequestState.REJECTED.value):
++        raise ReviewError("INVALID_REVIEW", "نتیجهٔ بررسی معتبر نیست.", 400)
++    try:
++        state = RequestState(current)
++    except ValueError:
++        raise ReviewError("INVALID_REQUEST_STATE", "وضعیت درخواست معتبر نیست و نیاز به بررسی دارد.", 409) from None
++    if state == RequestState.PENDING:
++        return True
++    if state.value == desired:
++        return False
++    raise ReviewError("REQUEST_ALREADY_REVIEWED", "این درخواست قبلاً بررسی شده است و نتیجهٔ آن قابل تغییر نیست؛ درخواست جدید ثبت کنید.", 409)
+--- /dev/null
++++ b/app/request_workflow/repository.py
+@@ -0,0 +1,36 @@
++"""PostgreSQL reads, row locks and writes for the request decision module."""
++from sqlalchemy import select
++
++from ..database import Employee
++from ..hr_models import AuditLog, HrRequest
++
++
++class RequestReviewRepository:
++    def __init__(self, session):
++        self.session = session
++
++    def transaction(self):
++        return self.session.begin()
++
++    def locked_request(self, request_id):
++        return self.session.scalar(select(HrRequest).where(HrRequest.id == request_id).with_for_update())
++
++    def locked_employee(self, employee_id, reviewer):
++        query = select(Employee).where(Employee.id == employee_id)
++        if reviewer.branch_scope_id:
++            query = query.where(Employee.branch_id == reviewer.branch_scope_id)
++        if reviewer.unit_scope_id:
++            query = query.where(Employee.unit_id == reviewer.unit_scope_id)
++        return self.session.scalar(query.with_for_update())
++
++    def has_approved_overlap(self, item):
++        # BR-10: inclusive intervals; the employee lock serializes concurrent approvals.
++        return self.session.scalar(select(HrRequest.id).where(HrRequest.employee_id == item.employee_id,
++            HrRequest.id != item.id, HrRequest.kind.in_(("leave", "travel")), HrRequest.status == "approved",
++            HrRequest.start_date <= item.end_date, HrRequest.end_date >= item.start_date)) is not None
++
++    def save_decision(self, item, decision, notes, reviewer_id, reviewed_at):
++        previous = item.status
++        item.status, item.review_notes, item.reviewed_by, item.reviewed_at = decision, notes, reviewer_id, reviewed_at
++        self.session.add(AuditLog(actor_id=reviewer_id, action="review", entity="hr_requests", record_id=item.id,
++            details={"decision": decision, "previous_status": previous, "kind": item.kind}))
+--- /dev/null
++++ b/app/request_workflow/service.py
+@@ -0,0 +1,34 @@
++"""UC-02 transaction and workflow orchestration; no HTTP or direct SQL."""
++from dataclasses import dataclass
++
++from ..hr_models import utc_now
++from .domain import ReviewError, decision_changes_state, validate_decision
++
++
++@dataclass(frozen=True)
++class ReviewResult:
++    id: int
++    kind: str
++    changed: bool
++
++
++class RequestReviewService:
++    def __init__(self, repository, clock=utc_now):
++        self.repository = repository
++        self.clock = clock
++
++    def review(self, request_id, decision, notes, reviewer):
++        validate_decision(decision, notes, reviewer)
++        with self.repository.transaction():
++            item = self.repository.locked_request(request_id)
++            if item is None or self.repository.locked_employee(item.employee_id, reviewer) is None:
++                raise ReviewError("REQUEST_NOT_FOUND", "درخواست موردنظر پیدا نشد.", 404)
++            if item.kind not in ("leave", "travel", "administrative"):
++                raise ReviewError("INVALID_REQUEST_KIND", "نوع درخواست معتبر نیست و نیاز به بررسی دارد.", 409)
++            changed = decision_changes_state(item.status, decision)
++            if changed:
++                if decision == "approved" and item.kind in ("leave", "travel") and self.repository.has_approved_overlap(item):
++                    raise ReviewError("REQUEST_OVERLAP", "بازهٔ درخواست با مرخصی یا مأموریت تأییدشدهٔ دیگری هم‌پوشانی دارد.", 400)
++                self.repository.save_decision(item, decision, notes, reviewer.id, self.clock())
++            result = ReviewResult(item.id, item.kind, changed)
++        return result

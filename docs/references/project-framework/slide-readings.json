@@ -1,0 +1,653 @@
+[
+  {
+    "number": 1,
+    "url": "https://sadprojectdocs.space-z.ai/",
+    "title": "فلسفه پروژه",
+    "text": "خانه\nمقدمه و فلسفه\nاسلاید ۱\n#۱\nفلسفه پروژه\n\nچرا Model-Driven + AI-Assisted؟\n\nپروژه درس با هدف تمرین یک فرآیند واقعی تحلیل و طراحی نرم‌افزار انجام می‌شود. تیم‌ها نباید از ابتدا مستقیماً به سراغ کدنویسی بروند؛ بلکه باید مراحل تحلیل، مدل‌سازی، specification و تصمیم‌های طراحی را خود طی کنند و AI را در نقش ابزار transformation و code generation وارد کنند.\n\nایده مرکزی\nاصل بنیادین\n\nدانشجو مسئول تحلیل، مدل‌سازی، specification و تصمیم‌های طراحی است؛ AI عمدتاً به‌عنوان ابزار transformation و code generation وارد می‌شود. در نتیجه، اگر AI کد را تولید کند ولی مدل، specification و استدلال طراحی ضعیف باشد، پروژه موفق محسوب نمی‌شود.\n\nفرآیند پیشنهادی پروژه\nزنجیره فرآیند تحلیل و طراحی نرم‌افزار\nتفاوت با پروژه‌های سنتی\n\nدر این چارچوب، AI جایگزین تحلیل و طراحی نیست؛ AI بخشی از ابزار مهندسی نرم‌افزار تیم است. دانشجو صاحب استدلال و تصمیم است و صرفاً اجرای مکانیکی را به AI می‌سپارد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 2,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-2",
+    "title": "تقسیم نقش انسان و AI",
+    "text": "خانه\nمقدمه و فلسفه\nاسلاید ۲\n#۲\nتقسیم نقش انسان و AI\n\nHuman-owned vs AI-assisted\n\nبرای جلوگیری از تبدیل شدن پروژه به یک «تمرین ChatGPT»، باید مرز مشخصی میان آنچه انسان مالک آن است و آنچه به AI سپرده می‌شود وجود داشته باشد. این مرز از همان روز اول به دانشجو اعلام می‌شود.\n\nمالکیت انسانی (Human-owned)\nProblem Understanding — درک مسئله و زمینه آن\nRequirements — استخراج و تدوین requirementها\nModeling — مدل‌سازی تحلیلی و طراحی\nSpecifications — نوشتن specification رسمی\nDesign Decisions — تصمیم‌های معماری و طراحی\nValidation — اعتبارسنجی خروجی‌ها و تصمیم‌ها\nنقش‌های AI\nModel Transformation — تبدیل مدل‌ها به یکدیگر\nCode Generation — تولید کد از specification\nTest Generation — تولید test case و test code\nDocumentation Assistance — کمک به مستندسازی\nDesign Review Assistance — کمک به بازبینی طراحی\nاصل پذیرش Artifact\n\nهمه چیز از مسیر AI Suggests → Student Evaluates → Student Decides → Artifact Accepted می‌گذرد. یعنی حتی کد تولیدشده توسط AI، بدون بررسی و تصمیم تیم پذیرفته نمی‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 3,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-3",
+    "title": "چهار بخش گزارش نهایی",
+    "text": "خانه\nمقدمه و فلسفه\nاسلاید ۳\n#۳\nچهار بخش گزارش نهایی\n\nاجزای چارچوب اجرایی ترم\n\nبرای اینکه چارچوب به یک ابزار اجرایی واقعی برای کل ترم تبدیل شود، گزارش نهایی به تیم‌ها چهار بخش دارد. این چهار بخش با هم یک Project Development Framework را تشکیل می‌دهند که کل ترم را مدیریت می‌کند.\n\nاجزای چارچوب\n۱\nیک پروژه نمونه کامل که دانشجویان بفهمند دقیقاً چه چیزی باید تولید کنند\n۲\nیک چارچوب استاندارد اجرای پروژه که همه تیم‌ها فارغ از موضوع پروژه از آن پیروی کنند\n۳\nیک تقویم و Milestone مشترک برای کل ترم\n۴\nیک Rubric ارزیابی مشترک که در تمام Milestoneها قابل استفاده باشد\nهدف نهایی\n\nاین چارچوب، به‌جای یک «شرح پروژه» ساده، یک Project Development Framework است که ایده‌ی اصلی MDD + Specification + AI-assisted Model Transformation/Code Generation را واقعاً در فرایند پروژه پیاده می‌کند.\n\n”\n\nموضوع پروژه‌ها متفاوت است؛ فرآیند مهندسی آنها یکسان است.\n\n— اصل Common Meta-Model\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 4,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-4",
+    "title": "Project Charter",
+    "text": "خانه\nArtifactها و مدل‌سازی\nاسلاید ۴\n#۴\nProject Charter\n\nArtifact 1: شرح رسمی پروژه\n\nProject Charter اولین Artifact رسمی پروژه است و در Milestone 1 تحویل داده می‌شود. این سند تعریف پروژه، مرزها، محدودیت‌ها و ذی‌نفعان را مشخص می‌کند. بدون Charter مصوب، تیم نباید وارد مرحله بعد شود.\n\nاجزای الزامی Charter\nTEXT\nProject Name\nProblem\nTarget Users\nStakeholders\nBusiness Goal\nSystem Goal\nScope\nOut of Scope\nConstraints\nAssumptions\nTeam Members\nRoles\nملاک ارزیابی Charter\n\nCharter باید به‌قدری شفاف باشد که یک فرد خارج از تیم با خواندن آن بداند چه چیزی ساخته می‌شود، چه چیزی ساخته نمی‌شود، و چرا. Scope نباید مبهم باشد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 5,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-5",
+    "title": "Requirements",
+    "text": "خانه\nArtifactها و مدل‌سازی\nاسلاید ۵\n#۵\nRequirements\n\nArtifact 2: استخراج نیازها\n\nتیم باید Requirements را به‌صورت ساختاریافته با شناسه یکتا استخراج کند. تفکیک Functional از Non-functional الزامی است. هر requirement باید قابل ردیابی به source (stakeholder، use case، یا قرارداد) باشد.\n\nFunctional Requirements\nTEXT\nFR-01\nThe system shall allow students to authenticate.\n\nFR-02\nThe system shall allow students to view available courses.\n\nFR-03\nThe system shall prevent registration when prerequisites\nare not satisfied.\n\nFR-04\nThe system shall notify students when a request changes state.\nNon-Functional Requirements\nTEXT\nNFR-01 Performance\nNFR-02 Security\nNFR-03 Usability\nNFR-04 Maintainability\nNFR-05 Availability\nخطای رایج\n\nNFRها نباید کلی باشند. «سیستم باید سریع باشد» قابل اندازه‌گیری نیست. باید بنویسیم «زمان پاسخ API انتخاب درس زیر 500ms در 95% درخواست‌ها».\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 6,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-6",
+    "title": "Specification",
+    "text": "خانه\nArtifactها و مدل‌سازی\nاسلاید ۶\n#۶\nSpecification\n\nArtifact 3: تبدیل Requirement به Spec\n\nاینجا یکی از مهم‌ترین بخش‌های پروژه شروع می‌شود. هر Requirement باید به یک specification رسمی تبدیل شود که بعداً ورودی transformation و code generation می‌شود. specification باید precondition، rules، success و failure را به‌صورت قابل تست داشته باشد.\n\nنمونه specification برای FR-03 (Prerequisite Validation)\nYAML\nrequirement:\n  id: FR-03\n\nprecondition:\n  - student_authenticated\n  - course_exists\n\nrules:\n  - prerequisite_courses_completed\n  - capacity_available\n  - registration_period_active\n\nsuccess:\n  - registration_created\n\nfailure:\n  - registration_rejected\n  - reason_returned\nspec به فرمت ساختاریافته و قابل ماشین‌خوانی\nچرا Spec مهم است؟\n\nاین specification بعداً ورودی transformation و code generation می‌شود. اگر spec ضعیف باشد، کد تولیدشده هم ضعیف خواهد بود. تیم نمی‌تواند بعداً به AI بابت کد ضعیف خرده بگیرد اگر خودش spec ضعیف داده است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 7,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-7",
+    "title": "مدل‌های تحلیلی",
+    "text": "خانه\nArtifactها و مدل‌سازی\nاسلاید ۷\n#۷\nمدل‌های تحلیلی\n\nArtifact 4: Context, Use Case, Domain\n\nتیم‌ها باید حداقل سه مدل تحلیلی تولید کنند: Context Diagram برای مرز سیستم، Use Case Model برای رفتار کاربران، و Domain Model برای مفاهیم اصلی کسب‌وکار. این مدل‌ها پایه طراحی هستند و در Milestone 5 تحویل داده می‌شوند.\n\nContext Diagram\nنمودار Context — مرز سیستم و بازیگران خارجی\nUse Case Model\nمدل Use Case — قابلیت‌های نقش Student\nDomain Model\nمدل دامنه — مفاهیم و روابط\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 8,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-8",
+    "title": "Dynamic Modeling",
+    "text": "خانه\nArtifactها و مدل‌سازی\nاسلاید ۸\n#۸\nDynamic Modeling\n\nArtifact: Sequence, Activity, State\n\nبرای Use Caseهای مهم، تیم باید Sequence Diagram، Activity Diagram و State Machine تولید کند. این مدل‌ها رفتار پویای سیستم را مشخص می‌کنند و مستقیماً به کد تبدیل می‌شوند. بدون این مدل‌ها، AI نمی‌تواند کد درستی تولید کند.\n\nنمونه Sequence Diagram برای Register Course\nنمودار Sequence — تعاملات Register Course\nارتباط با Specification\n\nهر Sequence Diagram باید به یک specification و یک use case متصل باشد. اگر نموداری نتوانست به spec وصل شود، یعنی چیزی تولید کرده‌اید که کسی نخواسته — یعنی Scope Creep.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 9,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-9",
+    "title": "Architecture & ADR",
+    "text": "خانه\nمعماری و طراحی\nاسلاید ۹\n#۹\nArchitecture & ADR\n\nArtifact 5: تصمیم‌های معماری\n\nتیم ابتدا باید Architecture Decision Record (ADR) داشته باشد. این بخش بسیار مهم است. دانشجو نباید صرفاً بگوید «ما Microservices انتخاب کردیم چون scalable است». باید بتواند Trade-off را توضیح دهد و نشان دهد چرا سایر گزینه‌ها رد شده‌اند.\n\nنمونه ADR-001\nTEXT\nADR-001\n\nDecision:\nUse Modular Monolith architecture.\n\nAlternatives:\n- Microservices\n- Layered Monolith\n- Modular Monolith\n\nReason:\nThe system size does not justify distributed-system\ncomplexity. Modular Monolith gives clear module boundaries\nwhile keeping operational simplicity for a course project.\nتله رایج\n\nانتخاب الگوی معماری صرفاً به دلیل «ترند بودن» بدون توجیه Trade-off، نمره Architecture را به شدت کاهش می‌دهد. استاد در Review شفاهی از شما می‌خواهد این انتخاب را دفاع کنید.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 10,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-10",
+    "title": "Detailed Design",
+    "text": "خانه\nمعماری و طراحی\nاسلاید ۱۰\n#۱۰\nDetailed Design\n\nArtifact 6: طراحی تفصیلی\n\nبعد از Architecture، طراحی تفصیلی انجام می‌شود. تیم باید لایه‌بندی مشخص، تفکیک مسئولیت‌ها و انتخاب patternها را توجیه کند. استفاده از Pattern نباید اجباری و مصنوعی باشد — pattern باید مسئله‌ای را حل کند، نه اینکه صرفاً برای افزایش تعداد patternها استفاده شود.\n\nلایه‌بندی پیشنهادی\nلایه‌بندی استاندارد — Controller → Service → Repository\nPatternهای قابل استفاده\nSOLID — اصول طراحی شیءگرا\nGRASP — الگوهای تخصیص مسئولیت\nGoF — الگوهای طراحی کلاسیک\nDependency Injection\nRepository\nFactory\nStrategy\nObserver\nقانون طلایی Pattern\n\nهر Pattern در گزارش باید به یک مسئله خاص وصل باشد. اگر نتوانستید بگویید «این Pattern مسئله X را در محل Y حل می‌کند»، آن Pattern را حذف کنید.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 11,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-11",
+    "title": "API Specification & Database Design",
+    "text": "خانه\nمعماری و طراحی\nاسلاید ۱۱\n#۱۱\nAPI Specification & Database Design\n\nArtifact 6.2: طراحی API و دیتابیس\n\nبخش مهمی از طراحی تفصیلی، API Specification و Database Design است. API spec باید از Sequence Diagram و use caseها استخراج شود و دیتابیس باید از Domain Model مشتق گردد. این دو باید با هم سازگار باشند.\n\nزنجیره طراحی\nمسیر درست از مدل تا کد\nنکته Traceability\n\nهر endpoint API باید قابل ردیابی به یک use case و یک requirement باشد. هر table دیتابیس باید قابل ردیابی به یک Entity در Domain Model باشد. این دو رابطه در Traceability Matrix ثبت می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 12,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-12",
+    "title": "نقطه ورود AI",
+    "text": "خانه\nنقش AI و Transformation\nاسلاید ۱۲\n#۱۲\nنقطه ورود AI\n\nجایی که AI واقعاً وارد می‌شود\n\nاینجا تفاوت پروژه شما با یک پروژه معمولی مشخص می‌شود. دانشجو نباید صرفاً بگوید «از ChatGPT برای کدنویسی استفاده کردیم». بلکه باید Transformation Pipeline داشته باشد که مشخص می‌کند چه ورودی به AI داده شده و چه خروجی گرفته شده است.\n\nTransformation Pipeline\nPipeline کنترل‌شده AI — از Artifactهای مهندسی تا کد پذیرفته‌شده\nممنوع: مسیر نادرست\n\nمسیر «Idea → ChatGPT → 10000 lines of code» ممنوع است. اگر تیم نتوانست pipeline را نشان دهد، نمره AI Transformation را از دست می‌دهد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 13,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-13",
+    "title": "AI Transformation Log",
+    "text": "خانه\nنقش AI و Transformation\nاسلاید ۱۳\n#۱۳\nAI Transformation Log\n\nثبت رسمی فرآیند AI\n\nهر تیم باید برای Transformationهای مهم یک لاگ رسمی ثبت کند. این بخش به‌نظر من یکی از مهم‌ترین ویژگی‌های پروژه است. چون دانشجو مجبور می‌شود بفهمد: AI دقیقاً چه چیزی را از چه چیزی تولید کرده است؟ این لاگ در پوشه 12-AI-Usage-Log قرار می‌گیرد.\n\nفیلدهای هر Transformation Record\nTEXT\nTransformation ID\n\nInput Artifact:\n  Sequence Diagram\n\nInput Specification:\n  REQ-12\n\nAI Tool:\n  ...\n\nPrompt:\n  ...\n\nGenerated Output:\n  ...\n\nHuman Modifications:\n  ...\n\nValidation:\n  ...\n\nAccepted:\n  Yes/No\n\nReason:\n  ...\nارزش این Artifact\n\nاین لاگ به ارزیاب نشان می‌دهد که تیم صرفاً از AI استفاده نکرده، بلکه آن را به‌عنوان یک ابزار مهندسی در یک pipeline واقعی به کار برده است. این دقیقاً همان چیزی است که پروژه را از یک «پروژه ChatGPT» متمایز می‌کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 14,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-14",
+    "title": "Model → Code Pipeline",
+    "text": "خانه\nنقش AI و Transformation\nاسلاید ۱۴\n#۱۴\nModel → Code Pipeline\n\nمسیر درست از مدل تا کد\n\nفرآیند مطلوب از Use Case شروع می‌شود، نه از ایده. هر مرحله ورودی مرحله بعد است و AI فقط در مرحله تبدیل spec به کد وارد می‌شود. این زنجیره، استخوان اصلی پروژه است.\n\nمسیر درست\nمسیر درست از مدل تا کد\nمسیر غلط\nTEXT\nIdea\n ↓\nChatGPT\n ↓\n10000 lines of code\nقانون سخت‌گیرانه\n\nهر کدی که در repository نهایی است، باید بتوان به آن از یک use case رسید. اگر کدی پیدا شد که در Traceability Matrix نیست، یعنی کد تقلب است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 15,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-15",
+    "title": "Traceability Matrix",
+    "text": "خانه\nنقش AI و Transformation\nاسلاید ۱۵\n#۱۵\nTraceability Matrix\n\nستون فقرات پروژه\n\nدر پایان باید مشخص شود هر بخش سیستم از کدام Requirement آمده است. این جدول عملاً ستون فقرات پروژه خواهد بود و در پوشه 10-Evaluation قرار می‌گیرد. ارزیاب بدون این جدول نمی‌تواند consistency را بررسی کند.\n\nنمونه Traceability Matrix\nRequirement\tUse Case\tModel\tDesign\tCode\tTest\nFR-01\tUC-01\tDM-01\tD-01\tAuthService\tT-01\nFR-02\tUC-02\tDM-02\tD-02\tCourseService\tT-02\nFR-03\tUC-03\tDM-03\tD-03\tRegistrationService\tT-03\nکاربرد در ارزیابی\n\nاگر یک سلول خالی باشد، یعنی چیزی در زنجیره گم شده. این جدول، نقص‌های فرآیند را به‌صورت بصری نشان می‌دهد و در جلسات Review پایانی معیار اصلی ارزیابی است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 16,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-16",
+    "title": "نقش‌های AI در پروژه",
+    "text": "خانه\nنقش AI و Transformation\nاسلاید ۱۶\n#۱۶\nنقش‌های AI در پروژه\n\nپنج نقش مجزای AI\n\nدر گزارش رسمی پروژه، AI را به پنج نقش تقسیم می‌کنیم. این تفکیک به تیم کمک می‌کند که بداند در هر مرحله چه انتظاری از AI دارد و چطور باید آن را در Transformation Log ثبت کند.\n\nAI-1: Analysis Assistant\nrequirement elicitation\nambiguity detection\nrequirement classification\nmissing requirement detection\nAI-2: Modeling Assistant\nUML generation\nmodel transformation\nconsistency checking\nAI-3: Design Assistant\nalternative design generation\ndesign review\npattern suggestion\nADR assistance\nAI-4: Code Generation Assistant\nclasses\nAPIs\nrepositories\ntests\nconfiguration\nAI-5: Validation Assistant\ntest generation\nrequirement coverage\ncode review\ndocumentation\ntraceability\nقانون کلی\n\nدر همه این موارد: AI Suggests → Student Evaluates → Student Decides → Artifact Accepted. آخرین تصمیم همیشه با دانشجوست.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 17,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-17",
+    "title": "Milestoneهای ترم",
+    "text": "خانه\nارزیابی و Milestone\nاسلاید ۱۷\n#۱۷\nMilestoneهای ترم\n\nتقویم ۱۴ هفته‌ای\n\nپیشنهاد برای یک ترم ۱۴ هفته‌ای به این شکل است. این ساختار یک مزیت مهم دارد: دانشجویان نمی‌توانند هفته ۱۲ تازه شروع کنند به فکر کردن درباره تحلیل و طراحی. هر Milestone یک Gate دارد که بدون عبور از آن، ورود به مرحله بعد ممنوع است.\n\nهفته\tMilestone\tخروجی\n۱\tProject Proposal\tProblem + Scope + Team\n۲\tRequirements v1\tStakeholders + FR/NFR\n۳\tRequirements Review\tFinal Requirements\n۴\tSpecification\tFormal/structured specifications\n۵\tAnalysis Modeling\tUse Case + Domain Model\n۶\tDynamic Modeling\tSequence + Activity + State\n۷\tArchitecture\tArchitecture + ADR\n۸\tDesign\tClass/Component/API Design\n۹\tDesign Review\tIntegrated Design Baseline\n۱۰\tAI Transformation\tModel → Code pipeline\n۱۱\tImplementation v1\tCore functionality\n۱۲\tTesting\tTest suite + traceability\n۱۳\tEvaluation\tQuality + Architecture + AI evaluation\n۱۴\tFinal Demo\tFinal system + presentation\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 18,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-18",
+    "title": "Milestone Gate",
+    "text": "خانه\nارزیابی و Milestone\nاسلاید ۱۸\n#۱۸\nMilestone Gate\n\nکنترل عبور بین مراحل\n\nبرای اینکه Milestoneها صرفاً «تحویل فایل» نباشند، هر مرحله باید Gate داشته باشد. اگر Requirement هنوز مشکل دارد، تیم نباید وارد مرحله بعد شود بدون اینکه مسئله را اصلاح کند. این کار از انتقال نقص‌ها به مراحل بعدی جلوگیری می‌کند.\n\nزنجیره Gateها\nکنترل عبور بین مراحل — Gate-based flow\nنکته اجرایی\n\nاگر تیمی در Gate یک مرحله رد شد، باید به عقب برگردد و اصلاح کند. این ممکن است زمان‌گیر باشد، اما از گنده‌تر شدن مشکل در پایان ترم جلوگیری می‌کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 19,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-19",
+    "title": "Rubric ارزیابی",
+    "text": "خانه\nارزیابی و Milestone\nاسلاید ۱۹\n#۱۹\nRubric ارزیابی\n\nنمره‌دهی بر اساس فرآیند، نه کد\n\nنمره پروژه از «کیفیت کد» جدا شده است. کد فقط ۱۰ درصد است. این کاملاً عامدانه است. چون اگر کد ۵۰–۶۰ درصد نمره باشد، دانشجو طبیعی است که تمام پروژه را به Code Generation تبدیل کند. وزن‌دهی به گونه‌ای است که فرآیند، استدلال و consistency ارزش بیشتری داشته باشند.\n\nبخش\tوزن\nProblem & Requirements\t۱۵٪\nSpecification\t۱۰٪\nAnalysis Models\t۱۵٪\nArchitecture\t۱۵٪\nDetailed Design\t۱۵٪\nAI-assisted Transformation\t۱۰٪\nImplementation\t۱۰٪\nTesting & Validation\t۵٪\nDocumentation & Traceability\t۵٪\nنکته طراحی Rubric\n\nوزن ۱۰٪ کد عمدی است. دانشجو باید بداند که «کد خوب بدون فرآیند خوب» نمره پایین می‌آورد. این پارادایم دقیقاً نقطه مقابل پروژه‌های تمرینی سنتی است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 20,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-20",
+    "title": "معیار انسجام Artifactها",
+    "text": "خانه\nارزیابی و Milestone\nاسلاید ۲۰\n#۲۰\nمعیار انسجام Artifactها\n\nConsistency، مهم‌تر از کیفیت تکی\n\nیک معیار جداگانه برای Consistency پیشنهاد می‌کنیم. سؤال اصلی در ارزیابی این نیست که «آیا نمودار خوبی کشیده‌ای؟»، بلکه «آیا این نمودار با Requirement، Specification، Design و Code سازگار است؟». این دقیقاً همان چیزی است که پروژه را از یک مجموعه نمودار UML به یک پروژه واقعی تحلیل و طراحی تبدیل می‌کند.\n\nزنجیره Consistency\nTEXT\nRequirement\n      ↕\nSpecification\n      ↕\nAnalysis Model\n      ↕\nDesign\n      ↕\nCode\n      ↕\nTest\nنکته ارزشمند\n\nیک پروژه با نمودارهای متوسط ولی سازگار، نمره بالاتری از پروژه‌ای با نمودارهای عالی ولی ناسازگار می‌گیرد. فرآیند یکپارچه، مهم‌تر از هر Artifact تکی است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 21,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-21",
+    "title": "Testing از Specification",
+    "text": "خانه\nارزیابی و Milestone\nاسلاید ۲۱\n#۲۱\nTesting از Specification\n\nآزمون تغذیه‌شده از spec\n\nTesting باید از specification تغذیه شود. AI می‌تواند در تولید Test Case و Test Code کمک کند، اما تیم باید Testها را validate کند. تست‌ها باید به acceptance criteria وصل باشند، نه صرفاً به «این تابع کار می‌کند».\n\nزنجیره Testing\nTEXT\nRequirement\n      ↓\nAcceptance Criteria\n      ↓\nTest Case\n      ↓\nAutomated Test\nنقش AI در Testing\n\nAI می‌تواند test case تولید کند، اما تیم مسئول validate کردن آنهاست. اگر تست تولیدشده توسط AI نتوانست bug را بگیرد، مقصر AI نیست — تیم است که باید تست را review می‌کرد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 22,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-22",
+    "title": "قوانین استفاده از AI",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۲\n#۲۲\nقوانین استفاده از AI\n\nهفت قانون روشن\n\nبرای جلوگیری از تبدیل شدن پروژه به «پروژه ChatGPT»، چند قانون روشن لازم است. این قوانین از روز اول به تیم‌ها اعلام می‌شوند و در Reviewها بررسی می‌شوند.\n\n۱\nاستفاده از AI آزاد است.\n۲\nاستفاده از AI باید مستند شود.\n۳\nتیم مسئول صحت خروجی AI است.\n۴\nAI-generated code بدون بررسی تیم پذیرفته نیست.\n۵\nتصمیم‌های معماری باید توسط تیم توجیه شوند.\n۶\nهر Artifact مهم باید دارای Traceability باشد.\n۷\nدانشجو باید بتواند Artifactهای اصلی پروژه خود را توضیح دهد.\nقانون کلیدی\n\nآخرین قانون بسیار مهم است: دانشجو باید بتواند Artifactهای اصلی پروژه خود را توضیح دهد. اگر در Review شفاهی نتوانست، یعنی Artifact واقعاً مال او نبوده.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 23,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-23",
+    "title": "ارزیابی شفاهی",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۳\n#۲۳\nارزیابی شفاهی\n\nمؤثرتر از تشخیص AI-generated code\n\nبرای جلوگیری از پروژه‌های کاملاً تولیدشده توسط AI، در هر Milestone یک جلسه کوتاه Review ۱۰ دقیقه‌ای داشته باشید. این روش بسیار مؤثرتر از تلاش برای تشخیص خودکار «AI-generated code» است، چون فرآیند ذهنی دانشجو را مستقیماً می‌سنجد.\n\nنمونه سؤال‌های Review\nچرا این Use Case را این‌گونه مدل کردید؟\nچرا این Class این مسئولیت را دارد؟\nچرا این Architecture را انتخاب کردید؟\nاگر این Requirement تغییر کند چه چیزی باید تغییر کند؟\nاین Sequence Diagram چگونه به کد تبدیل شده است؟\nAI در این قسمت چه پیشنهادی داده و شما چه چیزی را تغییر داده‌اید؟\nنکته اجرایی\n\nاین سؤالات را از هر عضو تیم به‌صورت تصادفی بپرسید. اگر کسی نتوانست جواب بدهد، یعنی مسئولیت آن بخش را فقط به اسم بر عهده داشته، نه واقعاً.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 24,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-24",
+    "title": "ساختار تیم",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۴\n#۲۴\nساختار تیم\n\nنقش‌ها بدون سیلو\n\nبرای تیم‌های ۸ نفره، نقش‌های زیر را می‌توان تعریف کرد. اما یک نکته مهم: این نقش‌ها نباید به معنای تقسیم کامل کار باشند. همه اعضا باید همه Artifactهای اصلی را بشناسند تا در Review شفاهی بتونند جواب بدهند.\n\nTEXT\nProject Lead\nRequirements Lead\nModeling Lead\nArchitecture Lead\nDesign Lead\nAI Transformation Lead\nImplementation Lead\nTesting & QA Lead\nاصل Cross-Functional\n\nهر عضو باید در حد حداقل، یک بار از هر Artifact بازبینی کرده باشد. نقش‌ها صرفاً برای تعیین «راهبر» آن بخش است، نه مالکیت انحصاری.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 25,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-25",
+    "title": "Common Meta-Model",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۵\n#۲۵\nCommon Meta-Model\n\nفرآیند یکسان، موضوع متفاوت\n\nتیم‌ها نباید پروژه یکسان داشته باشند، اما باید Project Meta-Model یکسان داشته باشند. یعنی موضوع پروژه‌ها متفاوت است؛ فرآیند مهندسی آنها یکسان است. این دقیقاً چیزی است که برای کلاس مناسب است و امکان مقایسه تیم‌ها را در ارزیابی فراهم می‌کند.\n\nساختار Common Framework\nفرآیند یکسان، موضوع متفاوت — Common Framework\nمزیت این رویکرد\n\nموضوع پروژه‌ها متفاوت است؛ فرآیند مهندسی آنها یکسان است. این یعنی ارزیاب می‌تواند quality فرآیند را مقایسه کند بدون آنکه به موضوع خاصی گیر بدهد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 26,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-26",
+    "title": "موضوع پروژه‌های پیشنهادی",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۶\n#۲۶\nموضوع پروژه‌های پیشنهادی\n\n۱۵ حوزه متنوع\n\nبرای اینکه پروژه‌ها بیش از حد شبیه هم نشوند، می‌توان به تیم‌ها حوزه‌های مختلف داد. ولی باید برای هر پروژه یک Problem Statement استاندارد تهیه شود تا تیم‌ها نتوانند Scope را بیش از حد بزرگ کنند.\n\n۱\nسامانه مدیریت خدمات دانشگاه\n۲\nسامانه رزرو امکانات ورزشی\n۳\nسامانه مدیریت درمانگاه\n۴\nسامانه مدیریت آموزشگاه\n۵\nسامانه مدیریت کتابخانه\n۶\nسامانه مدیریت رویدادهای دانشگاه\n۷\nسامانه سفارش غذای سازمانی\n۸\nسامانه مدیریت تعمیر و نگهداری تجهیزات\n۹\nسامانه مدیریت خوابگاه\n۱۰\nسامانه مدیریت پارکینگ\n۱۱\nسامانه مدیریت خدمات شهری\n۱۲\nسامانه مدیریت گردشگری\n۱۳\nسامانه مدیریت فروشگاه آنلاین تخصصی\n۱۴\nسامانه مدیریت دوره‌های آموزشی\n۱۵\nسامانه مدیریت پروژه‌های دانشجویی\nکنترل Scope\n\nهر موضوع باید Problem Statement استاندارد داشته باشد تا تیم‌ها نتوانند Scope را بیش از حد بزرگ کنند. Problem Statement، خود یک Artifact اجباری است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 27,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-27",
+    "title": "ساختار سند رسمی",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۷\n#۲۷\nساختار سند رسمی\n\nتحویل به دانشجو\n\nسند رسمی پروژه که به دانشجویان داده می‌شود، باید تقریباً با این ساختار باشد. این سند نقش «قانون اساسی پروژه» را ایفا می‌کند و در طول ترم مرجع تصمیم‌گیری است.\n\nTEXT\nSOFTWARE ANALYSIS & DESIGN\nCOURSE PROJECT\n\n1. Project Philosophy\n\n2. Learning Objectives\n\n3. Project Rules\n\n4. Project Definition\n   4.1 Problem\n   4.2 Stakeholders\n   4.3 Scope\n   4.4 Constraints\n\n5. Engineering Process\n\n6. Required Artifacts\n   6.1 Project Charter\n   6.2 Requirements\n   6.3 Specifications\n   6.4 Analysis Models\n   6.5 Architecture\n   6.6 Detailed Design\n   6.7 AI Transformation\n   6.8 Implementation\n   6.9 Testing\n   6.10 Evaluation\n\n7. AI Usage Guidelines\n\n8. Traceability Requirements\n\n9. Team Structure\n\n10. Milestones\n\n11. Deliverables\n\n12. Review Sessions\n\n13. Evaluation Rubric\n\n14. Final Presentation\n\n15. Example Project\nساختار سند رسمی تحویل به دانشجو\nقدم بعد\n\nقبل از تبدیل این به «گزارش نهایی»، باید پروژه نمونه Smart Campus را واقعاً از ابتدا تا انتها طراحی کنیم تا یک Template خالی قابل استخراج شود. این کار به دانشجو یک نقشه راه کامل می‌دهد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 28,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-28",
+    "title": "زنجیره کامل پروژه نمونه",
+    "text": "خانه\nبخش پایانی\nاسلاید ۲۸\n#۲۸\nزنجیره کامل پروژه نمونه\n\nاز Problem تا Evaluation\n\nبرای اینکه این چارچوب به یک ابزار واقعی تبدیل شود، پیشنهاد می‌شود پروژه نمونه Smart Campus را از ابتدا تا انتها طراحی کنیم. یعنی برای پروژه نمونه، این زنجیره کامل ساخته شود و بعد همین ساختار به‌صورت یک Template خالی دربیاید که دانشجو فقط موضوع پروژه خودش را جایگزین کند.\n\nزنجیره کامل Artifactها\nزنجیره کامل Artifactها — از Problem تا Regression Testing\nنتیجه نهایی\n\nاین به‌نظر من، برای درس شما از یک «شرح پروژه» بسیار مفیدتر است: یک Project Development Framework که کل ترم را مدیریت می‌کند و در عین حال ایده‌ی اصلی MDD + Specification + AI-assisted Transformation را واقعاً در فرایند پروژه پیاده می‌کند.\n\n”\n\nAI جایگزین تحلیل و طراحی نیست؛ AI بخشی از ابزار مهندسی نرم‌افزار تیم است.\n\n— فلسفه مرکزی چارچوب\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 29,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-29",
+    "title": "سند استاندارد UFMS",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۲۹\n#۲۹\nسند استاندارد UFMS\n\nچارچوب استاندارد پروژه ترم — نسخه کامل\n\nاین بخش، چارچوب استاندارد پروژه درس تحلیل و طراحی نرم‌افزار را به‌صورت کامل و قابل اجرا برای ۸ تیم با موضوعات متفاوت ارائه می‌دهد. در این نسخه، «سامانه جامع مدیریت غذای دانشگاه» (UFMS) به‌عنوان Reference Project کامل در نظر گرفته شده است؛ نه صرفاً یک مثال کوچک. هدف این است که استاد بتواند همین چارچوب را عیناً برای همه تیم‌ها استفاده کند — دامنه تغییر می‌کند، ولی فرآیند مهندسی یکسان می‌ماند.\n\nهدف پروژه\n\nهدف این پروژه صرفاً ساخت یک نرم‌افزار نیست. دانشجویان باید نشان دهند که می‌توانند به‌صورت سیستماتیک از مسیر زیر طی کنند:\n\nزنجیره فرآیند مهندسی\nاصل مرکزی\n\nکد خروجی فرآیند مهندسی است، نه نقطه شروع. این پروژه یک پروژه «تحلیل و طراحی نرم‌افزار» است، نه یک پروژه «برنامه‌نویسی با AI».\n\nنقش AI\n\nAI به‌عنوان یک ابزار مهندسی در نظر گرفته می‌شود، نه یک توسعه‌دهنده مستقل. دانشجویان نباید صرفاً به AI بگویند «یک سامانه مدیریت غذا بساز» و خروجی را تحویل دهند. در عوض، AI باید Artifactهای مهندسی ساختاریافته را دریافت کند و آنها را به کد، تست، یا مستندات تبدیل کند.\n\nHuman-owned vs AI-assisted — کنترل و اعتبارسنجی انسانی\nسؤال کلیدی ارزیابی\n\nسؤال ارزیابی این نیست: «AI چقدر کد تولید کرد؟» بلکه: «تیم چقدر مؤثر فرآیند transformation از Artifactهای مهندسی به نرم‌افزار را کنترل و اعتبارسنجی کرد؟»\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 30,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-30",
+    "title": "Problem Definition & System Vision",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۰\n#۳۰\nProblem Definition & System Vision\n\nArtifact 1: تعریف مسئله و چشم‌انداز\n\nProblem Statement\n\nدانشگاه‌ها معمولاً خدمات غذایی را به دانشجویان، اعضای هیئت علمی و کارکنان از طریق عملیات غذایی متمرکز یا نیمه‌متمرکز ارائه می‌دهند. فرآیندهای سنتی مدیریت غذا ممکن است شامل مکانیزم‌های جداگانه برای برنامه‌ریزی غذا، انتشار منو، رزرو، لغو، پرداخت، سهمیه‌بندی، مدیریت رستوران، تحویل غذا، حضور، انبار، گزارش‌گیری و کنترل اداری باشد. وقتی این فرآیندها ضعیف یکپارچه شوند، مشکلاتی نظیر رزروهای نادرست، تولید مازاد یا کمبود، رزروهای استفاده‌نشده، برنامه‌ریزی انبار ناکارآمد، ردیابی پرداخت دشوار، اطلاعات ناسازگار، عدم اطلاعات عملیاتی بلادرنگ، بار اداری زیاد، گزارش‌های غیرقابل اعتماد و ردیابی محدود اقدامات کاربر رخ می‌دهد.\n\nSystem Vision\n\nسامانه UFMS باید یک پلتفرم یکپارچه فراهم کند که از طریق آن دانشجویان منو را ببینند، غذا رزرو کنند، رزروهای قابل لغو را لغو کنند، تاریخچه خود را ببینند، مدیران منو را تعریف کنند، رستوران‌ها آماده‌سازی و توزیع را مدیریت کنند، اطلاعات مالی مدیریت شود، انبار پایش شود، گزارش‌های عملیاتی تولید شود و اقدامات کاربر ممیزی گردد.\n\nالزامات سامانه\n\nسامانه باید از چندین رستوران و چندین نوع غذا پشتیبانی کند و در عین حال امنیت، عملکرد، قابلیت نگهداری و ردیابی را حفظ کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 31,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-31",
+    "title": "Stakeholders",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۱\n#۳۱\nStakeholders\n\nArtifact 1.2: ذی‌نفعان و نقش‌ها\n\nسامانه مرجع UFMS حداقل شامل ذی‌نفعان زیر است. هر ذی‌نفع دارای مجموعه‌ای از علایق متمایز است که در طراحی Use Case و RBAC منعکس می‌شود. تیم باید با نمایندگان واقعی هر نقش مصاحبه کند تا Requirements واقعی استخراج شود، نه فرضی.\n\nذی‌نفع\tعلایق اصلی\nStudent\tمشاهده منو، رزرو/لغو غذا، پرداخت، تاریخچه\nFaculty Member\tرزرو غذا و مدیریت اطلاعات غذایی شخصی\nFood Administrator\tمدیریت منو، رستوران، قیمت، قوانین\nRestaurant Manager\tمدیریت آماده‌سازی و توزیع غذا\nFood Distribution Staff\tتأیید تحویل غذا\nFinancial Administrator\tپرداخت و گزارش‌های مالی\nInventory Manager\tپایش موجودی مواد و کالا\nUniversity Management\tگزارش‌های استراتژیک و عملیاتی\nSystem Administrator\tکاربران، نقش‌ها، پیکربندی، امنیت\nAuditor\tقابلیت ردیابی و سوابق تاریخی\nنکته طراحی\n\nاین ۱۰ ذی‌نفع در Domain Model به‌صورت موجودیت‌های مجزا مدل می‌شوند. RBAC بر اساس این نقش‌ها طراحی می‌شود و هر نقش یک set از Permission دارد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 32,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-32",
+    "title": "Scope & Project Objectives",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۲\n#۳۲\nScope & Project Objectives\n\nArtifact 1.3: محدوده و اهداف\n\nIn Scope (MVP)\n\nMVP شامل ۱۶ قابلیت اصلی است که تیم باید همه را پیاده‌سازی کند:\n\nTEXT\n1.  User authentication\n2.  Role-based authorization\n3.  User profile\n4.  Menu management\n5.  Meal definition\n6.  Restaurant management\n7.  Meal reservation\n8.  Reservation cancellation\n9.  Reservation history\n10. Payment management\n11. Meal pickup verification\n12. Daily restaurant capacity management\n13. Basic inventory management\n14. Notifications\n15. Operational reporting\n16. Audit logging\nOut of Scope\nتحویل غذا به آدرس‌های خارجی\nبرنامه‌ریزی تغذیه پیشرفته مبتنی بر AI\nخرید خودکار از تأمین‌کنندگان\nحسابداری پیچیده\nیکپارچه‌سازی با دانشگاه‌های سراسری\nاحراز هویت بیومتریک\nربات‌های مستقل آشپزخانه\nپیش‌بینی تقاضا با یادگیری ماشین\nProject Objectives\n۱\nکاهش عملیات دستی خدمات غذایی\n۲\nکاهش خطاهای رزرو\n۳\nبهبود دید پذیرش غذا\n۴\nبهبود برنامه‌ریزی رستوران\n۵\nارائه اطلاعات مالی قابل اعتماد\n۶\nارائه اطلاعات عملیاتی قابل ردیابی\n۷\nپشتیبانی از چندین رستوران\n۸\nپشتیبانی از دسترسی مبتنی بر نقش\n۹\nارائه عملکرد قابل اندازه‌گیری\n۱۰\nحفظ رابطه روشن بین Requirements، طراحی، پیاده‌سازی و تست‌ها\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 33,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-33",
+    "title": "Functional Requirements",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۳\n#۳۳\nFunctional Requirements\n\nArtifact 2: FR-01 تا FR-15\n\nRequirements زیر نمایانگر سامانه مرجع UFMS هستند. تیم باید بین ۱۰ تا ۲۵ Functional Requirement داشته باشد. تعداد خودش نمره ندارد — کیفیت آن مهم است. Requirements باید واضح، قابل تست، اتمیک، قابل ردیابی و سازگار باشند.\n\nTEXT\nFR-01  User Authentication\n  Users authenticate using university credentials.\n\nFR-02  Role Management\n  Role-based authorization with roles:\n  Student, Faculty, Restaurant Manager,\n  Food Administrator, Financial Administrator,\n  Inventory Manager, System Administrator.\n\nFR-03  Menu Management\n  Food administrator can create, modify,\n  publish, and deactivate menus.\n\nFR-04  Meal Management\n  Administrator defines meal type, date,\n  restaurant, price, capacity, availability.\n\nFR-05  Meal Reservation\n  Eligible users can reserve available meals.\n\nFR-06  Reservation Cancellation\n  Users can cancel reservations before the\n  configured cancellation deadline.\n\nFR-07  Reservation History\n  Users can view their previous reservations.\n\nFR-08  Payment\n  System records and manages meal payments.\n\nFR-09  Meal Pickup Verification\n  Authorized personnel verify meal pickup.\n\nFR-10  Restaurant Capacity Management\n  Administrators define daily restaurant capacity.\n\nFR-11  Inventory Management\n  Authorized users record inventory items\n  and stock movements.\n\nFR-12  Notifications\n  System notifies users about reservation\n  and payment events.\n\nFR-13  Reporting\n  Authorized users generate operational reports.\n\nFR-14  Audit Logging\n  System records security-sensitive and\n  operationally important actions.\n\nFR-15  Search and Filtering\n  Authorized users can search and filter records.\nFunctional Requirements — UFMS Reference\nقانون Requirements\n\nهر FR باید قابل تست باشد. اگر نتوانستید برای یک FR یک Test Case بنویسید، یعنی FR مبهم است. این تست‌ها در Milestone M7 نوشته می‌شوند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 34,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-34",
+    "title": "NFRs & Business Rules",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۴\n#۳۴\nNFRs & Business Rules\n\nArtifact 2.2 و 2.3: الزامات غیرعملکردی و قوانین کسب‌وکار\n\nNon-Functional Requirements\n\nNFRها باید قابل اندازه‌گیری باشند. هر دسته دارای شناسه اختصاری است (NFR-P برای Performance، NFR-S برای Security و غیره) تا در Traceability Matrix قابل ردیابی باشند.\n\nشناسه\tدسته\tهدف\nNFR-P-01\tPerformance\t۹۵٪ query در دسترسی به غذا زیر ۲ ثانیه\nNFR-P-02\tThroughput\tپشتیبانی از حداقل ۵۰۰ کاربر همزمان\nNFR-S-01\tSecurity\tکاربران فقط عملیات مجاز نقش خود را می‌توانند انجام دهند\nNFR-S-02\tSecurity\tعملیات حساس باید log شوند\nNFR-A-01\tAvailability\tعملیاتی در ساعات کاری دانشگاه\nNFR-SC-01\tScalability\tافزودن رستوران بدون تغییر در منطق کسب‌وکار\nNFR-M-01\tMaintainability\tقوانین کسب‌وکار از presentation جدا شده باشند\nNFR-AU-01\tAuditability\tتغییرات مهم قابل ردیابی باشند\nNFR-U-01\tUsability\tدانشجو رزرو غذا را بدون کمک مدیر انجام دهد\nBusiness Rules\n\nBusiness Rules به‌صورت صریح از Functional Requirements جدا شده‌اند. این جداسازی مهم است چون قوانین کسب‌وکار پایدارتر از قابلیت‌ها هستند و در Specification به‌صورت صریح ارجاع داده می‌شوند.\n\nTEXT\nBR-01  A user cannot reserve a meal if meal\n       capacity has been reached.\n\nBR-02  A user cannot reserve the same meal\n       more than once.\n\nBR-03  A reservation may only be cancelled\n       before the configured deadline.\n\nBR-04  Only eligible users can reserve meals.\n\nBR-05  The price of a reservation must\n       correspond to the price defined for\n       the selected meal.\n\nBR-06  Only authorized administrators can\n       publish menus.\n\nBR-07  A meal cannot be distributed without\n       a valid reservation unless an\n       authorized override exists.\n\nBR-08  Every successful payment must be\n       associated with a reservation.\n\nBR-09  Cancelled reservations cannot be\n       used for meal pickup.\n\nBR-10  Important administrative changes\n       must be recorded in the audit log.\nتفاوت FR و BR\n\nFR قابلیت سیستم را تعریف می‌کند (WHAT). BR قانون کسب‌وکار را تعریف می‌کند که این قابلیت باید آن را رعایت کند (CONSTRAINT). در Traceability Matrix، هر FR به BRهای مرتبط وصل می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 35,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-35",
+    "title": "Use Case Model",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۵\n#۳۵\nUse Case Model\n\nArtifact 3: مدل Use Case\n\nUse Caseهای اصلی سامانه UFMS شامل موارد زیر است. پروژه نباید هر تعامل جزئی را به‌عنوان یک Use Case جداگانه در نظر بگیرد؛ تمرکز بر اهداف معنادار سیستم باید باشد. این Use Caseها در Milestone M3 به‌صورت کامل مدل می‌شوند و حداقل سه Use Case اصلی باید به‌صورت Fully Specified نوشته شوند.\n\nTEXT\nUC-01  Authenticate User\nUC-02  View Menu\nUC-03  Reserve Meal\nUC-04  Cancel Reservation\nUC-05  Pay for Meal\nUC-06  Verify Meal Pickup\nUC-07  Manage Menu\nUC-08  Manage Restaurant\nUC-09  Manage Inventory\nUC-10  Generate Report\nUC-11  View Audit Log\nقانون Use Case\n\nتعداد Use Caseها برابر با تعداد FRها نیست. یک FR ممکن است در چند UC ظاهر شود و یک UC ممکن است چند FR را پوشش دهد. مهم این است که هیچ FR یتیم نباشد و هیچ UC بدون FR نباشد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 36,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-36",
+    "title": "Fully Specified Use Case — UC-03",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۶\n#۳۶\nFully Specified Use Case — UC-03\n\nArtifact 3.2: مشخصات کامل Reserve Meal\n\nUC-03 (Reserve Meal) را به‌صورت کامل می‌نویسیم. این Use Case اصلی سامانه است و در تمام Artifactهای بعدی (Sequence، Activity، State، Code، Test) به آن ارجاع داده می‌شود. این مشخصات در Milestone M3 تولید می‌شود.\n\nYAML\nuse_case:\n  id: UC-03\n  name: Reserve Meal\n  goal: Allow an eligible user to reserve an available meal\n  primary_actor: Student / Faculty Member\n\npreconditions:\n  - User is authenticated\n  - User is eligible for meal reservation\n  - Selected meal exists\n  - Reservation period is open\n\ntrigger:\n  User selects a meal and requests reservation\n\nmain_success_scenario:\n  1.  User selects a meal\n  2.  System retrieves meal information\n  3.  System verifies user eligibility\n  4.  System verifies reservation deadline\n  5.  System verifies meal capacity\n  6.  System verifies user has no duplicate reservation\n  7.  System calculates applicable price\n  8.  System creates the reservation\n  9.  System records the reservation\n  10. System displays confirmation\n\nalternative_flows:\n  ALT-A (at step 5): Capacity Full\n    - System detects capacity reached\n    - System rejects reservation\n    - System informs user\n\n  ALT-B (at step 6): Duplicate Reservation\n    - System detects existing reservation\n    - System rejects request\n\npostconditions:\n  - Success: A valid reservation exists\n  - Failure: No state change\n\nrelated_requirements: [FR-05, FR-07, FR-08]\nrelated_business_rules: [BR-01, BR-02, BR-04, BR-05]\nUse Case Specification — UC-03 Reserve Meal\nنکته\n\nبخش related_requirements و related_business_rules در Traceability Matrix اولین لنگر است. اگر این بخش ناقص باشد، Traceability Matrix هم ناقص خواهد بود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 37,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-37",
+    "title": "Domain Model",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۷\n#۳۷\nDomain Model\n\nArtifact 4: مدل مفهومی دامنه\n\nDomain Model مفاهیم اصلی کسب‌وکار را به‌صورت موجودیت‌های مرتبط نشان می‌دهد. این مدل از Use Caseها و Business Rules استخراج می‌شود. Domain Model باید مفاهیم و روابط دامنه را نشان دهد، نه صرفاً جداول دیتابیس را بازتولید کند. این تمایز مهم است: مدل دامنه مفهومی است، جدول دیتابیس فیزیکی.\n\nمفاهیم اصلی دامنه\nمدل دامنه UFMS — مفاهیم و روابط\nروابط مهم\nمدل دامنه UFMS — مفاهیم و روابط\nنکته طراحی\n\nهر رابطه در این مدل به یک FK در دیتابیس تبدیل می‌شود، اما برعکس آن صادق نیست — بعضی FKها فقط برای عملکرد هستند، نه رابطه دامنه. این تمایز در طراحی دیتابیس باید حفظ شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 38,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-38",
+    "title": "Sequence / Activity / State Models",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۸\n#۳۸\nSequence / Activity / State Models\n\nArtifact 4.2: مدل‌های پویا\n\nSequence Model — UC-03\nنمودار Sequence — UC-03 Reserve Meal (UFMS)\n\nنمودار Sequence باید به‌صورت صریح نشان دهد: (۱) authentication context، (۲) eligibility validation، (۳) capacity validation، (۴) duplicate reservation validation، (۵) price calculation، (۶) reservation creation، (۷) payment processing، و (۸) notification. هر مرحله یک فراخوانی در کد می‌شود.\n\nActivity Model\nنمودار Activity — جریان رزرو غذا با مسیرهای شکست\nشرایط شکست\n\nشرایط شکست باید از مسیرهای جایگزین صریح جدا شوند. هر شرط شکست به یک alternative flow در Use Case Spec و یک error response در API تبدیل می‌شود.\n\nState Model — Reservation\nنمودار State Machine — چرخه حیات Reservation (UFMS)\nقانون Transition\n\nTransitionها باید به eventها و business rules معتبر وصل باشند. هر transition نامعتبر در کد باید به‌صورت صریح رد شود. این بررسی در State Machine class پیاده‌سازی می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 39,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-39",
+    "title": "Architecture Alternatives",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۳۹\n#۳۹\nArchitecture Alternatives\n\nArtifact 5: انتخاب معماری\n\nمعماری باید توجیه شود، نه به این دلیل که یک فناوری خاص ترند است انتخاب گردد. برای MVP مرجع، Modular Monolith یک معماری مناسب است. تیم باید حداقل سه جایگزین را در نظر بگیرد و به‌صورت صریح توضیح دهد که چرا این انتخاب را کرده، نه اینکه صرفاً بگوید «چون مدرن است».\n\nAlternative A — Traditional Monolith\nمزایا\n\nاستقرار ساده، پیچیدگی عملیاتی پایین، توسعه آسان.\n\nمعایب\n\nجداسازی ماژول ضعیف‌تر، مشکلات احتمالی قابلیت نگهداری.\n\nAlternative B — Modular Monolith (پیشنهادی)\nمزایا\n\nاستقرار نسبتاً ساده، جداسازی منطقی قوی، پیچیدگی عملیاتی پایین، مناسب برای یک سامانه دانشگاهی متوسط، امکان مهاجرت آینده به خدمات.\n\nمعایب\n\nنیازمند انضباط در مرزهای ماژول.\n\nAlternative C — Microservices\nمزایا\n\nاستقرار مستقل، مقیاس‌پذیری مستقل، جداسازی سرویس.\n\nمعایب\n\nپیچیدگی سیستم توزیع‌شده، شکست‌های شبکه، تراکنش‌های توزیع‌شده، بار عملیاتی بالا، الزامات پایش بیشتر.\n\nقانون انتخاب\n\nبرای یک MVP دانشجویی کوچک، microservices نباید صرفاً برای نشان دادن microservices معرفی شود. این یک anti-pattern است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 40,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-40",
+    "title": "Proposed Architecture & ADR-01",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۰\n#۴۰\nProposed Architecture & ADR-01\n\nArtifact 5.2: معماری پیشنهادی و ADR\n\nProposed Architecture\nمعماری لایه‌ای ماژولار — UFMS\nADR-01 — Modular Monolith\nYAML\ndecision:\n  id: ADR-01\n  title: Use Modular Monolith\n\ncontext:\n  System has multiple business domains but is\n  an MVP developed by a small team.\n\nproblem:\n  Traditional monolith, modular monolith,\n  or microservices?\n\nalternatives:\n  1. Traditional Monolith\n  2. Modular Monolith\n  3. Microservices\n\ndecision:\n  Use Modular Monolith.\n\ndecision_criteria:\n  - maintainability\n  - development complexity\n  - scalability\n  - deployment complexity\n  - team size\n  - operational cost\n\nconsequences:\n  positive:\n    - clear module boundaries\n    - relatively simple deployment\n    - easier debugging\n    - lower infrastructure complexity\n  negative:\n    - requires architectural discipline\n    - modules not physically isolated\nArchitecture Decision Record #1\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 41,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-41",
+    "title": "Quality Scenarios",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۱\n#۴۱\nQuality Scenarios\n\nArtifact 5.3: سناریوهای کیفیت\n\nQuality Scenarios سناریوهای قابل اندازه‌گیری هستند که NFRها را به‌صورت عینی آزمایش می‌کنند. این سناریوها در Milestone M4 تولید می‌شوند و در M7 به‌صورت عملی تست می‌گردند. هر سناریو باید دارای trigger، actor، condition و measurable outcome باشد.\n\nPerformance Scenario\nNFR-P-01 و NFR-P-02\n\nوقتی ۵۰۰ کاربر همزمان درخواست دسترسی به غذا می‌دهند، ۹۵٪ درخواست‌ها باید در کمتر از ۲ ثانیه تکمیل شوند. این سناریو با k6 load test اجرا می‌شود.\n\nSecurity Scenario\nNFR-S-01\n\nوقتی یک دانشجو سعی می‌کند به یک endpoint اداری دسترسی پیدا کند، سیستم باید درخواست را رد کند و رویداد امنیتی را ثبت نماید. این سناریو با penetration test و unit test روی RBAC بررسی می‌شود.\n\nMaintainability Scenario\nNFR-M-01\n\nافزودن یک قانون جدید رزرو غذا نباید نیازمند تغییر در ماژول‌های غیرمرتبط باشد. این سناریو با code review و بررسی تغییرات git در PR بررسی می‌شود.\n\nScalability Scenario\nNFR-SC-01\n\nافزودن یک رستوران جدید باید نیازمند تغییرات پیکربندی و داده باشد، نه بازطراحی معماری. این سناریو با تست عملی افزودن رستوران در staging بررسی می‌شود.\n\nنکته\n\nهر Quality Scenario باید یک test قابل اجرا داشته باشد. اگر نتوانستید برای آن یک test بنویسید، یعنی سناریو مبهم است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 42,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-42",
+    "title": "Detailed Design",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۲\n#۴۲\nDetailed Design\n\nArtifact 6: طراحی تفصیلی ماژول Reservation\n\nماژول اصلی Reservation شامل چندین Component است که هر کدام مسئولیت مشخصی دارند. این Componentها در Milestone M5 به‌صورت کامل طراحی می‌شوند و سپس در M6 با کمک AI پیاده‌سازی می‌گردند. جداسازی مسئولیت‌ها بر اساس اصل Single Responsibility است.\n\nReservationController\nمسئولیت‌ها\n\nدریافت درخواست‌ها، اعتبارسنجی فرمت درخواست، فراخوانی سرویس‌های کاربردی. Controller نباید منطق کسب‌وکار داشته باشد.\n\nReservationService\nمسئولیت‌ها\n\nهماهنگی workflow رزرو، اعمال business rules، مدیریت مرزهای تراکنش. این Component قلب ماژول است.\n\nEligibilityService\nمسئولیت‌ها\n\nتعیین واجد شرایط بودن کاربر برای رزرو. این سرویس BR-04 را اعمال می‌کند.\n\nMealService\nمسئولیت‌ها\n\nبازیابی اطلاعات غذا، اعتبارسنجی ظرفیت. این سرویس BR-01 را اعمال می‌کند.\n\nPaymentService\nمسئولیت‌ها\n\nمحاسبه و پردازش پرداخت. این سرویس BR-05 و BR-08 را اعمال می‌کند.\n\nNotificationService\nمسئولیت‌ها\n\nارسال اعلان‌های رزرو. این سرویس FR-12 را پشتیبانی می‌کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 43,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-43",
+    "title": "Structured Specification",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۳\n#۴۳\nStructured Specification\n\nArtifact 6.2: specification قابل ماشین‌خوانی\n\nیکی از Artifactهای مرکزی درس، یک specification قابل ماشین‌خوانی است. این spec ورودی AI Transformation است و باید human-readable، machine-readable، versionable، traceable و usable به‌عنوان ورودی AI tools باشد. تیم باید حداقل سه Use Case اصلی را به این شکل specification کند.\n\nYAML\nuse_case:\n  id: UC-03\n  name: Reserve Meal\n\n  actor:\n    primary: Student\n\n  preconditions:\n    - authenticated\n    - eligible_for_reservation\n    - reservation_period_open\n\n  business_rules:\n    - BR-01\n    - BR-02\n    - BR-04\n    - BR-05\n\n  steps:\n    - validate_user\n    - validate_eligibility\n    - validate_deadline\n    - validate_capacity\n    - validate_duplicate_reservation\n    - calculate_price\n    - create_reservation\n    - process_payment\n    - send_confirmation\n\n  alternatives:\n    - id: ALT-01\n      condition: meal_capacity_full\n      action: reject_reservation\n\n    - id: ALT-02\n      condition: duplicate_reservation\n      action: reject_reservation\n\n  success:\n    - reservation_created\n    - payment_recorded\n    - confirmation_sent\nStructured Specification — UC-03 Reserve Meal\nویژگی‌های Spec خوب\n\nاین spec باید: (۱) human-readable باشد، (۲) machine-readable باشد، (۳) versionable باشد، (۴) traceable باشد، (۵) به‌عنوان ورودی AI tools قابل استفاده باشد. این پنج ویژگی در Milestone M5 بررسی می‌شوند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 44,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-44",
+    "title": "API Design & Database Design",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۴\n#۴۴\nAPI Design & Database Design\n\nArtifact 6.3 و 6.4: طراحی API و دیتابیس\n\nAPI Design — POST /api/reservations\nJSON\nPOST /api/reservations\n\nRequest:\n{\n  \"mealId\": \"MEAL-1024\"\n}\n\nResponse (201 Created):\n{\n  \"reservationId\": \"RES-5001\",\n  \"status\": \"CONFIRMED\",\n  \"amount\": 85000\n}\n\nPossible errors:\n  401 Unauthorized\n  403 Forbidden\n  409 Capacity Full\n  409 Duplicate Reservation\n  422 Invalid Meal\nExample API — Reserve Meal\n\nطراحی API باید شامل: endpoint، HTTP method، authentication، authorization، request، response، validation، errors و business rules باشد. اینها به‌صورت OpenAPI 3.1 مستند می‌شوند.\n\nDatabase Design — Main Entities\nTEXT\nusers\nroles\nuser_roles\nrestaurants\nmenus\nmeals\nreservations\npayments\npickups\ninventory_items\ninventory_transactions\nnotifications\naudit_logs\nConstraints مهم\nunique reservation per user/meal (BR-02)\nforeign-key integrity\nvalid reservation status (state machine)\npayment-reservation relationship (BR-08)\nauditability of sensitive changes (BR-10)\nقانون طراحی دیتابیس\n\nمدل دیتابیس باید از domain و requirements مشتق شود، نه به‌صورت مستقل طراحی گردد. اگر جدولی پیدا کردید که در Domain Model نیست، یعنی یا Domain Model ناقص است یا جدول اضافی است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 45,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-45",
+    "title": "AI-Assisted Implementation Pipeline",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۵\n#۴۵\nAI-Assisted Implementation Pipeline\n\nArtifact 7: pipeline کنترل‌شده AI\n\npipeline توصیه‌شده برای transformation کنترل‌شده از Artifactهای مهندسی به کد. AI نباید اختیار نامحدود روی کل پروژه داشته باشد. در عوض، تیم باید transformation را به taskهای کنترل‌شده تقسیم کند. این یک فرآیند مهندسی قابل ممیزی ایجاد می‌کند.\n\nPipeline کنترل‌شده AI — از Requirements تا Acceptance\nنمونه Prompt کنترل‌شده\nنمونه prompt برای UC-03\n\n«UC-03 را با استفاده از specification ساختاریافته ضمیمه، domain model، API specification و business rules پیاده‌سازی کن. قوانین کسب‌وکاری که به‌صورت صریح در Artifactهای ارائه‌شده تعریف نشده‌اند را معرفی نکن.»\n\nقانون طلایی\n\nاین رویکرد یک فرآیند مهندسی قابل ممیزی ایجاد می‌کند. هر transformation باید قابل ردیابی به Artifactهای ورودی و قابل اعتبارسنجی با تست باشد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 46,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-46",
+    "title": "AI Transformation Record",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۶\n#۴۶\nAI Transformation Record\n\nArtifact 7.2: ثبت رسمی هر transformation\n\nهر transformation مهم AI-assisted باید یک record داشته باشد. این record در پوشه 07-ai-transformation/transformation-records/ نگهداری می‌شود و در ارزیابی نهایی بررسی می‌گردد. این Artifact چیزی است که پروژه را از یک «پروژه ChatGPT» متمایز می‌کند.\n\nYAML\ntransformation:\n  id: TR-03\n  task: Implement UC-03 (Reserve Meal)\n\nai_tool:\n  name: Coding Agent (e.g. Claude / GPT-4)\n  version: <recorded>\n\ninput_artifacts:\n  - FR-05  (Meal Reservation)\n  - BR-01  (Capacity rule)\n  - BR-02  (No duplicate)\n  - BR-04  (Eligibility)\n  - BR-05  (Price correspondence)\n  - UC-03  (Use Case Spec)\n  - SEQ-03 (Sequence Diagram)\n  - API-03 (API Specification)\n  - structured specification (YAML)\n\nprompt:\n  The team records the actual prompt used.\n\nai_output:\n  Generated implementation (initial draft).\n\nhuman_review:\n  The team identifies:\n    - correct parts\n    - incorrect assumptions\n    - missing validations\n    - architectural violations\n\nchanges_made:\n  Human modifications are recorded\n  with explanation.\n\nvalidation:\n  - Automated tests (unit + integration)\n  - Manual acceptance test\n\nfinal_status:\n  Accepted / Modified / Rejected\nTransformation Record — TR-03\nارزش این Artifact\n\nاین record نشان می‌دهد تیم: (۱) چه ورودی به AI داد، (۲) چه خروجی گرفت، (۳) چه چیزی را تغییر داد و چرا، (۴) چطور اعتبارسنجی کرد. این یعنی دانشجو مالک فرآیند است، نه صرفاً اپراتور AI.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 47,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-47",
+    "title": "AI Must Also Be Tested",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۷\n#۴۷\nAI Must Also Be Tested\n\nArtifact 7.3: کد AI-generated هم باید تست شود\n\nدانشجویان باید فرض کنند که کد AI-generated ممکن است شامل موارد زیر باشد. صرفاً به این دلیل که کد کامپایل می‌شود، به این معنی نیست که درست است. کامپایل، اعتبارسنجی نیست. هر کد AI-generated باید از طریق تست‌های خودکار و review انسانی اعتبارسنجی شود.\n\nخطرات رایج در کد AI-generated\nفرضیات نادرست درباره دامنه\nقوانین کسب‌وکار مفقود\nمنطق تکراری\nآسیب‌پذیری‌های امنیتی\nمدیریت exception نادرست\nنام‌گذاری ناسازگار\nنقض معماری\nAPIهای توهمی (hallucinated)\nعملیات نادرست دیتابیس\nقانون پذیرش\n\nهیچ کد AI-generated بدون Human Review و Validation پذیرفته نمی‌شود. اگر کد review نشد و merge شد، کل آن بخش نمره AI Transformation صفر می‌شود.\n\nنکته عملی\n\nتیم باید در transformation record صریحاً بنویسد کدام بخش‌های کد AI را تغییر داد و چرا. این تغییرات در++ مواردی مثل مدیریت تراکنش، idempotency و audit logging رایج است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 48,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-48",
+    "title": "Testing — از Artifactها تا Test",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۸\n#۴۸\nTesting — از Artifactها تا Test\n\nArtifact 8: استراتژی تست\n\nتست باید از Artifactهای مهندسی مشتق شود. هرم تست باید شامل شش سطح باشد. هر سطح هدف متمایزی دارد و ابزار متفاوتی نیاز دارد. تیم باید همه سطوح را پوشش دهد، نه فقط unit test.\n\nTesting Pyramid\nسطح\tهدف\tابزار پیشنهادی\nUnit Tests\tتست کامپوننت‌های فردی\tVitest / Jest\nIntegration Tests\tتعامل بین ماژول‌ها و اجزای خارجی\tVitest + Testcontainers\nAPI Tests\tتست قراردادهای API\tSupertest / Postman\nAcceptance Tests\tتست رضایت requirementها\tCucumber / Playwright\nPerformance Tests\tتست requirementهای قابل اندازه‌گیری\tk6 / Locust\nSecurity Tests\tتست authorization و رفتار امنیتی\tOWASP ZAP\nقانون پوشش\n\nهر requirement باید حداقل در یک تست پوشش داده شود. اگر FR در هیچ test ای پوشش ندارد، یعنی یا تست ناقص است یا FR پیاده‌سازی نشده. این بررسی در Traceability Matrix انجام می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 49,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-49",
+    "title": "Example Test Cases",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۴۹\n#۴۹\nExample Test Cases\n\nArtifact 8.2: نمونه Test Case\n\nهر Test Case باید به یک Requirement وصل باشد و سناریو، پیش‌شرط و نتیجه مورد انتظار داشته باشد. در اینجا چهار Test Case نمونه برای UC-03 می‌آوریم که هر کدام به یک FR یا BR وصل هستند. این Test Caseها در Milestone M7 به‌صورت خودکار اجرا می‌شوند.\n\nTest Case\tRequirement\tسناریو\tنتیجه مورد انتظار\nTC-01\tFR-05\tکاربر معتبر غذا قابل رزرو رزرو می‌کند\tرزرو ساخته می‌شود\nTC-02\tBR-01\tکاربر غذای تکمیل‌شده ظرفیت را رزرو می‌کند\tرزرو رد می‌شود\nTC-03\tBR-02\tکاربر همان غذا را دوبار رزرو می‌کند\tرزرو دوم رد می‌شود\nTC-04\tBR-03\tکاربر بعد از deadline لغو می‌کند\tلغو رد می‌شود\nنکته تست\n\nهر Test Case باید idempotent باشد (اجرای چندباره همان نتیجه). باید سریع باشد (زیر ۱ ثانیه برای unit) و قابل اجرا در CI باشد. اگر تستی این شرایط را نداشت، در CI نمی‌تواند اجرا شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 50,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-50",
+    "title": "Traceability — ستون فقرات پروژه",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۰\n#۵۰\nTraceability — ستون فقرات پروژه\n\nArtifact 9: ردیابی کامل\n\nیکی از مهم‌ترین requirementهای پروژه، traceability است. زنجیره زیر باید قابل نشان‌دادن باشد. تیم باید بتواند به سؤال «این requirement کجا پیاده‌سازی شد؟» و «کدام test نشان می‌دهد که این requirement کار می‌کند؟» پاسخ دهد. این قابلیت، تمایز اصلی پروژه است.\n\nزنجیره ردیابی — از Requirement تا Test Case\nنکته کلیدی\n\nاگر یک FR در همه مراحل قابل ردیابی نباشد، یعنی چیزی در زنجیره گم شده. این یکی از مهم‌ترین معیارهای ارزیابی پروژه است و در Review شفاهی بررسی می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 51,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-51",
+    "title": "Change Management",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۱\n#۵۱\nChange Management\n\nArtifact 10: مدیریت تغییر در پایان ترم\n\nحدود پایان ترم، استاد یک تغییر کنترل‌شده معرفی می‌کند. دانشجویان نباید فوراً کد را تغییر دهند. اول باید تحلیل تأثیر انجام دهند. این تمرین، ارزش واقعی تحلیل و طراحی را در یک محیط AI-assisted نشان می‌دهد و در Milestone M7 انجام می‌شود.\n\nنمونه Change Request\nتغییر نمونه\n\nدانشگاه تصمیم می‌گیرد که دانشجویان ممکن است برای شخص دیگری غذا رزرو کنند، با رعایت یک سهم روزانه قابل پیکربندی برای delegation.\n\nفرآیند مدیریت تغییر\nفرآیند مدیریت تغییر — از Change Request تا Regression Testing\nهدف تمرین\n\nاین نشان می‌دهد که مدل‌ها و specificationها نقشه‌ای از سیستم ارائه می‌دهند. اگر تیم نتواند تأثیر تغییر را تحلیل کند، یعنی Artifactهای ناقص دارد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 52,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-52",
+    "title": "Change Impact Analysis",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۲\n#۵۲\nChange Impact Analysis\n\nArtifact 10.2: تحلیل تأثیر تغییر\n\nدانشجویان باید برای Change Request نمونه، Artifactهای تغییر یافته و تغییر نیافته را به‌صورت صریح شناسایی کنند. هدف این است که نشان دهند مدل‌ها و specificationها نقشه‌ای از سیستم ارائه می‌دهند و قابلیت تحلیل تأثیر را دارند.\n\nChanged (تغییر یافته)\nFR-05 (Meal Reservation) — اضافه شدن قابلیت delegation\nBR-04 (Eligibility) — باید delegate را هم بررسی کند\nUC-03 (Reserve Meal) — اضافه شدن گام delegate\nDomain Model — اضافه شدن مفهوم Delegation\nSequence Diagram — اضافه شدن فراخوانی جدید\nReservationService — اضافه شدن متد جدید\nDatabase — اضافه شدن جدول delegations\nAPI — اضافه شدن فیلد delegateId\nTests — اضافه شدن test caseهای delegate\nPotentially Unchanged (تغییر نیافته)\nInventory Management — هیچ ارتباطی با delegation ندارد\nReporting — ممکن است به‌روز شود ولی الزامی نیست\nRestaurant Management — تأثیری ندارد\nAuthentication Logic — هیچ ارتباطی ندارد\nنکته ارزشمند\n\nاین تحلیل نشان می‌دهد که مدل‌ها و specificationها واقعاً نقشه سیستم هستند. اگر تیم نتواند این تحلیل را انجام دهد، یعنی Artifactهایش صرفاً تزئینی بوده‌اند، نه ابزار مهندسی.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 53,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-53",
+    "title": "Semester Execution Framework",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۳\n#۵۳\nSemester Execution Framework\n\nArtifact 11: چارچوب اجرای ترم\n\nهمه تیم‌ها از همان هفت Milestone پیروی می‌کنند. این چارچوب، ۱۴ هفته ترم را پوشش می‌دهد و هر Milestone خروجی مشخصی دارد. تقویم دقیق می‌تواند به تقویم دانشگاه تنظیم شود، ولی ترتیب و محتوای Milestoneها ثابت است. این یکسان‌سازی امکان مقایسه تیم‌ها را در ارزیابی فراهم می‌کند.\n\nMilestone\tهفته‌ها\tخروجی اصلی\nM1\t۱-۲\tProblem & Scope\nM2\t۳-۴\tRequirements\nM3\t۵-۶\tAnalysis Models\nM4\t۷-۸\tArchitecture\nM5\t۹-۱۰\tDetailed Design & Specification\nM6\t۱۱-۱۲\tAI-Assisted Implementation\nM7\t۱۳-۱۴\tTesting, Traceability & Change\nهفت Milestone چارچوب اجرای ۱۴ هفته‌ای\nقانون Gate\n\nهر Milestone دارای Gate است. تیم نمی‌تواند وارد Milestone بعدی شود بدون اینکه Gate قبلی عبور کند. این از انتقال نقص‌ها به مراحل بعدی جلوگیری می‌کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 54,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-54",
+    "title": "M1 — Problem & Scope, M2 — Requirements, M3 — Analysis",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۴\n#۵۴\nM1 — Problem & Scope, M2 — Requirements, M3 — Analysis\n\nArtifact 11.2: Milestoneهای اولیه\n\nM1 — Problem & Scope (هفته ۱-۲)\n\nArtifactهای مورد نیاز: project-charter.md، problem-statement.md، stakeholders.md، scope.md. دانشجویان باید پاسخ دهند: چه مسئله‌ای را حل می‌کنیم؟ چه کسی آن را تجربه می‌کند؟ چرا مهم است؟ ذی‌نفعان چه کسانی هستند؟ چه چیزی داخل سیستم است؟ چه چیزی خارج از سیستم است؟\n\nM1 Gate\n\nاگر مسئله مبهم باشد یا Scope بیش از حد بزرگ باشد، تیم نمی‌تواند وارد M2 شود. این Gate در جلسه Review با استاد بررسی می‌شود.\n\nM2 — Requirements (هفته ۳-۴)\n\nArtifactهای مورد نیاز: functional-requirements.md، non-functional-requirements.md، business-rules.md، assumptions.md. تعداد پیشنهادی: ۱۰ تا ۲۵ FR. تعداد خودش نمره ندارد — کیفیت مهم است. Requirements باید واضح، قابل تست، اتمیک، قابل ردیابی و سازگار باشند.\n\nM3 — Analysis Modeling (هفته ۵-۶)\n\nArtifactهای مورد نیاز در پوشه‌های 03-specifications و 04-models. حداقل: Use Case Model، Detailed Use Cases، Domain Model، Sequence Diagrams، Activity Diagrams و State Diagrams (در صورت لزوم). حداقل سه Use Case اصلی باید به‌صورت کامل مدل شوند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 55,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-55",
+    "title": "M4 — Architecture, M5 — Design, M6 — AI Impl, M7 — Testing",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۵\n#۵۵\nM4 — Architecture, M5 — Design, M6 — AI Impl, M7 — Testing\n\nArtifact 11.3: Milestoneهای پیشرفته\n\nM4 — Architecture (هفته ۷-۸)\n\nArtifactهای مورد نیاز: architecture.md، architecture-diagram، quality-attributes.md، quality-scenarios.md، architecture-alternatives.md و پوشه ADRs/. تیم باید حداقل سه جایگزین را در نظر بگیرد و توضیح دهد چرا این معماری انتخاب شد، نه اینکه بگوید «چون مدرن است».\n\nM5 — Detailed Design & Specification (هفته ۹-۱۰)\n\nArtifactهای مورد نیاز در 06-design: component-design.md، class-design.md، database-design.md، api-design.md، design-patterns.md و در specs/ حداقل UC-01.yaml تا UC-03.yaml. حداقل سه Use Case اصلی باید specification ساختاریافته داشته باشند.\n\nM6 — AI-Assisted Implementation (هفته ۱۱-۱۲)\n\nArtifactهای مورد نیاز در 07-ai-transformation: پوشه transformation-records، پوشه prompts و ai-review.md. تیم باید AI tool، task، input artifacts، prompt، output، errors، human modifications و validation را مستند کند. حداقل پیاده‌سازی: سه Use Case اصلی end-to-end. این پیاده‌سازی باید برای نشان‌دادن فرآیند مهندسی کافی باشد، نه ساخت همه featureهای ممکن.\n\nM7 — Testing, Traceability & Change (هفته ۱۳-۱۴)\n\nArtifactهای مورد نیاز در 08-testing، 09-traceability و 10-final-report. تیم باید ارائه دهد: unit tests، integration tests، acceptance tests، test report، traceability matrix، change impact analysis، final report، presentation و demonstration.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 56,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-56",
+    "title": "Standard Git Repository",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۶\n#۵۶\nStandard Git Repository\n\nArtifact 12: ساختار استاندارد Repository\n\nهر تیم باید تقریباً از همان ساختار repository استفاده کند. این یکسان‌سازی امکان مقایسه تیم‌ها و ارزیابی سریع را فراهم می‌کند. همه Artifactهای مهندسی در docs/ قرار می‌گیرند و code در src/. این جداسازی اهمیت دارد چون Artifactهای مهندسی source-of-truth هستند، نه صرفاً documentation.\n\nساختار استاندارد Repository\nنکته\n\nترتیب پوشه‌های docs دقیقاً همان ترتیب فرآیند است. هر پوشه ورودی پوشه بعدی است. این یک pipeline واقعی مهندسی است، نه یک لیست فایل.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 57,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-57",
+    "title": "Artifact Identification",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۷\n#۵۷\nArtifact Identification\n\nArtifact 13: شناسه‌گذاری Artifactها\n\nArtifactها باید شناسه پایدار داشته باشند. این شناسه‌ها در Traceability Matrix استفاده می‌شوند و امکان ردیابی کامل را فراهم می‌کنند. بدون شناسه پایدار، traceability غیرممکن است. این شناسه‌ها در طول ترم نباید تغییر کنند.\n\nشناسه\tنوع Artifact\nFR-01\tFunctional Requirement\nNFR-P-01\tPerformance Requirement\nNFR-S-01\tSecurity Requirement\nBR-01\tBusiness Rule\nUC-01\tUse Case\nDM-01\tDomain Model\nSEQ-01\tSequence Diagram\nACT-01\tActivity Diagram\nST-01\tState Model\nADR-01\tArchitecture Decision\nAPI-01\tAPI Specification\nTC-01\tTest Case\nTR-01\tTraceability Record\nTRF-01\tAI Transformation Record\nCR-01\tChange Request\nفایده شناسه‌گذاری\n\nاین شناسه‌گذاری، پروژه را قابل مدیریت و قابل ردیابی می‌کند. در Review شفاهی، استاد می‌تواند بپرسد: «BR-02 کجا پیاده‌سازی شده؟» و تیم باید بتواند به کد و تست مربوطه اشاره کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 58,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-58",
+    "title": "Definition of Done",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۸\n#۵۸\nDefinition of Done\n\nArtifact 14: تعریف کامل بودن\n\nیک Artifact تنها زمانی کامل محسوب می‌شود که هر هفت شرط زیر برقرار باشد. این Definition of Done، تضمین می‌کند که Artifactها واقعاً مهندسی شده‌اند، نه صرفاً تولید شده. در Review شفاهی، استاد هر یک از این شرط‌ها را بررسی می‌کند.\n\n۱\nوجود دارد (It exists)\n۲\nReview شده است (It is reviewed)\n۳\nاز نظر داخلی سازگار است (Internally consistent)\n۴\nبا Artifactهای قبلی سازگار است (Consistent with previous artifacts)\n۵\nشناسه دارد (Has an identifier)\n۶\nبه Git commit شده است (Committed to Git)\n۷\nبه Artifactهای مرتبط وصل شده است (Linked to related artifacts)\nقانون مهم\n\n«نمودار وجود دارد» به این معنی نیست که «نمودار کامل است». این تمایز در ارزیابی نهایی بسیار مهم است. یک نمودار بدون شناسه و بدون link، ناقص است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 59,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-59",
+    "title": "Five Cross-Cutting Quality Criteria",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۵۹\n#۵۹\nFive Cross-Cutting Quality Criteria\n\nArtifact 15: پنج معیار کیفیت\n\nهر Artifact اصلی باید با پنج بُعد ارزیابی شود. این پنج معیار، cross-cutting هستند یعنی در همه Milestoneها اعمال می‌شوند. در ارزیابی نهایی، هر Artifact با این پنج معیار بررسی می‌گردد. اگر Artifactی در یک معیار ضعیف باشد، نمره پایین می‌گیرد.\n\nCorrectness (درستی)\n\nآیا از نظر فنی و مفهومی درست است؟ آیا منطق آن قابل دفاع است؟ این معیار با code review و peer review بررسی می‌شود.\n\nCompleteness (کامل بودن)\n\nآیا عناصر مهمی مفقود هستند؟ آیا تمام سناریوها پوشش داده شده‌اند؟ این معیار با بررسی در برابر Requirements و Use Caseها انجام می‌شود.\n\nConsistency (سازگاری)\n\nآیا با Artifactهای دیگر تضاد دارد؟ آیا Domain Model با Database Schema سازگار است؟ آیا Sequence Diagram با Use Case Spec سازگار است؟ این معیار با Traceability Matrix بررسی می‌شود.\n\nTraceability (قابلیت ردیابی)\n\nآیا می‌توان منشأ و پیامدهای آن را شناسایی کرد؟ آیا می‌توان به Artifactهای قبلی و بعدی وصل شد؟ این معیار با بررسی linkها در Traceability Matrix انجام می‌شود.\n\nJustification (توجیه)\n\nآیا تیم می‌تواند توضیح دهد چرا این‌گونه طراحی شده؟ آیا تصمیم‌ها قابل دفاع هستند؟ این معیار در Review شفاهی بررسی می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 60,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-60",
+    "title": "Common Anti-Patterns",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۰\n#۶۰\nCommon Anti-Patterns\n\nArtifact 16: الگوهای ضد\n\nهفت anti-pattern رایج که در پروژه‌های دانشجویی دیده می‌شود. تیم باید از این الگوها پرهیز کند. اگر در Review شفاهی یا ارزیابی نهایی این الگوها شناسایی شوند، نمره پایین می‌آورد. آگاهی از این anti-patternها به همان اندازه دانستن best practices مهم است.\n\nCode First\nمشکل\n\nدانشجویان فوراً شروع به برنامه‌نویسی می‌کنند. Requirements و طراحی به مستندات retroactive تبدیل می‌شوند. نتیجه: کد بدون دلیل، مستندات بدون ارتباط با کد.\n\nAI First\nمشکل\n\nدانشجویان از AI می‌خواهند کل سیستم را تولید کند. تیم نمی‌تواند معماری یا منطق کسب‌وکار را توضیح دهد. نتیجه: پروژه‌ای که تیم مالک آن نیست.\n\nDiagram Decoration\nمشکل\n\nدانشجویان نمودارهای UML را صرفاً چون استاد خواسته تولید می‌کنند. مدل‌ها هیچ رابطه‌ای با پیاده‌سازی ندارند. نتیجه: نمودارهای تزئینی، نه ابزار مهندسی.\n\nDocumentation Afterthought\nمشکل\n\nمستندات بلافاصله قبل از تحویل تولید می‌شود. Traceability مصنوعی است. نتیجه: مستنداتی که واقعیت پروژه را نشان نمی‌دهند.\n\nPattern Shopping\nمشکل\n\nدانشجویان patternهای GoF را بدون مسئله طراحی واقعی وارد می‌کنند. پیچیدگی بدون فایده مهندسی اضافه می‌شود. نتیجه: کد بیش از حد پیچیده.\n\nMicroservice Inflation\nمشکل\n\nدانشجویان هر domain object را به یک service تبدیل می‌کنند. پیچیدگی سیستم توزیع‌شده بدون توجیه معرفی می‌شود. نتیجه: پروژه‌ای که قابل نگهداری نیست.\n\nAI Black Box\nمشکل\n\nدانشجویان نمی‌توانند توضیح دهند کد تولیدشده چطور به Requirements وصل است. مسئولیت مهندسی از دست می‌رود. نتیجه: پروژه‌ای که تیم واقعاً نمی‌فهمد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 61,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-61",
+    "title": "Assessment Rubric",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۱\n#۶۱\nAssessment Rubric\n\nArtifact 17: روبریک ارزیابی\n\nاین روبریک، نمره نهایی پروژه را تعیین می‌کند. توجه کنید که Implementation فقط ۱۰٪ است و Testing & Validation ۱۰٪ — یعنی کد در مجموع ۲۰٪ نمره را تشکیل می‌دهد. ۸۰٪ نمره به فرآیند مهندسی و تحلیل تعلق می‌گیرد. این عمدی است: ما می‌خواهیم دانشجو فرآیند را یاد بگیرد، نه صرفاً کد بنویسد.\n\nدسته\tوزن\nProblem & Requirements\t۱۵٪\nAnalysis & Modeling\t۱۵٪\nArchitecture\t۱۵٪\nDetailed Design\t۱۵٪\nAI-Assisted Engineering\t۱۰٪\nImplementation\t۱۰٪\nTesting & Validation\t۱۰٪\nTraceability\t۵٪\nDocumentation & Presentation\t۵٪\nمجموع\t۱۰۰٪\nنکته طراحی\n\nوزن‌دهی به‌گونه‌ای است که فرآیند، استدلال و consistency ارزش بیشتری از کد داشته باشند. این پارادایم دقیقاً نقطه مقابل پروژه‌های تمرینی سنتی است که کد ۵۰-۶۰٪ نمره را دارد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 62,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-62",
+    "title": "Milestone Assessment",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۲\n#۶۲\nMilestone Assessment\n\nArtifact 17.2: نمره‌دهی Milestoneها\n\nعلاوه بر روبریک کلی، هر Milestone دارای وزن جداگانه است. این نمره‌دهی، انگیزه را در طول ترم حفظ می‌کند و از اینکه تیم در پایان ترم همه چیز را در یک هفته جمع کند، جلوگیری می‌نماید. M6 و M7 (پیاده‌سازی و تست) وزن بالاتری دارند چون فرآیند را به نتیجه می‌رسانند.\n\nMilestone\tوزن\nM1 — Problem & Scope\t۵٪\nM2 — Requirements\t۱۰٪\nM3 — Analysis Modeling\t۱۵٪\nM4 — Architecture\t۱۵٪\nM5 — Detailed Design\t۱۵٪\nM6 — AI-Assisted Implementation\t۲۰٪\nM7 — Testing, Traceability & Change\t۲۰٪\nمجموع\t۱۰۰٪\nقانون Gate\n\nهر Milestone دارای Gate است. اگر تیم Gate یک Milestone را رد نکرد، نمره آن Milestone صفر می‌شود و نمی‌تواند وارد Milestone بعدی شود بدون اینکه問題 را اصلاح کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 63,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-63",
+    "title": "Individual Contribution",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۳\n#۶۳\nIndividual Contribution\n\nArtifact 18: نقش‌های فردی\n\nاگرچه پروژه team-based است، هر دانشجو باید مسئولیت‌های قابل شناسایی داشته باشد. این نقش‌ها برای اطمینان از توزیع کار تعریف می‌شوند. اما تخصص نباید به انزوا تبدیل شود. هر دانشجو باید کل زنجیره مهندسی را درک کند. در ارزیابی نهایی، استاد ممکن است از هر دانشجو درباره هر بخشی از پروژه سؤال بپرسد.\n\nنقش‌های ممکن\nRequirements Engineer — استخراج و تدوین Requirements\nModeling Lead — مدل‌سازی UML و Domain\nArchitecture Lead — تصمیم‌های معماری و ADR\nDesign Lead — طراحی تفصیلی و Patternها\nAI Transformation Lead — pipeline و transformation records\nBackend/Implementation Lead — پیاده‌سازی سرویس‌ها\nTesting & Quality Lead — استراتژی تست و CI\nDocumentation & Traceability Lead — Traceability Matrix\nقانون Cross-Functional\n\nتخصص نباید به انزوا تبدیل شود. هر دانشجو باید کل زنجیره مهندسی را درک کند. در ارزیابی نهایی، استاد ممکن است از هر دانشجو درباره هر بخشی از پروژه سؤال بپرسد — حتی اگر آن بخش مسئولیت او نبوده.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 64,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-64",
+    "title": "Final Presentation",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۴\n#۶۴\nFinal Presentation\n\nArtifact 19: ارائه نهایی\n\nحداکثر زمان ارائه ۱۵ دقیقه است. ارائه باید بر تصمیمات مهندسی تمرکز کند، نه صرفاً نمایش ویژگی‌های UI. این تمایز مهم است: ما می‌خواهیم بدانیم چرا تصمیمات گرفته شد، نه فقط چه چیزی ساخته شد. ساختار پیشنهادی در جدول زیر است.\n\nبخش\tزمان\nProblem\t۱ دقیقه\nUsers & Requirements\t۲ دقیقه\nAnalysis Models\t۲ دقیقه\nArchitecture\t۲ دقیقه\nDetailed Design\t۲ دقیقه\nAI Transformation\t۲ دقیقه\nTesting & Traceability\t۲ دقیقه\nLive Demo\t۲ دقیقه\nنکته ارائه\n\nارائه باید بر تصمیمات مهندکی تمرکز کند، نه صرفاً نمایش ویژگی‌های UI. استاد می‌خواهد بداند چرا، نه فقط چه چیزی.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 65,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-65",
+    "title": "Final Demonstration",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۵\n#۶۵\nFinal Demonstration\n\nArtifact 20: دمو نهایی\n\nدمو نهایی باید یک سناریو end-to-end را نشان دهد. برای پروژه مرجع UFMS، این سناریو شامل جریان کامل رزرو غذا از ورود تا مشاهده رزرو است. سپس تیم باید حداقل یک سناریوی استثنایی را هم نشان دهد. در پایان، استاد می‌تواند یک Change Request معرفی کند تا تیم تحلیل تأثیر را نشان دهد.\n\nسناریوی اصلی — End-to-End\nدمو نهایی — سناریو end-to-end (UFMS)\nسناریوی استثنایی\nسناریوی استثنایی — رد رزرو به دلیل ظرفیت کامل\nنکته\n\nدر پایان دمو، استاد می‌تواند یک Change Request معرفی کند تا تیم تحلیل تأثیر را در لحظه نشان دهد. این، قابلیت پاسخگویی تیم را می‌سنجد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 66,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-66",
+    "title": "Final Report Structure",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۶\n#۶۶\nFinal Report Structure\n\nArtifact 21: ساختار گزارش نهایی\n\nگزارش نهایی باید شامل ۲۰ بخش زیر باشد. این ساختار استاندارد، امکان مقایسه تیم‌ها را فراهم می‌کند و اطمینان می‌دهد که هیچ Artifact مهمی مفقود نیست. گزارش در پوشه 10-final-report نگهداری می‌شود و در Milestone M7 تحویل داده می‌شود.\n\nTEXT\n1.  Introduction\n2.  Problem Statement\n3.  Stakeholders\n4.  Scope\n5.  Requirements\n6.  Business Rules\n7.  Use Cases\n8.  Analysis Models\n9.  Architecture\n10. Architecture Decisions\n11. Detailed Design\n12. Structured Specifications\n13. AI-Assisted Transformation\n14. Implementation\n15. Testing\n16. Traceability\n17. Change Impact Analysis\n18. Evaluation\n19. Limitations\n20. Lessons Learned\nFinal Report — 20 Sections\nنکته\n\nگزارش باید زنده باشد — یعنی در طول ترم به‌روز شود، نه در پایان ترم نوشته شود. اگر در پایان ترم نوشته شود، احتمالاً دچار anti-pattern «Documentation Afterthought» می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 67,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-67",
+    "title": "Complete Engineering Chain",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۷\n#۶۷\nComplete Engineering Chain\n\nArtifact 22: زنجیره کامل مهندسی\n\nمثال UFMS باید در نهایت این زنجیره کامل را نشان دهد. این زنجیره، خروجی یادگیری مرکزی درس است. هر مرحله از قبلی ساخته شده و در پایان همه چیز به هم وصل است. اگر حلقه‌ای مفقود باشد، یعنی فرآیند مهندسی ناقص است.\n\nزنجیره کامل مهندسی UFMS — خروجی یادگیری مرکزی درس\nخروجی یادگیری مرکزی\n\nاین زنجیره، خروجی یادگیری مرکزی درس است. دانشجو یاد می‌گیرد که نرم‌افزار واقعی از یک فرآیند مهندسی منظم می‌آید، نه از یک درخواست به AI.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 68,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-68",
+    "title": "What Students Should Learn",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۸\n#۶۸\nWhat Students Should Learn\n\nArtifact 23: درس‌های کلیدی\n\nپروژه باید دانشجویان را به این درک برساند که نقش مهندس نرم‌افزار در حال تغییر است. در یک فرآیند توسعه سنتی، انسان مستقیًماً کد می‌نویسد. در یک محیط Agentic Software Engineering، انسان مسئله را می‌فهمد، specification می‌نویسد، مدل‌سازی می‌کند، تصمیمات معماری می‌گیرد، و سپس AI را برای transformation به کار می‌گیرد.\n\nConventional Development\nتغییر نقش مهندس نرم‌افزار\nAgentic Software Engineering\nتغییر نقش مهندس نرم‌افزار\nتغییر نقش مهندس\n\nمقدار کد دست‌نویس ممکن است کاهش یابد، ولی اهمیت specification، modeling، architecture، constraints، verification، traceability، evaluation، governance و change management از بین نمی‌رود. در بسیاری موارد، این فعالیت‌ها مهم‌تر می‌شوند چون AI می‌تواند نرم‌افزار را سریع‌تر از آنچه انسان می‌تواند جزء به جزء بررسی کند، تولید کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 69,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-69",
+    "title": "Final Course Principle",
+    "text": "خانه\nسند استاندارد UFMS\nاسلاید ۶۹\n#۶۹\nFinal Course Principle\n\nArtifact 24: اصل نهایی درس\n\nپروژه نهایی نباید تیمی را پاداش دهد که بیشترین کد، بزرگترین برنامه، بیشترین microservices، بیشترین ویژگی‌های AI یا پیچیده‌ترین معماری را تولید کرده. بلکه باید تیمی را پاداش دهد که بتواند به‌صورت قانع‌کننده‌ای یک فرآیند مهندسی منسجم و قابل ردیابی از مسئله تا نرم‌افزار اعتبارسنجی‌شده را نشان دهد.\n\nنباید پاداش داده شود\n\nتیمی که بیشترین کد، بزرگترین برنامه، بیشترین microservices، بیشترین ویژگی‌های AI یا پیچیده‌ترین معماری را تولید کرده — اگر نتواند فرآیند را توضیح دهد.\n\nباید پاداش داده شود\n\nتیمی که بتواند به‌صورت قانع‌کننده‌ای یک فرآیند مهندسی منسجم و قابل ردیابی از مسئله تا نرم‌افزار اعتبارسنجی‌شده را نشان دهد.\n\nبرای پروژه مرجع\nزنجیره مهندسی — اصل نهایی درس\nبرای هر پروژه دانشجویی\n\nدامنه ممکن است تغییر کند، ولی انضباط مهندسی همان می‌ماند. این اصل، قلب چارچوب UFMS است و در تمام پروژه‌ها، فارغ از موضوع، اعمال می‌شود.\n\n”\n\nدامنه تغییر می‌کند. فرآیند مهندسی تغییر نمی‌کند. این اصل، قلب چارچوب UFMS است.\n\n— اصل نهایی درس\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 70,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-70",
+    "title": "مثال کامل: سامانه جامع مدیریت غذای دانشگاه",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۰\n#۷۰\nمثال کامل: سامانه جامع مدیریت غذای دانشگاه\n\nاجرای سرتاسری چارچوب از Problem تا Evaluation\n\nدر ادامه، چارچوب MDD + AI-Assisted را به‌صورت سرتاسری برای یک پروژه واقعی اجرا می‌کنیم: سامانه جامع مدیریت غذای دانشگاه. هدف این است که دانشجو ببیند هر Artifact چطور از قبلی ساخته می‌شود، AI در کجا وارد می‌شود، و در نهایت همه چیز در Traceability Matrix به هم وصل می‌شود. این مثال به‌عنوان Template عمل می‌کند؛ یعنی دانشجو می‌تواند موضوع پروژه خودش را جایگزین کند و همین زنجیره را طی کند.\n\nچرا پروژه غذای دانشگاه؟\nپیچیدگی متوسط: نه خیلی ساده (مثل To-Do List) و نه خیلی پیچیده (مثل ERP)\nچند نقش کاربری: دانشجو، فروشنده، صندوق‌دار، تغذیه‌دانش، مدیر\nدارای فرآیندهای وضعیتی: سفارش، پرداخت، آماده‌سازی، تحویل\nنیازمند یکپارچگی: مالی، انبار، گزارش، احراز هویت\nدامنه آشنا: همه دانشجویان با مشکل صف غذا و کیفیت آن آشنا هستند\nنقشه راه مثال\nنقشه راه مثال — زنجیره کامل Artifactها\nنکته آموزشی\n\nهر اسلاید این بخش، یک Artifact کامل است. در پایان این بخش، دانشجو یک Template کامل دارد که می‌تواند آن را برای پروژه خودش بازنویسی کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 71,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-71",
+    "title": "Problem Statement & Project Charter",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۱\n#۷۱\nProblem Statement & Project Charter\n\nArtifact 1: تعریف مسئله و منشور پروژه\n\nProblem Statement\n\nدر سیستم سنتی سلف‌سرویس دانشگاه، دانشجویان باید در زمان‌های مشخصی برای دریافت غذا در صف‌های طولانی بایستند، فروشندگان مستقل گزارش مالی شفافی ارائه نمی‌دهند، و دانشگاه کنترلی بر کیفیت و موجودی ندارد. اتلاف غذا به‌دلیل عدم پیش‌بینی تقاضا، یک مشکل روزانه است که هم به لحاظ مالی و هم به لحاظ اخلاقی قابل قبول نیست.\n\nنشانه‌های مسئله\n\nصف ۲۰ دقیقه‌ای در زمان اوج، ۱۵٪ اتلاف غذا روزانه، عدم شفافیت مالی فروشندگان، عدم امکان رزرو آنلاین، عدم ردیابی رضایت دانشجویان.\n\nProject Charter\nYAML\nProject Name: UniFood — سامانه مدیریت غذای دانشگاه\nVersion: 1.0\nDate: 1403/07/15\nTeam: Team Alpha (8 members)\n\nProblem:\n  صف‌های طولانی، اتلاف غذا، عدم شفافیت مالی،\n  عدم پیش‌بینی تقاضا، عدم ردیابی رضایت.\n\nTarget Users:\n  - دانشجویان (اصلی)\n  - فروشندگان غذا (داخلی و خارجی)\n  - صندوق‌دار سلف\n  - واحد تغذیه دانشگاه\n  - مدیر سامانه\n\nBusiness Goal:\n  کاهش زمان دریافت غذا به زیر ۵ دقیقه\n  کاهش اتلاف غذا به زیر ۵٪\n\nSystem Goal:\n  یکپارچه‌سازی سفارش، پرداخت، آماده‌سازی و تحویل\n\nScope:\n  Core: منو، سفارش، پرداخت، ردیابی، اعلان\n  Extended: گزارش‌گیری، پیشنهاد منو\n  Advanced: پیش‌بینی تقاضا با AI\n\nOut of Scope:\n  - مدیریت حقوق کارکنان\n  - سیستم حمل‌ونقل بیرون از دانشگاه\n  - برنامه‌ریزی غذایی درمانی فردی\n\nConstraints:\n  - بودجه محدود (پروژه درسی)\n  - زمان ۱۴ هفته‌ای\n  - زیرساخت موجود: PostgreSQL، Next.js\n\nAssumptions:\n  - همه دانشجویان کارت هوشمند دارند\n  - اینترنت وای‌فای دانشگاه پایدار است\n  - فروشندگان دارای POS نرم‌افزاری هستند\nProject Charter — نسخه اولیه\nنکته\n\nCharter باید کوتاه، روشن و قابل دفاع باشد. هر بند باید در یک جلسه ۱۰ دقیقه‌ای قابل توضیح باشد. اگر Charter به ۲۰ صفحه رسید، یعنی Scope مبهم است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 72,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-72",
+    "title": "Stakeholders & Roles",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۲\n#۷۲\nStakeholders & Roles\n\nArtifact 1.2: ذی‌نفعان و نقش‌ها\n\nسامانه UniFood پنج نقش کاربری اصلی دارد که هر کدام قابلیت‌ها و دسترسی‌های متفاوتی دارند. تفکیک دقیق نقش‌ها برای طراحی RBAC و تعریف use caseهای مجزا حیاتی است. هر نقش با یک Representative واقعی در دانشگاه مصاحبه می‌شود تا Requirements واقعی استخراج شود، نه فرضی.\n\nStudent (دانشجو)\nTEXT\nLogin\nBrowse Daily Menu\nPlace Order\nPay (Wallet / Card)\nTrack Order Status\nRate Meal\nView Order History\nSubmit Complaint\nFood Vendor (فروشنده غذا)\nTEXT\nManage Menu Items\nSet Daily Menu\nView Incoming Orders\nUpdate Order Status (Preparing/Ready)\nView Sales Reports\nManage Inventory\nCashier (صندوق‌دار)\nTEXT\nVerify Payment\nRefund Order\nDaily Cash Reconciliation\nPrint Receipt\nDietitian (تغذیه‌دانش)\nTEXT\nApprove Menu Nutritional Value\nSet Calorie Limits\nFlag Allergens\nMonitor Menu Quality\nUniversity Admin (مدیر سامانه)\nTEXT\nManage Vendors\nManage Students\nApprove Vendors\nView Aggregated Analytics\nAudit Financial Transactions\nConfigure Academic Calendar\nنکته طراحی\n\nاین نقش‌ها در Domain Model به‌صورت کلاس‌های مجزا مدل می‌شوند و در دیتابیس به جدول Role متصل می‌گردند. هر نقش یک set از Permission دارد که در RBAC اعمال می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 73,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-73",
+    "title": "Scope — Core / Extended / Advanced",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۳\n#۷۳\nScope — Core / Extended / Advanced\n\nArtifact 1.3: کنترل Scope\n\nبرای جلوگیری از Scope Creep، قابلیت‌های UniFood به سه سطح تقسیم می‌شود. تیم باید Core را ۱۰۰٪ تحویل دهد؛ Extended اختیاری است و Advanced فقط برای تیم‌های قوی. امتیاز پروژه به Advanced وابسته نیست — به عکس العمل دانشجو به Core وابسته است. این یک تصمیم آگاهانه است: ما می‌خواهیم دانشجو فرآیند را کامل کند، نه اینکه در پیچیدگی گم شود.\n\nCore Scope (الزامی)\nTEXT\nAuthentication (SSO دانشگاه)\nStudent Profile & Wallet\nDaily Menu Browse\nPlace Order\nPayment Integration (Wallet)\nOrder Tracking (5 states)\nNotification (push + email)\nRate Meal\nComplaint Submission\nExtended Scope (اختیاری)\nTEXT\nVendor Portal\nCashier Dashboard\nDietitian Approval Workflow\nSales Reports\nStudent Order History\nAllergen Tagging\nCalendar-aware Menu\nAdvanced Scope (تیم قوی)\nTEXT\nAI Menu Recommendation\nDemand Forecasting\nInventory Auto-replenishment\nAudit Trail (immutable log)\nReal-time Analytics Dashboard\nMulti-vendor Order Split\nقانون طلایی Scope\n\nاگر تیمی نتوانست Core را در هفته ۱۱ تحویل دهد، Extended و Advanced را کنار بگذارد. کیفیت Core مهم‌تر از گستردگی است. این قانون از روز اول اعلام می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 74,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-74",
+    "title": "Functional Requirements",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۴\n#۷۴\nFunctional Requirements\n\nArtifact 2: FR-01 تا FR-12\n\nFunctional Requirements از مصاحبه با Stakeholders استخراج شده‌اند. هر FR دارای شناسه یکتا، شرط و عنوان است و باید قابل تست باشد. در پایان فرآیند، هر FR به یک Use Case و یک Specification وصل می‌شود — یعنی FRهایی که قابل تست نیستند (مثل «سیستم خوب باشد») حذف می‌شوند.\n\nهویت و پروفایل\nTEXT\nFR-01 Authentication\nThe system shall authenticate students via\nuniversity SSO (OAuth2).\n\nFR-02 Profile Management\nThe system shall allow students to view and\nupdate their profile (allergens, preferences).\n\nFR-03 Wallet Management\nThe system shall maintain a virtual wallet\nwith real-time balance display.\nمنو و سفارش\nTEXT\nFR-04 Daily Menu Browse\nThe system shall display today's menu grouped\nby vendor, with allergen tags.\n\nFR-05 Place Order\nThe system shall allow a student to place an\norder for the current day, with capacity checks.\n\nFR-06 Order Validation\nThe system shall reject an order if wallet\nbalance is insufficient or vendor capacity\nis full.\n\nFR-07 Order Modification\nThe system shall allow cancellation of order\nif status is \"Pending\" only.\nپرداخت و تحویل\nTEXT\nFR-08 Payment Processing\nThe system shall deduct order amount from\nwallet atomically on order confirmation.\n\nFR-09 Order Tracking\nThe system shall display order status in\nreal-time: Pending → Preparing → Ready →\nDelivered (5 states).\n\nFR-10 Notification\nThe system shall send push notification when\norder status changes.\nارزیابی و شکایت\nTEXT\nFR-11 Meal Rating\nThe system shall allow rating (1-5 stars)\nafter delivery.\n\nFR-12 Complaint Submission\nThe system shall allow students to submit\ntext complaints linked to a specific order.\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 75,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-75",
+    "title": "Non-Functional Requirements",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۵\n#۷۵\nNon-Functional Requirements\n\nArtifact 2.2: NFR قابل اندازه‌گیری\n\nNFRها باید قابل اندازه‌گیری باشند. عبارت کلی مثل «سیستم سریع باشد» ممنوع است — باید با عدد و شرط بیان شود. این NFRها در تست‌های non-functional به‌صورت خودکار بررسی می‌شوند و اگر نقض شوند، build فیل می‌شود.\n\nشناسه\tویژگی\tهدف قابل اندازه‌گیری\nNFR-01\tPerformance\tزمان پاسخ API سفارش زیر ۳۰۰ms در ۹۵٪ درخواست‌ها\nNFR-02\tThroughput\tپشتیبانی از ۵۰۰ کاربر همزمان بدون افت عملیات\nNFR-03\tAvailability\tuptime ۹۹.۵٪ در ساعات کاری دانشگاه\nNFR-04\tSecurity\tOWASP Top 10 پوشش داده شود، رمزنگاری AES-256 برای wallet\nNFR-05\tUsability\tدانشجو بتواند سفارش را در زیر ۳۰ ثانیه تکمیل کند\nNFR-06\tMaintainability\tcode coverage حداقل ۸۰٪ در ماژول‌های Core\nNFR-07\tScalability\tافزودن vendor جدید بدون downtime\nNFR-08\tLocalization\tپشتیبانی از RTL و اعداد فارسی\nNFR-09\tAuditability\tهر تراکنش مالی قابل ردیابی به کاربر و زمان\nنکته تست\n\nNFR-01 با load testing (k6)، NFR-04 با SonarQube و dependency scan، NFR-05 با user testing، و NFR-06 با SonarQube coverage تست می‌شود. هر NFR یک test pipeline دارد.\n\nخطای رایج\n\nNFR کلی و غیرقابل اندازه‌گیری، یعنی چیزی که تیم نمی‌تواند دفاع کند. در Review شفاهی، استاد می‌پرسد: «NFR-01 را چطور تست می‌کنید؟» — باید جواب آماده باشد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 76,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-76",
+    "title": "Specification — FR-06",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۶\n#۷۶\nSpecification — FR-06\n\nArtifact 3: تبدیل Requirement به Spec\n\nهر FR باید به یک specification رسمی تبدیل شود که بعداً ورودی transformation و code generation می‌شود. در اینجا FR-06 (Order Validation) را به‌صورت کامل specification می‌کنیم. این Spec باید به‌قدری دقیق باشد که یک تیم دیگر بتواند از روی آن کد تولید کند، بدون نیاز به پرسش بیشتر.\n\nSpecification FR-06\nYAML\nrequirement:\n  id: FR-06\n  name: Order Validation\n  source: Use Case UC-05 (Place Order)\n\nprecondition:\n  - student_authenticated\n  - vendor_open_for_today\n  - menu_item_exists_and_available\n\ninput:\n  student_id: string (uuid)\n  vendor_id: string (uuid)\n  menu_item_id: string (uuid)\n  quantity: int (1..10)\n  scheduled_pickup: datetime (within today)\n\nrules:\n  - id: R-01\n    name: wallet_balance_sufficient\n    expression: |\n      wallet.balance >= menu_item.price * quantity\n    failure: INSUFFICIENT_BALANCE\n\n  - id: R-02\n    name: vendor_capacity_available\n    expression: |\n      vendor.daily_capacity - vendor.today_orders\n      >= quantity\n    failure: VENDOR_CAPACITY_FULL\n\n  - id: R-03\n    name: pickup_time_within_window\n    expression: |\n      scheduled_pickup in vendor.operating_hours\n    failure: INVALID_PICKUP_TIME\n\n  - id: R-04\n    name: allergen_check\n    expression: |\n      not any(menu_item.allergens\n              intersect student.allergens)\n    failure: ALLERGEN_CONFLICT\n    severity: warning  # not blocking\n\nsuccess:\n  - order_created (status: PENDING)\n  - wallet_balance_reserved\n  - vendor_capacity_incremented\n  - notification_queued (event: ORDER_PLACED)\n\nfailure:\n  - order_rejected\n  - reason_code: <one of failures above>\n  - reason_message: localized Persian message\n  - no_state_change\n\nside_effects:\n  - audit_log.append\n  - analytics_event.emit\nSpecification رسمی FR-06 — ورودی AI Transformation\nچرا این Spec مهم است؟\n\nاین spec بعداً ورودی AI Transformation می‌شود: یک prompt ساخته می‌شود که این YAML را به همراه Domain Model و Sequence Diagram به LLM می‌دهد تا کد OrderService را تولید کند. اگر spec ضعیف باشد، کد تولیدشده هم ضعیف خواهد بود.\n\nقانون Spec\n\nهر rule باید قابل تست واحد (unit test) باشد. اگر نتوانستید برای یک rule یک unit test بنویسید، یعنی spec ناقص است. این تست‌ها در Milestone 12 نوشته می‌شوند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 77,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-77",
+    "title": "Context Diagram",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۷\n#۷۷\nContext Diagram\n\nArtifact 4.1: مرز سیستم و بازیگران خارجی\n\nContext Diagram مرز سیستم را با محیط بیرونی نشان می‌دهد. این نمودار اولین مدل تحلیلی است که در Milestone 5 تولید می‌شود و باید قبل از Use Case Diagram مصوب شود. هر بازیگر خارجی در این نمودار، یک منبع یا مقصد اطلاعات است که تیم کنترلی روی آن ندارد.\n\nنمودار Context — مرز سیستم و بازیگران خارجی (UniFood)\nتفکیک سیستم و بازیگران خارجی\n\nنقش‌های کاربری مثل Student و Vendor هم داخل سامانه login می‌شوند (پس بازیگر خارجی از نظر تراکنش هستند، نه از نظر زیرساخت). SSO Server، Bank Gateway و Notification Provider بازیگران خارجی واقعی هستند که تیم کنترلی روی پروتکل آنها ندارد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 78,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-78",
+    "title": "Use Case Model",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۸\n#۷۸\nUse Case Model\n\nArtifact 4.2: رفتار کاربران\n\nUse Case Model رفتار هر نقش کاربری را به‌صورت مجموعه‌ای از قابلیت‌ها نشان می‌دهد. هر use case باید به یک FR وصل باشد. use case بدون FR یعنی Scope Creep؛ FR بدون use case یعنی نیازمندی که هیچ‌کس آن را نخواسته. این تطبیق باید در Traceability Matrix تضمین شود.\n\nUse Case Model — UniFood\nمدل Use Case — UniFood/UFMS\nهم‌پوشانی FR و UC\n\nتعداد UCها می‌تواند با تعداد FRها متفاوت باشد. یک FR می‌تواند در چند UC ظاهر شود (مثل FR-04 در UC-03 و UC-04). مهم این است که هیچ FR یتیم نباشد و هیچ UC بدون فرض ن requirement نباشد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 79,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-79",
+    "title": "Use Case Specification — UC-04",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۷۹\n#۷۹\nUse Case Specification — UC-04\n\nArtifact 4.3: Spec رسمی Use Case\n\nهر Use Case باید یک Specification مکتوب داشته باشد که در یک جدول استاندارد ثبت می‌شود. این Spec شامل جریان اصلی، جریان‌های جایگزین، پیش‌شرط‌ها و پس‌شرط‌هاست. UC-04 (Place Order) را در اینجا به‌صورت کامل می‌نویسیم — این مهم‌ترین Use Case سامانه است.\n\nYAML\nuse_case:\n  id: UC-04\n  name: Place Order\n  primary_actor: Student\n  secondary_actors: [Vendor (indirect)]\n  triggered_by: Student selects \"Place Order\"\n\nprecondition:\n  - student is logged in (UC-01)\n  - wallet has positive balance\n  - vendor is open for today\n\nmain_flow:\n  1. Student selects a menu item from today's menu\n  2. System displays item details (price, allergens)\n  3. Student selects quantity and pickup time\n  4. System validates order (FR-06 spec)\n  5. System reserves wallet balance\n  6. System creates order with status PENDING\n  7. System sends notification to vendor\n  8. System displays order confirmation to student\n\nalternative_flows:\n  - 4a. Insufficient balance:\n      - System shows error, redirects to wallet top-up\n  - 4b. Vendor capacity full:\n      - System shows alternative vendors with capacity\n  - 4c. Allergen conflict (warning):\n      - System shows warning, requires confirmation\n  - 6a. Vendor offline:\n      - System cancels order, releases reserved balance\n\npostcondition:\n  - success: order is PERSISTED with PENDING status\n  - failure: no state change, error logged\n\nquality_attributes:\n  - response_time: < 1s end-to-end\n  - idempotency: retry-safe via idempotency key\n\ntraceability:\n  requirements: [FR-05, FR-06, FR-08]\n  domain_entities: [Order, Wallet, Vendor, MenuItem]\n  api_endpoints: [POST /api/orders]\n  sequence_diagram: SD-04\n  test_cases: [TC-04-01 to TC-04-12]\nUse Case Specification — UC-04\nنکته Traceability\n\nبخش traceability در انتهای Use Case Spec، اولین لنگر Traceability Matrix است. هر Use Case باید به Requirementها، Entities، APIها، نمودار Sequence و تست‌کِیس‌ها وصل باشد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 80,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-80",
+    "title": "Domain Model",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۰\n#۸۰\nDomain Model\n\nArtifact 4.4: مدل مفهومی کسب‌وکار\n\nDomain Model مفاهیم اصلی کسب‌وکار را به‌صورت موجودیت‌های مرتبط نشان می‌دهد. این مدل از Use Caseها و Specification استخراج می‌شود و پایه طراحی دیتابیس است. در اینجا UniFood را با پنج Entity اصلی و روابطشان مدل می‌کنیم. هر خط نشان‌دهنده یک رابطه معنایی است، نه یک FK دیتابیس.\n\nمدل دامنه — مفاهیم و روابط اصلی\nتفاوت با Class Diagram\n\nDomain Model مفهومی است، Class Diagram فنی. در Domain Model، روش (method) نمی‌نویسیم، فقط رابطه‌ها و cardinality. Class Diagram بعد از Architecture از این مدل مشتق می‌شود و جزئیات فنی مثل field type و method signature را اضافه می‌کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 81,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-81",
+    "title": "Sequence Diagram — UC-04",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۱\n#۸۱\nSequence Diagram — UC-04\n\nArtifact 4.5: تعاملات برای Place Order\n\nSequence Diagram برای UC-04 (Place Order) نشان می‌دهد که چه پیام‌هایی بین کامپوننت‌ها رد و بدل می‌شود. این نمودار مستقیماً به کد تبدیل می‌شود: هر ولیدیشن یک فراخوانی متد، هر ارسال notification یک event emit. AI در مرحله Transformation از این نمودار به همراه Specification برای تولید کد استفاده می‌کند.\n\nنمودار Sequence — UC-04 Place Order (UniFood)\nاتصال به کد\n\nهر پیکان در این نمودار به یک فراخوانی تابع در کد تبدیل می‌شود. مثلاً checkCapacity() در VendorService، reserve() در WalletService، emit ORDER_PLACED در EventPublisher. این یک‌به‌یک mapping است که در AI Transformation Log ثبت می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 82,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-82",
+    "title": "State Machine — Order Lifecycle",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۲\n#۸۲\nState Machine — Order Lifecycle\n\nArtifact 4.6: چرخه حیات سفارش\n\nهر Order یک state machine با ۵ حالت دارد. این نمودار تعیین می‌کند که کدام transition مجاز است و چه event‌ای باعث هر transition می‌شود. این model در دیتابیس به‌صورت enum و در کد به‌صورت type-safe state machine پیاده می‌شود. هر transition یک event در audit log ثبت می‌کند.\n\nنمودار State Machine — چرخه حیات Order (UniFood)\nTransitions مجاز\nاز حالت\tبه حالت\tTrigger\tکاربر\n(init)\tPENDING\torder created\tStudent\nPENDING\tPREPARING\tvendor.accept()\tVendor\nPENDING\tCANCELLED\tstudent.cancel() / timeout\tStudent/System\nPREPARING\tREADY\tvendor.markReady()\tVendor\nREADY\tDELIVERED\tstudent.confirm()\tStudent\nREADY\tCANCELLED\ttimeout 30 min\tSystem\nقانون Transition\n\nهر transition نامعتبر (مثلاً DELIVERED → PENDING) باید در کد به‌صورت صریح رد شود. این بررسی در OrderService انجام می‌شود و به‌صورت unit test پوشش داده می‌شود. AI نمی‌تواند این منطق را خودش اختراع کند — باید از روی این state machine تولید شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 83,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-83",
+    "title": "Architecture & ADR-001",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۳\n#۸۳\nArchitecture & ADR-001\n\nArtifact 5: تصمیم معماری\n\nتیم UniFood برای معماری، یک ADR (Architecture Decision Record) مکتوب کرده است. در این ADR، انتخاب Modular Monolith به‌جای Microservices با توجیه Trade-off نوشته شده است. این توجیه در Review شفاهی دفاع می‌شود — استاد نمی‌پذیرد که «چون ترند است» انتخاب شده باشد.\n\nADR-001: انتخاب معماری\nYAML\ndecision:\n  id: ADR-001\n  title: Use Modular Monolith Architecture\n  status: Accepted\n  date: 1403/07/20\n\ncontext:\n  UniFood needs to support ~500 concurrent users\n  during lunch peak (12:00-14:00). System has\n  bounded modules: Order, Wallet, Menu, Vendor,\n  Notification. Team is 8 students with 14 weeks.\n\nalternatives:\n  - Microservices\n  - Layered Monolith (single shared DB)\n  - Modular Monolith (modules with strict boundaries)\n\ndecision:\n  Use Modular Monolith with single PostgreSQL\n  database, but each module owns its own schema.\n\nrationale:\n  - System size (5 modules, 12 FRs) does NOT justify\n    distributed-system complexity\n  - Team is small (8 students) — operational overhead\n    of microservices (k8s, observability) would consume\n    30% of project time\n  - Modular boundaries give clear ownership &\n    future migration path to microservices if needed\n  - Single DB allows transactions across modules\n    (critical for Order + Wallet atomicity)\n\nconsequences:\n  positive:\n    - faster development\n    - simpler deployment\n    - cross-module transactions supported\n  negative:\n    - shared DB can become a bottleneck (mitigated by schema isolation)\n    - modules can become tightly coupled if discipline is lost\n  mitigation:\n    - module interfaces defined in TypeScript\n    - PR review enforces \"no cross-module direct DB access\"\n    - integration tests verify module boundaries\n\ncompliance:\n  - code structure: src/modules/{order,wallet,menu,vendor,notify}\n  - each module exposes a Service interface only\n  - DB access only via Repository pattern\nArchitecture Decision Record #1\nنکته ارزشمند\n\nADR یک سند زنده است: هر تصمیم معماری بزرگ (دامنه، caching، احراز هویت، event bus) باید یک ADR داشته باشد. در پایان ترم تیم Alpha سه ADR دارد: معماری، دیتابیس، احراز هویت.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 84,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-84",
+    "title": "ADRهای دیگر",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۴\n#۸۴\nADRهای دیگر\n\nArtifact 5.2: تصمیمات فنی دیگر\n\nعلاوه بر انتخاب معماری کلی، تیم باید برای هر تصمیم فنی مهم یک ADR بنویسد. در اینجا ADR-002 (انتخاب دیتابیس) و ADR-003 (احراز هویت) را به‌صورت خلاصه می‌آوریم. این ADRها در پوشه 05-Architecture نگهداری می‌شوند و در Review شفاهی بررسی می‌گردند.\n\nADR-002: انتخاب دیتابیس\nYAML\ndecision:\n  id: ADR-002\n  title: Use PostgreSQL as primary database\n  status: Accepted\n\nalternatives:\n  - PostgreSQL\n  - MongoDB\n  - MySQL\n\ndecision:\n  PostgreSQL 16\n\nrationale:\n  - Strong transactional guarantees (ACID)\n    needed for wallet & order atomicity\n  - JSONB columns for flexible menu items\n  - Mature ecosystem, free hosting for student project\n  - Better support for complex queries (analytics)\nADR-003: احراز هویت\nYAML\ndecision:\n  id: ADR-003\n  title: Use NextAuth.js with University SSO\n  status: Accepted\n\nalternatives:\n  - Custom JWT implementation\n  - NextAuth.js + Google OAuth\n  - NextAuth.js + University SSO\n\ndecision:\n  NextAuth.js with SAML/OAuth2 to university SSO\n\nrationale:\n  - Students already have university account\n  - Avoids creating yet another password\n  - NextAuth.js handles session, CSRF, refresh\n  - SSO integration is university requirement\n\nconsequences:\n  - hard dependency on university IT availability\n  - mock SSO provider needed for development\nنکته دفاع\n\nدر Review شفاهی، استاد می‌پرسد: «اگر فردا دانشگاه SSO را تعطیل کند چه می‌کنید؟» — باید یک plan B داشته باشید. برای UniFood: راه‌اندازی OAuth2 خودسازمان به‌عنوان fallback.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 85,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-85",
+    "title": "Detailed Design",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۵\n#۸۵\nDetailed Design\n\nArtifact 6: لایه‌بندی و Patternها\n\nبعد از Architecture، طراحی تفصیلی انجام می‌شود. هر ماژول UniFood دارای ۴ لایه است: Controller (API)، Service (منطق دامنه)، Repository (دسترسی داده) و Domain (موجودیت‌ها). این لایه‌بندی در همه ماژول‌ها یکسان است تا یادگیری و maintain شدن آسان باشد.\n\nلایه‌بندی ماژول Order\nساختار ماژول Order — لایه‌بندی استاندارد\nPatternهای به‌کار رفته\nPattern\tمحل استفاده\tمسئله‌ای که حل می‌کند\nRepository\tهر ماژول\tجداسازی منطق دامنه از SQL\nFactory\tOrderService.create\tساخت Order با حالت اولیه مشخص\nState Machine\tOrderStatus\tاعمال قوانین transition\nObserver\tEventPublisher\tاعلام تغییرات به ماژول‌های دیگر\nStrategy\tPaymentMethod\tWallet/Card/Bank استراتژی پرداخت\nSpecification\tOrderValidator\tقوانین FR-06 به‌صورت قابل ترکیب\nDI (inversion)\tترکیب ماژول‌ها\tوصل کردن ماژول‌ها در composition root\nقانون طلایی Pattern\n\nهر Pattern در گزارش باید به یک مسئله مشخص وصل باشد. اگر نتوانستید بگویید «این Pattern مسئله X را در محل Y حل می‌کند»، آن Pattern را حذف کنید. الگوی بیهوده نمره منفی دارد.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 86,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-86",
+    "title": "API Specification",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۶\n#۸۶\nAPI Specification\n\nArtifact 6.2: OpenAPI Specification\n\nAPI Specification از Sequence Diagram و Use Case استخراج می‌شود. تیم UniFood از OpenAPI 3.1 برای تعریف API استفاده می‌کند. این Spec به‌صورت source-of-truth عمل می‌کند: client SDK و server stub از روی همین Spec تولید می‌شوند. این کار یکپارچگی client و server را تضمین می‌کند.\n\nYAML\nopenapi: 3.1.0\ninfo:\n  title: UniFood API\n  version: 1.0.0\npaths:\n  /api/orders:\n    post:\n      summary: Place a new order\n      operationId: createOrder\n      tags: [Order]\n      security:\n        - studentAuth: []\n      requestBody:\n        required: true\n        content:\n          application/json:\n            schema:\n              type: object\n              required: [vendorId, items, pickupTime]\n              properties:\n                vendorId: { type: string, format: uuid }\n                items:\n                  type: array\n                  minItems: 1\n                  maxItems: 10\n                  items:\n                    type: object\n                    required: [menuItemId, quantity]\n                    properties:\n                      menuItemId: { type: string, format: uuid }\n                      quantity: { type: integer, minimum: 1, maximum: 10 }\n                pickupTime: { type: string, format: date-time }\n                idempotencyKey: { type: string }\n      responses:\n        '201':\n          description: Order created\n          content:\n            application/json:\n              schema: { $ref: '#/components/schemas/Order' }\n        '400':\n          description: Validation failed\n          content:\n            application/json:\n              schema: { $ref: '#/components/schemas/Error' }\n        '402':\n          description: Insufficient balance\n        '409':\n          description: Vendor capacity full\n        '422':\n          description: Allergen conflict (warning, requires confirmation)\nOpenAPI 3.1 — POST /api/orders (خلاصه)\nاتصال به کد\n\nاز روی این Spec، OpenAPI Generator به‌صورت خودکار TypeScript client و Express middleware تولید می‌کند. تیم فقط handlerها را پر می‌کند. این یک نمونه از AI-Assisted Transformation است که در آن ابزار، نه LLM، transformor اصلی است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 87,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-87",
+    "title": "Database Schema",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۷\n#۸۷\nDatabase Schema\n\nArtifact 6.3: طراحی دیتابیس\n\nSchema دیتابیس از Domain Model مشتق می‌شود. در اینجا schema اصلی UniFood را به‌صورت SQL DDL می‌بینیم. هر جدول به یک Entity در Domain Model وصل است و هر FK به یک رابطه در Domain Model اشاره دارد. این تطبیق در Traceability Matrix ثبت می‌شود.\n\nSQL\n-- Module: identity\nCREATE TABLE students (\n  id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  sso_id       TEXT UNIQUE NOT NULL,\n  full_name    TEXT NOT NULL,\n  email        TEXT UNIQUE NOT NULL,\n  allergens    TEXT[] DEFAULT '{}',\n  created_at   TIMESTAMPTZ DEFAULT NOW()\n);\n\nCREATE TABLE vendors (\n  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  name            TEXT NOT NULL,\n  daily_capacity  INT NOT NULL CHECK (daily_capacity > 0),\n  operating_hours JSONB NOT NULL,\n  is_active       BOOLEAN DEFAULT TRUE,\n  created_at      TIMESTAMPTZ DEFAULT NOW()\n);\n\n-- Module: wallet\nCREATE TABLE wallets (\n  id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  student_id   UUID NOT NULL UNIQUE REFERENCES students(id),\n  balance      BIGINT NOT NULL DEFAULT 0\n                CHECK (balance >= 0),  -- in cents\n  version      INT NOT NULL DEFAULT 0,  -- optimistic lock\n  updated_at   TIMESTAMPTZ DEFAULT NOW()\n);\n\n-- Module: menu\nCREATE TABLE menu_items (\n  id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  vendor_id    UUID NOT NULL REFERENCES vendors(id),\n  name         TEXT NOT NULL,\n  price        BIGINT NOT NULL CHECK (price > 0),\n  allergens    TEXT[] DEFAULT '{}',\n  is_approved  BOOLEAN DEFAULT FALSE,\n  created_at   TIMESTAMPTZ DEFAULT NOW()\n);\n\n-- Module: order\nCREATE TABLE orders (\n  id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  student_id    UUID NOT NULL REFERENCES students(id),\n  vendor_id     UUID NOT NULL REFERENCES vendors(id),\n  status        TEXT NOT NULL DEFAULT 'PENDING'\n                 CHECK (status IN ('PENDING','PREPARING',\n                                   'READY','DELIVERED','CANCELLED')),\n  total_amount  BIGINT NOT NULL,\n  pickup_time   TIMESTAMPTZ NOT NULL,\n  created_at    TIMESTAMPTZ DEFAULT NOW(),\n  idempotency_key TEXT UNIQUE\n);\n\nCREATE TABLE order_items (\n  id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  order_id      UUID NOT NULL REFERENCES orders(id) ON DELETE CASCADE,\n  menu_item_id  UUID NOT NULL REFERENCES menu_items(id),\n  quantity      INT NOT NULL CHECK (quantity > 0 AND quantity <= 10),\n  unit_price    BIGINT NOT NULL  -- snapshot at order time\n);\n\n-- Module: audit\nCREATE TABLE audit_log (\n  id            BIGSERIAL PRIMARY KEY,\n  entity_type   TEXT NOT NULL,\n  entity_id     UUID NOT NULL,\n  action        TEXT NOT NULL,\n  actor_id      UUID NOT NULL,\n  metadata      JSONB,\n  created_at    TIMESTAMPTZ DEFAULT NOW()\n);\nDDL — Schema اصلی UniFood (خلاصه)\nنکته طراحی\n\nversion در wallets برای optimistic locking است (جلوگیری از double-spend). unit_price در order_items snapshot قیمت در زمان سفارش است (اگر بعداً قیمت تغییر کرد، سفارش‌های قدیمی تأثیر نمی‌گیرند). این دو design decision باید در ADR ذکر شوند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 88,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-88",
+    "title": "AI Transformation Pipeline",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۸\n#۸۸\nAI Transformation Pipeline\n\nArtifact 7: ورود AI به فرآیند\n\nاینجا بخش متمایز چارچوب ماست: نقطه‌ای که AI واقعاً وارد می‌شود. تیم UniFood AI را به‌عنوان ابزار transformation به کار می‌گیرد، نه به‌عنوان منبع تصمیم. یعنی Specification، Domain Model و Sequence Diagram که تیم خودش ساخته، به‌عنوان ورودی به LLM داده می‌شود تا کد Service را تولید کند. سپس تیم خروجی را review و در صورت لزوم اصلاح می‌کند.\n\nPipeline رسمی Transformation\nPipeline — از Spec تا کد پذیرفته‌شده\nقانون پذیرش\n\nهیچ کد AI-generated بدون Human Review و Validation پذیرفته نمی‌شود. اگر کد review نشد و merge شد، کل آن بخش نمره AI Transformation صفر می‌شود. این قانون از روز اول اعلام می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 89,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-89",
+    "title": "AI Transformation Log",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۸۹\n#۸۹\nAI Transformation Log\n\nArtifact 7.2: ثبت رسمی فرآیند\n\nهر Transformation مهم در یک لاگ رسمی ثبت می‌شود. این لاگ در پوشه 12-AI-Usage-Log نگهداری می‌شود و در ارزیابی نهایی بررسی می‌گردد. در اینجا یک نمونه کامل از TR-003 را می‌بینید: تبدیل Specification FR-06 به کد OrderService. این لاگ نشان می‌دهد تیم دقیقاً چه چیزی از چه چیزی تولید کرده است.\n\nYAML\ntransformation:\n  id: TR-003\n  date: 1403/08/22\n  operator: [Ali K., Sara M.]   # pair programming\n\ninput_artifacts:\n  - spec: FR-06 (Order Validation YAML)\n  - domain_model: section 4.4\n  - sequence_diagram: SD-04 (UC-04)\n  - design: order module layer structure\n  - coding_standard: TS strict + ESlint\n\nai_tool:\n  name: Claude 3.5 Sonnet\n  version: 2024-10-22\n  temperature: 0.2\n\nprompt_summary: |\n  \"Generate TypeScript implementation of OrderService\n  based on the attached YAML specification, domain\n  entities, and sequence diagram. Output must follow\n  the module layer structure. Use the Repository\n  pattern. Wrap createOrder in a DB transaction.\"\n\ngenerated_output:\n  file: order.service.ts\n  lines: 142\n  test_stubs: 8\n\nhuman_modifications:\n  - \"Added idempotency key check (missing in AI output)\"\n  - \"Wrapped createOrder in transaction (AI missed atomicity)\"\n  - \"Replaced generic Error with typed OrderError\"\n  - \"Added audit_log.append call\"\n  - \"Removed unused logger import\"\n\nvalidation:\n  type_check: PASS\n  lint: PASS (0 warnings)\n  unit_tests: 7/7 PASS\n  integration_tests: 3/3 PASS\n  coverage: 91%\n\naccepted: YES\nacceptance_reason: |\n  All rules from FR-06 spec are implemented and\n  tested. Modifications improve robustness without\n  changing core logic.\n\nlessons_learned: |\n  AI tends to skip transaction boundaries and\n  idempotency. These MUST be in the prompt explicitly\n  for future transformations.\nTransformation Log Entry — TR-003\nارزش این Artifact\n\nاین لاگ، چیزی است که پروژه را از یک «پروژه ChatGPT» متمایز می‌کند. ارزیاب می‌بیند که تیم: (۱) چه ورودی به AI داده، (۲) چه خروجی گرفته، (۳) چه چیزی را تغییر داده، (۴) چرا. این یعنی دانشجو مالک فرآیند است، نه صرفاً یک اپراتور AI.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 90,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-90",
+    "title": "Generated Code — OrderService",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۹۰\n#۹۰\nGenerated Code — OrderService\n\nArtifact 8: کد تولیدشده نهایی\n\nاین کد نهایی OrderService است که پس از AI Transformation و Human Review پذیرفته شده است. هر بخش دارای کامنت است که نشان می‌دهد از کدام قسمت Specification آمده است. این نگاشت در Traceability Matrix به‌صورت صریح ثبت می‌شود. کد، نه فقط کار کند، بلکه باید قابل دفاع باشد.\n\nTYPESCRIPT\nimport { db } from '@/lib/db';\nimport { OrderStatus } from '../domain/order-status';\nimport { OrderValidator } from './order.validator';\nimport { EventPublisher } from '@/lib/events';\nimport { audit } from '@/lib/audit';\nimport { OrderError } from '../domain/errors';\n\nexport class OrderService {\n  constructor(\n    private readonly validator: OrderValidator,\n    private readonly events: EventPublisher,\n  ) {}\n\n  /**\n   * Implements FR-06 (Order Validation) + UC-04.\n   * Source: spec FR-06.yaml, sequence SD-04.\n   */\n  async createOrder(input: CreateOrderInput): Promise<Order> {\n    // TR-003 mod: idempotency check (added in human review)\n    if (input.idempotencyKey) {\n      const existing = await db.orders.findByIdempotencyKey(\n        input.idempotencyKey,\n      );\n      if (existing) return existing;\n    }\n\n    // Run all FR-06 rules (R-01 to R-04)\n    const result = await this.validator.validate(input);\n    if (!result.ok) {\n      throw new OrderError(result.reasonCode, result.message);\n    }\n\n    // TR-003 mod: wrap in transaction (atomicity)\n    return db.transaction(async (tx) => {\n      // Reserve wallet balance (rule R-01)\n      await tx.wallets.reserve(\n        input.studentId,\n        result.totalAmount,\n      );\n\n      // Increment vendor capacity (rule R-02)\n      await tx.vendors.incrementTodayOrders(\n        input.vendorId,\n        input.items.reduce((s, i) => s + i.quantity, 0),\n      );\n\n      // Persist order with PENDING status\n      const order = await tx.orders.create({\n        studentId: input.studentId,\n        vendorId: input.vendorId,\n        status: OrderStatus.PENDING,\n        totalAmount: result.totalAmount,\n        pickupTime: input.pickupTime,\n        idempotencyKey: input.idempotencyKey,\n        items: input.items,\n      });\n\n      // Side effects: audit + event\n      await audit.append({\n        entityType: 'Order',\n        entityId: order.id,\n        action: 'ORDER_PLACED',\n        actorId: input.studentId,\n      });\n\n      this.events.emit('ORDER_PLACED', { orderId: order.id });\n      return order;\n    });\n  }\n}\nsrc/modules/order/service/order.service.ts — final\nنکته Mapping\n\nهر بخش از این کد به یک بخش از Specification وصل است: validator.validate ← rules R-01..R-04، wallets.reserve ← rule R-01، vendors.increment ← rule R-02، OrderStatus.PENDING ← state machine init. این mapping در Traceability Matrix ثبت می‌شود.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 91,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-91",
+    "title": "Testing — از Spec تا Test",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۹۱\n#۹۱\nTesting — از Spec تا Test\n\nArtifact 9: استراتژی تست\n\nTesting از Specification تغذیه می‌شود، نه از کد. یعنی هر rule در FR-06 باید یک unit test داشته باشد، حتی قبل از اینکه کد نوشته شود. این رویکرد Test-Driven Specification نام دارد و کیفیت پوشش را تضمین می‌کند. AI می‌تواند test case تولید کند، اما تیم باید آن را validate کند.\n\nسطوح تست UniFood\nسطح\tتعداد\tهدف\tابزار\nUnit\t۸۴\tهر rule در spec + هر متد Service\tVitest + Istanbul\nIntegration\t۲۳\tتعاملات بین ماژول‌ها (Order + Wallet)\tVitest + Testcontainers\nAPI/E2E\t۱۲\tهر endpoint + سناریوهای کاربری\tPlaywright + Supertest\nLoad\t۳\tNFR-01 (۳۰۰ms) و NFR-02 (۵۰۰ concurrent)\tk6\nSecurity\t۱ فایل\tOWASP Top 10 scan\tOWASP ZAP\nنمونه Test برای FR-06 Rule R-01\nTYPESCRIPT\nimport { describe, it, expect } from 'vitest';\nimport { OrderValidator } from './order.validator';\n\ndescribe('FR-06 / Rule R-01: wallet_balance_sufficient', () => {\n  it('rejects order when wallet balance < total', async () => {\n    const validator = new OrderValidator(mockDb({\n      walletBalance: 5000,         // 50 Toman\n      menuItemPrice: 2000,          // 20 Toman each\n      vendorCapacity: 100,\n    }));\n\n    const result = await validator.validate({\n      studentId: 's1',\n      vendorId: 'v1',\n      items: [{ menuItemId: 'm1', quantity: 3 }],  // 60 > 50\n      pickupTime: '2025-01-01T12:00:00Z',\n    });\n\n    expect(result.ok).toBe(false);\n    expect(result.reasonCode).toBe('INSUFFICIENT_BALANCE');\n  });\n\n  it('accepts order when wallet balance = total (boundary)', async () => {\n    const validator = new OrderValidator(mockDb({\n      walletBalance: 6000,\n      menuItemPrice: 2000,\n      vendorCapacity: 100,\n    }));\n\n    const result = await validator.validate({\n      studentId: 's1', vendorId: 'v1',\n      items: [{ menuItemId: 'm1', quantity: 3 }],\n      pickupTime: '2025-01-01T12:00:00Z',\n    });\n\n    expect(result.ok).toBe(true);\n  });\n});\norder.validator.test.ts — Rule R-01\nقانون تست\n\nهر rule در Specification باید حداقل دو test داشته باشد: یک سناریوی success و یک failure. اگر rule دارای boundary باشد (مثل quantity=10)، یک test هم برای boundary. این قانون پوشش را تضمین می‌کند.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 92,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-92",
+    "title": "Traceability Matrix",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۹۲\n#۹۲\nTraceability Matrix\n\nArtifact 10: ستون فقرات پروژه\n\nTraceability Matrix جدولی است که نشان می‌دهد هر Requirement به کدام Use Case، Model، API، کد و Test وصل است. این جدول در طول ترم پر می‌شود و در پایان نمره Consistency از روی آن داده می‌شود. اگر سلولی خالی باشد، یعنی چیزی در زنجیره گم شده است.\n\nنمونه Traceability Matrix — UniFood (خلاصه)\nFR\tUC\tSpec\tDomain\tAPI\tCode\tTest\nFR-01\tUC-01\tFS-01\tStudent\tPOST /auth\tAuthController\tTC-01-*\nFR-02\tUC-02\tFS-02\tStudent\tGET /me\tProfileService\tTC-02-*\nFR-03\tUC-02\tFS-03\tWallet\tGET /wallet\tWalletService\tTC-03-*\nFR-04\tUC-03\tFS-04\tMenuItem\tGET /menu\tMenuService\tTC-04-*\nFR-05\tUC-04\tFS-05\tOrder\tPOST /orders\tOrderService\tTC-05-*\nFR-06\tUC-04\tFS-06\tOrder+Wallet+Vendor\tPOST /orders\tOrderValidator\tTC-06-01..12\nFR-07\tUC-05\tFS-07\tOrder\tPATCH /orders/:id/cancel\tOrderService.cancel\tTC-07-*\nFR-08\tUC-04\tFS-08\tWallet\tPOST /orders\tWalletService.reserve\tTC-08-*\nFR-09\tUC-06\tFS-09\tOrder\tGET /orders/:id\tOrderService.track\tTC-09-*\nFR-10\t—\tFS-10\t—\tinternal\tEventPublisher\tTC-10-*\nFR-11\tUC-07\tFS-11\tRating\tPOST /ratings\tRatingService\tTC-11-*\nFR-12\tUC-08\tFS-12\tComplaint\tPOST /complaints\tComplaintService\tTC-12-*\nنکته ارزیابی\n\nاگر یک FR در همه ستون‌ها مقدار دارد، یعنی از نیاز تا تست پیاده‌سازی شده. اگر یک ستون خالی است، یعنی آن Artifact گم شده و باید ساخته شود. این جدول، نقشه راه اجرایی پروژه است.\n\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  },
+  {
+    "number": 93,
+    "url": "https://sadprojectdocs.space-z.ai/#slide-93",
+    "title": "Evaluation — اعمال Rubric",
+    "text": "خانه\nمثال کامل: سامانه غذای دانشگاه\nاسلاید ۹۳\n#۹۳\nEvaluation — اعمال Rubric\n\nArtifact 11: ارزیابی نهایی\n\nدر پایان ترم، تیم UniFood با Rubric استاندارد ارزیابی می‌شود. در اینجا نمونه‌ای از نمره‌دهی را می‌بینیم. توجه کنید که کد فقط ۱۰٪ است — فرآیند و استدلال، ۹۰٪ نمره را تشکیل می‌دهند. این عمدی است: ما می‌خواهیم دانشجو فرآیند را یاد بگیرد، نه صرفاً کد بنویسد.\n\nنمونه ارزیابی تیم UniFood\nبخش\tوزن\tنمره تیم (از ۱۰۰)\tنمره وزن‌دار\nProblem & Requirements\t۱۵٪\t۹۰\t۱۳.۵\nSpecification\t۱۰٪\t۹۵\t۹.۵\nAnalysis Models\t۱۵٪\t۸۵\t۱۲.۷۵\nArchitecture\t۱۵٪\t۸۸\t۱۳.۲\nDetailed Design\t۱۵٪\t۸۲\t۱۲.۳\nAI-assisted Transformation\t۱۰٪\t۹۰\t۹.۰\nImplementation\t۱۰٪\t۸۵\t۸.۵\nTesting & Validation\t۵٪\t۹۲\t۴.۶\nDocumentation & Traceability\t۵٪\t۹۵\t۴.۷۵\n—\t۱۰۰٪\t—\t۸۸.۳ / ۱۰۰\nنکته کلیدی\n\nتیم در Implementation نمره متوسط (۸۵) گرفت ولی در Specification و Traceability عالی بود. در نتیجه نمره نهایی بالا شد (۸۸). این دقیقاً هدف چارچوب است: کیفیت فرآیند، بر کیفیت کد تقدم دارد.\n\nConsistency Score (مستقل)\n\nعلاوه بر Rubric بالا، یک نمره جداگانه Consistency داده می‌شود که انسجام Artifactها را می‌سنجد. تیم UniFood در این بخش ۹۲/۱۰۰ گرفت چون Traceability Matrix کامل بود و هیچ Artifact یتیمی وجود نداشت. این نمره، در واقع ستون فقرات ارزیابی است.\n\nجمع‌بندی نهایی\n\nمثال UniFood نشان داد که چارچوب MDD + AI-Assisted به‌صورت کاملاً عملیاتی قابل اجراست. هر Artifact از قبلی ساخته شد، AI به‌عنوان ابزار transformation وارد شد (نه تصمیم‌گیرنده)، و Traceability Matrix در پایان همه چیز را به هم وصل کرد. این همان Template ای است که دانشجو باید برای پروژه خودش استفاده کند.\n\n”\n\nAI جایگزین تحلیل و طراحی نیست؛ AI بخشی از ابزار مهندسی نرم‌افزار تیم است. این مثال نشان داد که چطور.\n\n— جمع‌بندی مثال UniFood\nقبلی\nبعدی\nبرای ناوبری از کلیدهای →و ←استفاده کنید",
+    "source": "Previously observed CUA slide text; recovered from this task tool outputs"
+  }
+]
