@@ -1,0 +1,12 @@
+{
+  "id": "architecture-reads-before-20261117-b-failure",
+  "phase": "before",
+  "status": "publication_failed",
+  "exception_type": "TypeError",
+  "cause": "PostgreSQL SUM returned Decimal; the new measurement harness did not convert that aggregate to a JSON integer.",
+  "application_changed": false,
+  "measurements_retained": false,
+  "schema_cleanup": "The PostgresSandbox context exited before JSON serialization failed.",
+  "repair": "Convert the synthetic report aggregate to int and repeat with a new evidence name.",
+  "origin": "Recorded from the failed command by the coding agent; no performance result is reconstructed."
+}

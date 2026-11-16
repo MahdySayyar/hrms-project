@@ -1,0 +1,96 @@
+{
+  "phase": "before",
+  "started_at": "2026-11-16T21:03:23.246153+00:00",
+  "finished_at": "2026-11-16T21:03:40.101116+00:00",
+  "git_parent_commit": "e61ac2c6c238513b911f0fed852ef72d18ebb5f4",
+  "source_revision_available": true,
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 17,
+  "all_passed": false,
+  "checks": [
+    {
+      "test": "tests.test_architecture_boundaries.ArchitectureBoundaries.test_tc_m01_domain_has_no_web_or_storage_dependency",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_architecture_boundaries.ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql",
+      "status": "passed"
+    },
+    {
+      "test": "setUpClass (tests.test_catalog_pagination.CatalogPagination)",
+      "status": "error",
+      "reason": "OperationalError"
+    },
+    {
+      "test": "setUpClass (tests.test_core_workflows.CoreWorkflows)",
+      "status": "error",
+      "reason": "OperationalError"
+    },
+    {
+      "test": "tests.test_docker_entrypoint.DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_docker_entrypoint.DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u01_pending_accepts_both_final_decisions",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u02_final_identical_retry_does_not_change",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u03_both_opposite_final_transitions_are_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u04_unknown_stored_state_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u05_invalid_target_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u06_admin_can_approve_without_notes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u07_rejection_requires_nonblank_reason",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u08_notes_length_boundary",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u09_non_admin_cannot_decide",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u10_invalid_decision_format",
+      "status": "passed"
+    },
+    {
+      "test": "setUpClass (tests.test_submitted_references.SubmittedReferences)",
+      "status": "error",
+      "reason": "OperationalError"
+    }
+  ]
+}

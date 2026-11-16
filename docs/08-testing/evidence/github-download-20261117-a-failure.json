@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-11-16T22:06:39.013571+00:00",
+  "all_passed": false,
+  "stage": "web_port_binding",
+  "reason": "127.0.0.1:8001 already allocated; launcher rejected startup",
+  "test_project": "hrms-github-download-20261117-a",
+  "cleanup": "Only this test project and its fresh synthetic volume removed",
+  "raw_log": "artifacts/github-download-20261117-a/verification.log",
+  "human_review": "pending"
+}

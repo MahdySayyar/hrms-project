@@ -2,12 +2,14 @@
 import os
 import re
 import socket
+from contextlib import asynccontextmanager
 from datetime import date
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette.concurrency import run_in_threadpool
 from sqlalchemy import func, or_, select, text
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
@@ -15,8 +17,19 @@ from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Uni
 from .access import audit, check_scope, current_user, render, require_admin, require_hr, scoped, scoped_employee, sync_assignment
 from .security import (COOKIE_NAME, check_csrf, current_session, discard_session,
                        new_session, require_login, set_session_cookie, verify_password)
+from .pagination import PageRequest, paginate
 
-app = FastAPI(title="سامانه مدیریت منابع انسانی", docs_url=None, redoc_url=None, openapi_url=None)
+@asynccontextmanager
+async def lifespan(_app):
+    import anyio.to_thread
+    threads = int(os.getenv("HRMS_THREADS", "40"))
+    if not 1 <= threads <= 40:
+        raise RuntimeError("HRMS_THREADS must be 1..40.")
+    anyio.to_thread.current_default_thread_limiter().total_tokens = threads
+    yield
+
+
+app = FastAPI(title="سامانه مدیریت منابع انسانی", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 templates = Jinja2Templates(directory=ROOT / "templates")
 templates.env.filters["fa"] = lambda value: str(value).translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
@@ -42,7 +55,7 @@ async def read_form(request: Request) -> dict:
 
 
 async def protected_form(request: Request) -> dict:
-    require_login(request)
+    await run_in_threadpool(require_login, request)
     form = await read_form(request)
     check_csrf(request, form)
     return form
@@ -155,8 +168,9 @@ def references(db, request=None):
 
 
 @app.get("/employees", dependencies=[Depends(require_login)])
-def employee_list(request: Request, q: str = "", branch: str = "", unit: str = "", status: str = ""):
+def employee_list(request: Request, q: str = "", branch: str = "", unit: str = "", status: str = "", page: str = "1", page_size: str = "50"):
     user = require_hr(request)
+    requested = PageRequest.parse(page, page_size)
     q = normalized(q)[:100]
     branch_id, unit_id = positive_int(branch), positive_int(unit)
     with SessionLocal() as db:
@@ -173,10 +187,11 @@ def employee_list(request: Request, q: str = "", branch: str = "", unit: str = "
             query = query.where(Employee.unit_id == unit_id) if unit_id else query.where(False)
         if status in ("active", "inactive"):
             query = query.where(Employee.active.is_(status == "active"))
-        rows = db.execute(query.order_by(Employee.id.desc())).all()
+        catalog = paginate(db, query.order_by(Employee.id.desc()), requested)
         refs = references(db, request)
-    return render(request, "employees.html", title="کارکنان", rows=rows,
-                  filters={"q": q, "branch": str(branch_id or ""), "unit": str(unit_id or ""), "status": status}, **refs)
+    filters = {"q": q, "branch": branch, "unit": unit, "status": status}
+    return render(request, "employees.html", title="کارکنان", rows=catalog.rows, page=catalog,
+                  navigation=catalog.navigation("/employees", filters), filters=filters, **refs)
 
 
 def employee_form_page(request, db, values=None, errors=None, employee=None, status_code=200):

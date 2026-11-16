@@ -13,7 +13,8 @@ database_url = os.getenv("DATABASE_URL", "")
 if not database_url.startswith("postgresql+psycopg://"):
     raise RuntimeError("DATABASE_URL must point to PostgreSQL using the psycopg driver; see .env.example.")
 
-engine = create_engine(database_url, pool_pre_ping=True)
+engine = create_engine(database_url, pool_pre_ping=True,
+    pool_size=int(os.getenv("HRMS_DB_POOL_SIZE", "5")), max_overflow=int(os.getenv("HRMS_DB_MAX_OVERFLOW", "10")))
 SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
 
 

@@ -1,0 +1,87 @@
+{
+  "recorded_at": "2026-11-16T22:15:22.989471+00:00",
+  "all_passed": true,
+  "publishable_files": 351,
+  "history_blobs_checked": 214,
+  "findings": [],
+  "scope": "Ignored runtime excluded; known local runtime secret bytes and selected credential patterns checked in publishable files and all Git blobs; no database rows read/exported",
+  "human_review": "pending",
+  "source_files": [
+    {
+      "path": "app/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256": "849928d6b1c46b250df164a418b76ace4be596803cc426869d1b9cf60074d032"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/main.py",
+      "sha256": "d7920ff39c5391797f611039dc093f4afd71d388362259ca95049ae1a2535fa1"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256": "2026fa4de1473b97c1023fc21e9f4a13d3935a3b68d79f6a15c0e1acde3b42f2"
+    },
+    {
+      "path": "app/native_proxy.py",
+      "sha256": "5c9acd7b7e945a1c44ad48c7da3664125d27e2a4c091dcddbc14204817b3a1f5"
+    },
+    {
+      "path": "app/pagination.py",
+      "sha256": "61dc6266a31453ab40d9141f803a3fb0e77b620cdab791ef0be367880b6cec4d"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256": "3eecae166ba5e720fc4920d44f5d092e8b7b78d4b0fbc9da89f845b3d398b96d"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    },
+    {
+      "path": "deployments/README.md",
+      "sha256": "80c979219958dee6505912c82d7aae2f0578c5f7b2507a4d5284105464688f22"
+    },
+    {
+      "path": "deployments/app/Dockerfile",
+      "sha256": "fd7948b7328fefd204571e214c368363ae6aae4b5205f1af4c54f9cada29f29c"
+    },
+    {
+      "path": "deployments/app/entrypoint.py",
+      "sha256": "ef3701ffc4dab421eb6a7cab88a123738d6d278de47e3b31cbca6ddc4aa55ba9"
+    },
+    {
+      "path": "deployments/compose.yaml",
+      "sha256": "0824492e2cec4ed902bc6119607317ddf2bd93a2439f1c2841b4f7e20b5f7749"
+    }
+  ]
+}

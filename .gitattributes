@@ -1,3 +1,4 @@
 # Recorded patches and lecture assets have raw-byte hashes; preserve their bytes.
 docs/07-ai-transformation/outputs/*.patch -text
 docs/references/project-framework/diagrams/*.svg -text
+*.sh text eol=lf

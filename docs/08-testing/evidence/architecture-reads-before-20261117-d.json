@@ -1,0 +1,977 @@
+{
+  "id": "MEASURE-READ-PATHS-20261117",
+  "phase": "before",
+  "started_at": "2026-11-16T21:18:24.014394+00:00",
+  "finished_at": "2026-11-16T21:18:32.846495+00:00",
+  "isolation": "Disposable PostgreSQL schema, synthetic records, real SQL/HTTP rendering in TestClient; no live web process changed",
+  "schema_removed": true,
+  "python": "3.12.14",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "employees": 10000,
+  "requests_seeded": 10000,
+  "attendance_seeded": 10000,
+  "payslips_seeded": 10000,
+  "candidates_seeded": 150,
+  "repeats": 5,
+  "authentication": "One synthetic admin session issued before timing; login is excluded",
+  "source_hashes": {
+    "app/modules.py": "d5975785ecef4646cfc2f3e3799188d8ca0c6ee89eb1c31e372efeae71d8701b",
+    "app/main.py": "d7920ff39c5391797f611039dc093f4afd71d388362259ca95049ae1a2535fa1",
+    "app/hr_models.py": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06",
+    "scripts/measure_read_paths_20261117.py": "53f601b94a6911ccc04ca5e8cc21c2f1eccd41752656feafde6a83acb5f40e56"
+  },
+  "reads": [
+    {
+      "path": "/hr/leave?page_size=1",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 22.999600000048304,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 1
+          },
+          "response_bytes": 4874,
+          "canonical_body_sha256": "04a21f32f91855acee1544bd829ae88f8edb3023db4aa776e071577ad88ab619"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 21.1480999998912,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 1
+          },
+          "response_bytes": 4874,
+          "canonical_body_sha256": "04a21f32f91855acee1544bd829ae88f8edb3023db4aa776e071577ad88ab619"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 22.59849999995822,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 1
+          },
+          "response_bytes": 4874,
+          "canonical_body_sha256": "04a21f32f91855acee1544bd829ae88f8edb3023db4aa776e071577ad88ab619"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 22.065800000063973,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 1
+          },
+          "response_bytes": 4874,
+          "canonical_body_sha256": "04a21f32f91855acee1544bd829ae88f8edb3023db4aa776e071577ad88ab619"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 21.5886999999384,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 1
+          },
+          "response_bytes": 4874,
+          "canonical_body_sha256": "04a21f32f91855acee1544bd829ae88f8edb3023db4aa776e071577ad88ab619"
+        }
+      ],
+      "median_ms": 22.065800000063973,
+      "min_ms": 21.1480999998912,
+      "max_ms": 22.999600000048304,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/leave?page_size=50",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 78.78410000012082,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 50
+          },
+          "response_bytes": 21337,
+          "canonical_body_sha256": "2e686a92254aed641567c45b21a4eb01ff3a517a7d28fd192221baf066b1b227"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 75.05869999999959,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 50
+          },
+          "response_bytes": 21337,
+          "canonical_body_sha256": "2e686a92254aed641567c45b21a4eb01ff3a517a7d28fd192221baf066b1b227"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 111.16950000018733,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 50
+          },
+          "response_bytes": 21337,
+          "canonical_body_sha256": "2e686a92254aed641567c45b21a4eb01ff3a517a7d28fd192221baf066b1b227"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 73.88040000000728,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 50
+          },
+          "response_bytes": 21337,
+          "canonical_body_sha256": "2e686a92254aed641567c45b21a4eb01ff3a517a7d28fd192221baf066b1b227"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 72.73510000004535,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 50
+          },
+          "response_bytes": 21337,
+          "canonical_body_sha256": "2e686a92254aed641567c45b21a4eb01ff3a517a7d28fd192221baf066b1b227"
+        }
+      ],
+      "median_ms": 75.05869999999959,
+      "min_ms": 72.73510000004535,
+      "max_ms": 111.16950000018733,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/leave?page_size=100",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 110.14169999998558,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 100
+          },
+          "response_bytes": 38140,
+          "canonical_body_sha256": "127255e391cf868f5d2e6f4e1d7dfe323df92d4ee82602bfe070727a745dec03"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 104.30799999994633,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 100
+          },
+          "response_bytes": 38140,
+          "canonical_body_sha256": "127255e391cf868f5d2e6f4e1d7dfe323df92d4ee82602bfe070727a745dec03"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 107.82420000009552,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 100
+          },
+          "response_bytes": 38140,
+          "canonical_body_sha256": "127255e391cf868f5d2e6f4e1d7dfe323df92d4ee82602bfe070727a745dec03"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 112.16899999999441,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 100
+          },
+          "response_bytes": 38140,
+          "canonical_body_sha256": "127255e391cf868f5d2e6f4e1d7dfe323df92d4ee82602bfe070727a745dec03"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 105.63440000009905,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "hr_requests": 2,
+            "employees": 100
+          },
+          "response_bytes": 38140,
+          "canonical_body_sha256": "127255e391cf868f5d2e6f4e1d7dfe323df92d4ee82602bfe070727a745dec03"
+        }
+      ],
+      "median_ms": 107.82420000009552,
+      "min_ms": 104.30799999994633,
+      "max_ms": 112.16899999999441,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/attendance?page_size=1",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 14.137800000071366,
+          "selects": 5,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 1,
+            "shifts": 1
+          },
+          "response_bytes": 4503,
+          "canonical_body_sha256": "aa0b5d6021195c98643b3d11e9a6aca1468c31947958d2ae2c0e3a8195ee2d84"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 12.391799999932118,
+          "selects": 5,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 1,
+            "shifts": 1
+          },
+          "response_bytes": 4503,
+          "canonical_body_sha256": "aa0b5d6021195c98643b3d11e9a6aca1468c31947958d2ae2c0e3a8195ee2d84"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 13.587599999937083,
+          "selects": 5,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 1,
+            "shifts": 1
+          },
+          "response_bytes": 4503,
+          "canonical_body_sha256": "aa0b5d6021195c98643b3d11e9a6aca1468c31947958d2ae2c0e3a8195ee2d84"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 11.92029999992883,
+          "selects": 5,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 1,
+            "shifts": 1
+          },
+          "response_bytes": 4503,
+          "canonical_body_sha256": "aa0b5d6021195c98643b3d11e9a6aca1468c31947958d2ae2c0e3a8195ee2d84"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 13.121799999908035,
+          "selects": 5,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 1,
+            "shifts": 1
+          },
+          "response_bytes": 4503,
+          "canonical_body_sha256": "aa0b5d6021195c98643b3d11e9a6aca1468c31947958d2ae2c0e3a8195ee2d84"
+        }
+      ],
+      "median_ms": 13.121799999908035,
+      "min_ms": 11.92029999992883,
+      "max_ms": 14.137800000071366,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/attendance?page_size=50",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 71.40949999984514,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 50,
+            "shifts": 50
+          },
+          "response_bytes": 21554,
+          "canonical_body_sha256": "5fb08f95f169b524ebe82f5a95d4402344e3d84db3cadd6cdfb8e33a7f6a5037"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 76.23199999989083,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 50,
+            "shifts": 50
+          },
+          "response_bytes": 21554,
+          "canonical_body_sha256": "5fb08f95f169b524ebe82f5a95d4402344e3d84db3cadd6cdfb8e33a7f6a5037"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 76.30829999993693,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 50,
+            "shifts": 50
+          },
+          "response_bytes": 21554,
+          "canonical_body_sha256": "5fb08f95f169b524ebe82f5a95d4402344e3d84db3cadd6cdfb8e33a7f6a5037"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 72.54149999994297,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 50,
+            "shifts": 50
+          },
+          "response_bytes": 21554,
+          "canonical_body_sha256": "5fb08f95f169b524ebe82f5a95d4402344e3d84db3cadd6cdfb8e33a7f6a5037"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 71.84019999999691,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 50,
+            "shifts": 50
+          },
+          "response_bytes": 21554,
+          "canonical_body_sha256": "5fb08f95f169b524ebe82f5a95d4402344e3d84db3cadd6cdfb8e33a7f6a5037"
+        }
+      ],
+      "median_ms": 72.54149999994297,
+      "min_ms": 71.40949999984514,
+      "max_ms": 76.30829999993693,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/attendance?page_size=100",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 137.17889999998079,
+          "selects": 203,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 100,
+            "shifts": 100
+          },
+          "response_bytes": 38957,
+          "canonical_body_sha256": "a321e823728ecb870b28923942d49c775f8616cb34301cb975383a330c2226de"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 133.9837999998963,
+          "selects": 203,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 100,
+            "shifts": 100
+          },
+          "response_bytes": 38957,
+          "canonical_body_sha256": "a321e823728ecb870b28923942d49c775f8616cb34301cb975383a330c2226de"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 128.48600000006627,
+          "selects": 203,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 100,
+            "shifts": 100
+          },
+          "response_bytes": 38957,
+          "canonical_body_sha256": "a321e823728ecb870b28923942d49c775f8616cb34301cb975383a330c2226de"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 131.02099999991879,
+          "selects": 203,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 100,
+            "shifts": 100
+          },
+          "response_bytes": 38957,
+          "canonical_body_sha256": "a321e823728ecb870b28923942d49c775f8616cb34301cb975383a330c2226de"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 132.18720000008943,
+          "selects": 203,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "attendance": 2,
+            "employees": 100,
+            "shifts": 100
+          },
+          "response_bytes": 38957,
+          "canonical_body_sha256": "a321e823728ecb870b28923942d49c775f8616cb34301cb975383a330c2226de"
+        }
+      ],
+      "median_ms": 132.18720000008943,
+      "min_ms": 128.48600000006627,
+      "max_ms": 137.17889999998079,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/candidates?page_size=1",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 8.120499999904496,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 1
+          },
+          "response_bytes": 4888,
+          "canonical_body_sha256": "ae03248aba4602324f157806e25827f0997f510452a5c381d8a0091bebd8914b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 6.931399999984933,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 1
+          },
+          "response_bytes": 4888,
+          "canonical_body_sha256": "ae03248aba4602324f157806e25827f0997f510452a5c381d8a0091bebd8914b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 8.33850000003622,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 1
+          },
+          "response_bytes": 4888,
+          "canonical_body_sha256": "ae03248aba4602324f157806e25827f0997f510452a5c381d8a0091bebd8914b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 7.151300000032279,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 1
+          },
+          "response_bytes": 4888,
+          "canonical_body_sha256": "ae03248aba4602324f157806e25827f0997f510452a5c381d8a0091bebd8914b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 7.53919999988284,
+          "selects": 4,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 1
+          },
+          "response_bytes": 4888,
+          "canonical_body_sha256": "ae03248aba4602324f157806e25827f0997f510452a5c381d8a0091bebd8914b"
+        }
+      ],
+      "median_ms": 7.53919999988284,
+      "min_ms": 6.931399999984933,
+      "max_ms": 8.33850000003622,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/candidates?page_size=50",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 37.30799999993906,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 50
+          },
+          "response_bytes": 20518,
+          "canonical_body_sha256": "304f50b453ca3a83c5c83e41d665e498795521ac6377ccd639b686bd9ba3067b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 37.383900000122594,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 50
+          },
+          "response_bytes": 20518,
+          "canonical_body_sha256": "304f50b453ca3a83c5c83e41d665e498795521ac6377ccd639b686bd9ba3067b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 37.13100000004488,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 50
+          },
+          "response_bytes": 20518,
+          "canonical_body_sha256": "304f50b453ca3a83c5c83e41d665e498795521ac6377ccd639b686bd9ba3067b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 36.771299999827534,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 50
+          },
+          "response_bytes": 20518,
+          "canonical_body_sha256": "304f50b453ca3a83c5c83e41d665e498795521ac6377ccd639b686bd9ba3067b"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 40.33039999990251,
+          "selects": 53,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 50
+          },
+          "response_bytes": 20518,
+          "canonical_body_sha256": "304f50b453ca3a83c5c83e41d665e498795521ac6377ccd639b686bd9ba3067b"
+        }
+      ],
+      "median_ms": 37.30799999993906,
+      "min_ms": 36.771299999827534,
+      "max_ms": 40.33039999990251,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/hr/candidates?page_size=100",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 66.62579999988338,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 100
+          },
+          "response_bytes": 36322,
+          "canonical_body_sha256": "c9e95077977540a9f4c896c906c5c53a47977d00a758be6b6dfc904041a035d7"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 71.29020000002129,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 100
+          },
+          "response_bytes": 36322,
+          "canonical_body_sha256": "c9e95077977540a9f4c896c906c5c53a47977d00a758be6b6dfc904041a035d7"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 66.8587000000116,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 100
+          },
+          "response_bytes": 36322,
+          "canonical_body_sha256": "c9e95077977540a9f4c896c906c5c53a47977d00a758be6b6dfc904041a035d7"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 66.2128000001303,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 100
+          },
+          "response_bytes": 36322,
+          "canonical_body_sha256": "c9e95077977540a9f4c896c906c5c53a47977d00a758be6b6dfc904041a035d7"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 66.49470000002111,
+          "selects": 103,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "candidates": 2,
+            "positions": 100
+          },
+          "response_bytes": 36322,
+          "canonical_body_sha256": "c9e95077977540a9f4c896c906c5c53a47977d00a758be6b6dfc904041a035d7"
+        }
+      ],
+      "median_ms": 66.62579999988338,
+      "min_ms": 66.2128000001303,
+      "max_ms": 71.29020000002129,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    },
+    {
+      "path": "/reports/employees.csv",
+      "warmups": 1,
+      "samples": [
+        {
+          "status": 200,
+          "elapsed_ms": 239.81810000009318,
+          "selects": 2,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "employees": 1
+          },
+          "response_bytes": 1419001,
+          "canonical_body_sha256": "707430bd16a063f43ab7f80b972293708af4b6797da69064dbdcd389e88237a6"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 275.9883000001082,
+          "selects": 2,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "employees": 1
+          },
+          "response_bytes": 1419001,
+          "canonical_body_sha256": "707430bd16a063f43ab7f80b972293708af4b6797da69064dbdcd389e88237a6"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 238.84139999995568,
+          "selects": 2,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "employees": 1
+          },
+          "response_bytes": 1419001,
+          "canonical_body_sha256": "707430bd16a063f43ab7f80b972293708af4b6797da69064dbdcd389e88237a6"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 247.24940000010065,
+          "selects": 2,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "employees": 1
+          },
+          "response_bytes": 1419001,
+          "canonical_body_sha256": "707430bd16a063f43ab7f80b972293708af4b6797da69064dbdcd389e88237a6"
+        },
+        {
+          "status": 200,
+          "elapsed_ms": 243.0663000000095,
+          "selects": 2,
+          "selects_by_primary_table": {
+            "admins": 1,
+            "employees": 1
+          },
+          "response_bytes": 1419001,
+          "canonical_body_sha256": "707430bd16a063f43ab7f80b972293708af4b6797da69064dbdcd389e88237a6"
+        }
+      ],
+      "median_ms": 243.0663000000095,
+      "min_ms": 238.84139999995568,
+      "max_ms": 275.9883000001082,
+      "note": "Sequential local TestClient timing, not a load-test P95 or capacity estimate"
+    }
+  ],
+  "csv_memory_sample": {
+    "status": 200,
+    "elapsed_ms": 724.7056000001066,
+    "selects": 2,
+    "selects_by_primary_table": {
+      "admins": 1,
+      "employees": 1
+    },
+    "response_bytes": 1419001,
+    "canonical_body_sha256": "707430bd16a063f43ab7f80b972293708af4b6797da69064dbdcd389e88237a6",
+    "python_tracemalloc_peak_bytes": 28714758
+  },
+  "export_audits": {
+    "count": 7,
+    "all_row_counts_correct": true
+  },
+  "report_period_probe": [
+    {
+      "input_period": "2025-01",
+      "rendered_period": "2025-01",
+      "payroll_total": 1000000,
+      "expected_synthetic_payroll_total": 1000000
+    },
+    {
+      "input_period": "۲۰۲۵-۰۱",
+      "rendered_period": "۲۰۲۵-۰۱",
+      "payroll_total": 0,
+      "expected_synthetic_payroll_total": 1000000
+    },
+    {
+      "input_period": "٢٠٢٥-٠١",
+      "rendered_period": "٢٠٢٥-٠١",
+      "payroll_total": 0,
+      "expected_synthetic_payroll_total": 1000000
+    }
+  ],
+  "index_plan_probe": {
+    "provenance": "Synthetic rows in a disposable schema; plans do not describe production traffic or selective historical months",
+    "candidate_indexes_applied": false,
+    "plans": {
+      "approved_overlap": [
+        {
+          "Plan": {
+            "Node Type": "Seq Scan",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Relation Name": "hr_requests",
+            "Alias": "hr_requests",
+            "Startup Cost": 0.0,
+            "Total Cost": 393.0,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 1.827,
+            "Actual Total Time": 1.827,
+            "Actual Rows": 0,
+            "Actual Loops": 1,
+            "Filter": "((id <> 1) AND ((kind)::text = ANY ('{leave,travel}'::text[])) AND (start_date <= '2030-01-02'::date) AND (end_date >= '2030-01-01'::date) AND (employee_id = 1) AND ((status)::text = 'approved'::text))",
+            "Rows Removed by Filter": 10000,
+            "Shared Hit Blocks": 143,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning": {
+            "Shared Hit Blocks": 32,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.229,
+          "Triggers": [],
+          "Execution Time": 1.837
+        }
+      ],
+      "attendance_period": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Plain",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 269.0,
+            "Total Cost": 269.01,
+            "Plan Rows": 1,
+            "Plan Width": 8,
+            "Actual Startup Time": 1.895,
+            "Actual Total Time": 1.895,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 94,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Relation Name": "attendance",
+                "Alias": "attendance",
+                "Startup Cost": 0.0,
+                "Total Cost": 244.0,
+                "Plan Rows": 10000,
+                "Plan Width": 4,
+                "Actual Startup Time": 0.011,
+                "Actual Total Time": 1.18,
+                "Actual Rows": 10000,
+                "Actual Loops": 1,
+                "Filter": "((work_date >= '2025-01-01'::date) AND (work_date <= '2025-01-31'::date))",
+                "Rows Removed by Filter": 0,
+                "Shared Hit Blocks": 94,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 28,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.239,
+          "Triggers": [],
+          "Execution Time": 1.907
+        }
+      ],
+      "payslip_period": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Plain",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 414.0,
+            "Total Cost": 414.01,
+            "Plan Rows": 1,
+            "Plan Width": 32,
+            "Actual Startup Time": 2.942,
+            "Actual Total Time": 2.942,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 264,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Relation Name": "payslips",
+                "Alias": "payslips",
+                "Startup Cost": 0.0,
+                "Total Cost": 389.0,
+                "Plan Rows": 10000,
+                "Plan Width": 8,
+                "Actual Startup Time": 0.01,
+                "Actual Total Time": 1.368,
+                "Actual Rows": 10000,
+                "Actual Loops": 1,
+                "Filter": "((period)::text = '2025-01'::text)",
+                "Rows Removed by Filter": 0,
+                "Shared Hit Blocks": 264,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 28,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.228,
+          "Triggers": [],
+          "Execution Time": 2.954
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "One host, one in-process HTTP app, sequential warm samples; no RPS or concurrent-user capacity claim",
+    "Tracemalloc measures Python allocations, not total native/process/PostgreSQL RSS",
+    "All attendance and payslips lie in one month; this is unsuitable for deciding a selective period index",
+    "CSV still returns a complete buffered response; the experiment measures input-row materialization cost"
+  ]
+}

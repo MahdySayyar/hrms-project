@@ -1,0 +1,24 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-15T06:22:15.145518+00:00",
+  "finished_at": "2026-11-15T06:22:16.812198+00:00",
+  "git_parent_commit": "e61ac2c6c238513b911f0fed852ef72d18ebb5f4",
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 3,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary",
+      "status": "passed"
+    }
+  ]
+}

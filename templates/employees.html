@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="page-heading"><div><p class="eyebrow">پرونده‌های پرسنلی</p><h1>کارکنان</h1><p class="muted">{{ rows|length|fa }} پرونده با شرایط انتخاب‌شده</p></div><a class="button primary" href="/employees/new">＋ افزودن کارمند</a></div>
+<div class="page-heading"><div><p class="eyebrow">پرونده‌های پرسنلی</p><h1>کارکنان</h1><p class="muted">{{ page.total|fa }} پرونده با شرایط انتخاب‌شده</p></div><a class="button primary" href="/employees/new">＋ افزودن کارمند</a></div>
 <form class="filter-panel panel" method="get" action="/employees" data-unit-filter>
   <div class="field search-field"><label for="q">جست‌وجوی کارمند</label><input id="q" name="q" value="{{ filters.q }}" placeholder="نام یا کد پرسنلی" maxlength="100"></div>
   <div class="field"><label for="branch">شعبه</label><select id="branch" name="branch" data-branch><option value="">همهٔ شعبه‌ها</option>{% for branch in branches %}<option value="{{ branch.id }}" {% if filters.branch == branch.id|string %}selected{% endif %}>{{ branch.name }}</option>{% endfor %}</select></div>
@@ -12,4 +12,5 @@
 {% for row in rows %}{% set employee = row.Employee %}<tr><td><strong>{{ employee.first_name }} {{ employee.last_name }}</strong><small class="cell-subtitle">استخدام: {{ employee.hire_date|fa }} (میلادی)</small></td><td dir="ltr" class="code">{{ employee.employee_code }}</td><td>{{ row.branch_name }}<small class="cell-subtitle">{{ row.unit_name }}</small></td><td>{{ row.position_title }}</td><td>{{ employee.contract_type }}</td><td><span class="badge {{ 'active' if employee.active else 'inactive' }}">{{ 'فعال' if employee.active else 'غیرفعال' }}</span></td><td class="row-actions"><a href="/employees/{{ employee.id }}" class="text-link">مشاهده</a><a href="/employees/{{ employee.id }}/edit" class="text-link">ویرایش</a></td></tr>
 {% else %}<tr><td colspan="7" class="empty-state">کارمندی با این شرایط پیدا نشد.<br><a href="/employees" class="text-link">پاک کردن فیلترها</a></td></tr>{% endfor %}
 </tbody></table></div></section>
+{% include 'page_navigation.html' %}
 {% endblock %}

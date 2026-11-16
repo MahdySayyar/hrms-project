@@ -97,7 +97,7 @@ specifications:
   - CSRF for mutation
   rules:
   - BR-04
-  success: نام یا کد و فیلتر شعبه/واحد/وضعیت در محدودهٔ کاربر اعمال شوند.
+  success: نام یا کد و فیلتر شعبه/واحد/وضعیت پیش از count و LIMIT/OFFSET اعمال شوند؛ صفحه 1 و اندازه 50 پیش‌فرض، سقف اندازه 100، ورودی نامعتبر 400، صفحه دور به آخر محدود و لینک‌ها حافظ فیلتر باشند.
   failure: Reject invalid/unauthorized input with the documented browser contract;
     no partial operational change
   implementation:
@@ -386,7 +386,9 @@ specifications:
   - CSRF for mutation
   rules:
   - BR-04
-  success: تعداد/وضعیت/کارکرد/فیش دوره در محدودهٔ نقش نمایش داده شوند.
+  - BR-13
+  success: تعداد/وضعیت/کارکرد/فیش دوره در محدودهٔ نقش نمایش داده شوند؛ ماه معتبر میلادی با ارقام فارسی/عربی/لاتین و فاصله پیرامونی به همان کلید YYYY-MM وصل شود؛ جمع فیش فقط admin ببیند و ماه نامعتبر 400 باشد.
+  change: ADR-13 specified before the 2026-11-17 code; no stored snapshot or calendar migration
   failure: Reject invalid/unauthorized input with the documented browser contract;
     no partial operational change
   implementation:
@@ -403,8 +405,10 @@ specifications:
   rules:
   - BR-03
   - BR-04
+  - BR-14
   - BR-21
   success: CSV فارسی UTF-8 BOM در محدوده و با خنثی‌سازی فرمول، فقط برای hr/admin.
+  read_contract: ADR-12 specified before the 2026-11-17 code; eight-column projection, 500-row fetch batch, unchanged buffered bytes/order and exact-row-count audit committed before success
   failure: Reject invalid/unauthorized input with the documented browser contract;
     no partial operational change
   implementation:

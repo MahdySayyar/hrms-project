@@ -1,0 +1,337 @@
+{
+  "id": "20261112T075913-173ee8",
+  "started_at": "2026-11-12T07:59:13.490616+00:00",
+  "finished_at": "2026-11-12T08:03:21.887370+00:00",
+  "git_parent_commit": "e61ac2c6c238513b911f0fed852ef72d18ebb5f4",
+  "app_sources": [
+    {
+      "path": "app/__init__.py",
+      "sha256_utf8_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256_utf8_lf": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256_utf8_lf": "61f82cd8c377b72775c564a3a0186afd3543b7f1752216f5d58627272ddbede7"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256_utf8_lf": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/main.py",
+      "sha256_utf8_lf": "affcc3cae252e65a8b6c7b5c4ae631ba5dad0820103e98d22f30eba91c206f75"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256_utf8_lf": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256_utf8_lf": "921f0bc7275f0ff906dd94dc176372474d6f63c35fdb42f92f75ae1d59694747"
+    },
+    {
+      "path": "app/pagination.py",
+      "sha256_utf8_lf": "61dc6266a31453ab40d9141f803a3fb0e77b620cdab791ef0be367880b6cec4d"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256_utf8_lf": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256_utf8_lf": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256_utf8_lf": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256_utf8_lf": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256_utf8_lf": "ed32916da89f208171ad82aa460c66800403c5e6af50f2c5997d3129ca99a136"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256_utf8_lf": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    }
+  ],
+  "profile": "mixed",
+  "source_archive": "artifacts/evidence/capacity-20261112T075913-173ee8/app-before-run.zip",
+  "source_root": ".",
+  "captured_sources": [
+    {
+      "path": "app/__init__.py",
+      "sha256_utf8_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256_utf8_lf": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256_utf8_lf": "61f82cd8c377b72775c564a3a0186afd3543b7f1752216f5d58627272ddbede7"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256_utf8_lf": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/main.py",
+      "sha256_utf8_lf": "affcc3cae252e65a8b6c7b5c4ae631ba5dad0820103e98d22f30eba91c206f75"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256_utf8_lf": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256_utf8_lf": "921f0bc7275f0ff906dd94dc176372474d6f63c35fdb42f92f75ae1d59694747"
+    },
+    {
+      "path": "app/pagination.py",
+      "sha256_utf8_lf": "61dc6266a31453ab40d9141f803a3fb0e77b620cdab791ef0be367880b6cec4d"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256_utf8_lf": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256_utf8_lf": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256_utf8_lf": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256_utf8_lf": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256_utf8_lf": "ed32916da89f208171ad82aa460c66800403c5e6af50f2c5997d3129ca99a136"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256_utf8_lf": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    },
+    {
+      "path": "templates/audit.html",
+      "sha256_utf8_lf": "ccab1b5743e9012b5b6b298b7c9d78dc5b160dd5214b771e8c92933bb92122e4"
+    },
+    {
+      "path": "templates/base.html",
+      "sha256_utf8_lf": "31e1f125c2f43d1fdb7ccb8a092994e1474e8d4dee3a2ea71d3a872c3e5c3aa0"
+    },
+    {
+      "path": "templates/dashboard.html",
+      "sha256_utf8_lf": "77683d2cc17ed8d31b50b02460684a6822226ae5c4a47e5a856e052709686467"
+    },
+    {
+      "path": "templates/employee_detail.html",
+      "sha256_utf8_lf": "d24e0fbf58e68fed243f866914b20b06e01223fcbd2bd33620dd693560acc06f"
+    },
+    {
+      "path": "templates/employee_form.html",
+      "sha256_utf8_lf": "8b3969a6ee7b78210f090c94934a85307e036ee787f066ae8eea9da38bf472d2"
+    },
+    {
+      "path": "templates/employees.html",
+      "sha256_utf8_lf": "bee11ffe0d49d43a5bbb88abbd144d2dcba8063858c095971a0fdf7223f0130f"
+    },
+    {
+      "path": "templates/error.html",
+      "sha256_utf8_lf": "40a6efcb9ab763a95b9a81ff52ad8da488242df4f355cc2fcd2e8ddb2bfaf5e1"
+    },
+    {
+      "path": "templates/history.html",
+      "sha256_utf8_lf": "933e0f55454269c3168879e520c25ed25507221c66adfdbac4c0f5a5301f3233"
+    },
+    {
+      "path": "templates/login.html",
+      "sha256_utf8_lf": "ef83e8bdeb8f623f1ef23e0d4ff0c55c44fda2c3f96b795719f8986aec7881f7"
+    },
+    {
+      "path": "templates/module_detail.html",
+      "sha256_utf8_lf": "9396392f02edb7bdc301aa992a4f533de5944ce9c777efdc7905866adb204818"
+    },
+    {
+      "path": "templates/module_form.html",
+      "sha256_utf8_lf": "02afe8fb350a6e20bd642650c56cde5f8869960f5682ab488c0767253a5ec1fb"
+    },
+    {
+      "path": "templates/module_list.html",
+      "sha256_utf8_lf": "b24e82f2665970aa165a0defe0014cbc94f5aacad913ef8b504b145c04518c3f"
+    },
+    {
+      "path": "templates/module_tabs.html",
+      "sha256_utf8_lf": "b61b509adb3cdc47d3e214c9ee64eae78660ccb134c52f7c2cf3c05f70a86f8b"
+    },
+    {
+      "path": "templates/modules.html",
+      "sha256_utf8_lf": "47e012f31a2ba8f6dcaadd8097c7313626a34738d2543475959d67c90e9da6c5"
+    },
+    {
+      "path": "templates/organization.html",
+      "sha256_utf8_lf": "0f1ab7fed28a9d8b39168397d85b627db1b418b8f53b8ce82bf39e2824a2501d"
+    },
+    {
+      "path": "templates/organization_form.html",
+      "sha256_utf8_lf": "3956d673d24872d681f2578f19b416473b858c3623482e1c20603ad770e3fa4c"
+    },
+    {
+      "path": "templates/page_navigation.html",
+      "sha256_utf8_lf": "14728ad8c764abf355756398861502fb179dea44a9d364875aa394d9659afd86"
+    },
+    {
+      "path": "templates/payroll.html",
+      "sha256_utf8_lf": "ac0d7b6137224e737147c62207787ba50e48224668088085c6e1029c7732eb04"
+    },
+    {
+      "path": "templates/payslip.html",
+      "sha256_utf8_lf": "9fe79ce3c605e3b60a77e989d2f476acf6ac05cd0161e45d686092526f77fe0a"
+    },
+    {
+      "path": "templates/reports.html",
+      "sha256_utf8_lf": "2aa7684d9128bacdc3cae99c5880b9b494e14f3a54aa105d844c609d09523eb5"
+    },
+    {
+      "path": "static/forms.js",
+      "sha256_utf8_lf": "d8a8dc520858a67bebd43e58f73c1e7452cbf68e128783a0dfc88b96d5ce3bd7"
+    },
+    {
+      "path": "static/modules.css",
+      "sha256_utf8_lf": "f123f23c744312ca1be2531e19ffe4ae59d73df6ead143073562fab5c1b8a264"
+    },
+    {
+      "path": "static/style.css",
+      "sha256_utf8_lf": "244bc1ba26c7e0befd89d403baa930e58a015e24305075b327ca81250bc8cd5e"
+    }
+  ],
+  "fixture_schema_source": "Current app.database.Base.metadata; selected source has no migration applied by this runner",
+  "fixture_table_count": 21,
+  "source_runtime": "Uvicorn without reload; code captured before process startup",
+  "minimum_free_disk_bytes": 536870912,
+  "topology": "One native FastAPI/Uvicorn process and local PostgreSQL; separate lab port and schema",
+  "initial_employee_count": 10000,
+  "users_requested": 500,
+  "spawn_rate": 20.0,
+  "steady_seconds_requested": 30,
+  "warmup_timeout_seconds": 240,
+  "python_version": "3.12.14",
+  "locust_version": "2.47.0",
+  "os": "Windows-10-10.0.19045-SP0",
+  "logical_cpus": 8,
+  "host_ram_bytes": 25623654400,
+  "database_max_connections": 100,
+  "metrics": {
+    "protocol_version": 2,
+    "setup_barrier": true,
+    "profile": "mixed",
+    "finish_reason": "setup_timeout",
+    "ready_users_peak": 203,
+    "authenticated_users_peak": 203,
+    "spawn_completion": {
+      "users": 500,
+      "time": 1794470385.4663556
+    },
+    "setup_failures": {
+      "target": 80,
+      "session": 217
+    },
+    "steady_started_at": null,
+    "steady_finished_at": null,
+    "steady_seconds": 0,
+    "requests": 0,
+    "failures": 0,
+    "failure_fraction": null,
+    "read_requests": 0,
+    "write_requests": 0,
+    "observed_read_fraction": null,
+    "rps": null,
+    "p50_ms": null,
+    "p95_ms": null,
+    "p99_ms": null,
+    "percentile_method": "Nearest-rank over 1ms response-time buckets; requests started before or completed after the steady window excluded",
+    "latency_histogram_ms": {},
+    "endpoints": [],
+    "all_window_and_setup_outcomes": [
+      {
+        "name": "setup.instance",
+        "status": 200,
+        "failed": false,
+        "count": 420
+      },
+      {
+        "name": "setup.login_form",
+        "status": 200,
+        "failed": false,
+        "count": 420
+      },
+      {
+        "name": "setup.login",
+        "status": 303,
+        "failed": false,
+        "count": 420
+      },
+      {
+        "name": "setup.session",
+        "status": 200,
+        "failed": false,
+        "count": 203
+      },
+      {
+        "name": "setup.instance",
+        "status": 0,
+        "failed": true,
+        "count": 80
+      },
+      {
+        "name": "setup.session",
+        "status": 0,
+        "failed": true,
+        "count": 217
+      }
+    ]
+  },
+  "resources": {
+    "all_samples": 231,
+    "steady_samples": 0,
+    "steady": {
+      "host_cpu_percent": null,
+      "host_available_ram_bytes": null,
+      "host_free_disk_bytes": null,
+      "web_cpu_percent_one_core_100": null,
+      "web_rss_bytes": null,
+      "generator_cpu_percent_one_core_100": null,
+      "generator_rss_bytes": null,
+      "lab_database_connections": null,
+      "lab_database_active": null,
+      "lab_database_waiting": null,
+      "lab_database_backend_cpu_percent_one_core_100": null,
+      "lab_database_backend_rss_bytes": null
+    },
+    "sampling_errors": 0,
+    "cpu_semantics": "Process CPU sum; 100% = one logical core. Host CPU is normalized across all logical cores. RSS includes the Python launcher and its child processes."
+  },
+  "generator_exit_code": 1,
+  "audit_observation": {
+    "acknowledged_status_writes_all_windows": 0,
+    "persisted_status_audits": 0,
+    "all_acknowledgements_have_at_least_an_audit": true,
+    "limitation": "Aggregate count only; timed-out requests may also commit. This is not per-operation exactly-once verification."
+  },
+  "nfr_500_users_verified": false,
+  "limitations": [
+    "Generator and services share one physical host",
+    "Only the specified latency/error NFR can be assessed; this does not certify HA, authorization completeness or all write invariants",
+    "Local native database has no container resource isolation; compare like-for-like profiles and steady windows"
+  ],
+  "raw_evidence_directory": "artifacts/evidence/capacity-20261112T075913-173ee8"
+}

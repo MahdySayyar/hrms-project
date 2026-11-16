@@ -1,0 +1,8 @@
+flowchart LR
+    Browser["مرورگر فارسی / localhost:8001"] --> Web["کانتینر وب / یک Uvicorn / نشست حافظه‌ای"]
+    Web --> DB["کانتینر PostgreSQL 17.6 / شبکه Compose"]
+    DB --> Volume[("volume مستقل / دادهٔ نمونه")]
+    Secrets["فایل secret محلی خارج Git"] -.-> Web
+    Secrets -.-> DB
+    Init["ابزار موقت تولید secret / بدون شبکه / فقط زمان شروع"] -.-> Secrets
+    Native["وب و دادهٔ native روی 8000"]

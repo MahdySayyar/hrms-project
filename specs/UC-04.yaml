@@ -1,0 +1,54 @@
+id: UC-04
+version: 3
+goal: Browse, filter and maintain employee records without loading the whole catalog in one page
+status: existing_pagination_reconstructed_reference_batch_specified_before_20261117_code_pending_human_review
+trigger: Authorized HR/admin opens the employee catalog
+actors: [hr, admin]
+requirements: [FR-04, FR-05, FR-06, FR-08, FR-09, FR-11, FR-12, FR-15, FR-17, FR-18, FR-19, FR-20, FR-25]
+business_rules: [BR-03, BR-04, BR-05, BR-06]
+preconditions:
+  - Active authenticated account
+  - Organizational role and scope are enforced on every read and mutation
+input:
+  q: Optional name/code, maximum 100 characters; percent and underscore are literal
+  branch: Optional valid branch identifier; invalid nonempty filter produces no matches
+  unit: Optional valid unit identifier; invalid nonempty filter produces no matches
+  status: Optional active/inactive
+  page: Positive integer, default 1, maximum 1000000
+  page_size: Integer from 1 through 100, default 50
+main_flow:
+  - Authenticate and authorize the active account
+  - Validate pagination before executing the catalog query
+  - Apply role/scope and all existing filters to the base query
+  - Count the filtered records and clamp an out-of-range page to the last page
+  - Fetch only the requested slice in descending employee-id order
+  - For related module catalogs, collect distinct reference identifiers from the authorized slice and project one id/label SELECT per reference model
+  - Resolve display cells with a map local to this response; preserve missing/optional labels and escaping; read fresh references on the next request
+  - Render total count, current slice and navigation preserving filters and page size
+alternatives:
+  - id: invalid_pagination
+    condition: Noninteger, nonpositive or over-limit page/page_size
+    response: HTTP 400 with a Persian explanation
+  - id: empty_results
+    condition: No matches inside the authorized scope
+    response: Empty catalog, total 0, page 1, no previous/next links
+  - id: forbidden
+    condition: Viewer or inactive/expired session
+    response: Existing 403 or redirect-to-login contract remains
+success:
+  - At most page_size employee rows are returned; all belong to the authorized scope
+  - Navigation preserves filters and reports the filtered total
+  - Module display-reference SELECT count depends on reference types, not page row count; no full employee/account rows for labels
+failure:
+  - No write or audit mutation is introduced by catalog pagination
+traceability:
+  models: [DM-01, UCM-01, READ-CAT-01]
+  design: D-04
+  api: API-04
+  code: [app/main.py#employee_list, app/modules.py#module_list]
+  tests: [TC-04-01, TC-04-02, TC-04-03, TC-04-04, TC-04-05, TC-04-06, TC-04-07, TC-04-08]
+related_catalogs:
+  route: /hr/{module}
+  authorization: Existing MODULES admin_only or hr/admin and organizational scope
+  filters: Existing candidate literal name search and module status before count/page
+  reference_change: ADR-11, specified before the 2026-11-17 implementation; existing catalog behavior reconstructed from code

@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+.venv
+.runtime
+artifacts
+docs
+models
+specs
+tests
+.github
+__pycache__
+**/__pycache__
+*.pyc
+*.log

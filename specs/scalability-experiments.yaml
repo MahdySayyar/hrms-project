@@ -1,0 +1,95 @@
+id: EXP-PROTOCOL-01
+version: 3
+origin: User authorized implementing the remaining stages one by one on 2026-11-08
+baseline_commit: e61ac2c
+human_review: pending
+isolation:
+  records: Synthetic only, in a disposable PostgreSQL schema or an isolated lab database
+  web: Separate localhost ports; the existing website and real HR rows are preserved
+  evidence: New names per run; raw samples retained; no credentials in published evidence
+capacity_protocol:
+  employee_count: 10000
+  user_steps: [50, 100, 250, 500]
+  spawn_rate_per_second: 20
+  exploratory_steady_seconds: 30
+  acceptance_users: 500
+  acceptance_steady_seconds: 300
+  read_write_task_weights: [4, 1]
+  think_time_seconds: [0.02, 0.08]
+  random_seed: 20261108
+  steady_start: All requested users have completed setup; for mixed load all must be authenticated
+  setup_barrier: Users wait after setup until the full population is ready; no mixed workload during ramp
+  acceptance: NFR-01; p95 below 2000ms, error fraction below 0.01, 500 authenticated users and 300 seconds steady
+  measurements:
+    - Actual users ready and authenticated, setup completion and failure
+    - Steady-only requests, errors, latency histogram and response bytes per endpoint
+    - Server and generator CPU/RSS, host CPU and available RAM, once per second
+    - Lab PostgreSQL connections, active/idle/wait counts, scoped by application_name
+    - Per-role process CPU and RSS in addition to the aggregate web family; no command lines or environment exported
+  configurable_lab_parameters:
+    specified_at: '2026-11-15'
+    purpose: Measure remaining bottleneck after aiohttp reduced errors but exploratory 500-user P95 remained 3063ms
+    web_threads: Explicit 1..40 per web, default native cluster 8
+    db_connections: Explicit 1..10 per cluster web, default 10; web worker count must stay within PostgreSQL connection budget
+    http_parser: Explicit auto, h11 or httptools; record choice and installed package versions without changing the workload
+  limitations:
+    - Load generator and application run on the same physical host
+    - Latency acceptance does not alone certify scope correctness, durability or HA
+    - Expected invalid-password HTTP 401 is success for the separate login-pressure profile
+steps:
+  - id: EXP-00-CAPACITY
+    trigger: Existing 10-user run cannot establish high-load capacity
+    change: Instrument and run the native baseline before changing business code
+    status: in_progress
+  - id: EXP-PAGINATION
+    trigger: Measure list size and latency before selecting bounded queries
+    status: pending_measurement
+  - id: EXP-NATIVE-WORKERS
+    trigger: Native 500 authenticated users yielded 2524 timeouts in 4077 requests after pagination/authentication changes
+    change: Isolated async localhost proxy and four web processes with browser affinity, 8 threads and 10 maximum DB connections per web
+    status: specified_before_implementation
+    acceptance: Same NFR-01 protocol for 300 seconds; record worker distribution and a separate synchronized burst with per-operation persistence/audit checks
+  - id: EXP-NATIVE-TRANSPORT
+    trigger: One-second fresh process sample found proxy at 98.4 percent of one core while each web used 14 to 21 percent
+    change: aiohttp outgoing transport with disabled shared cookie jar, redirects and decoding; preserve browser affinity and mutation semantics
+    status: specified_before_implementation
+    acceptance: Same 500-user 300-second NFR protocol and separate request burst; transport cookie/failure/header boundary checks
+  - id: EXP-SUBMITTED-REFERENCES
+    trigger: 500-request leave burst only confirmed 403 acknowledgements after transport; valid POST hydrated the complete employee option catalog
+    change: Validate only submitted source identifiers with the existing scope and eligibility queries
+    status: implemented_awaiting_full_capacity_results
+    decision: ADR-09
+    evidence: docs/08-testing/evidence/submitted-references-20261115-c.json
+  - id: EXP-01
+    change: Shared web/database container baseline
+    status: pending
+  - id: EXP-02
+    change: Compose separation and resource monitoring
+    status: docker_baseline_implemented_and_verified_monitoring_and_load_pending
+    decision: ADR-10
+    evidence: docs/08-testing/evidence/docker-deployment-20261116-a.json
+    direct_user_scope: Run containers in Docker; shared-container EXP-01 is not claimed to have been performed
+  - id: EXP-03
+    change: Replicas and load balancing in an isolated Kubernetes cluster
+    status: pending
+  - id: EXP-04
+    change: Pod failure and persistent database recovery
+    status: pending
+  - id: EXP-05
+    change: Reproduce local-session loss, then introduce shared Redis sessions
+    status: pending
+  - id: EXP-06
+    change: Measured cache and read-replica experiment, including stale-data checks
+    status: pending
+  - id: EXP-07
+    change: Login pressure, gateway and rate limiting
+    status: pending
+  - id: EXP-08
+    change: Measure synchronous export, then queue/worker with status and retry
+    status: pending
+  - id: EXP-09
+    change: Dependency failure, monitoring and measured recovery
+    status: pending
+  - id: ENGINEERING-CLOSEOUT
+    change: Extended tests, versioned migrations, CI execution, human-review pack and final presentation
+    status: pending

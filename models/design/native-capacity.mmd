@@ -1,0 +1,7 @@
+flowchart LR
+    Browser["مرورگر فارسی و کوکی نشست"] --> Proxy["proxy محلی async / affinity"]
+    Proxy --> Web1["وب ۱ / نشست حافظه‌ای"]
+    Proxy --> WebN["وب ۲ تا ۴ / نشست حافظه‌ای"]
+    Web1 --> DB[("PostgreSQL مشترک")]
+    WebN --> DB
+    Proxy -.-> Failure["وابستگی ناموجود: 503 / بدون retry نوشتن"]

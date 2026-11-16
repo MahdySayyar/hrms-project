@@ -249,6 +249,20 @@ paths:
           type: string
           default: ''
           title: Status
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '1'
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '50'
+          title: Page Size
       responses:
         '200':
           description: Rendered Persian HTML page
@@ -954,6 +968,20 @@ paths:
           type: string
           default: ''
           title: Status
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '1'
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '50'
+          title: Page Size
       responses:
         '200':
           description: Rendered Persian HTML page
@@ -1889,6 +1917,21 @@ paths:
     get:
       summary: Payroll Page
       operationId: payroll_page_payroll_get
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '1'
+          title: Page
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '50'
+          title: Page Size
       responses:
         '200':
           description: Rendered Persian HTML page
@@ -1896,6 +1939,12 @@ paths:
             text/html:
               schema:
                 type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
         '303':
           description: Missing/expired/inactive session redirects to /login, or successful
             mutation redirect

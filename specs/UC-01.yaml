@@ -1,5 +1,5 @@
 id: UC-01
-version: 1
+version: 3
 name: Authenticate and end an active account session
 status: reconstructed_from_current_code_pending_student_review
 requirements:
@@ -42,6 +42,7 @@ failure:
 limitations:
 - Sessions are process-local and disappear on restart
 - COOKIE_SECURE is false for the localhost HTTP development environment
+- Docker baseline retains one web process, the same opaque cookie/CSRF contract and process-local session loss on restart
 - Successful login is audited; a comprehensive denied-access security log is a future
   requirement
 traceability:
@@ -66,3 +67,21 @@ secondary_actors: []
 quality_attributes:
 - NFR-S-01
 - NFR-S-02
+request_authentication_contract:
+  recorded_at: '2026-11-12'
+  provenance: ADR-06 and D-01 were specified before code; this UC detail was recorded immediately after the small implementation
+  active_account: Read PostgreSQL once for every new protected HTTP request
+  repeated_checks: Reuse only within the same HTTP request and same still-valid session
+  async_form_dependencies: Run synchronous authentication SQL in Starlette thread pool
+native_cluster_contract:
+  provenance: Specified before ADR-07 implementation on 2026-11-12
+  affinity: Optional native proxy keeps each browser on one web process using a non-authenticating HttpOnly cookie
+  session: Existing opaque session and CSRF rules remain in the selected web process
+  dependency_failure: HTTP 503 Persian response; mutations are never automatically retried by proxy
+  limitation: Worker/restart session loss remains; this is not shared sessions or HA
+  transport_revision:
+    recorded_at: '2026-11-15'
+    provenance: ADR-08 and this contract specified before transport implementation
+    outgoing_client: Shared aiohttp ClientSession; disabled cookie jar, redirects and automatic decompression
+    forwarding: Preserve method, query, body and separate Set-Cookie headers; remove hop-by-hop and Connection-nominated headers
+    failures: Preserve Persian 503 and do not retry a mutation after transport failure

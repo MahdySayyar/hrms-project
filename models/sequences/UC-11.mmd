@@ -1,0 +1,28 @@
+%% SEQ-11 — existing behavior reconstructed; ADR-12/13 specified before new code
+sequenceDiagram
+    participant Browser as مرورگر
+    participant Web as reports / export_employees
+    participant DB as PostgreSQL
+    Browser->>Web: GET گزارش یا CSV
+    Web->>DB: حساب فعال و نقش/محدوده
+    alt گزارش ماه
+        Web->>Web: default سپس normalize و validation ماه میلادی
+        alt ماه نامعتبر
+            Web-->>Browser: 400 فارسی
+        else ماه معتبر
+            Web->>DB: aggregate در scope و کلید canonical period
+            Web-->>Browser: HTML و جمع فیش فقط برای admin
+        end
+    else CSV مجاز hr/admin
+        Web->>DB: SELECT هشت ستون در scope و ترتیب id
+        loop batchهای 500 ردیفی
+            DB-->>Web: داده لازم CSV
+            Web->>Web: writer و formula escape و شمارش
+        end
+        Web->>DB: بستن cursor سپس audit و commit
+        alt commit موفق
+            Web-->>Browser: CSV کامل buffered با BOM
+        else شکست audit یا commit
+            Web-->>Browser: 500؛ بدون CSV موفق
+        end
+    end

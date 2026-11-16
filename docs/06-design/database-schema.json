@@ -1,6 +1,6 @@
 {
   "id": "DB-01",
-  "captured_at": "2026-11-08T12:12:06.691367+00:00",
+  "captured_at": "2026-11-16T12:39:16.055555+00:00",
   "origin": "Read-only SQLAlchemy reflection of the running PostgreSQL schema; no row data",
   "postgresql_version": "17.6",
   "schema": "public",

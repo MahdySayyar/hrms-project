@@ -153,7 +153,8 @@ def export(refresh=False):
                  "module_forms_from_current_code": forms,
                  "notes": ["Dynamic generic /hr routes choose forms/roles by module", "Form metadata is implementation-derived; human review still pending"]}
     source_paths = list((ROOT / "app").rglob("*.py")) + list((ROOT / "tests").glob("test_*.py"))
-    source_paths += [ROOT / "specs" / n for n in ("UC-01.yaml", "UC-02.yaml", "UC-03.yaml", "architecture.yaml")]
+    source_paths += list((ROOT / "specs").glob("UC-*.yaml"))
+    source_paths += [ROOT / "specs" / n for n in ("architecture.yaml", "requirements.yaml", "functional-specifications.yaml", "http-contracts.yaml", "model-catalog.yaml")]
     sources = {"id": "EXPORT-SOURCE-01", "captured_at": database["captured_at"], "hash_normalization": "UTF-8 text with LF line endings",
                "files": [{"path": p.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(p.read_text(encoding="utf-8").encode("utf-8")).hexdigest()} for p in sorted(source_paths)]}
     write("docs/06-design/database-schema.json", as_json(database), refresh)

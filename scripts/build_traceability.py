@@ -34,7 +34,7 @@ def build(refresh):
     cases = read("specs/test-cases.yaml")
     models = read("specs/model-catalog.yaml")
     api = read("specs/http-contracts.yaml")
-    use_cases = [read(f"specs/UC-{n:02}.yaml") for n in range(1, 4)]
+    use_cases = [read(path.relative_to(ROOT).as_posix()) for path in sorted((ROOT / "specs").glob("UC-*.yaml"))]
     tests = {}
     for file in sorted((ROOT / "tests").glob("test_*.py")):
         for node in ast.parse(file.read_text(encoding="utf-8")).body:
@@ -74,6 +74,7 @@ def build(refresh):
         "TEST-REPORT-01": "docs/08-testing/report.md",
         "TR-CAT-01": "specs/traceability.yaml",
         "CR-01": "docs/10-final-report/changes/CR-01.md",
+        "CR-02": "docs/10-final-report/changes/CR-02.md",
         "REPORT-01": "docs/10-final-report/report.md",
         "MILESTONE-CAT-01": "docs/10-final-report/milestones.md",
         "RUBRIC-01": "docs/10-final-report/rubric.md",
@@ -84,7 +85,7 @@ def build(refresh):
         "SLIDE-REVIEW-01": "docs/project-framework-slide-review.md",
     }.items():
         register(ident, target, "document")
-    for ident in ("SRC-U01", "SRC-U02", "SRC-C01", "SRC-H01"):
+    for ident in ("SRC-U01", "SRC-U02", "SRC-U03", "SRC-C01", "SRC-H01"):
         register(ident, "docs/02-requirements/sources.md", "source")
     register("SRC-S01", "https://sadscalabilitylab.space-z.ai/", "source")
     register("SRC-S02", "https://sadprojectdocs.space-z.ai/", "source")
@@ -94,11 +95,16 @@ def build(refresh):
     for r in read("specs/functional-specifications.yaml")["specifications"]:
         register(r["id"], "specs/functional-specifications.yaml", "functional_specification")
     for n in range(1, 13):
-        register(f"UC-{n:02}", f"specs/UC-{n:02}.yaml" if n <= 3 else "docs/03-specifications/use-cases.md", "use_case")
+        target = f"specs/UC-{n:02}.yaml"
+        register(f"UC-{n:02}", target if (ROOT / target).is_file() else "docs/03-specifications/use-cases.md", "use_case")
     for m in models["models"]:
         register(m["id"], m["path"], "model")
     for n, name in enumerate(("baseline", "postgresql", "session", "request-workflow"), 1):
         register(f"ADR-{n:02}", f"docs/05-architecture/ADRs/ADR-{n:02}-{name}.md", "architecture_decision")
+    for path in sorted((ROOT / "docs/05-architecture/ADRs").glob("ADR-*.md")):
+        ident = "-".join(path.stem.split("-")[:2])
+        if ident not in registry:
+            register(ident, path.relative_to(ROOT).as_posix(), "architecture_decision")
     for n in range(1, 5):
         register(f"D-{n:02}", f"docs/06-design/design.md#d-{n:02}", "design")
     for r in api["contracts"]:

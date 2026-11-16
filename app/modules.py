@@ -8,6 +8,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import RedirectResponse, Response
+from starlette.concurrency import run_in_threadpool
 from sqlalchemy import func, or_, select
 from sqlalchemy.exc import IntegrityError
 
@@ -20,6 +21,7 @@ from .security import check_csrf, hash_password, require_login
 from .request_workflow.domain import ReviewError, Reviewer
 from .request_workflow.repository import RequestReviewRepository
 from .request_workflow.service import RequestReviewService
+from .pagination import PageRequest, paginate
 
 router = APIRouter()
 DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
@@ -34,7 +36,7 @@ def redirect(path):
 
 
 async def browser_form(request: Request):
-    require_login(request)
+    await run_in_threadpool(require_login, request)
     form = dict(await request.form())
     check_csrf(request, form)
     return form
@@ -56,31 +58,39 @@ def candidate_for(db, request, candidate_id, lock=False):
     return candidate
 
 
-def options_for(source, db, request):
+def options_for(source, db, request, selected=None):
     user = current_user(request)
+    def bounded(query, model):
+        if selected is None:
+            return query
+        value = normalized(selected)
+        ident = int(value) if re.fullmatch(r"[0-9]{1,10}", value) and int(value) <= 2_147_483_647 else None
+        return query.where(model.id == ident) if ident is not None else query.where(False)
     if source == "employees":
-        return [(str(row.id), f"{row.first_name} {row.last_name} · {row.employee_code}") for row in db.scalars(scoped(select(Employee), user).order_by(Employee.id)).all()]
+        return [(str(row.id), f"{row.first_name} {row.last_name} · {row.employee_code}") for row in db.scalars(bounded(scoped(select(Employee), user), Employee).order_by(Employee.id)).all()]
     if source == "candidates":
-        return [(str(row.id), f"{row.first_name} {row.last_name}") for row in db.scalars(scoped(select(Candidate), user, Candidate).where(Candidate.employee_id.is_(None)).order_by(Candidate.id)).all()]
+        return [(str(row.id), f"{row.first_name} {row.last_name}") for row in db.scalars(bounded(scoped(select(Candidate), user, Candidate).where(Candidate.employee_id.is_(None)), Candidate).order_by(Candidate.id)).all()]
     if source in ("branches", "branches_all"):
         query = select(Branch)
         if source == "branches" and user.branch_scope_id:
             query = query.where(Branch.id == user.branch_scope_id)
-        return [(str(row.id), row.name) for row in db.scalars(query.order_by(Branch.id)).all()]
+        return [(str(row.id), row.name) for row in db.scalars(bounded(query, Branch).order_by(Branch.id)).all()]
     if source in ("units", "units_all"):
         query = scoped(select(Unit), user, Unit) if source == "units" else select(Unit)
-        names = {row.id: row.name for row in db.scalars(select(Branch)).all()}
-        return [(str(row.id), f"{row.name} · {names[row.branch_id]}") for row in db.scalars(query.order_by(Unit.id)).all()]
+        rows = db.scalars(bounded(query, Unit).order_by(Unit.id)).all()
+        names = {row.id: row.name for row in db.scalars(select(Branch).where(Branch.id.in_({row.branch_id for row in rows}))).all()}
+        return [(str(row.id), f"{row.name} · {names[row.branch_id]}") for row in rows]
     model, label = {"positions": (Position, "title"), "shifts": (Shift, "name"), "trainings": (Training, "title")}[source]
-    return [(str(row.id), getattr(row, label)) for row in db.scalars(select(model).order_by(model.id)).all()]
+    return [(str(row.id), getattr(row, label)) for row in db.scalars(bounded(select(model), model).order_by(model.id)).all()]
 
 
-def fields_for(config, db, request):
+def fields_for(config, db, request, submitted=None):
     fields = []
     for original in config["fields"]:
         item = original.copy()
         if item.get("source"):
-            item["options"] = options_for(item["source"], db, request)
+            item["options"] = options_for(item["source"], db, request,
+                selected=submitted.get(item["name"], "") if submitted is not None else None)
         elif item.get("choices"):
             item["options"] = list(item["choices"].items())
         fields.append(item)
@@ -164,17 +174,47 @@ def record_for(db, request, module, record_id, lock=False):
     return record
 
 
-def display_value(db, module, key, value):
+DISPLAY_REFERENCE_MODELS = {"employee_id": Employee, "candidate_id": Candidate, "branch_id": Branch, "unit_id": Unit, "position_id": Position,
+                          "target_position_id": Position, "shift_id": Shift, "training_id": Training, "branch_scope_id": Branch,
+                          "unit_scope_id": Unit, "reviewed_by": Admin}
+
+
+def reference_labels(db, rows, keys):
+    """Project labels only for references on this authorized page; keep no cross-request state."""
+    identifiers = {}
+    for key in keys:
+        model = DISPLAY_REFERENCE_MODELS.get(key)
+        if model is not None:
+            identifiers.setdefault(model, set()).update(getattr(row, key) for row in rows if getattr(row, key) is not None)
+    labels = {}
+    for model, ids in identifiers.items():
+        labels[model] = {}
+        if not ids:
+            continue
+        if model in (Employee, Candidate):
+            label = model.first_name + " " + model.last_name
+        elif model in (Position, Training):
+            label = model.title
+        elif model is Admin:
+            label = model.display_name
+        else:
+            label = model.name
+        labels[model] = dict(db.execute(select(model.id, label).where(model.id.in_(sorted(ids)))).all())
+    return labels
+
+
+def display_value(db, module, key, value, references=None):
     if value is None or value == "":
         if key == "branch_scope_id":
             return "کل سازمان"
         if key == "unit_scope_id":
             return "همهٔ واحدهای محدوده"
         return "ثبت نشده"
-    models = {"employee_id": Employee, "candidate_id": Candidate, "branch_id": Branch, "unit_id": Unit, "position_id": Position,
-              "target_position_id": Position, "shift_id": Shift, "training_id": Training, "branch_scope_id": Branch, "unit_scope_id": Unit, "reviewed_by": Admin}
-    if key in models:
-        row = db.get(models[key], value)
+    if key in DISPLAY_REFERENCE_MODELS:
+        model = DISPLAY_REFERENCE_MODELS[key]
+        if references is not None:
+            return references.get(model, {}).get(value, "ثبت نشده")
+        row = db.get(model, value)
         if row is None:
             return "ثبت نشده"
         if isinstance(row, (Employee, Candidate)):
@@ -311,8 +351,9 @@ def module_index(request: Request):
 
 
 @router.get("/hr/{module}")
-def module_list(request: Request, module: str, q: str = "", status: str = ""):
+def module_list(request: Request, module: str, q: str = "", status: str = "", page: str = "1", page_size: str = "50"):
     config = config_for(module, request)
+    requested = PageRequest.parse(page, page_size)
     with SessionLocal() as db:
         query = query_for(module, request)
         model = config["model"]
@@ -321,9 +362,11 @@ def module_list(request: Request, module: str, q: str = "", status: str = ""):
         if q and module == "candidates":
             escaped = normalized(q)[:100].replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
             query = query.where((Candidate.first_name + " " + Candidate.last_name).ilike(f"%{escaped}%", escape="\\"))
-        records = db.scalars(query.order_by(model.id.desc())).all()
-        rows = [{"id": row.id, "cells": [display_value(db, module, key, getattr(row, key)) for key in config["columns"]]} for row in records]
+        catalog = paginate(db, query.order_by(model.id.desc()), requested, scalars=True)
+        references = reference_labels(db, catalog.rows, config["columns"])
+        rows = [{"id": row.id, "cells": [display_value(db, module, key, getattr(row, key), references) for key in config["columns"]]} for row in catalog.rows]
     return render(request, "module_list.html", title=config["title"], module=module, config=config, rows=rows,
+                  page=catalog, navigation=catalog.navigation(f"/hr/{module}", {"q": q, "status": status}),
                   headings=[LABELS.get(key, key) for key in config["columns"]], q=q, status=status, status_choices=CANDIDATE_STATES if module == "candidates" else REQUEST_STATES if module in ("leave", "travel", "administrative") else CONTRACT_STATES if module == "contracts" else {})
 
 
@@ -342,7 +385,7 @@ def module_create(request: Request, module: str, form: dict = Depends(browser_fo
 
 
 def save_record(request, db, module, config, form, record=None):
-    fields = fields_for(config, db, request)
+    fields = fields_for(config, db, request, submitted=form)
     values, clean, errors = parse_fields(fields, form)
     if not errors:
         errors.extend(validate_record(db, request, module, clean, record))
@@ -577,13 +620,15 @@ def terminate_contract(request: Request, contract_id: int, form: dict = Depends(
 
 
 @router.get("/payroll")
-def payroll_page(request: Request):
+def payroll_page(request: Request, page: str = "1", page_size: str = "50"):
     require_admin(request)
+    requested = PageRequest.parse(page, page_size)
     with SessionLocal() as db:
-        records = db.scalars(select(Payslip).order_by(Payslip.id.desc())).all()
-        rows = [{"id": row.id, "employee": row.input_snapshot["employee_name"], "period": row.period, "net": row.net_amount} for row in records]
+        catalog = paginate(db, select(Payslip).order_by(Payslip.id.desc()), requested, scalars=True)
+        rows = [{"id": row.id, "employee": row.input_snapshot["employee_name"], "period": row.period, "net": row.net_amount} for row in catalog.rows]
         employees = options_for("employees", db, request)
-    return render(request, "payroll.html", title="حقوق و فیش‌های آموزشی", rows=rows, employees=employees, period=date.today().strftime("%Y-%m"))
+    return render(request, "payroll.html", title="حقوق و فیش‌های آموزشی", rows=rows, employees=employees,
+                  page=catalog, navigation=catalog.navigation("/payroll"), period=date.today().strftime("%Y-%m"))
 
 
 def rounded(value):
@@ -665,6 +710,7 @@ def reports(request: Request, period: str = ""):
     user = current_user(request)
     if not period:
         period = date.today().strftime("%Y-%m")
+    period = normalized(period)
     try:
         if not re.fullmatch(r"[0-9]{4}-[0-9]{2}", normalized(period)):
             raise ValueError()
@@ -693,14 +739,19 @@ def safe_csv(value):
 def export_employees(request: Request):
     user = require_hr(request)
     with SessionLocal() as db:
-        rows = db.execute(scoped(select(Employee, Branch.name, Unit.name, Position.title).join(Branch, Branch.id == Employee.branch_id)
-            .join(Unit, Unit.id == Employee.unit_id).join(Position, Position.id == Employee.position_id), user).order_by(Employee.id)).all()
+        query = scoped(select(Employee.employee_code, Employee.first_name, Employee.last_name, Branch.name,
+            Unit.name, Position.title, Employee.contract_type, Employee.active).select_from(Employee)
+            .join(Branch, Branch.id == Employee.branch_id).join(Unit, Unit.id == Employee.unit_id)
+            .join(Position, Position.id == Employee.position_id), user).order_by(Employee.id)
         output = io.StringIO()
         writer = csv.writer(output)
         writer.writerow(["کد پرسنلی", "نام", "نام خانوادگی", "شعبه", "واحد", "سمت", "نوع قرارداد", "وضعیت"])
-        for employee, branch, unit, position in rows:
-            writer.writerow([safe_csv(value) for value in [employee.employee_code, employee.first_name, employee.last_name, branch, unit, position, employee.contract_type, "فعال" if employee.active else "غیرفعال"]])
-        audit(db, request, "export", "employees", details={"rows": len(rows)})
+        row_count = 0
+        with db.execute(query.execution_options(yield_per=500)) as rows:
+            for code, first_name, last_name, branch, unit, position, contract_type, active in rows:
+                writer.writerow([safe_csv(value) for value in [code, first_name, last_name, branch, unit, position, contract_type, "فعال" if active else "غیرفعال"]])
+                row_count += 1
+        audit(db, request, "export", "employees", details={"rows": row_count})
         db.commit()
     return Response(output.getvalue().encode("utf-8-sig"), media_type="text/csv; charset=utf-8", headers={"Content-Disposition": 'attachment; filename="employees.csv"'})
 

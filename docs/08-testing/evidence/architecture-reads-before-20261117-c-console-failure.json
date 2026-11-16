@@ -1,0 +1,11 @@
+{
+  "id": "architecture-reads-before-20261117-c-console-failure",
+  "phase": "before",
+  "status": "console_print_failed_after_json_saved",
+  "exception_type": "UnicodeEncodeError",
+  "cause": "The Windows command stdout used cp1252 and could not print the Persian synthetic period summary.",
+  "durable_evidence": "docs/08-testing/evidence/architecture-reads-before-20261117-c.json",
+  "application_changed": false,
+  "repair": "Print an ASCII-safe summary; keep the UTF-8 JSON evidence and repeat the baseline under a new name.",
+  "origin": "Recorded from the failed command by the coding agent; no performance result was invented."
+}

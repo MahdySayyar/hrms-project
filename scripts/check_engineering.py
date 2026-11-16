@@ -125,8 +125,8 @@ def check_engineering():
         check("BR links " + br["id"], all(x in identifiers for x in br["requirements"] + br["source"]))
         for symbol in br["code"]:
             check("Code " + symbol, code_symbol(symbol))
-    for n in range(1, 4):
-        uc = load(f"specs/UC-{n:02}.yaml")
+    for path in sorted((ROOT / "specs").glob("UC-*.yaml")):
+        uc = load(path.relative_to(ROOT).as_posix())
         necessary = ("id", "version", "goal", "trigger", "preconditions", "input", "main_flow", "alternatives", "success", "failure", "traceability")
         check("Full use case " + uc["id"], all(key in uc and uc[key] is not None for key in necessary))
         refs = uc["requirements"] + uc["business_rules"] + uc["traceability"]["models"] + uc["traceability"]["tests"]
@@ -203,8 +203,9 @@ def check_engineering():
     check("All 23 original lecture diagrams", len(assets) == 23)
     for asset in assets:
         check("Original diagram hash " + asset["name"], hashlib.sha256((assets_path.parent / asset["path"]).read_bytes()).hexdigest() == asset["sha256"])
-    results = json.loads((ROOT / "docs/08-testing/evidence/all-tests-final.json").read_text(encoding="utf-8"))
-    check("29 recorded tests all passed", results["tests_run"] == 29 and results["all_passed"] and len(results["checks"]) == 29 and all(x["status"] == "passed" for x in results["checks"]))
+    cases = load("specs/test-cases.yaml")
+    results = json.loads((ROOT / cases["current_suite_evidence"]).read_text(encoding="utf-8"))
+    check("Current recorded suite all passed", results["tests_run"] == len(results["checks"]) and results["all_passed"] and all(x["status"] == "passed" for x in results["checks"]))
     expected_tests = {symbol.replace("/", ".").replace(".py#", ".") for symbol in trace["test_code_symbols"].values()}
     check("All test symbols present in final evidence", expected_tests == {x["test"] for x in results["checks"]})
     before = json.loads((ROOT / "docs/08-testing/evidence/core-before.json").read_text(encoding="utf-8"))
@@ -212,7 +213,7 @@ def check_engineering():
     check("Before failure is the documented conflict", before["tests_run"] == 17 and not before["all_passed"] and len(failures) == 1 and "test_tc_02_05_" in failures[0]["test"])
     regression = json.loads((ROOT / "docs/08-testing/evidence/full-smoke-after.json").read_text(encoding="utf-8"))
     check("98 actual regression assertions", len(regression["checks"]) == 98 and regression["all_passed"] and all(x["passed"] for x in regression["checks"]))
-    coverage = json.loads((ROOT / "docs/08-testing/evidence/coverage-request-workflow.json").read_text(encoding="utf-8"))
+    coverage = json.loads((ROOT / cases["current_coverage_evidence"]).read_text(encoding="utf-8"))
     check("Request package coverage >=80%", coverage["totals"]["percent_covered"] >= 80 and all(k.replace("\\", "/").startswith("app/request_workflow/") for k in coverage["files"]))
     performance = json.loads((ROOT / "docs/08-testing/evidence/native-load.json").read_text(encoding="utf-8"))
     check("Small load does not certify 500-user NFR", performance["users_requested"] == 10 and performance["metrics"]["peak_authenticated_users"] == 10 and performance["nfr_500_users_verified"] is False)

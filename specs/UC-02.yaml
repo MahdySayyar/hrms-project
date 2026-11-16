@@ -27,6 +27,7 @@ input:
   decision: approved or rejected
   review_notes: normalized text of length 0..3000; nonempty for rejection
 creation:
+- For submitted source fields, validate only the submitted identifier through the same scoped/eligible source query; do not load the entire option catalog on a successful POST
 - Validate fields and start_date <= end_date; administrative requests use a single
   date
 - Persist the request with pending status and a creation audit entry
@@ -100,3 +101,7 @@ creation_input:
 quality_attributes:
 - NFR-AU-01
 - NFR-M-01
+creation_reference_validation:
+  provenance: ADR-09 and this contract specified before implementation on 2026-11-15
+  invalid_reference: Preserve existing 400 form for malformed, missing, deleted or out-of-scope source choices
+  rendering: GET and validation-error forms retain existing option lists; this change only bounds successful submission validation

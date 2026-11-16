@@ -1,0 +1,16 @@
+%% READ-CAT-01 — ADR-11 specified before the 2026-11-17 implementation
+sequenceDiagram
+    participant Browser as مرورگر
+    participant Web as module_list
+    participant Auth as نقش و محدوده
+    participant DB as PostgreSQL
+    Browser->>Web: GET /hr/module?page_size=50
+    Web->>Auth: حساب فعال و مجوز ماژول
+    Web->>DB: count با scope و filter
+    Web->>DB: صفحه با LIMIT/OFFSET و ترتیب ثابت
+    loop هر نوع مرجع در ستون‌های همین صفحه
+        Web->>DB: SELECT id,label WHERE id IN distinct page ids
+        DB-->>Web: نقشه کوچک نام‌های صفحه
+    end
+    Web-->>Browser: همان HTML فارسی و لینک‌های صفحه
+    Note over Web: نقشه فقط در همین پاسخ؛ request بعد خواندن تازه

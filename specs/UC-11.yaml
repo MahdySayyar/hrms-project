@@ -1,0 +1,52 @@
+id: UC-11
+version: 1
+goal: Read scoped Gregorian-period HR aggregates and download the existing employee CSV with lower input-row memory
+status: existing_report_behavior_reconstructed_ADR12_ADR13_specified_before_20261117_code_pending_human_review
+trigger: An authenticated user opens reports or an authorized HR/admin downloads the employee CSV
+actors: [admin, hr, viewer]
+requirements: [FR-22, FR-23]
+business_rules: [BR-03, BR-04, BR-13, BR-14, BR-21]
+preconditions:
+  - Active authenticated account; existing role and organizational scope
+  - Stored payslip period is ASCII YYYY-MM as already written by calculate_payroll
+input:
+  period: Optional Gregorian YYYY-MM; Persian/Arabic digits and surrounding spaces normalize to the same month; empty defaults to the current Gregorian month
+  csv: No new parameter; GET /reports/employees.csv is restricted to hr/admin
+main_flow:
+  - Authenticate the active account and read the current role/scope
+  - For reports, apply the existing empty-period default, normalize the period once and validate the Gregorian month
+  - Run scoped employee/attendance/request aggregates and include period payslip total only for admin
+  - Render the canonical period and the existing Persian report template
+  - For CSV, authorize hr/admin before querying and project only the eight existing export columns from the scoped employee joins ordered by employee id
+  - Consume the PostgreSQL result in batches of 500, write identical CSV rows with formula escaping and count rows; close the cursor
+  - Write the existing exact-row-count export audit and commit before returning the complete UTF-8 BOM CSV response
+alternatives:
+  - id: invalid_period
+    condition: Malformed text, impossible Gregorian month, year zero or whitespace-only period
+    response: Existing HTTP 400, no operational/audit write
+  - id: forbidden_csv
+    condition: viewer requests employee CSV
+    response: Existing HTTP 403; no employee read/export audit
+  - id: no_session
+    condition: Missing/expired/inactive account
+    response: Existing 303 to login
+  - id: empty_scope
+    condition: No employees match the user's scope
+    response: Header-only CSV with BOM and one export audit with rows 0
+  - id: persistence_failure
+    condition: Export audit or commit fails
+    response: Server 500 without a successful CSV response; transactional audit does not persist
+success:
+  - Equivalent valid period spellings return the same aggregates and canonical YYYY-MM
+  - HR/viewer reports do not expose the payroll total; scope applies to all eligible aggregates
+  - CSV bytes, ordering, eight headings, role/scope, BOM, disposition and formula escaping are preserved
+  - CSV input-row materialization is bounded by the fetch batch; the final HTTP response remains buffered and O(N) bytes
+failure:
+  - No schema, stored payslip, calculation, session or deployment change
+  - No private employee columns are queried merely to write this CSV
+traceability:
+  models: [DM-01, UCM-01, SEQ-11]
+  design: D-04
+  api: API-11
+  code: [app/modules.py#reports, app/modules.py#export_employees]
+  tests: [TC-11-01, TC-11-02, TC-11-03, TC-11-04, TC-11-05]

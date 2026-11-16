@@ -1,5 +1,12 @@
 version: 1
 review_status: pending_student_and_instructor_review
+catalog_reference_read_contract:
+  specified_at: '2026-11-17'
+  decision: ADR-11
+  requirements: [FR-08, FR-09, FR-11, FR-12, FR-15, FR-17, FR-18, FR-19, FR-20, FR-25]
+  acceptance: Resolve display references only from the authorized filtered page; at most one projected SELECT per reference model; preserve labels/order/escaping and see renames on the next HTTP request.
+  lifetime: Local to one module_list call; no cross-request cache or TTL
+  tests: [TC-04-05, TC-04-06, TC-04-07, TC-04-08]
 functional_requirements:
 - id: FR-01
   name: Authenticate
@@ -80,13 +87,13 @@ functional_requirements:
   status: implemented_reconstructed_pending_human_review
 - id: FR-06
   name: Employee search
-  acceptance: نام یا کد و فیلتر شعبه/واحد/وضعیت در محدودهٔ کاربر اعمال شوند.
+  acceptance: نام یا کد و فیلتر شعبه/واحد/وضعیت پیش از شمارش و صفحه‌بندی در محدودهٔ کاربر اعمال شوند؛ پیش‌فرض 50، سقف 100 ردیف، ورودی صفحه نامعتبر 400 و لینک‌ها حافظ فیلتر باشند.
   use_case: UC-04
   business_rules:
   - BR-04
   code:
   - app/main.py#employee_list
-  core_tests: []
+  core_tests: [TC-04-01, TC-04-02, TC-04-03, TC-04-04]
   source:
   - SRC-C01
   priority: extended
@@ -160,7 +167,7 @@ functional_requirements:
   code:
   - app/modules.py#validate_record
   - app/modules.py#minutes_between
-  core_tests: []
+  core_tests: [TC-04-05]
   source:
   - SRC-C01
   priority: extended
@@ -168,6 +175,10 @@ functional_requirements:
 - id: FR-12
   name: Create HR request
   acceptance: مرخصی/مأموریت/اداری با تاریخ معتبر، pending و audit ثبت شود.
+  performance_contract:
+    specified_at: '2026-11-15'
+    decision: ADR-09
+    reference_validation: Read only the submitted eligible in-scope source record on a valid POST; keep role, CSRF, dates and atomic audit behavior
   use_case: UC-02
   business_rules:
   - BR-04
@@ -340,14 +351,21 @@ functional_requirements:
   status: implemented_reconstructed_pending_human_review
 - id: FR-22
   name: Aggregate reports
-  acceptance: تعداد/وضعیت/کارکرد/فیش دوره در محدودهٔ نقش نمایش داده شوند.
+  acceptance: تعداد/وضعیت/کارکرد/فیش دوره در محدودهٔ نقش نمایش داده شوند؛ ماه میلادی با ارقام فارسی/عربی/لاتین به همان کلید YYYY-MM وصل و ماه نامعتبر 400 شود؛ جمع فیش فقط admin ببیند.
+  change_contract:
+    specified_at: '2026-11-17'
+    decision: ADR-13
+    migration: None; existing calculator already writes ASCII YYYY-MM
   use_case: UC-11
   business_rules:
   - BR-04
+  - BR-13
   code:
   - app/modules.py#reports
   core_tests:
   - TC-01-02
+  - TC-11-04
+  - TC-11-05
   source:
   - SRC-C01
   priority: extended
@@ -355,16 +373,25 @@ functional_requirements:
 - id: FR-23
   name: Employee CSV
   acceptance: CSV فارسی UTF-8 BOM در محدوده و با خنثی‌سازی فرمول، فقط برای hr/admin.
+  performance_contract:
+    specified_at: '2026-11-17'
+    decision: ADR-12
+    input: Project only the eight exported columns and consume DB rows in batches of 500
+    output: Preserve complete buffered bytes, row order and committed exact-row-count audit before success; no HTTP streaming or queue
   use_case: UC-11
   business_rules:
   - BR-03
   - BR-04
+  - BR-14
   - BR-21
   code:
   - app/modules.py#export_employees
   - app/modules.py#safe_csv
   core_tests:
   - TC-01-02
+  - TC-11-01
+  - TC-11-02
+  - TC-11-03
   source:
   - SRC-C01
   priority: extended
@@ -405,7 +432,7 @@ functional_requirements:
 business_rules:
 - id: BR-01
   name: Only active valid accounts authenticate
-  rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است.
+  rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است؛ وضعیت حساب در هر HTTP request تازه از پایگاه بررسی شود و تکرار داخلی همان request نیازمند خواندن دوباره نیست.
   requirements:
   - FR-01
   - FR-03
@@ -443,7 +470,7 @@ business_rules:
 - id: BR-04
   name: Organizational scope
   rule: پرونده خارج از scope با 404 پنهان و انتخاب سازمان خارج از scope با 403 رد
-    شود.
+    شود؛ شمارش و برش صفحه نیز فقط پس از اعمال scope انجام شوند؛ نام منابع فهرست فقط از شناسه‌های همان صفحهٔ مجاز خوانده شود.
   requirements:
   - FR-03
   code:
@@ -548,9 +575,10 @@ business_rules:
 - id: BR-13
   name: Immutable unique payslip
   rule: یک فیش employee/ماه؛ retry از snapshot؛ edit route فیش وجود ندارد؛ حفاظت در
-    سطح DB از UPDATE مستقیم نیست.
+    سطح DB از UPDATE مستقیم نیست؛ گزارش همان ماه معتبر، کلید ASCII YYYY-MM فیش‌های موجود را با normalization ارقام ورودی جست‌وجو کند.
   requirements:
   - FR-16
+  - FR-22
   code:
   - app/hr_models.py#Payslip
   - app/modules.py#calculate_payroll
@@ -680,6 +708,12 @@ nonfunctional_requirements:
   status: proposed_not_verified
   evidence:
   - docs/08-testing/evidence/native-load.json
+  - docs/08-testing/evidence/capacity-native4-500-before-20261115-a.json
+  transport_experiment:
+    specified_at: '2026-11-15'
+    decision: ADR-08
+    scope: Preserve FR-01, BR-01 and BR-02 authentication behavior while reducing isolated proxy transport cost
+    acceptance: Full 500-user 300-second steady protocol; exploratory runs alone do not verify this NFR
   limitation: 10-user/20-second run does not meet acceptance conditions; 300ms food-order
     example is not an HR requirement
 - id: NFR-P-02

@@ -79,6 +79,8 @@ def require_login(request: Request) -> Session:
     session = current_session(request)
     if not session or session.admin_id is None:
         raise HTTPException(status_code=303, headers={"Location": "/login"})
+    if getattr(request.state, "authenticated_session", None) is session:
+        return session
     from .database import Admin, SessionLocal
     with SessionLocal() as db:
         user = db.get(Admin, session.admin_id)
@@ -86,6 +88,7 @@ def require_login(request: Request) -> Session:
         discard_session(request)
         raise HTTPException(status_code=303, headers={"Location": "/login"})
     request.state.user = user
+    request.state.authenticated_session = session
     return session
 
 

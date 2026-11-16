@@ -159,6 +159,17 @@ contracts:
     - branch
     - unit
     - status
+    - page
+    - page_size
+  - method: GET
+    path: /hr/{module}
+    auth: Existing module hr/admin or admin_only and organizational scope
+    query: [q, status, page, page_size]
+    success: [200]
+    errors: [400, 403, 404]
+    conditions:
+      catalog: Existing filtered count and bounded page; display references read from that page only under ADR-11
+      paging: Default page 1 and size 50; size 1..100; invalid input 400
   - method: GET
     path: /employees/{employee_id}
     auth: hr_or_admin_scope
@@ -351,6 +362,8 @@ contracts:
     - 200
     errors:
     - 400
+    conditions:
+      period: Existing Gregorian month accepts normalized Persian/Arabic/ASCII digits; canonical YYYY-MM is used for all aggregates under ADR-13
   - method: GET
     path: /reports/employees.csv
     auth: hr_or_admin_scope
@@ -361,6 +374,8 @@ contracts:
     - 403
     - 500
     side_effect: Export audit is written even though method is GET
+    conditions:
+      csv: Eight existing columns, unchanged UTF-8 BOM/bytes/order/formula escaping; complete buffered response after committed exact-row-count audit under ADR-12
 - id: API-12
   use_case: UC-12
   operations:

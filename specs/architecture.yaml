@@ -1,7 +1,32 @@
 id: ARCH-SPEC-01
 version: 1
 status: specified_before_boundary_hardening_pending_human_review
+current_audit:
+  recorded_at: '2026-11-17'
+  report: docs/05-architecture/current-architecture-review-20261117.md
+  provenance: Existing application/deployment reconstructed from code; ADR-11/12/13 and use-case/design updates recorded before these new read changes
+  read_changes: [ADR-11, ADR-12, ADR-13]
+  topology_change: None; single-process baseline and process-local sessions preserved
+  data_migration: None
 deployment: single native FastAPI process + local PostgreSQL
+docker_baseline:
+  provenance: ADR-10 specified before implementation on 2026-11-16 after direct user request
+  deployment: One Uvicorn web container and one PostgreSQL container in a dedicated Compose project
+  web_port: localhost:8001
+  database: Dedicated named volume with synthetic seed only; no host database port or native HR migration
+  credentials: Fresh ignored runtime secret files; never image layers or copied native .env
+  sessions: In-memory inside the single web process; restart loses sessions
+  acceptance: Healthy containers, synthetic login/core workflows and volume persistence; no 500-user or HA claim
+  downloadable_startup:
+    decision: ADR-14
+    prerequisites: Docker with Linux containers and Compose v2; no host Python required
+    initializer: Temporary tools-profile container; network disabled; only initializer script and dedicated secret directory mounted
+    invariant: Existing secrets and database volume preserved; unchanged single web process
+capacity_lab:
+  deployment: Four isolated native web processes, an async affinity proxy and disposable PostgreSQL schema
+  decisions: [ADR-07, ADR-08]
+  session_storage: Process-local, dependent on browser affinity; worker failure loses its sessions
+  production_status: Original single-process launcher remains in use; lab is not HA
 governed_module: request decisions only
 layers:
 - name: route

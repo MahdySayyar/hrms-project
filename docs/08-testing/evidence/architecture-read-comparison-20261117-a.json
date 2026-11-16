@@ -1,0 +1,316 @@
+{
+  "id": "COMPARE-ARCHITECTURE-READS-20261117",
+  "recorded_at": "2026-11-16T21:31:07.823261+00:00",
+  "before": "docs/08-testing/evidence/architecture-reads-before-20261117-d.json",
+  "after": "docs/08-testing/evidence/architecture-reads-after-20261117-a.json",
+  "input_hashes": {
+    "docs/08-testing/evidence/architecture-reads-before-20261117-d.json": "b81f9e5b0922dfb0aea68d8972c3ca1be2508820148fbfa6e6dbc7c54443b176",
+    "docs/08-testing/evidence/architecture-reads-after-20261117-a.json": "ca6f797f83418e682a238b156ee10b886930e4ec30c663e632e0bbf07ee620de"
+  },
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "Matching python",
+      "passed": true
+    },
+    {
+      "check": "Matching platform",
+      "passed": true
+    },
+    {
+      "check": "Matching employees",
+      "passed": true
+    },
+    {
+      "check": "Matching requests_seeded",
+      "passed": true
+    },
+    {
+      "check": "Matching attendance_seeded",
+      "passed": true
+    },
+    {
+      "check": "Matching payslips_seeded",
+      "passed": true
+    },
+    {
+      "check": "Matching candidates_seeded",
+      "passed": true
+    },
+    {
+      "check": "Matching repeats",
+      "passed": true
+    },
+    {
+      "check": "Matching authentication",
+      "passed": true
+    },
+    {
+      "check": "Identical measurement script",
+      "passed": true
+    },
+    {
+      "check": "Both disposable schemas removed",
+      "passed": true
+    },
+    {
+      "check": "Matching endpoints and page sizes",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/attendance?page_size=1",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/attendance?page_size=100",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/attendance?page_size=50",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/candidates?page_size=1",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/candidates?page_size=100",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/candidates?page_size=50",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/leave?page_size=1",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/leave?page_size=100",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /hr/leave?page_size=50",
+      "passed": true
+    },
+    {
+      "check": "Unchanged successful read bytes /reports/employees.csv",
+      "passed": true
+    },
+    {
+      "check": "CSV audit row counts correct in both experiments",
+      "passed": true
+    },
+    {
+      "check": "CSV Python allocations reduced",
+      "passed": true
+    },
+    {
+      "check": "All after-period spellings produce the expected snapshot total",
+      "passed": true
+    }
+  ],
+  "reads": [
+    {
+      "path": "/hr/attendance?page_size=1",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        5
+      ],
+      "select_counts_after": [
+        5
+      ],
+      "median_ms_before": 13.121799999908035,
+      "median_ms_after": 12.993900000083158,
+      "median_reduction_percent": 0.9747138336643868,
+      "response_bytes_before": 4503,
+      "response_bytes_after": 4503
+    },
+    {
+      "path": "/hr/attendance?page_size=100",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        203
+      ],
+      "select_counts_after": [
+        5
+      ],
+      "median_ms_before": 132.18720000008943,
+      "median_ms_after": 18.90389999994113,
+      "median_reduction_percent": 85.69914484917727,
+      "response_bytes_before": 38957,
+      "response_bytes_after": 38957
+    },
+    {
+      "path": "/hr/attendance?page_size=50",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        103
+      ],
+      "select_counts_after": [
+        5
+      ],
+      "median_ms_before": 72.54149999994297,
+      "median_ms_after": 16.006200000219906,
+      "median_reduction_percent": 77.93511300395981,
+      "response_bytes_before": 21554,
+      "response_bytes_after": 21554
+    },
+    {
+      "path": "/hr/candidates?page_size=1",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        4
+      ],
+      "select_counts_after": [
+        4
+      ],
+      "median_ms_before": 7.53919999988284,
+      "median_ms_after": 8.05820000005042,
+      "median_reduction_percent": -6.884019526947749,
+      "response_bytes_before": 4888,
+      "response_bytes_after": 4888
+    },
+    {
+      "path": "/hr/candidates?page_size=100",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        103
+      ],
+      "select_counts_after": [
+        4
+      ],
+      "median_ms_before": 66.62579999988338,
+      "median_ms_after": 11.462499999879583,
+      "median_reduction_percent": 82.79570376655943,
+      "response_bytes_before": 36322,
+      "response_bytes_after": 36322
+    },
+    {
+      "path": "/hr/candidates?page_size=50",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        53
+      ],
+      "select_counts_after": [
+        4
+      ],
+      "median_ms_before": 37.30799999993906,
+      "median_ms_after": 10.84579999997004,
+      "median_reduction_percent": 70.92902326582032,
+      "response_bytes_before": 20518,
+      "response_bytes_after": 20518
+    },
+    {
+      "path": "/hr/leave?page_size=1",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        4
+      ],
+      "select_counts_after": [
+        4
+      ],
+      "median_ms_before": 22.065800000063973,
+      "median_ms_after": 22.66260000010334,
+      "median_reduction_percent": -2.704637946676014,
+      "response_bytes_before": 4874,
+      "response_bytes_after": 4874
+    },
+    {
+      "path": "/hr/leave?page_size=100",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        103
+      ],
+      "select_counts_after": [
+        4
+      ],
+      "median_ms_before": 107.82420000009552,
+      "median_ms_after": 44.18570000007094,
+      "median_reduction_percent": 59.02060947353953,
+      "response_bytes_before": 38140,
+      "response_bytes_after": 38140
+    },
+    {
+      "path": "/hr/leave?page_size=50",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        53
+      ],
+      "select_counts_after": [
+        4
+      ],
+      "median_ms_before": 75.05869999999959,
+      "median_ms_after": 42.25539999993089,
+      "median_reduction_percent": 43.70352803881347,
+      "response_bytes_before": 21337,
+      "response_bytes_after": 21337
+    },
+    {
+      "path": "/reports/employees.csv",
+      "canonical_response_unchanged": true,
+      "select_counts_before": [
+        2
+      ],
+      "select_counts_after": [
+        2
+      ],
+      "median_ms_before": 243.0663000000095,
+      "median_ms_after": 132.92359999991277,
+      "median_reduction_percent": 45.31385058319167,
+      "response_bytes_before": 1419001,
+      "response_bytes_after": 1419001
+    }
+  ],
+  "csv_python_allocations": {
+    "peak_bytes_before": 28714758,
+    "peak_bytes_after": 10005596,
+    "reduction_percent": 65.15521391474029
+  },
+  "report_period_before": [
+    {
+      "input_period": "2025-01",
+      "rendered_period": "2025-01",
+      "payroll_total": 1000000,
+      "expected_synthetic_payroll_total": 1000000
+    },
+    {
+      "input_period": "۲۰۲۵-۰۱",
+      "rendered_period": "۲۰۲۵-۰۱",
+      "payroll_total": 0,
+      "expected_synthetic_payroll_total": 1000000
+    },
+    {
+      "input_period": "٢٠٢٥-٠١",
+      "rendered_period": "٢٠٢٥-٠١",
+      "payroll_total": 0,
+      "expected_synthetic_payroll_total": 1000000
+    }
+  ],
+  "report_period_after": [
+    {
+      "input_period": "2025-01",
+      "rendered_period": "2025-01",
+      "payroll_total": 1000000,
+      "expected_synthetic_payroll_total": 1000000
+    },
+    {
+      "input_period": "۲۰۲۵-۰۱",
+      "rendered_period": "2025-01",
+      "payroll_total": 1000000,
+      "expected_synthetic_payroll_total": 1000000
+    },
+    {
+      "input_period": "٢٠٢٥-٠١",
+      "rendered_period": "2025-01",
+      "payroll_total": 1000000,
+      "expected_synthetic_payroll_total": 1000000
+    }
+  ],
+  "limitations": [
+    "Timing medians summarize five sequential local samples, not production latency, RPS, P95 or statistical confidence",
+    "HTML response hash comparison removes only random CSRF tokens; CSV hashes compare every original byte",
+    "Tracemalloc excludes native/PostgreSQL allocations and is not total-process RAM",
+    "This comparison does not test or certify 500 concurrent users"
+  ]
+}

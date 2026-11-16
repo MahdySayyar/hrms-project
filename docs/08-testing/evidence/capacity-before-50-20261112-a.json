@@ -1,0 +1,845 @@
+{
+  "id": "20261112T075326-afaa38",
+  "started_at": "2026-11-12T07:53:26.677860+00:00",
+  "finished_at": "2026-11-12T07:54:30.594452+00:00",
+  "git_parent_commit": "e61ac2c6c238513b911f0fed852ef72d18ebb5f4",
+  "app_sources": [
+    {
+      "path": "app/__init__.py",
+      "sha256_utf8_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256_utf8_lf": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256_utf8_lf": "61f82cd8c377b72775c564a3a0186afd3543b7f1752216f5d58627272ddbede7"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256_utf8_lf": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/main.py",
+      "sha256_utf8_lf": "2ec26bf7b568bb3bc78ffa31966fbc1adb9455c40c9d5a5c21de14f239d6f4de"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256_utf8_lf": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256_utf8_lf": "f35644404a853dccbdd85ab699705c7f82d91875ac975b46fba7fedf2cc76a91"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256_utf8_lf": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256_utf8_lf": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256_utf8_lf": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256_utf8_lf": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256_utf8_lf": "ed32916da89f208171ad82aa460c66800403c5e6af50f2c5997d3129ca99a136"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256_utf8_lf": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    }
+  ],
+  "profile": "mixed",
+  "source_archive": "artifacts/evidence/capacity-20261112T075326-afaa38/app-before-run.zip",
+  "source_root": ".",
+  "captured_sources": [
+    {
+      "path": "app/__init__.py",
+      "sha256_utf8_lf": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256_utf8_lf": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256_utf8_lf": "61f82cd8c377b72775c564a3a0186afd3543b7f1752216f5d58627272ddbede7"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256_utf8_lf": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/main.py",
+      "sha256_utf8_lf": "2ec26bf7b568bb3bc78ffa31966fbc1adb9455c40c9d5a5c21de14f239d6f4de"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256_utf8_lf": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256_utf8_lf": "f35644404a853dccbdd85ab699705c7f82d91875ac975b46fba7fedf2cc76a91"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256_utf8_lf": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256_utf8_lf": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256_utf8_lf": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256_utf8_lf": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256_utf8_lf": "ed32916da89f208171ad82aa460c66800403c5e6af50f2c5997d3129ca99a136"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256_utf8_lf": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    },
+    {
+      "path": "templates/audit.html",
+      "sha256_utf8_lf": "ccab1b5743e9012b5b6b298b7c9d78dc5b160dd5214b771e8c92933bb92122e4"
+    },
+    {
+      "path": "templates/base.html",
+      "sha256_utf8_lf": "31e1f125c2f43d1fdb7ccb8a092994e1474e8d4dee3a2ea71d3a872c3e5c3aa0"
+    },
+    {
+      "path": "templates/dashboard.html",
+      "sha256_utf8_lf": "77683d2cc17ed8d31b50b02460684a6822226ae5c4a47e5a856e052709686467"
+    },
+    {
+      "path": "templates/employee_detail.html",
+      "sha256_utf8_lf": "d24e0fbf58e68fed243f866914b20b06e01223fcbd2bd33620dd693560acc06f"
+    },
+    {
+      "path": "templates/employee_form.html",
+      "sha256_utf8_lf": "8b3969a6ee7b78210f090c94934a85307e036ee787f066ae8eea9da38bf472d2"
+    },
+    {
+      "path": "templates/employees.html",
+      "sha256_utf8_lf": "c3c551915ad4acc431b919df7b0065c76b05c01f707f56cef6fb7f66e6f5754b"
+    },
+    {
+      "path": "templates/error.html",
+      "sha256_utf8_lf": "40a6efcb9ab763a95b9a81ff52ad8da488242df4f355cc2fcd2e8ddb2bfaf5e1"
+    },
+    {
+      "path": "templates/history.html",
+      "sha256_utf8_lf": "933e0f55454269c3168879e520c25ed25507221c66adfdbac4c0f5a5301f3233"
+    },
+    {
+      "path": "templates/login.html",
+      "sha256_utf8_lf": "ef83e8bdeb8f623f1ef23e0d4ff0c55c44fda2c3f96b795719f8986aec7881f7"
+    },
+    {
+      "path": "templates/module_detail.html",
+      "sha256_utf8_lf": "9396392f02edb7bdc301aa992a4f533de5944ce9c777efdc7905866adb204818"
+    },
+    {
+      "path": "templates/module_form.html",
+      "sha256_utf8_lf": "02afe8fb350a6e20bd642650c56cde5f8869960f5682ab488c0767253a5ec1fb"
+    },
+    {
+      "path": "templates/module_list.html",
+      "sha256_utf8_lf": "96bd00ef0b823c1a852a385579a69eb003d9be623871a739bec6f02a776a6f4d"
+    },
+    {
+      "path": "templates/module_tabs.html",
+      "sha256_utf8_lf": "b61b509adb3cdc47d3e214c9ee64eae78660ccb134c52f7c2cf3c05f70a86f8b"
+    },
+    {
+      "path": "templates/modules.html",
+      "sha256_utf8_lf": "47e012f31a2ba8f6dcaadd8097c7313626a34738d2543475959d67c90e9da6c5"
+    },
+    {
+      "path": "templates/organization.html",
+      "sha256_utf8_lf": "0f1ab7fed28a9d8b39168397d85b627db1b418b8f53b8ce82bf39e2824a2501d"
+    },
+    {
+      "path": "templates/organization_form.html",
+      "sha256_utf8_lf": "3956d673d24872d681f2578f19b416473b858c3623482e1c20603ad770e3fa4c"
+    },
+    {
+      "path": "templates/payroll.html",
+      "sha256_utf8_lf": "40dd4c5143b7d71f6b989379d3808e8f6203b55503c428544503fa8d0bef0ae5"
+    },
+    {
+      "path": "templates/payslip.html",
+      "sha256_utf8_lf": "9fe79ce3c605e3b60a77e989d2f476acf6ac05cd0161e45d686092526f77fe0a"
+    },
+    {
+      "path": "templates/reports.html",
+      "sha256_utf8_lf": "2aa7684d9128bacdc3cae99c5880b9b494e14f3a54aa105d844c609d09523eb5"
+    },
+    {
+      "path": "static/forms.js",
+      "sha256_utf8_lf": "d8a8dc520858a67bebd43e58f73c1e7452cbf68e128783a0dfc88b96d5ce3bd7"
+    },
+    {
+      "path": "static/modules.css",
+      "sha256_utf8_lf": "f123f23c744312ca1be2531e19ffe4ae59d73df6ead143073562fab5c1b8a264"
+    },
+    {
+      "path": "static/style.css",
+      "sha256_utf8_lf": "aae39092a0e1e0b34f93ba7b693c74aee27906f61974dca9bc097f6b4c027d1f"
+    }
+  ],
+  "fixture_schema_source": "Current app.database.Base.metadata; selected source has no migration applied by this runner",
+  "fixture_table_count": 21,
+  "source_runtime": "Uvicorn without reload; code captured before process startup",
+  "minimum_free_disk_bytes": 536870912,
+  "topology": "One native FastAPI/Uvicorn process and local PostgreSQL; separate lab port and schema",
+  "initial_employee_count": 10000,
+  "users_requested": 50,
+  "spawn_rate": 20.0,
+  "steady_seconds_requested": 30,
+  "warmup_timeout_seconds": 120,
+  "python_version": "3.12.14",
+  "locust_version": "2.47.0",
+  "os": "Windows-10-10.0.19045-SP0",
+  "logical_cpus": 8,
+  "host_ram_bytes": 25623654400,
+  "database_max_connections": 100,
+  "metrics": {
+    "protocol_version": 2,
+    "setup_barrier": true,
+    "profile": "mixed",
+    "finish_reason": "steady_completed",
+    "ready_users_peak": 50,
+    "authenticated_users_peak": 50,
+    "spawn_completion": {
+      "users": 50,
+      "time": 1794470020.0274463
+    },
+    "setup_failures": {},
+    "steady_started_at": 1794470030.2909687,
+    "steady_finished_at": 1794470060.3081782,
+    "steady_seconds": 30.01720952987671,
+    "requests": 195,
+    "failures": 31,
+    "failure_fraction": 0.15897435897435896,
+    "read_requests": 153,
+    "write_requests": 42,
+    "observed_read_fraction": 0.7846153846153846,
+    "rps": 6.496273406290905,
+    "p50_ms": 7272,
+    "p95_ms": 10018,
+    "p99_ms": 10627,
+    "percentile_method": "Nearest-rank over 1ms response-time buckets; requests started before or completed after the steady window excluded",
+    "latency_histogram_ms": {
+      "107": 1,
+      "354": 1,
+      "366": 1,
+      "414": 1,
+      "433": 1,
+      "445": 1,
+      "446": 1,
+      "810": 1,
+      "820": 1,
+      "824": 1,
+      "1872": 1,
+      "1893": 1,
+      "1907": 1,
+      "2005": 1,
+      "2014": 1,
+      "2039": 1,
+      "2184": 1,
+      "2207": 1,
+      "2244": 1,
+      "2247": 1,
+      "2248": 1,
+      "2282": 1,
+      "2300": 1,
+      "2301": 1,
+      "2324": 1,
+      "2343": 1,
+      "2358": 1,
+      "2360": 1,
+      "2363": 1,
+      "2373": 1,
+      "2404": 1,
+      "2611": 1,
+      "3088": 1,
+      "3390": 1,
+      "3625": 1,
+      "3689": 1,
+      "3710": 1,
+      "3714": 2,
+      "3724": 1,
+      "3728": 1,
+      "3742": 1,
+      "3770": 1,
+      "3776": 1,
+      "3794": 1,
+      "3828": 1,
+      "3980": 1,
+      "4070": 1,
+      "4120": 1,
+      "4170": 1,
+      "4176": 1,
+      "4217": 1,
+      "4595": 1,
+      "4720": 1,
+      "5519": 1,
+      "5617": 1,
+      "5651": 1,
+      "5747": 1,
+      "5751": 1,
+      "5817": 1,
+      "5820": 1,
+      "5889": 1,
+      "6014": 1,
+      "6252": 1,
+      "6290": 1,
+      "6386": 1,
+      "6394": 1,
+      "6402": 1,
+      "6413": 1,
+      "6425": 1,
+      "6438": 1,
+      "6452": 1,
+      "6485": 1,
+      "6505": 1,
+      "6531": 1,
+      "6548": 1,
+      "6551": 1,
+      "6552": 1,
+      "6558": 1,
+      "6607": 1,
+      "6654": 1,
+      "6713": 1,
+      "6715": 1,
+      "6732": 1,
+      "6782": 1,
+      "6806": 1,
+      "6864": 1,
+      "6868": 1,
+      "6877": 1,
+      "6919": 1,
+      "6955": 1,
+      "6966": 1,
+      "7006": 1,
+      "7052": 1,
+      "7064": 1,
+      "7156": 1,
+      "7240": 1,
+      "7272": 1,
+      "7340": 1,
+      "7385": 1,
+      "7412": 1,
+      "7696": 1,
+      "7726": 1,
+      "7738": 1,
+      "7740": 1,
+      "7799": 1,
+      "7802": 1,
+      "7864": 1,
+      "7891": 1,
+      "7922": 1,
+      "8034": 1,
+      "8040": 1,
+      "8043": 1,
+      "8053": 1,
+      "8073": 1,
+      "8080": 1,
+      "8086": 1,
+      "8135": 1,
+      "8137": 1,
+      "8145": 1,
+      "8171": 1,
+      "8198": 1,
+      "8227": 1,
+      "8230": 1,
+      "8233": 1,
+      "8265": 1,
+      "8282": 1,
+      "8392": 1,
+      "8491": 1,
+      "8499": 1,
+      "8519": 1,
+      "8529": 1,
+      "8548": 1,
+      "8635": 1,
+      "8654": 2,
+      "8703": 1,
+      "8714": 1,
+      "8765": 1,
+      "8778": 1,
+      "8811": 1,
+      "8827": 1,
+      "8842": 1,
+      "8852": 1,
+      "8856": 1,
+      "8895": 1,
+      "8911": 1,
+      "9015": 1,
+      "9089": 1,
+      "9141": 1,
+      "9146": 1,
+      "9149": 1,
+      "9178": 1,
+      "9218": 1,
+      "9283": 1,
+      "9550": 1,
+      "9648": 1,
+      "9749": 1,
+      "10001": 1,
+      "10003": 2,
+      "10004": 1,
+      "10005": 2,
+      "10006": 2,
+      "10007": 1,
+      "10008": 2,
+      "10009": 1,
+      "10010": 3,
+      "10011": 1,
+      "10012": 3,
+      "10013": 1,
+      "10014": 3,
+      "10015": 3,
+      "10016": 1,
+      "10018": 2,
+      "10020": 1,
+      "10028": 1,
+      "10075": 1,
+      "10239": 1,
+      "10269": 1,
+      "10612": 1,
+      "10627": 1,
+      "10876": 1
+    },
+    "endpoints": [
+      {
+        "name": "read.dashboard",
+        "requests": 30,
+        "failures": 2,
+        "response_bytes": 156744,
+        "max_response_bytes": 5598,
+        "latency_histogram_ms": {
+          "3689": 1,
+          "3710": 1,
+          "3714": 1,
+          "3776": 1,
+          "3828": 1,
+          "3980": 1,
+          "4070": 1,
+          "4120": 1,
+          "7802": 1,
+          "7272": 1,
+          "9218": 1,
+          "9089": 1,
+          "9141": 1,
+          "8171": 1,
+          "8145": 1,
+          "10612": 1,
+          "8282": 1,
+          "8491": 1,
+          "8548": 1,
+          "8137": 1,
+          "7052": 1,
+          "8654": 1,
+          "5651": 1,
+          "10012": 1,
+          "6715": 1,
+          "10014": 1,
+          "8856": 1,
+          "8392": 1,
+          "8911": 1,
+          "8040": 1
+        },
+        "statuses": {
+          "200": 28,
+          "0": 2
+        },
+        "mean_response_bytes": 5224.8,
+        "p95_ms": 10014
+      },
+      {
+        "name": "read.employees",
+        "requests": 41,
+        "failures": 27,
+        "response_bytes": 75488854,
+        "max_response_bytes": 5392177,
+        "latency_histogram_ms": {
+          "2343": 1,
+          "2404": 1,
+          "4176": 1,
+          "8043": 1,
+          "8714": 1,
+          "8778": 1,
+          "8827": 1,
+          "9178": 1,
+          "9283": 1,
+          "10028": 1,
+          "10010": 3,
+          "10014": 2,
+          "10876": 1,
+          "10015": 3,
+          "9749": 1,
+          "10016": 1,
+          "10003": 2,
+          "10005": 2,
+          "10627": 1,
+          "10008": 2,
+          "10004": 1,
+          "10001": 1,
+          "10020": 1,
+          "10006": 2,
+          "10012": 2,
+          "10018": 2,
+          "10013": 1,
+          "10011": 1,
+          "10239": 1,
+          "10269": 1
+        },
+        "statuses": {
+          "200": 14,
+          "0": 27
+        },
+        "mean_response_bytes": 1841191.5609756098,
+        "p95_ms": 10269
+      },
+      {
+        "name": "read.reports",
+        "requests": 36,
+        "failures": 2,
+        "response_bytes": 145732,
+        "max_response_bytes": 4288,
+        "latency_histogram_ms": {
+          "366": 1,
+          "2301": 1,
+          "2282": 1,
+          "2324": 1,
+          "2360": 1,
+          "3714": 1,
+          "3794": 1,
+          "8765": 1,
+          "8811": 1,
+          "9149": 1,
+          "10009": 1,
+          "10007": 1,
+          "8227": 1,
+          "6548": 1,
+          "6485": 1,
+          "8198": 1,
+          "8080": 1,
+          "8703": 1,
+          "8842": 1,
+          "6402": 1,
+          "6919": 1,
+          "6966": 1,
+          "10075": 1,
+          "6732": 1,
+          "6864": 1,
+          "8635": 1,
+          "8053": 1,
+          "8852": 1,
+          "8654": 1,
+          "8895": 1,
+          "7726": 1,
+          "9550": 1,
+          "7891": 1,
+          "8034": 1,
+          "7738": 1,
+          "7412": 1
+        },
+        "statuses": {
+          "200": 34,
+          "0": 2
+        },
+        "mean_response_bytes": 4048.1111111111113,
+        "p95_ms": 10009
+      },
+      {
+        "name": "read.requests",
+        "requests": 46,
+        "failures": 0,
+        "response_bytes": 195270,
+        "max_response_bytes": 4245,
+        "latency_histogram_ms": {
+          "354": 1,
+          "446": 1,
+          "433": 1,
+          "414": 1,
+          "445": 1,
+          "820": 1,
+          "810": 1,
+          "824": 1,
+          "1872": 1,
+          "2248": 1,
+          "2244": 1,
+          "2247": 1,
+          "2207": 1,
+          "2300": 1,
+          "2373": 1,
+          "2358": 1,
+          "2363": 1,
+          "2611": 1,
+          "3088": 1,
+          "6713": 1,
+          "6505": 1,
+          "5617": 1,
+          "6551": 1,
+          "6452": 1,
+          "6531": 1,
+          "7006": 1,
+          "6558": 1,
+          "6806": 1,
+          "7340": 1,
+          "8073": 1,
+          "5889": 1,
+          "6413": 1,
+          "8230": 1,
+          "4595": 1,
+          "4217": 1,
+          "4170": 1,
+          "5519": 1,
+          "9648": 1,
+          "6386": 1,
+          "6654": 1,
+          "6438": 1,
+          "6877": 1,
+          "5747": 1,
+          "4720": 1,
+          "6425": 1,
+          "3625": 1
+        },
+        "statuses": {
+          "200": 46
+        },
+        "mean_response_bytes": 4245.0,
+        "p95_ms": 8073
+      },
+      {
+        "name": "write.employee_status",
+        "requests": 42,
+        "failures": 0,
+        "response_bytes": 0,
+        "max_response_bytes": 0,
+        "latency_histogram_ms": {
+          "107": 1,
+          "1893": 1,
+          "1907": 1,
+          "2014": 1,
+          "2039": 1,
+          "2005": 1,
+          "2184": 1,
+          "3724": 1,
+          "3770": 1,
+          "3742": 1,
+          "3728": 1,
+          "3390": 1,
+          "6290": 1,
+          "6607": 1,
+          "6552": 1,
+          "6394": 1,
+          "7696": 1,
+          "7740": 1,
+          "7799": 1,
+          "7864": 1,
+          "7922": 1,
+          "8499": 1,
+          "8265": 1,
+          "8233": 1,
+          "8135": 1,
+          "6252": 1,
+          "6014": 1,
+          "7385": 1,
+          "6782": 1,
+          "6868": 1,
+          "8086": 1,
+          "8519": 1,
+          "5751": 1,
+          "8529": 1,
+          "5820": 1,
+          "6955": 1,
+          "7156": 1,
+          "9015": 1,
+          "7064": 1,
+          "7240": 1,
+          "9146": 1,
+          "5817": 1
+        },
+        "statuses": {
+          "303": 42
+        },
+        "mean_response_bytes": 0.0,
+        "p95_ms": 8529
+      }
+    ],
+    "all_window_and_setup_outcomes": [
+      {
+        "name": "setup.instance",
+        "status": 200,
+        "failed": false,
+        "count": 50
+      },
+      {
+        "name": "setup.login_form",
+        "status": 200,
+        "failed": false,
+        "count": 50
+      },
+      {
+        "name": "setup.login",
+        "status": 303,
+        "failed": false,
+        "count": 50
+      },
+      {
+        "name": "setup.session",
+        "status": 200,
+        "failed": false,
+        "count": 50
+      },
+      {
+        "name": "write.employee_status",
+        "status": 303,
+        "failed": false,
+        "count": 53
+      },
+      {
+        "name": "read.reports",
+        "status": 200,
+        "failed": false,
+        "count": 42
+      },
+      {
+        "name": "read.requests",
+        "status": 200,
+        "failed": false,
+        "count": 51
+      },
+      {
+        "name": "read.employees",
+        "status": 200,
+        "failed": false,
+        "count": 23
+      },
+      {
+        "name": "read.dashboard",
+        "status": 200,
+        "failed": false,
+        "count": 36
+      },
+      {
+        "name": "read.employees",
+        "status": 0,
+        "failed": true,
+        "count": 36
+      },
+      {
+        "name": "read.reports",
+        "status": 0,
+        "failed": true,
+        "count": 2
+      },
+      {
+        "name": "read.dashboard",
+        "status": 0,
+        "failed": true,
+        "count": 2
+      }
+    ]
+  },
+  "resources": {
+    "all_samples": 54,
+    "steady_samples": 30,
+    "steady": {
+      "host_cpu_percent": {
+        "min": 25.0,
+        "max": 77.9,
+        "mean": 37.583333333333336
+      },
+      "host_available_ram_bytes": {
+        "min": 17072955392,
+        "max": 17361342464,
+        "mean": 17140558233.6
+      },
+      "host_free_disk_bytes": {
+        "min": 9936887808,
+        "max": 9943322624,
+        "mean": 9941337702.4
+      },
+      "web_cpu_percent_one_core_100": {
+        "min": 98.5,
+        "max": 383.4,
+        "mean": 116.22333333333333
+      },
+      "web_rss_bytes": {
+        "min": 97017856,
+        "max": 329408512,
+        "mean": 276909397.3333333
+      },
+      "generator_cpu_percent_one_core_100": {
+        "min": 0.0,
+        "max": 24.2,
+        "mean": 4.466666666666667
+      },
+      "generator_rss_bytes": {
+        "min": 87076864,
+        "max": 125988864,
+        "mean": 108359816.53333333
+      },
+      "lab_database_connections": {
+        "min": 5,
+        "max": 15,
+        "mean": 13.266666666666667
+      },
+      "lab_database_active": {
+        "min": 0,
+        "max": 2,
+        "mean": 0.23333333333333334
+      },
+      "lab_database_waiting": {
+        "min": 0,
+        "max": 0,
+        "mean": 0.0
+      },
+      "lab_database_backend_cpu_percent_one_core_100": {
+        "min": 0.0,
+        "max": 47.0,
+        "mean": 13.393333333333334
+      },
+      "lab_database_backend_rss_bytes": {
+        "min": 95522816,
+        "max": 287981568,
+        "mean": 249434248.53333333
+      }
+    },
+    "sampling_errors": 0,
+    "cpu_semantics": "Process CPU sum; 100% = one logical core. Host CPU is normalized across all logical cores. RSS includes the Python launcher and its child processes."
+  },
+  "generator_exit_code": 1,
+  "audit_observation": {
+    "acknowledged_status_writes_all_windows": 53,
+    "persisted_status_audits": 53,
+    "all_acknowledgements_have_at_least_an_audit": true,
+    "limitation": "Aggregate count only; timed-out requests may also commit. This is not per-operation exactly-once verification."
+  },
+  "nfr_500_users_verified": false,
+  "limitations": [
+    "Generator and services share one physical host",
+    "Only the specified latency/error NFR can be assessed; this does not certify HA, authorization completeness or all write invariants",
+    "Local native database has no container resource isolation; compare like-for-like profiles and steady windows"
+  ],
+  "raw_evidence_directory": "artifacts/evidence/capacity-20261112T075326-afaa38"
+}

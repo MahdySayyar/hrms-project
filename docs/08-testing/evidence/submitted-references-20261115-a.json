@@ -1,0 +1,22 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-15T06:32:49.348222+00:00",
+  "finished_at": "2026-11-15T06:32:49.833641+00:00",
+  "git_parent_commit": "e61ac2c6c238513b911f0fed852ef72d18ebb5f4",
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 2,
+  "all_passed": false,
+  "checks": [
+    {
+      "test": "tests.test_submitted_references.SubmittedReferences.test_tc_02_10_successful_post_is_bounded_and_invalid_references_have_no_writes",
+      "status": "error",
+      "reason": "TypeError"
+    },
+    {
+      "test": "tests.test_submitted_references.SubmittedReferences.test_tc_02_11_all_reference_sources_preserve_scope_and_optional_empty_choices",
+      "status": "error",
+      "reason": "TypeError"
+    }
+  ]
+}

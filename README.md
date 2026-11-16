@@ -1,8 +1,31 @@
 # سامانهٔ مدیریت منابع انسانی — پروژهٔ معماری
 
+[مخزن عمومی GitHub](https://github.com/MahdySayyar/hrms-project) · [دانلود ZIP](https://github.com/MahdySayyar/hrms-project/archive/refs/heads/master.zip) · [نتیجهٔ آزمون‌های خودکار](https://github.com/MahdySayyar/hrms-project/actions)
+
 وب‌سایت فارسی و RTL با FastAPI، Jinja2 و PostgreSQL. هشت حوزهٔ HR پیاده‌سازی شده‌اند و چارچوب مهندسی درس به پروژه اضافه شده است. هدف، حفظ نسخهٔ ساده و اصلاح تدریجی معماری با مشکل و evidence واقعی است.
 
-شروع بررسی: [گزارش جاری](docs/10-final-report/report.md)، [تطبیق هر 93 اسلاید استاد](docs/project-framework-slide-review.md)، [فهرست مستندات](docs/README.md).
+شروع بررسی: [گزارش جاری](docs/10-final-report/report.md)، [تطبیق هر 93 اسلاید استاد](docs/project-framework-slide-review.md)، [فهرست مستندات](docs/README.md). [شاهد نصب از کپی تازه](docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md) راه‌اندازی قابل دانلود را بررسی می‌کند.
+
+تغییرات نهایی این پروژه پس از بررسی در Git ثبت و به همان مخزن GitHub ارسال می‌شوند؛ GitHub Actions آزمون‌ها را روی push اجرا می‌کند. هنگام بروزرسانی نسخهٔ نصب‌شده، فایل‌های پروژه را تازه و launcher را دوباره اجرا کنید؛ پوشهٔ خصوصی `.runtime` را حفظ کنید.
+
+## شروع سریع بعد از دانلود
+
+پیش‌نیاز: Docker Desktop روشن با **Linux containers** و Docker Compose v2 یا جدیدتر. نصب Python، PostgreSQL و Git لازم نیست. بار اول برای دریافت imageها اینترنت لازم است.
+
+1. از GitHub گزینهٔ **Code → Download ZIP** را بزنید و ZIP را استخراج کنید.
+2. در ویندوز فایل **`start-docker.cmd`** را دوبار کلیک کنید. در macOS/Linux از ریشهٔ پروژه اجرا کنید:
+
+   ```bash
+   bash scripts/start-docker.sh
+   ```
+
+3. بعد از آماده‌شدن کانتینرها، [صفحهٔ ورود](http://localhost:8001/login) را باز کنید. نام کاربری **`hradmin`** است. رمز مخصوص همین نصب داخل **`.runtime/docker-hrms-secrets/admin_password`** ساخته می‌شود؛ فایل را روی رایانهٔ خودتان باز کنید.
+
+برنامه با دادهٔ نمونهٔ ساختگی آماده می‌شود. اجرای دوباره رمز یا دادهٔ قبلی را پاک نمی‌کند. اگر پورت 8001 اشغال است، ابتدا برنامهٔ دیگری را که روی آن اجرا شده متوقف کنید. راهنمای توقف، بروزرسانی و رفع مشکل در [راهنمای Docker](deployments/README.md) است.
+
+## اجرا در Docker
+
+استقرار 2026-11-16 با [Compose](deployments/compose.yaml): کانتینر `hrms-docker-web-1` برای وب و `hrms-docker-db-1` برای PostgreSQL، دادهٔ نمونه در volume مستقل. سایت: [ورود Docker](http://localhost:8001/login). راه‌اندازی/توقف، رمز اختصاصی محلی و حدود در [راهنمای Docker](deployments/README.md) است. نسخهٔ native روی 8000 محفوظ است. این baseline یک وب دارد؛ ظرفیت 500 یا HA به آن نسبت داده نمی‌شود.
 
 ## سایت و اجرا
 
@@ -32,11 +55,13 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\launch.ps1
 
 معماری فعلی یک مونولیت با یک وب و DB محلی است. فقط تصمیم درخواست به Domain / Service / Repository منتقل شده؛ تصمیم مخالف نهایی اکنون 409 می‌گیرد و retry یکسان بدون تغییر دوباره است. سایر قواعد عمدتاً در route هستند.
 
-تاریخ‌ها میلادی، مبالغ ریال آموزشی و قواعد حقوق قانونی نیستند. محاسبهٔ اولیهٔ دورهٔ تاریخی از profile/rule فعلی استفاده می‌کند؛ گزارش از سازمان فعلی. نشست‌ها در حافظهٔ یک وب‌اند. صفحه‌بندی، Docker/Compose/Kubernetes، Redis/RabbitMQ/gateway/monitoring و HA هنوز پیاده نشده‌اند.
+تاریخ‌ها میلادی، مبالغ ریال آموزشی و قواعد حقوق قانونی نیستند. محاسبهٔ اولیهٔ دورهٔ تاریخی از profile/rule فعلی استفاده می‌کند؛ گزارش از سازمان فعلی. صفحه‌بندی کارکنان، ماژول‌ها و فیش‌ها پیاده شده است. نشست‌های هر وب حافظه‌ای‌اند؛ آزمایش native چهار وب با proxy و affinity مرورگر نیز اندازه‌گیری شده است. Docker/Compose وب و PostgreSQL اکنون اجرا شده‌اند؛ Kubernetes، Redis/RabbitMQ/gateway و HA هنوز اجرا نشده‌اند.
+
+ادامهٔ 2026-11-15: هدف مستقیم کاربر تحمل 500 نفر بدون خطاست. [گزارش‌های مستقل اصلاح‌ها](docs/05-architecture/experiments/README.md) صفحه‌بندی، احراز هویت، چهار وب، transport و اعتبارسنجی فرم را با شواهد مثبت و منفی ثبت می‌کنند. آزمون کوتاه transport با 500 نفر از 5144 درخواست فقط یک timeout داشت، اما P95=3063ms و burst ناموفق بود؛ اصلاح محدودکردن اعتبارسنجی POST و آزمون کامل پنج‌دقیقه‌ای پس از آن ادامه یافته است. این عدد، پذیرش NFR یا ظرفیت سایت اصلی نیست.
 
 ## مدارک و شواهد
 
-25 FR، 22 BR و 11 NFR؛ سه کاربرد کامل YAML و مدل‌های Context/Use Case/Domain، سه sequence/activity/state؛ architecture alternatives و ADR؛ design و OpenAPI/schema واقعی؛ دو AI record؛ traceability و CR-01؛ Gate/DoD/Rubric و برنامهٔ ارائه.
+25 FR، 22 BR و 11 NFR؛ چهار کاربرد کامل YAML و مدل‌های Context/Use Case/Domain، سه sequence/activity/state؛ architecture alternatives و ADR؛ design و OpenAPI/schema واقعی؛ دو AI record تاریخی؛ traceability و CR-01/CR-02؛ Gate/DoD/Rubric و برنامهٔ ارائه.
 
 [آزمون‌های واقعی](docs/08-testing/report.md): 16/17 قبل اصلاح → 17/17 بعد؛ 29/29 پس از تکمیل مرز، 98/98 assertion رگرسیون؛ coverage package تصمیم 96.6٪. load سبک 10 کاربر، 1418 درخواست و خطای صفر با P95=210ms. این load ظرفیت 500 کاربر را تأیید نمی‌کند.
 
@@ -82,7 +107,7 @@ npm.cmd install --prefix .\artifacts\diagram-validator --ignore-scripts --no-aud
 node .\scripts\validate_diagrams.mjs --output docs/08-testing/evidence/diagrams-next.json
 ```
 
-workflow CI در .github/workflows/engineering.yml آماده است؛ اجرا/انتشار remote در این نوبت انجام نشده. legacy browser_check.cjs برای UI با ابزارهای قدیمی اجرا نشده است؛ شواهد مرورگر قبلی تاریخی‌اند.
+workflow CI در .github/workflows/engineering.yml روی push و pull request بررسی‌های PostgreSQL، coverage، مهندسی، نمودارها و راه‌اندازی Docker را اجرا می‌کند. نتیجهٔ هر اجرای واقعی در تب Actions مخزن مشخص است. legacy browser_check.cjs برای UI با ابزارهای قدیمی اجرا نشده است؛ شواهد مرورگر قبلی تاریخی‌اند.
 
 ## نسخه‌ها و ساختار
 

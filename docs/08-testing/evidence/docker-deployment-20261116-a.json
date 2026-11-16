@@ -1,0 +1,56 @@
+{
+  "recorded_at": "2026-11-16T12:40:01.137625+00:00",
+  "checks": {
+    "health_database_connection": true,
+    "docker_instance": true,
+    "login_form": true,
+    "wrong_password_401": true,
+    "sample_login_303": true,
+    "rotated_httponly_cookie": true,
+    "authenticated_dashboard": true,
+    "missing_csrf_403": true,
+    "logout_303": true,
+    "logout_invalidates_session": true,
+    "nonroot": true,
+    "native_env_absent": true,
+    "native_runtime_absent": true,
+    "single_uvicorn_pid1": true,
+    "synthetic_marker_created": true,
+    "volume_marker_survived_stop_start": true,
+    "synthetic_marker_removed": true,
+    "docker_healthy_after_restart": true,
+    "native_site_preserved": true
+  },
+  "all_passed": true,
+  "isolation": "Fresh Docker sample database and uniquely named disposable synthetic persistence schema; native HR untouched",
+  "containers": [
+    {
+      "Name": "hrms-docker-db-1",
+      "Service": "db",
+      "Image": "postgres:17.6-bookworm",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Name": "hrms-docker-web-1",
+      "Service": "web",
+      "Image": "hrms-web:docker-baseline",
+      "State": "running",
+      "Health": "healthy"
+    }
+  ],
+  "image_id": "sha256:fd7bdd01eb8949cceb8a2444d7655e69e132eb1796652c3a84e3d56bb188aa82",
+  "source_sha256": {
+    "deployments/compose.yaml": "b3db1bf69885425eff6ea839eb001304772c78890d3b439c662930d8c519b63b",
+    "deployments/app/Dockerfile": "fd7948b7328fefd204571e214c368363ae6aae4b5205f1af4c54f9cada29f29c",
+    "deployments/app/entrypoint.py": "ef3701ffc4dab421eb6a7cab88a123738d6d278de47e3b31cbca6ddc4aa55ba9",
+    ".dockerignore": "43457142ab707a5dde5fde8a5f180c05fd22cea34b89732579294c104e9da73e",
+    "requirements-lock.txt": "49cdec498ffd555298886fe0b45751473499c798591135c5a15b5d513699e61f"
+  },
+  "human_review": "pending",
+  "capacity_500_verified": false,
+  "limitations": [
+    "Single web, process-local sessions; restart logs users out",
+    "Docker startup verification is not 500-user or HA acceptance"
+  ]
+}

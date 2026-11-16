@@ -198,9 +198,13 @@ traceability:
   code:
   - app/main.py#employee_list
   tests:
+  - TC-04-01
+  - TC-04-02
+  - TC-04-03
+  - TC-04-04
   - TC-HIST-01
   regression_assertion_indices: []
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -241,6 +245,7 @@ traceability:
   - BR-06
   - BR-15
   use_cases:
+  - UC-04
   - UC-06
   models:
   - DM-01
@@ -248,6 +253,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-06
   code:
   - app/modules.py#validate_record
@@ -271,6 +277,7 @@ traceability:
   business_rules:
   - BR-15
   use_cases:
+  - UC-04
   - UC-06
   models:
   - DM-01
@@ -278,6 +285,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-06
   code:
   - app/modules.py#save_record
@@ -334,6 +342,7 @@ traceability:
   business_rules:
   - BR-16
   use_cases:
+  - UC-04
   - UC-07
   models:
   - DM-01
@@ -341,11 +350,13 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-07
   code:
   - app/modules.py#validate_record
   - app/modules.py#minutes_between
   tests:
+  - TC-04-05
   - TC-REG-01
   regression_assertion_indices:
   - 30
@@ -358,7 +369,7 @@ traceability:
   - 37
   - 38
   - 39
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -373,6 +384,7 @@ traceability:
   - BR-14
   use_cases:
   - UC-02
+  - UC-04
   models:
   - ACT-02
   - DM-01
@@ -381,8 +393,10 @@ traceability:
   - UCM-01
   design:
   - D-02
+  - D-04
   api:
   - API-02
+  - API-04
   code:
   - app/modules.py#save_record
   tests:
@@ -491,6 +505,7 @@ traceability:
   - BR-11
   use_cases:
   - UC-03
+  - UC-04
   models:
   - ACT-03
   - DM-01
@@ -499,8 +514,10 @@ traceability:
   - UCM-01
   design:
   - D-03
+  - D-04
   api:
   - API-03
+  - API-04
   code:
   - app/module_forms.py
   - app/hr_models.py#PayrollProfile
@@ -567,6 +584,7 @@ traceability:
   - BR-17
   - BR-14
   use_cases:
+  - UC-04
   - UC-08
   models:
   - DM-01
@@ -574,6 +592,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-08
   code:
   - app/modules.py#activate_contract
@@ -603,6 +622,7 @@ traceability:
   business_rules:
   - BR-18
   use_cases:
+  - UC-04
   - UC-09
   models:
   - DM-01
@@ -610,6 +630,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-09
   code:
   - app/module_forms.py
@@ -631,6 +652,7 @@ traceability:
   business_rules:
   - BR-19
   use_cases:
+  - UC-04
   - UC-09
   models:
   - DM-01
@@ -638,6 +660,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-09
   code:
   - app/modules.py#validate_record
@@ -660,6 +683,7 @@ traceability:
   business_rules:
   - BR-18
   use_cases:
+  - UC-04
   - UC-09
   models:
   - DM-01
@@ -667,6 +691,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-09
   code:
   - app/module_forms.py
@@ -717,6 +742,7 @@ traceability:
   - SRC-C01
   business_rules:
   - BR-04
+  - BR-13
   use_cases:
   - UC-11
   models:
@@ -730,6 +756,8 @@ traceability:
   - app/modules.py#reports
   tests:
   - TC-01-02
+  - TC-11-04
+  - TC-11-05
   - TC-REG-01
   regression_assertion_indices:
   - 78
@@ -747,6 +775,7 @@ traceability:
   business_rules:
   - BR-03
   - BR-04
+  - BR-14
   - BR-21
   use_cases:
   - UC-11
@@ -762,6 +791,9 @@ traceability:
   - app/modules.py#safe_csv
   tests:
   - TC-01-02
+  - TC-11-01
+  - TC-11-02
+  - TC-11-03
   - TC-REG-01
   regression_assertion_indices:
   - 79
@@ -822,6 +854,7 @@ traceability:
   business_rules:
   - BR-22
   use_cases:
+  - UC-04
   - UC-12
   models:
   - DM-01
@@ -829,6 +862,7 @@ traceability:
   design:
   - D-04
   api:
+  - API-04
   - API-12
   code:
   - app/modules.py#validate_record
@@ -853,6 +887,7 @@ nonfunctional_traceability:
   tests: []
   evidence:
   - docs/08-testing/evidence/native-load.json
+  - docs/08-testing/evidence/capacity-native4-500-before-20261115-a.json
   architecture:
   - ARCH-01
   - QA-01
@@ -959,9 +994,18 @@ nonfunctional_traceability:
 test_code_symbols:
   TC-M-01: tests/test_architecture_boundaries.py#ArchitectureBoundaries.test_tc_m01_domain_has_no_web_or_storage_dependency
   TC-M-02: tests/test_architecture_boundaries.py#ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql
+  TC-04-01: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_01_bounded_ordered_pages_and_clamping
+  TC-04-02: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_02_invalid_empty_and_role_boundaries
+  TC-04-03: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_03_scope_literal_filters_and_navigation
+  TC-04-04: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_04_modules_and_payslips_are_bounded_without_writes
+  TC-04-05: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_05_reference_cost_is_bounded_at_all_page_sizes
+  TC-04-06: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh
+  TC-04-07: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping
+  TC-04-08: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks
   TC-01-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
   TC-01-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope
   TC-01-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_03_inactive_account_is_rejected
+  TC-01-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_04_authentication_is_checked_once_per_http_request
   TC-02-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_01_creation_and_invalid_date_range
   TC-02-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_02_approval_and_atomic_audit
   TC-02-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_03_rejection_requires_reason
@@ -976,6 +1020,16 @@ test_code_symbols:
   TC-03-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_03_invalid_period_and_missing_profile
   TC-03-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_04_zero_hourly_rate_is_rejected
   TC-03-05: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
+  TC-01-08: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
+  TC-01-09: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  TC-01-05: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved
+  TC-01-06: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried
+  TC-01-07: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary
+  TC-11-01: tests/test_report_reads.py#ReportReads.test_tc_11_01_csv_contract_and_exact_row_count_audit
+  TC-11-02: tests/test_report_reads.py#ReportReads.test_tc_11_02_multiple_batches_projection_empty_scope_and_forbidden_role
+  TC-11-03: tests/test_report_reads.py#ReportReads.test_tc_11_03_failed_export_audit_never_delivers_successful_csv
+  TC-11-04: tests/test_report_reads.py#ReportReads.test_tc_11_04_equivalent_period_spellings_use_the_actual_snapshot_key
+  TC-11-05: tests/test_report_reads.py#ReportReads.test_tc_11_05_invalid_default_leap_month_and_role_scope_boundaries
   TC-02-U01: tests/test_request_rules.py#RequestRules.test_tc_02_u01_pending_accepts_both_final_decisions
   TC-02-U02: tests/test_request_rules.py#RequestRules.test_tc_02_u02_final_identical_retry_does_not_change
   TC-02-U03: tests/test_request_rules.py#RequestRules.test_tc_02_u03_both_opposite_final_transitions_are_rejected
@@ -986,3 +1040,5 @@ test_code_symbols:
   TC-02-U08: tests/test_request_rules.py#RequestRules.test_tc_02_u08_notes_length_boundary
   TC-02-U09: tests/test_request_rules.py#RequestRules.test_tc_02_u09_non_admin_cannot_decide
   TC-02-U10: tests/test_request_rules.py#RequestRules.test_tc_02_u10_invalid_decision_format
+  TC-02-10: tests/test_submitted_references.py#SubmittedReferences.test_tc_02_10_successful_post_is_bounded_and_invalid_references_have_no_writes
+  TC-02-11: tests/test_submitted_references.py#SubmittedReferences.test_tc_02_11_all_reference_sources_preserve_scope_and_optional_empty_choices

@@ -74,6 +74,9 @@ entries:
 - id: CR-01
   target: docs/10-final-report/changes/CR-01.md
   kind: document
+- id: CR-02
+  target: docs/10-final-report/changes/CR-02.md
+  kind: document
 - id: REPORT-01
   target: docs/10-final-report/report.md
   kind: document
@@ -102,6 +105,9 @@ entries:
   target: docs/02-requirements/sources.md
   kind: source
 - id: SRC-U02
+  target: docs/02-requirements/sources.md
+  kind: source
+- id: SRC-U03
   target: docs/02-requirements/sources.md
   kind: source
 - id: SRC-C01
@@ -375,7 +381,7 @@ entries:
   target: specs/UC-03.yaml
   kind: use_case
 - id: UC-04
-  target: docs/03-specifications/use-cases.md
+  target: specs/UC-04.yaml
   kind: use_case
 - id: UC-05
   target: docs/03-specifications/use-cases.md
@@ -396,11 +402,20 @@ entries:
   target: docs/03-specifications/use-cases.md
   kind: use_case
 - id: UC-11
-  target: docs/03-specifications/use-cases.md
+  target: specs/UC-11.yaml
   kind: use_case
 - id: UC-12
   target: docs/03-specifications/use-cases.md
   kind: use_case
+- id: READ-CAT-01
+  target: models/design/read-catalog.mmd
+  kind: model
+- id: SEQ-11
+  target: models/sequences/UC-11.mmd
+  kind: model
+- id: DEP-DOCKER-01
+  target: models/design/docker-compose.mmd
+  kind: model
 - id: CTX-01
   target: models/context.mmd
   kind: model
@@ -458,6 +473,33 @@ entries:
 - id: ADR-04
   target: docs/05-architecture/ADRs/ADR-04-request-workflow.md
   kind: architecture_decision
+- id: ADR-05
+  target: docs/05-architecture/ADRs/ADR-05-bounded-catalog.md
+  kind: architecture_decision
+- id: ADR-06
+  target: docs/05-architecture/ADRs/ADR-06-request-authentication.md
+  kind: architecture_decision
+- id: ADR-07
+  target: docs/05-architecture/ADRs/ADR-07-native-capacity.md
+  kind: architecture_decision
+- id: ADR-08
+  target: docs/05-architecture/ADRs/ADR-08-native-proxy-transport.md
+  kind: architecture_decision
+- id: ADR-09
+  target: docs/05-architecture/ADRs/ADR-09-submitted-reference-validation.md
+  kind: architecture_decision
+- id: ADR-10
+  target: docs/05-architecture/ADRs/ADR-10-docker-compose-baseline.md
+  kind: architecture_decision
+- id: ADR-11
+  target: docs/05-architecture/ADRs/ADR-11-page-reference-reads.md
+  kind: architecture_decision
+- id: ADR-12
+  target: docs/05-architecture/ADRs/ADR-12-projected-csv-reads.md
+  kind: architecture_decision
+- id: ADR-13
+  target: docs/05-architecture/ADRs/ADR-13-canonical-report-period.md
+  kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
   kind: design
@@ -512,6 +554,30 @@ entries:
 - id: TC-M-02
   target: tests/test_architecture_boundaries.py#ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql
   kind: automated_test
+- id: TC-04-01
+  target: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_01_bounded_ordered_pages_and_clamping
+  kind: automated_test
+- id: TC-04-02
+  target: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_02_invalid_empty_and_role_boundaries
+  kind: automated_test
+- id: TC-04-03
+  target: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_03_scope_literal_filters_and_navigation
+  kind: automated_test
+- id: TC-04-04
+  target: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_04_modules_and_payslips_are_bounded_without_writes
+  kind: automated_test
+- id: TC-04-05
+  target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_05_reference_cost_is_bounded_at_all_page_sizes
+  kind: automated_test
+- id: TC-04-06
+  target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh
+  kind: automated_test
+- id: TC-04-07
+  target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping
+  kind: automated_test
+- id: TC-04-08
+  target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks
+  kind: automated_test
 - id: TC-01-01
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
   kind: automated_test
@@ -520,6 +586,9 @@ entries:
   kind: automated_test
 - id: TC-01-03
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_03_inactive_account_is_rejected
+  kind: automated_test
+- id: TC-01-04
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_04_authentication_is_checked_once_per_http_request
   kind: automated_test
 - id: TC-02-01
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_01_creation_and_invalid_date_range
@@ -563,6 +632,36 @@ entries:
 - id: TC-03-05
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
   kind: automated_test
+- id: TC-01-08
+  target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
+  kind: automated_test
+- id: TC-01-09
+  target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  kind: automated_test
+- id: TC-01-05
+  target: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved
+  kind: automated_test
+- id: TC-01-06
+  target: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried
+  kind: automated_test
+- id: TC-01-07
+  target: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary
+  kind: automated_test
+- id: TC-11-01
+  target: tests/test_report_reads.py#ReportReads.test_tc_11_01_csv_contract_and_exact_row_count_audit
+  kind: automated_test
+- id: TC-11-02
+  target: tests/test_report_reads.py#ReportReads.test_tc_11_02_multiple_batches_projection_empty_scope_and_forbidden_role
+  kind: automated_test
+- id: TC-11-03
+  target: tests/test_report_reads.py#ReportReads.test_tc_11_03_failed_export_audit_never_delivers_successful_csv
+  kind: automated_test
+- id: TC-11-04
+  target: tests/test_report_reads.py#ReportReads.test_tc_11_04_equivalent_period_spellings_use_the_actual_snapshot_key
+  kind: automated_test
+- id: TC-11-05
+  target: tests/test_report_reads.py#ReportReads.test_tc_11_05_invalid_default_leap_month_and_role_scope_boundaries
+  kind: automated_test
 - id: TC-02-U01
   target: tests/test_request_rules.py#RequestRules.test_tc_02_u01_pending_accepts_both_final_decisions
   kind: automated_test
@@ -592,6 +691,12 @@ entries:
   kind: automated_test
 - id: TC-02-U10
   target: tests/test_request_rules.py#RequestRules.test_tc_02_u10_invalid_decision_format
+  kind: automated_test
+- id: TC-02-10
+  target: tests/test_submitted_references.py#SubmittedReferences.test_tc_02_10_successful_post_is_bounded_and_invalid_references_have_no_writes
+  kind: automated_test
+- id: TC-02-11
+  target: tests/test_submitted_references.py#SubmittedReferences.test_tc_02_11_all_reference_sources_preserve_scope_and_optional_empty_choices
   kind: automated_test
 - id: TC-REG-01
   target: scripts/run_isolated_smoke.py

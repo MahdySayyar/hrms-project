@@ -1,0 +1,28 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-12T07:57:34.570369+00:00",
+  "finished_at": "2026-11-12T07:57:35.654874+00:00",
+  "git_parent_commit": "e61ac2c6c238513b911f0fed852ef72d18ebb5f4",
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 4,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_01_bounded_ordered_pages_and_clamping",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_02_invalid_empty_and_role_boundaries",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_03_modules_and_payslips_are_bounded_without_writes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_03_scope_literal_filters_and_navigation",
+      "status": "passed"
+    }
+  ]
+}

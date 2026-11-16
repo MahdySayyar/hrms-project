@@ -1,7 +1,27 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
+current_suite_evidence: docs/08-testing/evidence/architecture-core-after-20261117-a.json
+current_coverage_evidence: docs/08-testing/evidence/architecture-coverage-20261117-a.json
+transport_tests:
+  provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
+  evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
+  cases:
+    - id: TC-01-05
+      scenario: Affinity, encoded query/body, duplicate cookies and no shared cookie jar leakage between browsers
+    - id: TC-01-06
+      scenario: Backend disconnect on POST and DELETE yields 503, exactly one upstream attempt
+    - id: TC-01-07
+      scenario: Gzip bytes and length, Connection-nominated headers, redirect and invalid affinity boundary
 core_tests:
+- id: TC-01-04
+  use_case: UC-01
+  requirements: [FR-03]
+  business_rules: [BR-01, BR-04]
+  preconditions: Active synthetic HR account and a protected request
+  scenario: Count Admin SELECTs on POST and GET; deactivate account before the next HTTP request
+  expected: One account read per request; no cross-request authentication cache; inactive account redirects
+  evidence: docs/08-testing/evidence/core-current-20261112-a.json
 - id: TC-01-01
   use_case: UC-01
   requirements:
@@ -292,6 +312,59 @@ boundary_tests:
     names in review route
   evidence: docs/08-testing/evidence/all-tests-final.json
 other_tests:
+- id: TC-04-05
+  runner: tests/test_catalog_reference_reads.py
+  scope: PostgreSQL/HTTP; reference SELECT counts independent of 1/50/100 page rows, correct attendance labels and projected columns
+  provenance: ADR-11 test contract specified before code on 2026-11-17
+- id: TC-04-06
+  runner: tests/test_catalog_reference_reads.py
+  scope: PostgreSQL/HTTP; scoped page identifiers only, no hidden-reference queries, renames visible on next request without cross-request cache
+- id: TC-04-07
+  runner: tests/test_catalog_reference_reads.py
+  scope: PostgreSQL/HTTP; candidate/interview/career labels, deduplication and HTML escaping; empty page and malformed pagination
+- id: TC-04-08
+  runner: tests/test_catalog_reference_reads.py
+  scope: PostgreSQL/HTTP; optional account scopes, viewer/admin-only denial, absent-reference label and all reference kinds
+- id: TC-11-01
+  runner: tests/test_report_reads.py
+  scope: PostgreSQL/HTTP; exact CSV bytes/headers/BOM/disposition/formula protection/order, scope and exact-row-count audit
+  provenance: ADR-12/13 test contracts specified before code on 2026-11-17
+- id: TC-11-02
+  runner: tests/test_report_reads.py
+  scope: PostgreSQL/HTTP; more than one CSV batch, eight-column projection, no private employee columns, empty scope and forbidden viewer
+- id: TC-11-03
+  runner: tests/test_report_reads.py
+  scope: PostgreSQL/HTTP; injected audit failure returns 500 without successful CSV and rolls back audit
+- id: TC-11-04
+  runner: tests/test_report_reads.py
+  scope: PostgreSQL/HTTP; ASCII/Persian/Arabic/space-surrounded Gregorian month gives identical actual stored payslip total and canonical period
+- id: TC-11-05
+  runner: tests/test_report_reads.py
+  scope: PostgreSQL/HTTP; invalid month/year/text, default and leap-month boundaries, role/scope aggregates and no report audit writes
+- id: TC-01-08
+  runner: tests/test_docker_entrypoint.py
+  provenance: ADR-10 and test inventory specified before implementation on 2026-11-16
+  scope: Runtime secret configuration; safe URL encoding, missing/short secret rejection and no native .env access
+- id: TC-01-09
+  runner: tests/test_docker_entrypoint.py
+  provenance: ADR-10 and test inventory specified before implementation on 2026-11-16
+  scope: Seed before exec, no administrator plaintext in server environment and single Uvicorn PID 1 launch
+- id: TC-02-10
+  runner: tests/test_submitted_references.py
+  provenance: Specified in ADR-09 before implementation on 2026-11-15
+  scope: Synthetic PostgreSQL; successful POST loads only selected reference, Persian ID, malformed/deleted/out-of-scope reference, static choice and optional-empty boundaries
+- id: TC-04-01
+  runner: tests/test_catalog_pagination.py
+  scope: PostgreSQL; default/max page sizes, stable ordering, disjoint pages and out-of-range clamping
+- id: TC-04-02
+  runner: tests/test_catalog_pagination.py
+  scope: PostgreSQL; invalid page/size, empty results, authentication, forbidden role and scope before count/slice
+- id: TC-04-03
+  runner: tests/test_catalog_pagination.py
+  scope: PostgreSQL; literal percent/underscore search, filters preserved in navigation, module and payslip bounded reads
+- id: TC-04-04
+  runner: tests/test_catalog_pagination.py
+  scope: PostgreSQL; bounded module and payslip lists, forbidden roles and no audit writes from pagination
 - id: TC-REG-01
   runner: scripts/run_isolated_smoke.py
   assertions: 98

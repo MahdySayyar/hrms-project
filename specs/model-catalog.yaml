@@ -2,6 +2,21 @@ id: MODEL-CAT-01
 version: 1
 status: reconstructed_current_behavior_except_declared_boundary_target_pending_human_review
 models:
+- id: READ-CAT-01
+  name: Bounded catalog reference reads
+  path: models/design/read-catalog.mmd
+  use_cases: [UC-04]
+  provenance: ADR-11 specified before the 2026-11-17 implementation; existing pagination reconstructed
+- id: SEQ-11
+  name: Scoped reports and projected buffered CSV
+  path: models/sequences/UC-11.mmd
+  use_cases: [UC-11]
+  provenance: Existing behavior reconstructed; ADR-12 and ADR-13 specified before the 2026-11-17 code
+- id: DEP-DOCKER-01
+  name: Docker Compose baseline deployment
+  path: models/design/docker-compose.mmd
+  use_cases: [UC-01]
+  provenance: ADR-10 deployment model specified before container implementation on 2026-11-16
 - id: CTX-01
   name: HRMS context
   path: models/context.mmd

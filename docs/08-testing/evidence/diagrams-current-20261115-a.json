@@ -1,0 +1,135 @@
+{
+  "tool": "Mermaid syntax parser only; no visual rendering or browser interaction",
+  "recorded_at": "2026-11-15T06:23:19.393Z",
+  "all_passed": true,
+  "checks": [
+    {
+      "path": "models/activities/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/activities/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/activities/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/architecture.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/context.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/data-model.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/design/native-capacity.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/domain.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/sequences/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/sequences/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/sequences/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/states/payslip.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/states/request.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/states/session.mmd",
+      "passed": true
+    },
+    {
+      "path": "models/use-cases.mmd",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/analysis-models.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/analysis-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/analysis-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-01-models.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-01-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-01-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-02-models.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-02-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-02-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-03-models.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-03-models.md:diagram-2",
+      "passed": true
+    },
+    {
+      "path": "docs/04-models/UC-03-models.md:diagram-3",
+      "passed": true
+    },
+    {
+      "path": "docs/05-architecture/architecture.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/06-design/design.md:diagram-1",
+      "passed": true
+    },
+    {
+      "path": "docs/history/stage01-baseline-notes.md:diagram-1",
+      "passed": true
+    }
+  ]
+}

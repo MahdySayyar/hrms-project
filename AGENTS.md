@@ -13,3 +13,5 @@ Main verification: core unittest suite on PostgreSQL; coverage for app/request_w
 Human review, instructor Gate acceptance, interviews, contributions and learning must remain explicitly pending unless actual evidence is provided. Keep source prompts and bounded AI outputs truthful. Local commits made by the agent must use an agent author, not an invented student.
 
 User-facing communication is Persian. Keep the UI simple, Persian and RTL. Dates are currently Gregorian and payroll rates educational; do not assume legal rules.
+
+The user authorized public GitHub publication and ongoing synchronization on 2026-11-17. After completing each authorized change, run applicable checks, commit the finalized project changes with an agent author, and push to the configured origin. Preserve user work; never publish .env, runtime secrets, real HR data or raw artifacts. If GitHub authentication or network access prevents pushing, report that honestly. Do not install a watcher that automatically publishes unfinished edits.

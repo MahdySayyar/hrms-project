@@ -2,6 +2,8 @@
 
 تاریخ 2026-11-08؛ PostgreSQL واقعی و دادهٔ ساختگی. خروجی تاریخی بازنویسی نشده است.
 
+به‌روزرسانی 2026-11-16: [گزارش Docker](../05-architecture/experiments/EXP-DOCKER-COMPOSE.md)، 41 آزمون اصلی روی PostgreSQL کانتینر، 98 بررسی رگرسیون و پوشش بخش تصمیم 96.629٪؛ استقرار/ورود/CSRF/volume پس از stop/start در 19 بررسی موفق بود. مدارک تاریخی زیر حفظ شده‌اند. آزمون یا تصویر تازهٔ مرورگر با این بررسی‌های HTTP ادعا نمی‌شود.
+
 | بررسی | نتیجه | شاهد |
 |---|---|---|
 | اتصال اولیهٔ DB | محیط unavailable؛ صفر آزمون | [core-environment-unavailable](evidence/core-environment-unavailable.json) |

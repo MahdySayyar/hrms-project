@@ -42,9 +42,16 @@ if __name__ == "__main__":
     suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), pattern=args.pattern, top_level_dir=str(ROOT))
     start = datetime.now(timezone.utc)
     result = unittest.TextTestRunner(verbosity=2, resultclass=RecordedResult).run(suite)
-    revision = subprocess.run(["git", "-c", f"safe.directory={ROOT.as_posix()}", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    revision = None
+    try:
+        revision_result = subprocess.run(["git", "-c", f"safe.directory={ROOT.as_posix()}", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True)
+        if revision_result.returncode == 0:
+            revision = revision_result.stdout.strip()
+    except FileNotFoundError:
+        pass  # Runtime images intentionally omit Git; do not invent a source commit.
     payload = {"phase": args.phase, "started_at": start.isoformat(), "finished_at": datetime.now(timezone.utc).isoformat(),
-        "git_parent_commit": revision, "database": "PostgreSQL", "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+        "git_parent_commit": revision, "source_revision_available": revision is not None,
+        "database": "PostgreSQL", "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
         "tests_run": result.testsRun, "all_passed": result.wasSuccessful(), "checks": result.records}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

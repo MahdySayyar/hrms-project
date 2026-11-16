@@ -4,6 +4,25 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
+  docker-startup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start downloaded project without host Python
+        run: bash scripts/start-docker.sh
+      - name: Verify health, login form and repeat initialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent http://localhost:8001/health | grep -q '"status":"ok"'
+          curl --fail --silent http://localhost:8001/login | grep -q 'id="username"'
+          before=$(sha256sum .runtime/docker-hrms-secrets/*)
+          docker compose -f deployments/compose.yaml --profile tools run --rm --no-deps init-secrets
+          after=$(sha256sum .runtime/docker-hrms-secrets/*)
+          test "$before" = "$after"
+      - name: Stop CI containers
+        if: always()
+        run: docker compose -f deployments/compose.yaml down
   core:
     runs-on: ubuntu-latest
     services:

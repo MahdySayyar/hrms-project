@@ -1,0 +1,8 @@
+{
+  "id": "architecture-pip-check-20261117-a",
+  "command": ".venv/Scripts/python.exe -m pip check",
+  "exit_code": 0,
+  "output": "No broken requirements found.",
+  "origin": "Recorded by the coding agent from the actual command result during the 2026-11-17 architecture review; not a separate repeated run.",
+  "scope": "Installed dependency compatibility, not vulnerability scanning or human acceptance"
+}

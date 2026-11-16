@@ -142,6 +142,29 @@ class CoreWorkflows(PostgresTestCase):
             db.commit()
         self.assertEqual(client.get("/", follow_redirects=False).status_code, 303)
 
+    def test_tc_01_04_authentication_is_checked_once_per_http_request(self):
+        client = self.client("hr")
+        token = self.csrf(client.get("/").text)
+        statements = []
+        def capture(_connection, _cursor, statement, _parameters, _context, _executemany):
+            if statement.lstrip().upper().startswith("SELECT") and "FROM admins" in statement:
+                statements.append(statement)
+        event.listen(self.sandbox.engine, "before_cursor_execute", capture)
+        try:
+            response = client.post(f"/employees/{self.employee_id}/status",
+                data={"active": "false", "csrf_token": token}, follow_redirects=False)
+            self.assertEqual(response.status_code, 303)
+            self.assertEqual(len(statements), 1)
+            statements.clear()
+            self.assertEqual(client.get("/employees").status_code, 200)
+            self.assertEqual(len(statements), 1)
+            with self.factory() as db:
+                db.get(Admin, self.credentials["hr"][1]).is_active = False
+                db.commit()
+            self.assertEqual(client.get("/employees", follow_redirects=False).status_code, 303)
+        finally:
+            event.remove(self.sandbox.engine, "before_cursor_execute", capture)
+
     def test_tc_02_01_creation_and_invalid_date_range(self):
         client = self.client("hr")
         response = self.post(client, "/hr/leave/new", {"employee_id": str(self.employee_id), "start_date": "2030-01-02",

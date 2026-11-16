@@ -1,0 +1,7 @@
+<nav class="page-navigation" aria-label="صفحه‌بندی">
+  <p class="muted">نمایش {{ page.first|fa }} تا {{ page.last|fa }} از {{ page.total|fa }} — صفحهٔ {{ page.number|fa }} از {{ page.pages|fa }}</p>
+  <div class="row-actions">
+    {% if navigation.previous %}<a class="button" href="{{ navigation.previous }}" rel="prev">صفحهٔ قبلی</a>{% endif %}
+    {% if navigation.next %}<a class="button" href="{{ navigation.next }}" rel="next">صفحهٔ بعدی</a>{% endif %}
+  </div>
+</nav>

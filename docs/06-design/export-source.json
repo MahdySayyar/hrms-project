@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-08T12:12:06.691367+00:00",
+  "captured_at": "2026-11-16T12:39:16.055555+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "path": "app/database.py",
-      "sha256": "61f82cd8c377b72775c564a3a0186afd3543b7f1752216f5d58627272ddbede7"
+      "sha256": "849928d6b1c46b250df164a418b76ace4be596803cc426869d1b9cf60074d032"
     },
     {
       "path": "app/hr_models.py",
@@ -21,7 +21,7 @@
     },
     {
       "path": "app/main.py",
-      "sha256": "2ec26bf7b568bb3bc78ffa31966fbc1adb9455c40c9d5a5c21de14f239d6f4de"
+      "sha256": "d7920ff39c5391797f611039dc093f4afd71d388362259ca95049ae1a2535fa1"
     },
     {
       "path": "app/module_forms.py",
@@ -29,7 +29,15 @@
     },
     {
       "path": "app/modules.py",
-      "sha256": "f35644404a853dccbdd85ab699705c7f82d91875ac975b46fba7fedf2cc76a91"
+      "sha256": "2026fa4de1473b97c1023fc21e9f4a13d3935a3b68d79f6a15c0e1acde3b42f2"
+    },
+    {
+      "path": "app/native_proxy.py",
+      "sha256": "5c9acd7b7e945a1c44ad48c7da3664125d27e2a4c091dcddbc14204817b3a1f5"
+    },
+    {
+      "path": "app/pagination.py",
+      "sha256": "61dc6266a31453ab40d9141f803a3fb0e77b620cdab791ef0be367880b6cec4d"
     },
     {
       "path": "app/request_workflow/__init__.py",
@@ -49,7 +57,7 @@
     },
     {
       "path": "app/security.py",
-      "sha256": "ed32916da89f208171ad82aa460c66800403c5e6af50f2c5997d3129ca99a136"
+      "sha256": "3eecae166ba5e720fc4920d44f5d092e8b7b78d4b0fbc9da89f845b3d398b96d"
     },
     {
       "path": "app/seed.py",
@@ -57,15 +65,15 @@
     },
     {
       "path": "specs/architecture.yaml",
-      "sha256": "0896bfd45e6ec4a51ce8c6d2495a04d369f0a30766a8473adf69fb67a8c2d6c7"
+      "sha256": "3285067ca78bbe5f23753c147275a18d819a26ec681abfc062f88c56f42db96a"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "f5cfcc731591840317f448b9bba43583097d06477d78594d5f6faf9efa98fee0"
+      "sha256": "d99243d27551e29efed37bc339b64ca8d5019d18ea1fb861a8d3106595fc2b12"
     },
     {
       "path": "specs/UC-02.yaml",
-      "sha256": "8e416a978d20ffb01d9a7494d0812f9aff00c1f728a80c25f8c34bbed32c3b52"
+      "sha256": "92e04aa1c55ed013e9bae2f14cc67033e47844dde214d3b40afda6a73a715edf"
     },
     {
       "path": "specs/UC-03.yaml",
@@ -76,12 +84,30 @@
       "sha256": "d7d0746829dce0bd1b79d175acaf0741cdb9d7b073ed5e206b5de9c9e8c3a2c6"
     },
     {
+      "path": "tests/test_catalog_pagination.py",
+      "sha256": "490bd8fe1e6c4631491be9b1df80e19cbcd0df838c4ef641b1c26c6cc425c6f8"
+    },
+    {
       "path": "tests/test_core_workflows.py",
-      "sha256": "0e67553eaf13e790cba36cc887154b0abbb4a63db32f8a9c6964d534de43ccfe"
+      "sha256": "2686adb1759975714bddf8cd18f0e6bba56b87e820c48a859c3fb07dba01c1bc"
+    },
+    {
+      "path": "tests/test_docker_entrypoint.py",
+      "sha256": "00271b72d3185ff4710e2fa055e6d870cc6803ac8861fbfca52d9760d6ccb183"
+    },
+    {
+      "path": "tests/test_native_proxy.py",
+      "sha256": "2731faeafe281572550e65937c326435a60c4f8ff81afeb79c9d068861610380"
     },
     {
       "path": "tests/test_request_rules.py",
       "sha256": "e957bdf57341992b9ba18528ab94fc8bda00cf8cf8798063a6bdecb07790d2ae"
+    },
+    {
+      "path": "tests/test_submitted_references.py",
+      "sha256": "261d7a5accbc1a5aa93a6f9ab6f7d0ff66cbcb253a9cf503b55b7a0e85d3454e"
     }
-  ]
+  ],
+  "source_hashes_refreshed_at": "2026-11-16T22:01:02.343348+00:00",
+  "source_hash_refresh_scope": "Normalized source hash refresh for GitHub preparation; existing schema reflection retained, no new row or schema export"
 }
