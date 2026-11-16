@@ -1,10 +1,14 @@
 %% ARCH-01 — Actual deployment
 flowchart LR
-    Browser["Persian RTL browser"] -->|"localhost HTTP"| Web["one FastAPI / Uvicorn process"]
+    Browser["Persian RTL browser"] -->|"native localhost HTTP"| Web["native: one FastAPI / Uvicorn process"]
+    Browser -->|"Docker localhost:8001"| Proxy["affinity proxy"]
+    Proxy --> Replicas["Docker: four single-process web replicas"]
+    Replicas --> Direct
     Web --> Direct["main.py / modules.py"]
-    Direct --> DB[("local PostgreSQL")]
+    Direct --> DB[("PostgreSQL of the selected deployment")]
     Direct --> Service["request decision service"]
     Service --> Domain["pure domain"]
     Service --> Repository["repository"]
     Repository --> DB
     Web --- Memory["process-local sessions"]
+    Replicas --- Memory

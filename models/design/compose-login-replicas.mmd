@@ -1,0 +1,11 @@
+flowchart LR
+    Browser["۵۰۰ مرورگر / cookie و CSRF جدا"] --> Proxy["تقسیم درخواست / affinity مرورگر"]
+    Proxy --> Web1["وب ۱ / یک Uvicorn"]
+    Proxy --> Web2["وب ۲ / یک Uvicorn"]
+    Proxy --> Web3["وب ۳ / یک Uvicorn"]
+    Proxy --> Web4["وب ۴ / یک Uvicorn"]
+    Web1 --> DB[("PostgreSQL / volume مستقل")]
+    Web2 --> DB
+    Web3 --> DB
+    Web4 --> DB
+    Limit["نشست در حافظهٔ همان وب / بدون HA"] -.-> Proxy

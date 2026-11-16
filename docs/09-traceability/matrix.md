@@ -6,7 +6,7 @@
 
 | TR / FR | Spec / UC | Model / Design | API / Code | Test |
 |---|---|---|---|---|
-| TR-01 / FR-01 | FS-01 / UC-01 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01 | API-01<br>[login](../../app/main.py#login) | TC-01-01, TC-01-03, TC-REG-01 |
+| TR-01 / FR-01 | FS-01 / UC-01 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01 | API-01<br>[login](../../app/main.py#login) | TC-01-01, TC-01-03, TC-01-10, TC-01-11, TC-01-12, TC-01-13, TC-01-14, TC-01-15, TC-01-16, TC-REG-01 |
 | TR-02 / FR-02 | FS-02 / UC-01 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01 | API-01<br>[logout](../../app/main.py#logout) | TC-01-01 |
 | TR-03 / FR-03 | FS-03 / UC-01, UC-02, UC-03 | ACT-01, ACT-02, ACT-03, DM-01, SEQ-01, SEQ-02, SEQ-03, ST-01, ST-02, ST-03, UCM-01 / D-01, D-02, D-03 | API-01, API-02, API-03<br>[require_hr](../../app/access.py#require_hr)<br>[require_admin](../../app/access.py#require_admin)<br>[scoped_employee](../../app/access.py#scoped_employee) | TC-01-02, TC-REG-01 |
 | TR-04 / FR-04 | FS-04 / UC-04 | DM-01, UCM-01 / D-04 | API-04<br>[employee_create](../../app/main.py#employee_create)<br>[employee_edit](../../app/main.py#employee_edit) | TC-HIST-01, TC-REG-01 |

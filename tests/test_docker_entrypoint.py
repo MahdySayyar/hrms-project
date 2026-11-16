@@ -16,6 +16,17 @@ spec.loader.exec_module(entrypoint)
 
 
 class DockerEntrypoint(TestCase):
+    def test_tc_01_16_secondary_worker_skips_seed_and_removes_password(self):
+        from app import seed
+        with patch.dict(os.environ, {"ADMIN_PASSWORD": "Synthetic-only-password"}, clear=True), \
+             patch.object(sys, "argv", ["entrypoint.py", "--web-only"]), \
+             patch.object(entrypoint, "configure"), patch.object(seed, "seed") as seed_call, \
+             patch.object(entrypoint.os, "execv") as exec_call:
+            entrypoint.main()
+            seed_call.assert_not_called()
+            exec_call.assert_called_once()
+            self.assertNotIn("ADMIN_PASSWORD", os.environ)
+
     def test_tc_01_08_runtime_secrets_are_required_and_url_encoded(self):
         with tempfile.TemporaryDirectory() as folder, patch.dict(os.environ, {}, clear=True):
             secret = Path(folder) / "synthetic-secret"

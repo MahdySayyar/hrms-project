@@ -15,10 +15,15 @@ sequenceDiagram
       Route-->>Browser: 403
     else فرم معتبر
       Route->>DB: read active account
+      DB-->>Route: snapshot id/hash/active and close session
+      Route->>Security: bounded private password queue
       Route->>Security: verify_password
       alt حساب یا رمز نامعتبر
         Route-->>Browser: 401 generic message
       else حساب فعال و رمز صحیح
+        Route->>Security: recheck current CSRF session
+        Route->>DB: recheck active account and same hash
+        alt current account and CSRF still valid
         Route->>DB: INSERT login audit + COMMIT
         Route->>Security: discard old + new authenticated session
         Route-->>Browser: 303 / + rotated cookie
@@ -31,5 +36,8 @@ sequenceDiagram
         Route->>DB: INSERT logout audit + COMMIT
         Route->>Security: discard_session
         Route-->>Browser: 303 /login + delete cookie
+        else changed account or expired CSRF
+          Route-->>Browser: 401 or 403 without a new session
+        end
       end
     end

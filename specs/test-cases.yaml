@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/architecture-core-after-20261117-a.json
-current_coverage_evidence: docs/08-testing/evidence/architecture-coverage-20261117-a.json
+current_suite_evidence: docs/08-testing/evidence/core-docker-login500-download-20261117-a.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-docker-login500-download-20261117-a.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
@@ -14,6 +14,48 @@ transport_tests:
     - id: TC-01-07
       scenario: Gzip bytes and length, Connection-nominated headers, redirect and invalid affinity boundary
 core_tests:
+- id: TC-01-16
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-01, BR-02]
+  scenario: Docker secondary worker configures secrets but skips seeding and removes plaintext before exec
+  expected: One web process; no concurrent seed; primary startup behavior preserved
+- id: TC-01-10
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-01, BR-02]
+  scenario: Real private executor, queue full and retry, event-loop progress and configuration boundaries
+  expected: Worker concurrency bounded; no blocking of async work; overload rejected; released capacity reusable
+- id: TC-01-11
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-01]
+  scenario: Check pool ownership while hashing; deactivate account or change stored hash before completion
+  expected: No SQL connection held by login during hash; stale account credentials get 401 and no login audit
+- id: TC-01-12
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-01, BR-02]
+  scenario: Block private hash work; exercise health and submit another login at full capacity; release and retry
+  expected: Health responds; overloaded login 503 with Retry-After and no session; retry succeeds
+- id: TC-01-13
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-02]
+  scenario: Discard the anonymous CSRF session during password work
+  expected: 403 and no login audit or authenticated cookie
+- id: TC-01-14
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-01, BR-02]
+  scenario: Inject login audit failure after a valid password
+  expected: 500 fail closed; no audit persisted and no authenticated cookie issued
+- id: TC-01-15
+  use_case: UC-01
+  requirements: [FR-01]
+  business_rules: [BR-01, BR-02]
+  scenario: Proxy native/Compose valid targets and external host, credentials, query, scheme, count and port boundaries
+  expected: Only explicit internal targets accepted; legacy localhost mode preserved
 - id: TC-01-04
   use_case: UC-01
   requirements: [FR-03]

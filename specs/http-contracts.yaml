@@ -39,6 +39,8 @@ contracts:
     - 401
     - 403
     - 500
+    - 503
+    overload: ADR-16; private password work capacity full, Retry-After=2 and no login audit/session
     redirect: /
   - method: POST
     path: /logout

@@ -11,6 +11,9 @@ functional_requirements:
 - id: FR-01
   name: Authenticate
   acceptance: حساب فعال با رمز صحیح وارد شود؛ ورودی نادرست 401 و CSRF نامعتبر 403.
+  compose_login_experiment: ADR-15; 500 independent concurrent login attempts with browser affinity, successful audit/session rotation and responsive observer; lab acceptance precedes deployment promotion.
+  password_capacity_contract: ADR-16; unchanged PBKDF2 in a private bounded executor without a database session; recheck active/hash and CSRF before audit/rotation; full capacity returns 503 with Retry-After and no session/audit.
+  compose_transport_contract: ADR-17; separate outgoing connection per request without retry; current account locked only during final revalidation/audit transaction
   use_case: UC-01
   business_rules:
   - BR-01
@@ -20,6 +23,13 @@ functional_requirements:
   core_tests:
   - TC-01-01
   - TC-01-03
+  - TC-01-10
+  - TC-01-11
+  - TC-01-12
+  - TC-01-13
+  - TC-01-14
+  - TC-01-15
+  - TC-01-16
   source:
   - SRC-C01
   priority: core
@@ -432,6 +442,7 @@ functional_requirements:
 business_rules:
 - id: BR-01
   name: Only active valid accounts authenticate
+  concurrent_login_rule: ADR-16; an account deactivated/deleted or with a changed hash during queued password work must not authenticate from the older snapshot.
   rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است؛ وضعیت حساب در هر HTTP request تازه از پایگاه بررسی شود و تکرار داخلی همان request نیازمند خواندن دوباره نیست.
   requirements:
   - FR-01

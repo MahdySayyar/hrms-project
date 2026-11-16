@@ -4,9 +4,16 @@ flowchart TD
     Page --> Submit["POST نام کاربری، رمز و CSRF"]
     Submit --> CSRF{"CSRF معتبر؟"}
     CSRF -->|"خیر"| E403["403؛ بدون ورود"]
-    CSRF -->|"بله"| Valid{"حساب فعال و رمز صحیح؟"}
+    CSRF -->|"بله"| Snapshot["snapshot حساب / بستن اتصال DB"]
+    Snapshot --> Queue{"ظرفیت خصوصی رمز آزاد؟"}
+    Queue -->|"خیر"| Busy["503 / بدون ورود / تلاش مجدد"]
+    Queue -->|"بله"| Hash["PBKDF2 در thread خصوصی"]
+    Hash --> Valid{"حساب فعال و رمز صحیح؟"}
     Valid -->|"خیر"| E401["401؛ پیام عمومی"]
-    Valid -->|"بله"| Audit["ثبت audit و commit"]
+    Valid -->|"بله"| Recheck{"CSRF و active/hash هنوز معتبر؟"}
+    Recheck -->|"بله"| Audit["ثبت audit و commit"]
+    Recheck -->|"خیر"| Stale["401 یا 403 / بدون ورود"]
+    Stale --> Page
     Audit --> Rotate["ابطال نشست قدیمی؛ نشست جدید"]
     Rotate --> Dashboard["303 سپس داشبورد"]
     Dashboard --> Logout["POST logout با CSRF"]

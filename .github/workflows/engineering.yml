@@ -17,12 +17,12 @@ jobs:
           curl --fail --silent http://localhost:8001/health | grep -q '"status":"ok"'
           curl --fail --silent http://localhost:8001/login | grep -q 'id="username"'
           before=$(sha256sum .runtime/docker-hrms-secrets/*)
-          docker compose -f deployments/compose.yaml --profile tools run --rm --no-deps init-secrets
+          docker compose -f deployments/compose.capacity.yaml --profile tools run --rm --no-deps init-secrets
           after=$(sha256sum .runtime/docker-hrms-secrets/*)
           test "$before" = "$after"
       - name: Stop CI containers
         if: always()
-        run: docker compose -f deployments/compose.yaml down
+        run: docker compose -f deployments/compose.capacity.yaml down
   core:
     runs-on: ubuntu-latest
     services:

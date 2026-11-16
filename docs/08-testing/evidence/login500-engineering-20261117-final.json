@@ -1,0 +1,6544 @@
+{
+  "id": "ENGINEERING-CHECK-01",
+  "recorded_at": "2026-11-16T23:04:12.669499+00:00",
+  "scope": "Current structured artifacts and links; historical original Markdown excluded; no human or visual acceptance",
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "YAML .github/workflows/engineering.yml",
+      "passed": true
+    },
+    {
+      "check": "YAML docs/06-design/openapi-browser.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML docs/07-ai-transformation/transformation-records/TRF-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/artifact-registry.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/http-contracts.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/model-catalog.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/requirements.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/scalability-experiments.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/slide-application.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/UC-04.yaml",
+      "passed": true
+    },
+    {
+      "check": "YAML specs/UC-11.yaml",
+      "passed": true
+    },
+    {
+      "check": "Registry identifiers unique",
+      "passed": true
+    },
+    {
+      "check": "FR-01..25 complete",
+      "passed": true
+    },
+    {
+      "check": "22 unique BR and 11 unique NFR",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CH-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DOCS-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target REGISTRY-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target REQ-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target MODEL-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ARCH-SPEC-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target QA-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target EXP-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DESIGN-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target HTTP-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DB-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ROUTE-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target EXPORT-SOURCE-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target AI-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target AI-REVIEW-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TEST-STRATEGY-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TEST-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TEST-REPORT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CR-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target REPORT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target MILESTONE-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target RUBRIC-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CONTRIB-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DEMO-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target OPEN-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target REF-S02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SLIDE-REVIEW-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-U01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-U02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-U03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-C01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-H01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-S01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SRC-S02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-13",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-14",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-15",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-16",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-17",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-18",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-19",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-20",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-21",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-22",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-23",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-24",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FR-25",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-13",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-14",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-15",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-16",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-17",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-18",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-19",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-20",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-21",
+      "passed": true
+    },
+    {
+      "check": "Artifact target BR-22",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-P-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-S-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-S-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-AU-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-A-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-M-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-T-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-U-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-L-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target NFR-R-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-13",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-14",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-15",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-16",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-17",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-18",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-19",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-20",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-21",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-22",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-23",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-24",
+      "passed": true
+    },
+    {
+      "check": "Artifact target FS-25",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UC-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target READ-CAT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SEQ-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DEP-DOCKER-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CTX-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target UCM-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DM-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SEQ-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SEQ-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target SEQ-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ACT-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ACT-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ACT-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ST-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ST-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ST-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CMP-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target CLS-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ARCH-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target DEP-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-13",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-14",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-15",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-16",
+      "passed": true
+    },
+    {
+      "check": "Artifact target ADR-17",
+      "passed": true
+    },
+    {
+      "check": "Artifact target D-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target D-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target D-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target D-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target API-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-M-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-M-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-04-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-03-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-03-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-03-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-03-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-03-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-16",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-13",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-14",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-15",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-01-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-11-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-11-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-11-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-11-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-11-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-U10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-02-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-REG-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-HIST-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TC-PERF-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TRF-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TRF-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-11",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-12",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-13",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-14",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-15",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-16",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-17",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-18",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-19",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-20",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-21",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-22",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-23",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-24",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-25",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-01",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-02",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-03",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-04",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-05",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-06",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-07",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-08",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-09",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-10",
+      "passed": true
+    },
+    {
+      "check": "Artifact target TR-NFR-11",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-01",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#login",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-02",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#logout",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-03",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#require_hr",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#require_admin",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#scoped_employee",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-04",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#employee_create",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#employee_edit",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-05",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#employee_status",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-06",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#employee_list",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-07",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#save_organization",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-08",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-09",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#save_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-10",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#hire_candidate",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#complete_onboarding",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-11",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#minutes_between",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-12",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#save_record",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-13",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#review_request",
+      "passed": true
+    },
+    {
+      "check": "Code app/request_workflow/service.py#RequestReviewService.review",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-14",
+      "passed": true
+    },
+    {
+      "check": "Code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#PayrollRule",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-15",
+      "passed": true
+    },
+    {
+      "check": "Code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#PayrollProfile",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-16",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#payslip_detail",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-17",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#activate_contract",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#renew_contract",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#terminate_contract",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-18",
+      "passed": true
+    },
+    {
+      "check": "Code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#Evaluation",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-19",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#TrainingEnrollment",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-20",
+      "passed": true
+    },
+    {
+      "check": "Code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#CareerPlan",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-21",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#sync_assignment",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#employee_history",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-22",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#reports",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-23",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#export_employees",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#safe_csv",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-24",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#audit",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#audit_page",
+      "passed": true
+    },
+    {
+      "check": "Code app/request_workflow/repository.py#RequestReviewRepository.save_decision",
+      "passed": true
+    },
+    {
+      "check": "FR links FR-25",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/database.py#Admin",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-01",
+      "passed": true
+    },
+    {
+      "check": "Code app/security.py#require_login",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#login",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-02",
+      "passed": true
+    },
+    {
+      "check": "Code app/security.py#check_csrf",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-03",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#require_hr",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#require_admin",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-04",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#scoped_employee",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#check_scope",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-05",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#validate_employee",
+      "passed": true
+    },
+    {
+      "check": "Code app/database.py#Employee",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-06",
+      "passed": true
+    },
+    {
+      "check": "Code app/database.py#Employee",
+      "passed": true
+    },
+    {
+      "check": "Code app/main.py#validate_employee",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-07",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-08",
+      "passed": true
+    },
+    {
+      "check": "Code app/request_workflow/domain.py#decision_changes_state",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-09",
+      "passed": true
+    },
+    {
+      "check": "Code app/request_workflow/domain.py#validate_decision",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-10",
+      "passed": true
+    },
+    {
+      "check": "Code app/request_workflow/repository.py#RequestReviewRepository.has_approved_overlap",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-11",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-12",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#rounded",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-13",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#Payslip",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-14",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#audit",
+      "passed": true
+    },
+    {
+      "check": "Code app/request_workflow/repository.py#RequestReviewRepository.save_decision",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-15",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#hire_candidate",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-16",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#Attendance",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-17",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#activate_contract",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#EmploymentContract",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-18",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#Evaluation",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#CareerPlan",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-19",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#TrainingEnrollment",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-20",
+      "passed": true
+    },
+    {
+      "check": "Code app/access.py#sync_assignment",
+      "passed": true
+    },
+    {
+      "check": "Code app/hr_models.py#AssignmentHistory",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-21",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#safe_csv",
+      "passed": true
+    },
+    {
+      "check": "BR links BR-22",
+      "passed": true
+    },
+    {
+      "check": "Code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Full use case UC-01",
+      "passed": true
+    },
+    {
+      "check": "UC references UC-01",
+      "passed": true
+    },
+    {
+      "check": "UC code app/main.py#login",
+      "passed": true
+    },
+    {
+      "check": "UC code app/main.py#logout",
+      "passed": true
+    },
+    {
+      "check": "UC code app/security.py",
+      "passed": true
+    },
+    {
+      "check": "UC code app/access.py",
+      "passed": true
+    },
+    {
+      "check": "Full use case UC-02",
+      "passed": true
+    },
+    {
+      "check": "UC references UC-02",
+      "passed": true
+    },
+    {
+      "check": "UC code app/modules.py#review_request",
+      "passed": true
+    },
+    {
+      "check": "UC code app/request_workflow/domain.py",
+      "passed": true
+    },
+    {
+      "check": "UC code app/request_workflow/repository.py",
+      "passed": true
+    },
+    {
+      "check": "UC code app/request_workflow/service.py",
+      "passed": true
+    },
+    {
+      "check": "Full use case UC-03",
+      "passed": true
+    },
+    {
+      "check": "UC references UC-03",
+      "passed": true
+    },
+    {
+      "check": "UC code app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "UC code app/modules.py#payslip_detail",
+      "passed": true
+    },
+    {
+      "check": "UC code app/hr_models.py#Payslip",
+      "passed": true
+    },
+    {
+      "check": "Full use case UC-04",
+      "passed": true
+    },
+    {
+      "check": "UC references UC-04",
+      "passed": true
+    },
+    {
+      "check": "UC code app/main.py#employee_list",
+      "passed": true
+    },
+    {
+      "check": "UC code app/modules.py#module_list",
+      "passed": true
+    },
+    {
+      "check": "Full use case UC-11",
+      "passed": true
+    },
+    {
+      "check": "UC references UC-11",
+      "passed": true
+    },
+    {
+      "check": "UC code app/modules.py#reports",
+      "passed": true
+    },
+    {
+      "check": "UC code app/modules.py#export_employees",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/access.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/database.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/hr_models.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/login_capacity.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/main.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/modules.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/native_proxy.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/pagination.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/request_workflow/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/request_workflow/domain.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/request_workflow/repository.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/request_workflow/service.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/security.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax app/seed.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/audit_architecture_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/audit_publication_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/backup_database.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/build_traceability.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/check_engineering.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/compare_architecture_reads_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/configure_env.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/container_capacity_fixture_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/create_database.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/docker_checks_inside_20261116.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/export_engineering_artifacts.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/extract_postgres.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/full_smoke_check.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/init_docker_secrets.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/measure_read_paths_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/render_slide_review.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/review_capacity_evidence_20261115.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_capacity_lab.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_core_checks.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_docker_checks_20261116.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_isolated_smoke.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_load_lab.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_login_storm_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/run_native_cluster.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/save_stage_snapshot.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/smoke_check.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/upgrade_dev_seed_keys.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/upgrade_modules.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/verify_docker_deployment_20261116.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/verify_download_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax scripts/verify_launch.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/performance/capacity_locustfile.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/performance/locustfile.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/performance/login_storm_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/support.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_architecture_boundaries.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_catalog_pagination.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_catalog_reference_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_core_workflows.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_docker_entrypoint.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_login_capacity.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_native_proxy.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_report_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_request_rules.py",
+      "passed": true
+    },
+    {
+      "check": "Python syntax tests/test_submitted_references.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> https://github.com/MahdySayyar/hrms-project",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> https://github.com/MahdySayyar/hrms-project/archive/refs/heads/master.zip",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> https://github.com/MahdySayyar/hrms-project/actions",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/project-framework-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> http://localhost:8001/login",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> deployments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> deployments/compose.capacity.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> http://localhost:8001/login",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> deployments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> deployments/compose.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> http://127.0.0.1:8000/login",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/05-architecture/experiments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link README.md -> docs/10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/ai-implementation.md -> history/ai-implementation-stage01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/ai-implementation.md -> 07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/baseline-notes.md -> history/stage01-baseline-notes.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/baseline-notes.md -> 05-architecture/architecture.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/baseline-notes.md -> 10-final-report/changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/baseline-notes.md -> 08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/baseline-notes.md -> 05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-context.md -> history/project-context-before-framework.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-context.md -> 08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-context.md -> 05-architecture/architecture.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-context.md -> 02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-context.md -> 10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> references/project-framework/slide-readings.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> references/project-framework/diagram-sources.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-2",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-3",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-4",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-5",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/sources.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-6",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-7",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/context.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/use-cases.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/domain.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-8",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/activities/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/activities/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/activities/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/states/session.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/states/request.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/states/payslip.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-9",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/architecture.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-01-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-02-postgresql.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-03-session.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-10",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-11",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/api-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/route-inventory.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-12",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-13",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-14",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../tests/test_architecture_boundaries.py#ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-15",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-16",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-17",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-18",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-19",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-20",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-21",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-22",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-23",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/presentation-and-demo.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-24",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-25",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-26",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-27",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-28",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-29",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-30",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/sources.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-31",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/sources.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-32",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-33",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-34",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/quality-scenarios.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-35",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/use-cases.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/03-specifications/use-cases.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-36",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-37",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/domain.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-38",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/activities/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/states/request.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-39",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-01-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-40",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/architecture.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-01-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-41",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/quality-scenarios.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-42",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/design.md#d-02",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-43",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-44",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/api-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-45",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-46",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-47",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-48",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/strategy.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-49",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-50",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-51",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-52",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-53",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-54",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/model-catalog.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-55",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/architecture.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-56",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-57",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-58",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-59",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-60",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-61",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-62",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-63",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-64",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/presentation-and-demo.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-65",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/presentation-and-demo.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-66",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-67",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-68",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/presentation-and-demo.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-69",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-70",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-71",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-72",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/context.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-73",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-74",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-75",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-76",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-77",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/context.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-78",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/use-cases.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-79",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/http-contracts.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-80",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/domain.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-81",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/sequences/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-82",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/states/request.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/states/payslip.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-83",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-01-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-84",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-02-postgresql.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-03-session.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-85",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-86",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/api-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/http-contracts.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-87",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-88",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-89",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-90",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/06-design/design.md#d-02",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-91",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-92",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> https://sadprojectdocs.space-z.ai/#slide-93",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> ../docs/10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> 10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> 07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> 10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> 10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/project-framework-slide-review.md -> 05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> project-framework-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 02-requirements/sources.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 03-specifications/use-cases.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 04-models/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 05-architecture/architecture.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 05-architecture/quality-scenarios.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 06-design/design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 06-design/api-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 06-design/database-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 07-ai-transformation/ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 08-testing/strategy.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 08-testing/test-cases.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 09-traceability/matrix.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/presentation-and-demo.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 10-final-report/contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> history/stage01-status.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> scalability-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/README.md -> 05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> stage-status.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> 08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> 05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> C:/Users/mahdy/Desktop/MP/scripts/start-background.ps1:8",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> C:/Users/mahdy/Desktop/MP/app/security.py:41",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> C:/Users/mahdy/Desktop/MP/app/database.py:16",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> C:/Users/mahdy/Desktop/MP/app/main.py:176",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> C:/Users/mahdy/Desktop/MP/app/main.py:83",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#0",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#1",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#2",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#3",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#4",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#5",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#6",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#7",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#8",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#9",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#10",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#11",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#12",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#13",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#14",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#15",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#16",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#17",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#18",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#19",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#20",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#21",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#22",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#23",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#24",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#25",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#26",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#27",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#28",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#29",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#30",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#31",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/scalability-slide-review.md -> https://sadscalabilitylab.space-z.ai/#32",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 08-testing/evidence/login500-live-deployment-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 08-testing/evidence/login500-download-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> history/stage01-status.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> ../deployments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 05-architecture/experiments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> project-framework-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/stage-status.md -> 10-final-report/remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/01-project-charter/charter.md -> https://sadprojectdocs.space-z.ai/#slide-25",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/01-project-charter/charter.md -> ../10-final-report/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/01-project-charter/charter.md -> ../10-final-report/milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/requirements.md -> sources.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/requirements.md -> ../../specs/requirements.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/requirements.md -> ../../specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/sources.md -> ../prompts/ARCHITECTURE_REVIEW_20261117_USER_REQUEST.txt",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/sources.md -> https://sadscalabilitylab.space-z.ai/",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/sources.md -> ../scalability-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/sources.md -> https://sadprojectdocs.space-z.ai/",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/02-requirements/sources.md -> ../project-framework-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/03-specifications/use-cases.md -> ../../specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/03-specifications/use-cases.md -> ../../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/03-specifications/use-cases.md -> ../../specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/03-specifications/use-cases.md -> ../../specs/UC-04.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/03-specifications/use-cases.md -> ../../specs/UC-11.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/analysis-models.md -> README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/context.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/use-cases.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/domain.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/sequences/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/sequences/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/sequences/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/activities/UC-01.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/activities/UC-02.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/activities/UC-03.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/states/session.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/states/request.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/states/payslip.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../models/architecture.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../../specs/model-catalog.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> analysis-models.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> UC-01-models.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> UC-02-models.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> UC-03-models.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/README.md -> ../06-design/database-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/UC-01-models.md -> README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/UC-02-models.md -> README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/04-models/UC-03-models.md -> README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> current-architecture-review-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> experiments/EXP-LOGIN-PROXY-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> ../08-testing/evidence/login500-live-deployment-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> ADRs/ADR-01-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> quality-scenarios.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> ../06-design/design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/architecture.md -> ../10-final-report/changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-inventory-20261117-c.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../snapshots/architecture-review-baseline-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../snapshots/architecture-read-plan-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../06-design/openapi-browser.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> experiments/EXP-DOCKER-COMPOSE.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-reads-before-20261117-d.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-reads-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-read-comparison-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-inventory-20261117-c.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/native-load.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/capacity-native4-acceptance-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> experiments/EXP-PAGE-REFERENCES-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> experiments/EXP-CSV-READS-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> experiments/EXP-REPORT-PERIOD-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../10-final-report/changes/CR-04.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-core-before-20261117-d.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-core-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-regression-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> ../08-testing/evidence/architecture-coverage-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/current-architecture-review-20261117.md -> progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/progressive-experiments.md -> ../scalability-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/progressive-experiments.md -> current-architecture-review-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/progressive-experiments.md -> ../../deployments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/progressive-experiments.md -> ADRs/ADR-10-docker-compose-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/api-design.md -> ../../specs/http-contracts.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/api-design.md -> openapi-generated.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/api-design.md -> openapi-browser.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/api-design.md -> route-inventory.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/api-design.md -> ../../specs/UC-11.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/api-design.md -> ../08-testing/test-cases.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/database-design.md -> database-schema.sql",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/database-design.md -> database-schema.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/database-design.md -> export-source.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/database-design.md -> ../../models/data-model.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-14-downloadable-startup.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-17-compose-proxy-connections.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-16-isolated-password-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-15-compose-login-replicas.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../../models/design/classes.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../../models/design/components.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-11-page-reference-reads.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../../models/design/read-catalog.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-12-projected-csv-reads.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../05-architecture/ADRs/ADR-13-canonical-report-period.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../../specs/UC-11.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../../models/sequences/UC-11.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> api-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> database-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../../specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/06-design/design.md -> ../09-traceability/matrix.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/07-ai-transformation/README.md -> transformation-records/TRF-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/07-ai-transformation/README.md -> transformation-records/TRF-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/07-ai-transformation/README.md -> prompts/TRF-02.txt",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/07-ai-transformation/README.md -> prompts/TRF-01-user-request.txt",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/07-ai-transformation/README.md -> ai-review.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> ../05-architecture/experiments/EXP-DOCKER-COMPOSE.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/core-environment-unavailable.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/core-before.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/core-after.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/unit-after.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/boundaries-after.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/full-smoke-after.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/all-tests-final.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/coverage-request-workflow.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/diagrams-final.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/engineering-release.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/diagrams-release.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/report.md -> evidence/native-load.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/strategy.md -> ../../README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/test-cases.md -> ../../specs/test-cases.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/test-cases.md -> evidence/all-tests-final.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/08-testing/test-cases.md -> evidence/coverage-request-workflow.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../specs/traceability.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../specs/artifact-registry.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#login",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#logout",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/access.py#require_hr",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/access.py#require_admin",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/access.py#scoped_employee",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#employee_create",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#employee_edit",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#employee_status",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#employee_list",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/main.py#save_organization",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#save_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#hire_candidate",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#complete_onboarding",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#minutes_between",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#save_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#review_request",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/request_workflow/service.py#RequestReviewService.review",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/hr_models.py#PayrollRule",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/hr_models.py#PayrollProfile",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#payslip_detail",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#activate_contract",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#renew_contract",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#terminate_contract",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/hr_models.py#Evaluation",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/hr_models.py#TrainingEnrollment",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/hr_models.py#CareerPlan",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/access.py#sync_assignment",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#employee_history",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#reports",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#export_employees",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#safe_csv",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/access.py#audit",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#audit_page",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/request_workflow/repository.py#RequestReviewRepository.save_decision",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../app/database.py#Admin",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../docs/08-testing/evidence/native-load.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../docs/08-testing/evidence/capacity-native4-500-before-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../docs/08-testing/evidence/all-tests-final.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/09-traceability/matrix.md -> ../../docs/08-testing/evidence/coverage-request-workflow.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/milestones.md -> https://sadprojectdocs.space-z.ai/#slide-53",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/milestones.md -> https://sadprojectdocs.space-z.ai/#slide-58",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/milestones.md -> rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/presentation-and-demo.md -> https://sadprojectdocs.space-z.ai/#slide-64",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/remaining-work.md -> ../05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../01-project-charter/charter.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../02-requirements/sources.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../02-requirements/requirements.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../03-specifications/use-cases.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../../specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../../specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../04-models/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../05-architecture/architecture.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../05-architecture/quality-scenarios.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../06-design/design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../06-design/database-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../06-design/api-design.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../../specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../../specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../09-traceability/matrix.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> changes/CR-01.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> rubric.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> milestones.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> remaining-work.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../05-architecture/progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> presentation-and-demo.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> contributions.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> changes/CR-03.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/report.md -> ../05-architecture/experiments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-04-request-workflow.md -> ../../../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-05-bounded-catalog.md -> ../experiments/EXP-00-capacity.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-05-bounded-catalog.md -> ../../../specs/UC-04.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-07-native-capacity.md -> ../../08-testing/evidence/capacity-auth-500-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-11-page-reference-reads.md -> ../../../scripts/measure_read_paths_20261117.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-11-page-reference-reads.md -> ../../snapshots/architecture-review-baseline-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-14-downloadable-startup.md -> ../../../deployments/compose.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-14-downloadable-startup.md -> ../../../models/design/docker-compose.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-15-compose-login-replicas.md -> ../../08-testing/evidence/login500-before-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-15-compose-login-replicas.md -> ../../../models/design/compose-login-replicas.mmd",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-16-isolated-password-work.md -> ../../08-testing/evidence/login500-fourweb-before-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/ADRs/ADR-17-compose-proxy-connections.md -> ../../08-testing/evidence/login500-fourweb-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-00-capacity.md -> ../../08-testing/evidence/capacity-native-before-50-20261108.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../ADRs/ADR-12-projected-csv-reads.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../snapshots/architecture-read-plan-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../08-testing/evidence/architecture-reads-before-20261117-d.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../08-testing/evidence/architecture-reads-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../08-testing/evidence/architecture-read-comparison-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../../tests/test_report_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../08-testing/evidence/architecture-core-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-CSV-READS-20261117.md -> ../../08-testing/evidence/architecture-regression-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/docker-deployment-20261116-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/core-docker-20261116-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/coverage-docker-20261116-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/regression-docker-20261116-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/docker-entrypoint-20261116-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/engineering-docker-20261116-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/diagrams-docker-20261116-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/docker-verification-20261116-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../08-testing/evidence/docker-verification-20261116-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md -> ../../../deployments/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-download-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/core-docker-github-download-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/coverage-docker-github-download-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/regression-docker-github-download-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/docker-verification-github-download-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-native-core-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-engineering-20261117-c.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-diagrams-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-publication-audit-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-download-20261117-a-failure.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-DOWNLOAD-20261117.md -> ../../08-testing/evidence/github-engineering-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PASSWORD-20261117.md -> ../../08-testing/evidence/login500-fourweb-before-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PASSWORD-20261117.md -> ../../08-testing/evidence/login500-fourweb-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PASSWORD-20261117.md -> ../../08-testing/evidence/login-capacity-contracts-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PASSWORD-20261117.md -> ../../08-testing/evidence/core-docker-login500-download-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md -> ../../08-testing/evidence/login500-fourweb-after-20261117-c.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md -> ../../08-testing/evidence/login500-download-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md -> ../../08-testing/evidence/core-docker-login500-download-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md -> ../../08-testing/evidence/coverage-docker-login500-download-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md -> ../../08-testing/evidence/regression-docker-login500-download-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-REPLICAS-20261117.md -> ../../08-testing/evidence/login500-before-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-LOGIN-REPLICAS-20261117.md -> ../../08-testing/evidence/login500-fourweb-before-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-TRANSPORT.md -> ../../08-testing/evidence/proxy-transport-20261115-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-TRANSPORT.md -> ../../08-testing/evidence/proxy-transport-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-TRANSPORT.md -> ../../08-testing/evidence/capacity-aiohttp-50-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-TRANSPORT.md -> ../../08-testing/evidence/capacity-aiohttp-500-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-TRANSPORT.md -> ../../08-testing/evidence/capacity-aiohttp-profile-50-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-TRANSPORT.md -> ../ADRs/ADR-09-submitted-reference-validation.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-WORKERS.md -> ../../08-testing/evidence/capacity-native4-500-before-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-WORKERS.md -> ../ADRs/ADR-08-native-proxy-transport.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-NATIVE-WORKERS.md -> ../../08-testing/evidence/proxy-transport-20261115-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../ADRs/ADR-11-page-reference-reads.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../snapshots/architecture-read-plan-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../08-testing/evidence/architecture-reads-before-20261117-d.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../08-testing/evidence/architecture-reads-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../08-testing/evidence/architecture-read-comparison-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../../tests/test_catalog_reference_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../08-testing/evidence/architecture-read-contracts-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../08-testing/evidence/architecture-core-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGE-REFERENCES-20261117.md -> ../../08-testing/evidence/architecture-regression-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGINATION.md -> ../../08-testing/evidence/capacity-before-50-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGINATION.md -> ../../08-testing/evidence/capacity-pagination-50-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGINATION.md -> ../../08-testing/evidence/capacity-pagination-500-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGINATION.md -> ../../../tests/test_catalog_pagination.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-PAGINATION.md -> ../../08-testing/evidence/core-final-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../ADRs/ADR-13-canonical-report-period.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../snapshots/architecture-read-plan-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../08-testing/evidence/architecture-reads-before-20261117-d.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../08-testing/evidence/architecture-reads-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../08-testing/evidence/architecture-read-comparison-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../../tests/test_report_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../08-testing/evidence/architecture-core-after-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REPORT-PERIOD-20261117.md -> ../../08-testing/evidence/architecture-regression-20261117-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REQUEST-AUTH.md -> ../../08-testing/evidence/capacity-pagination-50-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REQUEST-AUTH.md -> ../../08-testing/evidence/capacity-auth-50-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REQUEST-AUTH.md -> ../../08-testing/evidence/capacity-auth-500-20261112-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-REQUEST-AUTH.md -> ../../08-testing/evidence/core-final-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-SUBMITTED-REFERENCES.md -> ../../08-testing/evidence/submitted-references-20261115-c.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-SUBMITTED-REFERENCES.md -> ../../08-testing/evidence/submitted-references-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-SUBMITTED-REFERENCES.md -> ../../08-testing/evidence/submitted-references-20261115-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/EXP-SUBMITTED-REFERENCES.md -> ../../08-testing/evidence/capacity-native4-acceptance-20261115-a.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> ../progressive-experiments.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> ../../../specs/scalability-experiments.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-LOGIN-REPLICAS-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-LOGIN-PASSWORD-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-LOGIN-PROXY-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-DOWNLOAD-20261117.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-DOCKER-COMPOSE.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-PAGINATION.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-REQUEST-AUTH.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-NATIVE-WORKERS.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-NATIVE-TRANSPORT.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/05-architecture/experiments/README.md -> EXP-SUBMITTED-REFERENCES.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-01.md -> ../../08-testing/report.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-01.md -> ../../05-architecture/ADRs/ADR-04-request-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-01.md -> ../../../specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-01.md -> ../../07-ai-transformation/README.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-03.md -> ../../05-architecture/experiments/EXP-NATIVE-TRANSPORT.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-03.md -> ../../05-architecture/experiments/EXP-SUBMITTED-REFERENCES.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-03.md -> ../../05-architecture/experiments/EXP-NATIVE-WORKERS.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-04.md -> ../../snapshots/architecture-review-baseline-20261117-b.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-04.md -> ../../05-architecture/ADRs/ADR-11-page-reference-reads.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-04.md -> ../../05-architecture/ADRs/ADR-12-projected-csv-reads.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/10-final-report/changes/CR-04.md -> ../../05-architecture/ADRs/ADR-13-canonical-report-period.md",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/references/project-framework/README.md -> https://sadprojectdocs.space-z.ai/",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/references/project-framework/README.md -> slide-readings.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/references/project-framework/README.md -> diagram-sources.json",
+      "passed": true
+    },
+    {
+      "check": "Markdown link docs/references/project-framework/README.md -> ../../project-framework-slide-review.md",
+      "passed": true
+    },
+    {
+      "check": "25 one-to-one FR trace rows",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-01",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#login",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-02",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#logout",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-03",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/access.py#require_hr",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/access.py#require_admin",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/access.py#scoped_employee",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-04",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#employee_create",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#employee_edit",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-05",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#employee_status",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-06",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#employee_list",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-07",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/main.py#save_organization",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-08",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-09",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#save_record",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-10",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#hire_candidate",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#complete_onboarding",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-11",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#minutes_between",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-12",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#save_record",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-13",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#review_request",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/request_workflow/service.py#RequestReviewService.review",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-14",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/hr_models.py#PayrollRule",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-15",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/hr_models.py#PayrollProfile",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-16",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#calculate_payroll",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#payslip_detail",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-17",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#activate_contract",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#renew_contract",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#terminate_contract",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-18",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/hr_models.py#Evaluation",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-19",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/hr_models.py#TrainingEnrollment",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-20",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/hr_models.py#CareerPlan",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-21",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/access.py#sync_assignment",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#employee_history",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-22",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#reports",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-23",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#export_employees",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#safe_csv",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-24",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/access.py#audit",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#audit_page",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/request_workflow/repository.py#RequestReviewRepository.save_decision",
+      "passed": true
+    },
+    {
+      "check": "Trace links TR-25",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/modules.py#validate_record",
+      "passed": true
+    },
+    {
+      "check": "Trace code app/database.py#Admin",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-P-02",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-S-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-S-02",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-AU-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-A-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-M-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-T-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-U-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-L-01",
+      "passed": true
+    },
+    {
+      "check": "NFR trace NFR-R-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-M-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-M-02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-03",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-04",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-05",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-06",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-07",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-04-08",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-03",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-04",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-03",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-04",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-05",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-06",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-07",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-08",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-09",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-03-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-03-02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-03-03",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-03-04",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-03-05",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-16",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-08",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-09",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-10",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-11",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-12",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-13",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-14",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-15",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-05",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-06",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-01-07",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-11-01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-11-02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-11-03",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-11-04",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-11-05",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U01",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U02",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U03",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U04",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U05",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U06",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U07",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U08",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U09",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-U10",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-10",
+      "passed": true
+    },
+    {
+      "check": "Test code TC-02-11",
+      "passed": true
+    },
+    {
+      "check": "OpenAPI matches current FastAPI routes",
+      "passed": true
+    },
+    {
+      "check": "Browser OpenAPI paths match generated",
+      "passed": true
+    },
+    {
+      "check": "Session cookie scheme",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /login",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /logout",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /employees/new",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /employees/{employee_id}/edit",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /employees/{employee_id}/status",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /organization/{kind}/new",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /organization/{kind}/{record_id}/edit",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /hr/{module}/new",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /hr/{module}/{record_id}/edit",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /hire/{candidate_id}",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /onboarding/{task_id}",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /requests/{request_id}/review",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /contracts/{contract_id}/activate",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /contracts/{contract_id}/renew",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /contracts/{contract_id}/terminate",
+      "passed": true
+    },
+    {
+      "check": "CSRF form contract /payroll/calculate",
+      "passed": true
+    },
+    {
+      "check": "API operation API-01 /login",
+      "passed": true
+    },
+    {
+      "check": "API operation API-01 /login",
+      "passed": true
+    },
+    {
+      "check": "API operation API-01 /logout",
+      "passed": true
+    },
+    {
+      "check": "API operation API-02 /hr/{module}/new",
+      "passed": true
+    },
+    {
+      "check": "API operation API-02 /requests/{request_id}/review",
+      "passed": true
+    },
+    {
+      "check": "API operation API-03 /payroll",
+      "passed": true
+    },
+    {
+      "check": "API operation API-03 /payroll/calculate",
+      "passed": true
+    },
+    {
+      "check": "API operation API-03 /payroll/{payslip_id}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-04 /employees",
+      "passed": true
+    },
+    {
+      "check": "API operation API-04 /hr/{module}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-04 /employees/{employee_id}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-04 /employees/new",
+      "passed": true
+    },
+    {
+      "check": "API operation API-04 /employees/{employee_id}/edit",
+      "passed": true
+    },
+    {
+      "check": "API operation API-04 /employees/{employee_id}/status",
+      "passed": true
+    },
+    {
+      "check": "API operation API-05 /organization/{kind}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-05 /organization/{kind}/new",
+      "passed": true
+    },
+    {
+      "check": "API operation API-06 /hire/{candidate_id}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-06 /onboarding/{task_id}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-07 /hr/{module}/new",
+      "passed": true
+    },
+    {
+      "check": "API operation API-08 /contracts/{contract_id}/activate",
+      "passed": true
+    },
+    {
+      "check": "API operation API-08 /contracts/{contract_id}/renew",
+      "passed": true
+    },
+    {
+      "check": "API operation API-08 /contracts/{contract_id}/terminate",
+      "passed": true
+    },
+    {
+      "check": "API operation API-09 /hr/{module}/new",
+      "passed": true
+    },
+    {
+      "check": "API operation API-10 /history/{employee_id}",
+      "passed": true
+    },
+    {
+      "check": "API operation API-11 /reports",
+      "passed": true
+    },
+    {
+      "check": "API operation API-11 /reports/employees.csv",
+      "passed": true
+    },
+    {
+      "check": "API operation API-12 /audit",
+      "passed": true
+    },
+    {
+      "check": "API operation API-12 /hr/{module}/new",
+      "passed": true
+    },
+    {
+      "check": "Domain covers 21 reflected tables",
+      "passed": true
+    },
+    {
+      "check": "Conceptual domain entities match mapping",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM admins",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM assignment_history",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM attendance",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM audit_log",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM branches",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM candidates",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM career_plans",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM employees",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM employment_contracts",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM evaluations",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM hr_requests",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM interviews",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM onboarding_tasks",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM payroll_profiles",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM payroll_rules",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM payslips",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM positions",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM shifts",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM training_enrollments",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM trainings",
+      "passed": true
+    },
+    {
+      "check": "Reflected columns match ORM units",
+      "passed": true
+    },
+    {
+      "check": "DDL contains all 21 tables",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/access.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/database.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/hr_models.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/login_capacity.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/main.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/module_forms.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/modules.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/native_proxy.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/pagination.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/request_workflow/__init__.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/request_workflow/domain.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/request_workflow/repository.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/request_workflow/service.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/security.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current app/seed.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/architecture.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/functional-specifications.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/http-contracts.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/model-catalog.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/requirements.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/UC-01.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/UC-02.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/UC-03.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/UC-04.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current specs/UC-11.yaml",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_architecture_boundaries.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_catalog_pagination.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_catalog_reference_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_core_workflows.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_docker_entrypoint.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_login_capacity.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_native_proxy.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_report_reads.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_request_rules.py",
+      "passed": true
+    },
+    {
+      "check": "Export source current tests/test_submitted_references.py",
+      "passed": true
+    },
+    {
+      "check": "All 93 slide readings and applications",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 1",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 2",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 3",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 4",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 5",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 6",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 7",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 8",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 9",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 10",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 11",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 12",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 13",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 14",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 15",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 16",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 17",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 18",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 19",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 20",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 21",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 22",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 23",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 24",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 25",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 26",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 27",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 28",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 29",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 30",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 31",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 32",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 33",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 34",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 35",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 36",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 37",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 38",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 39",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 40",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 41",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 42",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 43",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 44",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 45",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 46",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 47",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 48",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 49",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 50",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 51",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 52",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 53",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 54",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 55",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 56",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 57",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 58",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 59",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 60",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 61",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 62",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 63",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 64",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 65",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 66",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 67",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 68",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 69",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 70",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 71",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 72",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 73",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 74",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 75",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 76",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 77",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 78",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 79",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 80",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 81",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 82",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 83",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 84",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 85",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 86",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 87",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 88",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 89",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 90",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 91",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 92",
+      "passed": true
+    },
+    {
+      "check": "Slide application references 93",
+      "passed": true
+    },
+    {
+      "check": "All 23 original lecture diagrams",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash process-pipeline.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash context-diagram-generic.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash domain-model-ufms.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash use-case-model.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash sequence-place-order.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash architecture-ufms.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash model-to-code-pipeline.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash ai-pipeline.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash milestone-gate.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash common-framework.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash engineering-chain.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash human-ai-workflow.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash activity-reserve-meal.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash state-machine-reservation.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash traceability-chain.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash change-management-flow.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash milestone-timeline.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash git-repo-structure.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash final-demo-flow.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash final-principle-chain.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash roadmap-example.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash context-diagram-ufms.svg",
+      "passed": true
+    },
+    {
+      "check": "Original diagram hash state-machine-order.svg",
+      "passed": true
+    },
+    {
+      "check": "Current recorded suite all passed",
+      "passed": true
+    },
+    {
+      "check": "All test symbols present in final evidence",
+      "passed": true
+    },
+    {
+      "check": "Before failure is the documented conflict",
+      "passed": true
+    },
+    {
+      "check": "98 actual regression assertions",
+      "passed": true
+    },
+    {
+      "check": "Request package coverage >=80%",
+      "passed": true
+    },
+    {
+      "check": "Small load does not certify 500-user NFR",
+      "passed": true
+    },
+    {
+      "check": "TRF output hash TRF-01",
+      "passed": true
+    },
+    {
+      "check": "TRF human review honestly pending TRF-01",
+      "passed": true
+    },
+    {
+      "check": "TRF output hash TRF-02",
+      "passed": true
+    },
+    {
+      "check": "TRF human review honestly pending TRF-02",
+      "passed": true
+    }
+  ]
+}

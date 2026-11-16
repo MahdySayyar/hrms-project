@@ -18,6 +18,12 @@ main.login فرم را می‌خواند، CSRF را کنترل می‌کند، 
 طرح پیش از کد، 2026-11-17، [ADR-14](../05-architecture/ADRs/ADR-14-downloadable-startup.md): launcher دانلود ZIP، secret initializer موجود را در کانتینر موقت بدون شبکه با دو mount محدود اجرا می‌کند؛ سپس همان DB و یک وب را build و تا healthyشدن منتظر می‌ماند. به Python میزبان نیاز ندارد و رمز/volume موجود را تغییر نمی‌دهد. FR/BR/UC-01 و رفتار HR محفوظ‌اند.
 
 <a id="d-02"></a>
+طرح پیش از کد، 2026-11-17، [ADR-17](../05-architecture/ADRs/ADR-17-compose-proxy-connections.md): force-close خروجی proxy فقط در Compose و log نوع خطا بدون دادهٔ درخواست؛ بدون retry. کنترل نهایی حساب، قفل کوتاه FOR UPDATE تا commit audit دارد؛ صف/hash بیرون Session است.
+
+طرح پیش از کد، 2026-11-17، [ADR-16](../05-architecture/ADRs/ADR-16-isolated-password-work.md): خواندن کوتاه snapshot ورود، بستن Session پیش از hash در executor خصوصی bounded، بازاعتبارسنجی CSRF و active/hash در تراکنش audit و سپس rotation؛ صف ورود اتصال DB و thread عمومی را نگه نمی‌دارد. قدرت PBKDF2 محفوظ و صف پر 503 بدون ورود می‌گیرد.
+
+طرح پیش از کد، 2026-11-17، [ADR-15](../05-architecture/ADRs/ADR-15-compose-login-replicas.md): آزمایش چهار وب Compose با proxy موجود، hostnameهای داخلی صریح و affinity مرورگر برای حفظ نشست؛ هر وب thread/pool محدود دارد و seed/fixture فقط در وب اول انجام می‌شود. topology اصلی تا شاهد پذیرش تک‌وب است؛ چهار وب روی همین میزبان، HA یا CPU تازه محسوب نمی‌شود.
+
 ## D-02 — تصمیم درخواست
 
 | جزء | مسئولیت و قرارداد |

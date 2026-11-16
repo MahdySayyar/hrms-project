@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-16T12:39:16.055555+00:00",
+  "captured_at": "2026-11-16T23:04:02.144256+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -20,8 +20,12 @@
       "sha256": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
     },
     {
+      "path": "app/login_capacity.py",
+      "sha256": "559b20405c286404a9e6081f907e0e67286960337d68b90c1ff506cc1cea29f1"
+    },
+    {
       "path": "app/main.py",
-      "sha256": "d7920ff39c5391797f611039dc093f4afd71d388362259ca95049ae1a2535fa1"
+      "sha256": "7c00f5fa25f7ccb298d78d55036a8fedb1970eb8f9624090f520b3e68ec1cc9a"
     },
     {
       "path": "app/module_forms.py",
@@ -33,7 +37,7 @@
     },
     {
       "path": "app/native_proxy.py",
-      "sha256": "5c9acd7b7e945a1c44ad48c7da3664125d27e2a4c091dcddbc14204817b3a1f5"
+      "sha256": "4bf31a6314b2ffb901d3ea675b1eb20f285eca824141bade7a1ef61a9b233760"
     },
     {
       "path": "app/pagination.py",
@@ -65,11 +69,27 @@
     },
     {
       "path": "specs/architecture.yaml",
-      "sha256": "3285067ca78bbe5f23753c147275a18d819a26ec681abfc062f88c56f42db96a"
+      "sha256": "15d2cfe2dfb394e93d733f2c130510826be2cca52b9f98b819484d38d4417188"
+    },
+    {
+      "path": "specs/functional-specifications.yaml",
+      "sha256": "ef03dadd48f4ebcda435bbe3b9db376a7f41e43be5e5422f1751812cb79cffff"
+    },
+    {
+      "path": "specs/http-contracts.yaml",
+      "sha256": "d6297b76cbc59158dd301b6852118c399e2184205ccb130d913d8eda8e2defce"
+    },
+    {
+      "path": "specs/model-catalog.yaml",
+      "sha256": "bb05a71c9e1a74f379d57bd91fb6f219bc20b944288082bb6ed31afe3e4d92aa"
+    },
+    {
+      "path": "specs/requirements.yaml",
+      "sha256": "554af3e634884d5860430d9c09454f42d85132e27081035b9d8f143745a1fe84"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "d99243d27551e29efed37bc339b64ca8d5019d18ea1fb861a8d3106595fc2b12"
+      "sha256": "6dcf9a12448d718d0422988eeb7c86ac1df4fd328186c5fb869d8e26e8e91afa"
     },
     {
       "path": "specs/UC-02.yaml",
@@ -80,6 +100,14 @@
       "sha256": "90d83a7764530be860d454a3213922ba80fed45298769072ed70107516ad0e15"
     },
     {
+      "path": "specs/UC-04.yaml",
+      "sha256": "b6f303a3ae95a6baf2b7fff71a7b2e96c335a644fb077daaceed11ea5434f794"
+    },
+    {
+      "path": "specs/UC-11.yaml",
+      "sha256": "69bea55725b5903e19eb30f48a91736808054a1bd1ccba45052a530f1122f23d"
+    },
+    {
       "path": "tests/test_architecture_boundaries.py",
       "sha256": "d7d0746829dce0bd1b79d175acaf0741cdb9d7b073ed5e206b5de9c9e8c3a2c6"
     },
@@ -88,16 +116,28 @@
       "sha256": "490bd8fe1e6c4631491be9b1df80e19cbcd0df838c4ef641b1c26c6cc425c6f8"
     },
     {
+      "path": "tests/test_catalog_reference_reads.py",
+      "sha256": "0585c8e2bb6620203f4499d87795a7161d4715832ca5ae66d772c6bec2083950"
+    },
+    {
       "path": "tests/test_core_workflows.py",
       "sha256": "2686adb1759975714bddf8cd18f0e6bba56b87e820c48a859c3fb07dba01c1bc"
     },
     {
       "path": "tests/test_docker_entrypoint.py",
-      "sha256": "00271b72d3185ff4710e2fa055e6d870cc6803ac8861fbfca52d9760d6ccb183"
+      "sha256": "69812bd7060103ca5c2008c74dd1a02c0256501e1b6491eaae402c2b5da764ba"
+    },
+    {
+      "path": "tests/test_login_capacity.py",
+      "sha256": "a7f89b8a6de820c6ff4b41ca983a2a4f0764a2a4bda1d2960af660700def651b"
     },
     {
       "path": "tests/test_native_proxy.py",
       "sha256": "2731faeafe281572550e65937c326435a60c4f8ff81afeb79c9d068861610380"
+    },
+    {
+      "path": "tests/test_report_reads.py",
+      "sha256": "a94c4766a7a2aa037edea65c4893bd87e02527f81bad7ebf5b128d303afae87a"
     },
     {
       "path": "tests/test_request_rules.py",
@@ -107,7 +147,5 @@
       "path": "tests/test_submitted_references.py",
       "sha256": "261d7a5accbc1a5aa93a6f9ab6f7d0ff66cbcb253a9cf503b55b7a0e85d3454e"
     }
-  ],
-  "source_hashes_refreshed_at": "2026-11-16T22:01:02.343348+00:00",
-  "source_hash_refresh_scope": "Normalized source hash refresh for GitHub preparation; existing schema reflection retained, no new row or schema export"
+  ]
 }

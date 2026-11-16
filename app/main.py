@@ -18,6 +18,10 @@ from .access import audit, check_scope, current_user, render, require_admin, req
 from .security import (COOKIE_NAME, check_csrf, current_session, discard_session,
                        new_session, require_login, set_session_cookie, verify_password)
 from .pagination import PageRequest, paginate
+from .login_capacity import PasswordCapacity, PasswordCapacityFull
+
+password_capacity = PasswordCapacity(workers=int(os.getenv("HRMS_PASSWORD_WORKERS", "1")),
+    max_pending=int(os.getenv("HRMS_PASSWORD_PENDING", "512")))
 
 @asynccontextmanager
 async def lifespan(_app):
@@ -112,22 +116,47 @@ def login_page(request: Request):
 
 
 @app.post("/login")
-def login(request: Request, form: dict = Depends(read_form)):
+async def login(request: Request, form: dict = Depends(read_form)):
     check_csrf(request, form)
     username = normalized(form.get("username"))
     password = str(form.get("password", ""))
-    with SessionLocal() as db:
-        admin = db.scalar(select(Admin).where(Admin.username == username))
-        if not admin or not admin.is_active or not verify_password(password, admin.password_hash):
-            return render(request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
-        admin_id = admin.id
-        audit(db, request, "login", "admins", admin_id, actor_id=admin_id)
-        db.commit()
+    account = await run_in_threadpool(login_account_snapshot, username)
+    valid = False
+    if account and account.is_active:
+        try:
+            valid = await password_capacity.verify(verify_password, password, account.password_hash)
+        except PasswordCapacityFull:
+            response = render(request, "login.html", 503, title="ورود مدیر",
+                errors=["سامانه در حال پردازش ورود کاربران است؛ کمی بعد دوباره تلاش کنید."], username=username)
+            response.headers["Retry-After"] = "2"
+            return response
+    if not valid:
+        return render(request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
+    check_csrf(request, form)
+    admin_id = await run_in_threadpool(commit_verified_login, request, account.id, account.password_hash)
+    if admin_id is None:
+        return render(request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
     discard_session(request)
     token, _ = new_session(admin_id)
     response = redirect("/")
     set_session_cookie(response, token)
     return response
+
+
+def login_account_snapshot(username):
+    with SessionLocal() as db:
+        return db.execute(select(Admin.id, Admin.password_hash, Admin.is_active).where(Admin.username == username)).first()
+
+
+def commit_verified_login(request, account_id, expected_hash):
+    with SessionLocal() as db:
+        admin = db.scalar(select(Admin).where(Admin.id == account_id).with_for_update())
+        if not admin or not admin.is_active or admin.password_hash != expected_hash:
+            return None
+        admin_id = admin.id
+        audit(db, request, "login", "admins", admin_id, actor_id=admin_id)
+        db.commit()
+        return admin_id
 
 
 @app.post("/logout")

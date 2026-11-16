@@ -1,20 +1,24 @@
 # اجرای Docker پروژه
 
+راه‌انداز پیش‌فرض اکنون `compose.capacity.yaml` را اجرا می‌کند: چهار وب، proxy تقسیم درخواست با affinity مرورگر و PostgreSQL. هر وب یک پردازه و یک thread خصوصی برای بررسی رمز دارد؛ thread و اتصال پایگاه هنگام انتظار ورود آزاد می‌مانند. رمز/volume همان نصب حفظ می‌شود و فقط وب اول seed را اجرا می‌کند. افزایش پردازه‌ها در همین رایانه CPU فیزیکی تازه ایجاد نمی‌کند؛ زمان تکمیل ورود هم‌زمان به میزبان بستگی دارد. نشست‌ها همچنان در حافظهٔ هر وب‌اند.
+
+برای مشاهده و توقف استقرار چهار وب، از `docker compose -f deployments/compose.capacity.yaml ps` و `docker compose -f deployments/compose.capacity.yaml stop` استفاده کنید. شروع دوباره با همان launcher یا `docker compose -f deployments/compose.capacity.yaml start` است. هنگام restart کامل، ورود دوباره لازم می‌شود. baseline تک‌وب در compose.yaml حفظ شده است؛ برای جابه‌جایی به آن ابتدا `docker compose -f deployments/compose.capacity.yaml down` بدون حذف volume و سپس `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/start-docker.ps1 -WebWorkers 1` را اجرا کنید. معادل Bash گزینهٔ `bash scripts/start-docker.sh 1` است. داده و secret را حذف نکنید.
+
 اگر پورت 8001 اشغال است، در PowerShell قبل از launcher فرمان `$env:HRMS_HTTP_PORT='8002'` یا در Bash فرمان `HRMS_HTTP_PORT=8002 bash scripts/start-docker.sh` را اجرا کنید؛ سایت روی localhost:8002 باز می‌شود. برای استفادهٔ بعدی از همان پورت، همین تنظیم را هنگام راه‌اندازی نگه دارید.
 
 برای نسخهٔ دانلودشده در ویندوز `start-docker.cmd` را دوبار کلیک کنید؛ در macOS/Linux فرمان `bash scripts/start-docker.sh` را از ریشه بزنید. فقط Docker با Linux containers و Compose v2 لازم است. کانتینر موقت initializer رمزهای نصب را تولید و حذف می‌شود؛ دو سرویس کاربردی باقی می‌مانند. نصب تازه به `.env`، Python میزبان یا فایل‌های رایانهٔ سازنده نیاز ندارد.
 
 برای بروزرسانی یک clone، در ریشه `git pull --ff-only` و سپس launcher را دوباره اجرا کنید. برای نصب از ZIP، فایل‌های نسخهٔ جدید را جایگزین کنید و پوشهٔ خصوصی `.runtime` را نگه دارید. اگر secretها را حذف کنید ولی volume را نگه دارید، رمزهای تازه با پایگاه موجود سازگار نخواهند بود. تغییر schema قدیمی همچنان نیازمند راهنمای مهاجرت همان نسخه است.
 
-برای رفع مشکل از `docker compose -f deployments/compose.yaml ps` و `docker compose -f deployments/compose.yaml logs --tail=100 web db` استفاده کنید. Docker باید روشن باشد و پورت 8001 آزاد باشد. آماده‌شدن اولین build به سرعت اینترنت بستگی دارد.
+برای رفع مشکل از `docker compose -f deployments/compose.capacity.yaml ps` و `docker compose -f deployments/compose.capacity.yaml logs --tail=100 web db` استفاده کنید. Docker باید روشن باشد و پورت 8001 آزاد باشد. آماده‌شدن اولین build به سرعت اینترنت بستگی دارد.
 
-دو سرویس `web` و `db` در پروژهٔ Compose به نام `hrms-docker`. وب یک پردازه دارد؛ نشست‌ها حافظه‌ای‌اند. PostgreSQL روی شبکهٔ داخلی Compose و volume مستقل است. دادهٔ اولیه نمونهٔ ساختگی کد است؛ داده یا رمز نسخهٔ native منتقل نشده است.
+چهار سرویس وب، proxy و `db` در پروژهٔ Compose به نام `hrms-docker`. وب یک پردازه دارد؛ نشست‌ها حافظه‌ای‌اند. PostgreSQL روی شبکهٔ داخلی Compose و volume مستقل است. دادهٔ اولیه نمونهٔ ساختگی کد است؛ داده یا رمز نسخهٔ native منتقل نشده است.
 
 از ریشهٔ پروژه:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/start-docker.ps1
-docker compose -f deployments/compose.yaml ps
+docker compose -f deployments/compose.capacity.yaml ps
 ```
 
 سایت Docker: [ورود](http://localhost:8001/login). نام کاربری `hradmin` و رمز اختصاصی Docker در فایل محلی `.runtime/docker-hrms-secrets/admin_password` است؛ آن را وارد Git، گزارش یا تصویر نکنید. برای حفظ کوکی‌های مستقل، Docker را با localhost و native را با 127.0.0.1 باز کنید. راه‌اندازی مجدد رمزهای موجود را عوض نمی‌کند. Compose secret محلی فایل runtime است، تضمین رمزنگاری Swarm نیست.
@@ -22,8 +26,8 @@ docker compose -f deployments/compose.yaml ps
 توقف/شروع با حفظ volume:
 
 ```powershell
-docker compose -f deployments/compose.yaml stop
-docker compose -f deployments/compose.yaml start
+docker compose -f deployments/compose.capacity.yaml stop
+docker compose -f deployments/compose.capacity.yaml start
 ```
 
 برای حذف کانتینرهای همین پروژه با حفظ داده از `down` بدون گزینهٔ حذف volume استفاده کنید. دادهٔ native و دیگر پروژه‌های Docker تحت این فرمان‌ها نیستند. DB هیچ پورت میزبان ندارد. healthcheck وب وابستگی PostgreSQL را هم بررسی می‌کند.

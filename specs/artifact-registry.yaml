@@ -461,6 +461,9 @@ entries:
 - id: ARCH-01
   target: models/architecture.mmd
   kind: model
+- id: DEP-02
+  target: models/design/compose-login-replicas.mmd
+  kind: model
 - id: ADR-01
   target: docs/05-architecture/ADRs/ADR-01-baseline.md
   kind: architecture_decision
@@ -499,6 +502,18 @@ entries:
   kind: architecture_decision
 - id: ADR-13
   target: docs/05-architecture/ADRs/ADR-13-canonical-report-period.md
+  kind: architecture_decision
+- id: ADR-14
+  target: docs/05-architecture/ADRs/ADR-14-downloadable-startup.md
+  kind: architecture_decision
+- id: ADR-15
+  target: docs/05-architecture/ADRs/ADR-15-compose-login-replicas.md
+  kind: architecture_decision
+- id: ADR-16
+  target: docs/05-architecture/ADRs/ADR-16-isolated-password-work.md
+  kind: architecture_decision
+- id: ADR-17
+  target: docs/05-architecture/ADRs/ADR-17-compose-proxy-connections.md
   kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
@@ -632,11 +647,32 @@ entries:
 - id: TC-03-05
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
   kind: automated_test
+- id: TC-01-16
+  target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
+  kind: automated_test
 - id: TC-01-08
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
   kind: automated_test
 - id: TC-01-09
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  kind: automated_test
+- id: TC-01-10
+  target: tests/test_login_capacity.py#PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress
+  kind: automated_test
+- id: TC-01-11
+  target: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_11_database_released_and_stale_credentials_denied
+  kind: automated_test
+- id: TC-01-12
+  target: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_12_full_login_capacity_preserves_health_and_retry
+  kind: automated_test
+- id: TC-01-13
+  target: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_13_expired_csrf_after_password_work_has_no_login
+  kind: automated_test
+- id: TC-01-14
+  target: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_14_failed_audit_never_issues_authenticated_cookie
+  kind: automated_test
+- id: TC-01-15
+  target: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_15_proxy_internal_backend_allowlist_boundaries
   kind: automated_test
 - id: TC-01-05
   target: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved

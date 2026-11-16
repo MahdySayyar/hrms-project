@@ -40,7 +40,7 @@ def build(refresh):
         for node in ast.parse(file.read_text(encoding="utf-8")).body:
             if isinstance(node, ast.ClassDef):
                 for method in node.body:
-                    if isinstance(method, ast.FunctionDef):
+                    if isinstance(method, (ast.FunctionDef, ast.AsyncFunctionDef)):
                         ident = test_id(method.name)
                         if ident:
                             tests[ident] = file.relative_to(ROOT).as_posix() + "#" + node.name + "." + method.name

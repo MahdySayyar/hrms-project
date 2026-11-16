@@ -81,6 +81,12 @@ paths:
                 type: string
         '500':
           description: Unexpected persistence/server failure
+        '503':
+          description: Documented browser error 503; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
       x-code-symbol: app/main.py#login
       requestBody:
         required: true
@@ -136,6 +142,9 @@ paths:
         - 401
         - 403
         - 500
+        - 503
+        overload: ADR-16; private password work capacity full, Retry-After=2 and no
+          login audit/session
         redirect: /
   /logout:
     post:
@@ -298,6 +307,8 @@ paths:
         - branch
         - unit
         - status
+        - page
+        - page_size
   /employees/new:
     get:
       summary: Employee New
@@ -1002,9 +1013,47 @@ paths:
             Location:
               schema:
                 type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
       x-code-symbol: app/modules.py#module_list
       security:
       - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-04
+        method: GET
+        path: /hr/{module}
+        auth: Existing module hr/admin or admin_only and organizational scope
+        query:
+        - q
+        - status
+        - page
+        - page_size
+        success:
+        - 200
+        errors:
+        - 400
+        - 403
+        - 404
+        conditions:
+          catalog: Existing filtered count and bounded page; display references read
+            from that page only under ADR-11
+          paging: Default page 1 and size 50; size 1..100; invalid input 400
   /hr/{module}/new:
     get:
       summary: Module New
@@ -2230,6 +2279,9 @@ paths:
         - 200
         errors:
         - 400
+        conditions:
+          period: Existing Gregorian month accepts normalized Persian/Arabic/ASCII
+            digits; canonical YYYY-MM is used for all aggregates under ADR-13
   /reports/employees.csv:
     get:
       summary: Export Employees
@@ -2272,6 +2324,10 @@ paths:
         - 403
         - 500
         side_effect: Export audit is written even though method is GET
+        conditions:
+          csv: Eight existing columns, unchanged UTF-8 BOM/bytes/order/formula escaping;
+            complete buffered response after committed exact-row-count audit under
+            ADR-12
   /audit:
     get:
       summary: Audit Page

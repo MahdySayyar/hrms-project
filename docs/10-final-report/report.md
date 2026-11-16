@@ -36,7 +36,7 @@ Core: ورود/دسترسی، درخواست/تصمیم، فیش آموزشی. E
 
 ## 9. معماری
 
-[ARCH-01](../05-architecture/architecture.md): یک native FastAPI/Uvicorn، Jinja2، PostgreSQL و نشست process-local. فقط گردش تصمیم درخواست به Domain/Service/Repository منتقل شد. کل برنامه هنوز مرزهای یک Modular Monolith کامل ندارد. Container/Compose/Kubernetes/cache/queue/gateway/پایش اجرا نشده‌اند.
+[ARCH-01](../05-architecture/architecture.md): native یک FastAPI/Uvicorn دارد؛ Docker پس از آزمایش ورود هم‌زمان به چهار وب و proxy با affinity ارتقا یافت. Jinja2، PostgreSQL و نشست process-local محفوظ‌اند. فقط گردش تصمیم درخواست به Domain/Service/Repository منتقل شد؛ کل برنامه مونولیت است. Kubernetes، نشست Redis، cache، queue، gateway مستقل و HA اجرا نشده‌اند.
 
 ## 10. تصمیم‌های معماری
 

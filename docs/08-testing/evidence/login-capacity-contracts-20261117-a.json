@@ -1,0 +1,37 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-16T22:42:47.458754+00:00",
+  "finished_at": "2026-11-16T22:42:51.578746+00:00",
+  "git_parent_commit": "a062c126f5735dff3bcbeb40ecca0eff3ef48067",
+  "source_revision_available": true,
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 6,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_11_database_released_and_stale_credentials_denied",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_12_full_login_capacity_preserves_health_and_retry",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_13_expired_csrf_after_password_work_has_no_login",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_14_failed_audit_never_issues_authenticated_cookie",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_15_proxy_internal_backend_allowlist_boundaries",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress",
+      "status": "passed"
+    }
+  ]
+}

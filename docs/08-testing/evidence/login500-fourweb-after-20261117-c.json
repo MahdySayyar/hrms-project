@@ -1,0 +1,338 @@
+{
+  "started_at": "2026-11-16T22:51:59.586448+00:00",
+  "source_parent_commit": "a062c126f5735dff3bcbeb40ecca0eff3ef48067",
+  "captured_source_files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "43457142ab707a5dde5fde8a5f180c05fd22cea34b89732579294c104e9da73e"
+    },
+    {
+      "path": "app/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+    },
+    {
+      "path": "app/database.py",
+      "sha256": "849928d6b1c46b250df164a418b76ace4be596803cc426869d1b9cf60074d032"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/login_capacity.py",
+      "sha256": "559b20405c286404a9e6081f907e0e67286960337d68b90c1ff506cc1cea29f1"
+    },
+    {
+      "path": "app/main.py",
+      "sha256": "7c00f5fa25f7ccb298d78d55036a8fedb1970eb8f9624090f520b3e68ec1cc9a"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256": "c151812c54b686cbbb7f5961088bca285c9e3bef6f2f7b1b7e88915165cc6c46"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256": "2026fa4de1473b97c1023fc21e9f4a13d3935a3b68d79f6a15c0e1acde3b42f2"
+    },
+    {
+      "path": "app/native_proxy.py",
+      "sha256": "4bf31a6314b2ffb901d3ea675b1eb20f285eca824141bade7a1ef61a9b233760"
+    },
+    {
+      "path": "app/pagination.py",
+      "sha256": "61dc6266a31453ab40d9141f803a3fb0e77b620cdab791ef0be367880b6cec4d"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256": "3eecae166ba5e720fc4920d44f5d092e8b7b78d4b0fbc9da89f845b3d398b96d"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    },
+    {
+      "path": "deployments/app/Dockerfile",
+      "sha256": "fd7948b7328fefd204571e214c368363ae6aae4b5205f1af4c54f9cada29f29c"
+    },
+    {
+      "path": "deployments/app/entrypoint.py",
+      "sha256": "156f14d351a78c73b672ae7fc54e4e953d07e1ff4d9cc1135b773b4a3f8abb8a"
+    },
+    {
+      "path": "deployments/compose.capacity.yaml",
+      "sha256": "25e6ca8631dd34ff19b06bd1fdc70d15cf2ec304b008b1f098b36dd39233b191"
+    },
+    {
+      "path": "deployments/compose.yaml",
+      "sha256": "0824492e2cec4ed902bc6119607317ddf2bd93a2439f1c2841b4f7e20b5f7749"
+    },
+    {
+      "path": "deployments/README.md",
+      "sha256": "80c979219958dee6505912c82d7aae2f0578c5f7b2507a4d5284105464688f22"
+    },
+    {
+      "path": "requirements-lock.txt",
+      "sha256": "49cdec498ffd555298886fe0b45751473499c798591135c5a15b5d513699e61f"
+    },
+    {
+      "path": "scripts/container_capacity_fixture_20261117.py",
+      "sha256": "079c69d414b12be58034ae1c2779ecd5485691989bd29d25c98b30d118ba4837"
+    },
+    {
+      "path": "scripts/init_docker_secrets.py",
+      "sha256": "a6c488d77052e2fe3de29c15a5dac33b1e5106c632097e4256c3bbb11b19e171"
+    },
+    {
+      "path": "static/forms.js",
+      "sha256": "d8a8dc520858a67bebd43e58f73c1e7452cbf68e128783a0dfc88b96d5ce3bd7"
+    },
+    {
+      "path": "static/modules.css",
+      "sha256": "f123f23c744312ca1be2531e19ffe4ae59d73df6ead143073562fab5c1b8a264"
+    },
+    {
+      "path": "static/style.css",
+      "sha256": "1831881451b25cc154e3e38944022c996a17aee465337b4ec551ed73ed424b46"
+    },
+    {
+      "path": "templates/audit.html",
+      "sha256": "ccab1b5743e9012b5b6b298b7c9d78dc5b160dd5214b771e8c92933bb92122e4"
+    },
+    {
+      "path": "templates/base.html",
+      "sha256": "31e1f125c2f43d1fdb7ccb8a092994e1474e8d4dee3a2ea71d3a872c3e5c3aa0"
+    },
+    {
+      "path": "templates/dashboard.html",
+      "sha256": "77683d2cc17ed8d31b50b02460684a6822226ae5c4a47e5a856e052709686467"
+    },
+    {
+      "path": "templates/employee_detail.html",
+      "sha256": "d24e0fbf58e68fed243f866914b20b06e01223fcbd2bd33620dd693560acc06f"
+    },
+    {
+      "path": "templates/employee_form.html",
+      "sha256": "8b3969a6ee7b78210f090c94934a85307e036ee787f066ae8eea9da38bf472d2"
+    },
+    {
+      "path": "templates/employees.html",
+      "sha256": "bee11ffe0d49d43a5bbb88abbd144d2dcba8063858c095971a0fdf7223f0130f"
+    },
+    {
+      "path": "templates/error.html",
+      "sha256": "40a6efcb9ab763a95b9a81ff52ad8da488242df4f355cc2fcd2e8ddb2bfaf5e1"
+    },
+    {
+      "path": "templates/history.html",
+      "sha256": "933e0f55454269c3168879e520c25ed25507221c66adfdbac4c0f5a5301f3233"
+    },
+    {
+      "path": "templates/login.html",
+      "sha256": "ef83e8bdeb8f623f1ef23e0d4ff0c55c44fda2c3f96b795719f8986aec7881f7"
+    },
+    {
+      "path": "templates/module_detail.html",
+      "sha256": "9396392f02edb7bdc301aa992a4f533de5944ce9c777efdc7905866adb204818"
+    },
+    {
+      "path": "templates/module_form.html",
+      "sha256": "02afe8fb350a6e20bd642650c56cde5f8869960f5682ab488c0767253a5ec1fb"
+    },
+    {
+      "path": "templates/module_list.html",
+      "sha256": "b24e82f2665970aa165a0defe0014cbc94f5aacad913ef8b504b145c04518c3f"
+    },
+    {
+      "path": "templates/module_tabs.html",
+      "sha256": "b61b509adb3cdc47d3e214c9ee64eae78660ccb134c52f7c2cf3c05f70a86f8b"
+    },
+    {
+      "path": "templates/modules.html",
+      "sha256": "47e012f31a2ba8f6dcaadd8097c7313626a34738d2543475959d67c90e9da6c5"
+    },
+    {
+      "path": "templates/organization.html",
+      "sha256": "0f1ab7fed28a9d8b39168397d85b627db1b418b8f53b8ce82bf39e2824a2501d"
+    },
+    {
+      "path": "templates/organization_form.html",
+      "sha256": "3956d673d24872d681f2578f19b416473b858c3623482e1c20603ad770e3fa4c"
+    },
+    {
+      "path": "templates/page_navigation.html",
+      "sha256": "14728ad8c764abf355756398861502fb179dea44a9d364875aa394d9659afd86"
+    },
+    {
+      "path": "templates/payroll.html",
+      "sha256": "ac0d7b6137224e737147c62207787ba50e48224668088085c6e1029c7732eb04"
+    },
+    {
+      "path": "templates/payslip.html",
+      "sha256": "9fe79ce3c605e3b60a77e989d2f476acf6ac05cd0161e45d686092526f77fe0a"
+    },
+    {
+      "path": "templates/reports.html",
+      "sha256": "2aa7684d9128bacdc3cae99c5880b9b494e14f3a54aa105d844c609d09523eb5"
+    }
+  ],
+  "topology": "4 Docker Uvicorn processes and PostgreSQL; explicit affinity proxy for four workers; fresh disposable schema, synthetic accounts only",
+  "users_requested": 500,
+  "employees": 10000,
+  "human_review": "pending",
+  "nfr_500_mixed_workload_verified": false,
+  "load_generator_source_sha256": "933f380422e06be4eb4e5ec9aafa61f27d9e31fe0bbe4d418964037e4c4c324a",
+  "limitations": [
+    "Generator and Docker share this physical host",
+    "Simultaneous login workload only; no 300-second mixed-load/HA certification"
+  ],
+  "raw_evidence_directory": "artifacts/login500-fourweb-after-20261117-c",
+  "metrics": {
+    "users": 500,
+    "prepared_cookie_csrf_pairs": 500,
+    "unique_authenticated_cookies": 500,
+    "login": {
+      "requests": 500,
+      "failures": 0,
+      "statuses": {
+        "303": 500
+      },
+      "p50_ms": 52891.0,
+      "p95_ms": 99766.0,
+      "max_ms": 106453.0
+    },
+    "dispatch_spread_ms": 641.0,
+    "burst_elapsed_seconds": 107.203,
+    "probes": {
+      "requests": 830,
+      "failures": 0,
+      "statuses": {
+        "200": 830
+      },
+      "p50_ms": 16.0,
+      "p95_ms": 78.0,
+      "max_ms": 1344.0
+    },
+    "health_probes": {
+      "requests": 415,
+      "failures": 0,
+      "statuses": {
+        "200": 415
+      },
+      "p50_ms": 15.0,
+      "p95_ms": 47.0,
+      "max_ms": 1344.0
+    },
+    "dashboard_probes": {
+      "requests": 415,
+      "failures": 0,
+      "statuses": {
+        "200": 415
+      },
+      "p50_ms": 31.0,
+      "p95_ms": 94.0,
+      "max_ms": 688.0
+    },
+    "session_checks": {
+      "requests": 500,
+      "failures": 0,
+      "statuses": {
+        "200": 500
+      },
+      "p50_ms": 3171.0,
+      "p95_ms": 5032.0,
+      "max_ms": 5657.0
+    },
+    "workers_observed": {
+      "1": 125,
+      "0": 125,
+      "3": 125,
+      "2": 125
+    },
+    "login_request_timeout_seconds": 180,
+    "probe_timeout_seconds": 2
+  },
+  "resources": {
+    "samples": 115,
+    "peak_host_cpu_percent": 100.0,
+    "minimum_available_ram_bytes": 14467174400,
+    "peak_generator_cpu_one_core_100": 76.6
+  },
+  "database_checks": {
+    "distinct_login_accounts": 500,
+    "each_account_one_login_audit": true,
+    "status_audits": 0
+  },
+  "container_state": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 33580,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-11-16T22:52:08.423731275Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-11-16T22:53:38.666354315Z",
+          "End": "2026-11-16T22:53:39.765721216Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-16T22:53:49.768105192Z",
+          "End": "2026-11-16T22:53:50.443222808Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-16T22:54:00.444159197Z",
+          "End": "2026-11-16T22:54:01.30306239Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-16T22:54:11.305133572Z",
+          "End": "2026-11-16T22:54:12.091351433Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-16T22:54:22.092269018Z",
+          "End": "2026-11-16T22:54:23.988215836Z",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "restart_count": 0,
+  "all_passed": true,
+  "finished_at": "2026-11-16T22:54:29.355964+00:00",
+  "test_resources_removed": true
+}

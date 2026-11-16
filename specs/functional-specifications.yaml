@@ -5,6 +5,7 @@ note: All 25 FR have structured acceptance contracts; UC-01..03 provide detailed
 specifications:
 - id: FS-01
   requirement: FR-01
+  concurrent_login_revision: ADR-15/ADR-16 specified before this implementation; four web affinity experiment plus isolated bounded password work and active/hash/CSRF revalidation
   use_case: UC-01
   preconditions:
   - anonymous session and CSRF issued

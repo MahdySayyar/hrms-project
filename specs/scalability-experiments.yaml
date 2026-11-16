@@ -3,6 +3,17 @@ version: 3
 origin: User authorized implementing the remaining stages one by one on 2026-11-08
 baseline_commit: e61ac2c
 human_review: pending
+concurrent_login_protocol_20261117:
+  provenance: Specified before new instrumentation; existing login and Docker deployment reconstructed from current code
+  target: Current single-process Docker image; dedicated Compose project and disposable PostgreSQL schema
+  accounts: 500 distinct synthetic active HR accounts; random disposable password; separate observer account
+  login: Prepare 500 anonymous cookie/CSRF pairs, then release a common barrier for 500 valid password submissions
+  probes: Existing authenticated dashboard and database health throughout login; 2-second probe timeout
+  acceptance_login: 500 successful logins and distinct audited accounts, no probe failure, no container restart
+  clarified_scope: User explicitly clarified simultaneous login attempts only; existing 300-second mixed NFR remains separate and is not certified by this test
+  session_check: Verify the resulting 500 separate authenticated sessions and per-account login audits
+  latency: Report login latency separately; PBKDF2 work is not removed or weakened to claim instantaneous authentication
+  limitations: Generator and Docker share one physical host; measured workload and hardware only; no HA or human acceptance claim
 isolation:
   records: Synthetic only, in a disposable PostgreSQL schema or an isolated lab database
   web: Separate localhost ports; the existing website and real HR rows are preserved

@@ -1,5 +1,9 @@
 # وضعیت جاری پروژه
 
+وضعیت 2026-11-17: [شاهد ورود هم‌زمان](05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md) با 500/500 لاگین و نشست دارای هویت صحیح، 830/830 probe موفق و restart صفر ثبت شد؛ زمان کل ورودها حدود 107s روی میزبان آزمون است. Docker اکنون چهار وب، proxy با affinity و PostgreSQL دارد؛ [استقرار واقعی](08-testing/evidence/login500-live-deployment-20261117-a.json) و [نصب تازه](08-testing/evidence/login500-download-20261117-a.json) موفق‌اند. core=57/57، رگرسیون=98 assertion، coverage تصمیم=96.6٪. فقط تصمیم درخواست مرز domain/service/repository دارد؛ نشست‌ها process-local و human review/Gate بازند. هدف بار ترکیبی پنج‌دقیقه‌ای یا HA از این login burst تأیید نشده است.
+
+متن زیر وضعیت تاریخی 2026-11-16 و قبل از این اصلاح است:
+
 به‌روزرسانی 2026-11-16؛ مبنای تاریخی زیر از 2026-11-08 است. گزارش قدیمی Stage 1 در [history](history/stage01-status.md) محفوظ است.
 
 وب و PostgreSQL در دو کانتینر Compose با volume و secretهای مستقل اجرا شده‌اند؛ [Docker](../deployments/README.md) روی localhost:8001 است و native روی 8000 محفوظ است. هنوز یک وب در Docker داریم و HA/ظرفیت 500 برای آن تأیید نشده است. آزمایش native پنج‌دقیقه‌ای قبلی 57565 درخواست و یک failure و P95=2276ms داشت؛ burst 500 مرخصی موفق بود، اما هدف صفر خطا و معیار سرعت کامل نشده‌اند.

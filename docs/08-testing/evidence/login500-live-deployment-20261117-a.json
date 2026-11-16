@@ -1,0 +1,59 @@
+{
+  "checks": {
+    "synthetic_marker_created": true,
+    "synthetic_marker_survived_deployment": true,
+    "synthetic_marker_removed": true,
+    "six_services_healthy": true,
+    "health_200": true,
+    "four_web_instances": true,
+    "login_form_200": true
+  },
+  "containers": [
+    {
+      "Name": "hrms-docker-db-1",
+      "Service": "db",
+      "Image": "postgres:17.6-bookworm",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Name": "hrms-docker-proxy-1",
+      "Service": "proxy",
+      "Image": "hrms-web:docker-baseline",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Name": "hrms-docker-web-1",
+      "Service": "web",
+      "Image": "hrms-web:docker-baseline",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Name": "hrms-docker-web2-1",
+      "Service": "web2",
+      "Image": "hrms-web:docker-baseline",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Name": "hrms-docker-web3-1",
+      "Service": "web3",
+      "Image": "hrms-web:docker-baseline",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Name": "hrms-docker-web4-1",
+      "Service": "web4",
+      "Image": "hrms-web:docker-baseline",
+      "State": "running",
+      "Health": "healthy"
+    }
+  ],
+  "recorded_at": "2026-11-16T22:58:50.100343+00:00",
+  "all_passed": true,
+  "scope": "Health/instance/login form and disposable synthetic sentinel only; no existing HR rows read or exported; existing DB volume kept",
+  "human_review": "pending"
+}

@@ -9,6 +9,18 @@ current_audit:
   topology_change: None; single-process baseline and process-local sessions preserved
   data_migration: None
 deployment: single native FastAPI process + local PostgreSQL
+docker_login_capacity:
+  recorded_at: '2026-11-17'
+  provenance: ADR-15/16/17 and FR/BR/UC/design were specified before each corresponding implementation; current deployment promoted after successful isolated login experiment
+  deployment: Four single-process web containers, one explicit affinity proxy and PostgreSQL with the existing volume
+  configuration: deployments/compose.capacity.yaml
+  password_work: One private CPU worker and at most 512 outstanding checks per web; no database session held during hash
+  database_budget: At most 10 pooled connections per web, total 40; final account revalidation/audit uses a short row lock
+  credentials: Ignored local secrets preserved; only primary web seeds; secondary workers use --web-only
+  evidence: docs/08-testing/evidence/login500-fourweb-after-20261117-c.json
+  live_deployment: docs/08-testing/evidence/login500-live-deployment-20261117-a.json
+  result: 500 distinct successful logins and cookies; 830 successful observer probes; zero restart; full burst about 107 seconds on the measured host
+  limitation: Same physical host; process-local sessions and worker failure/session loss remain; no mixed 300-second NFR or HA certification
 docker_baseline:
   provenance: ADR-10 specified before implementation on 2026-11-16 after direct user request
   deployment: One Uvicorn web container and one PostgreSQL container in a dedicated Compose project

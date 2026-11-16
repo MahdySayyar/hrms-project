@@ -21,11 +21,19 @@ input:
 main_flow:
 - Check CSRF before authenticating
 - Read the account and verify its active flag and PBKDF2 password hash
+- Release the account-reading database session before private queued PBKDF2 work; preserve the stored iteration count
+- After a matching password, recheck the current CSRF session and the active account with the same hash before auditing
 - Persist the login audit entry
 - Discard the anonymous session and issue a new authenticated session
 - Redirect to the dashboard
 - On logout, validate CSRF, record audit, invalidate session and remove the cookie
 alternatives:
+- condition: private_password_capacity_full
+  response: 503 Persian login form with Retry-After=2; no login audit or authenticated session
+- condition: account_deleted_deactivated_or_hash_changed_during_password_check
+  response: 401 generic login message; no login audit or authenticated session
+- condition: csrf_session_expires_or_is_discarded_during_password_check
+  response: 403; no login audit or authenticated session
 - condition: invalid_credentials_or_inactive_account
   response: 401 with a generic Persian login message
 - condition: missing_or_invalid_csrf
@@ -62,7 +70,27 @@ traceability:
   - TC-01-01
   - TC-01-02
   - TC-01-03
+  - TC-01-10
+  - TC-01-11
+  - TC-01-12
+  - TC-01-13
+  - TC-01-14
+  - TC-01-15
+  - TC-01-16
 goal: Grant an active account a scoped authenticated session and end it safely
+compose_replica_experiment:
+  specified_at: '2026-11-17'
+  decision: ADR-15
+  status: Lab only; current deployment remains single-process until measured acceptance
+  workers: Four explicit internal Compose web services; per-browser affinity required for process-local sessions
+  proxy_contract: Explicit internal HTTP:8000 allowlist; bounded timeout; no automatic mutation retry; cookie and CSRF preserved
+  compose_connection_policy: ADR-17; force-close each outgoing HTTP connection, no retry of any method, sanitized error-class/method/worker logging
+password_work_contract:
+  specified_at: '2026-11-17'
+  decision: ADR-16
+  workers: Private executor, 1 per web by default; 1..4 allowed; total outstanding work bounded to 512 per web
+  database: Short snapshot read, closed during hash and queue; current active/hash revalidated in the audit transaction
+  invariants: No password/result cache, no hash strength reduction, audit commit before rotation, process-local session preserved
 secondary_actors: []
 quality_attributes:
 - NFR-S-01

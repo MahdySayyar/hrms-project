@@ -1,6 +1,7 @@
+param([ValidateSet(1, 4)][int]$WebWorkers = 4)
 $ErrorActionPreference = 'Stop'
 $hrmsRoot = Split-Path -Parent $PSScriptRoot
-$hrmsCompose = Join-Path $hrmsRoot 'deployments/compose.yaml'
+$hrmsCompose = Join-Path $hrmsRoot $(if ($WebWorkers -eq 4) { 'deployments/compose.capacity.yaml' } else { 'deployments/compose.yaml' })
 
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     throw 'Install and start Docker Desktop with Linux containers, then try again.'

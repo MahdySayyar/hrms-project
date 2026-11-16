@@ -28,7 +28,8 @@ def configure():
 def main():
     configure()
     from app.seed import seed
-    seed()
+    if "--web-only" not in sys.argv:
+        seed()
     os.environ.pop("ADMIN_PASSWORD", None)
     os.execv(sys.executable, [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"])
 

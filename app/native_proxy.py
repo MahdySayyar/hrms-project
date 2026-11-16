@@ -1,7 +1,8 @@
-"""Local native capacity experiment: async proxy with browser affinity, not HA."""
+"""Explicit native/Compose capacity proxy with browser affinity and process-local sessions."""
 import json
 import os
 import asyncio
+import logging
 from contextlib import asynccontextmanager
 from urllib.parse import urlsplit
 
@@ -10,9 +11,24 @@ from yarl import URL
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, Response
 
-BACKENDS = json.loads(os.environ["HRMS_NATIVE_BACKENDS"])
-if not 1 <= len(BACKENDS) <= 8 or any(urlsplit(url).hostname != "127.0.0.1" for url in BACKENDS):
-    raise RuntimeError("Native proxy backends must be 1..8 explicitly configured localhost URLs.")
+def configured_backends(encoded, mode="native"):
+    backends = json.loads(encoded)
+    if mode not in {"native", "compose"} or not isinstance(backends, list) or not 1 <= len(backends) <= 8:
+        raise RuntimeError("Choose 1..8 explicit native or Compose proxy backends.")
+    for url in backends:
+        parsed = urlsplit(url)
+        allowed = parsed.hostname == "127.0.0.1" if mode == "native" else (
+            parsed.hostname in {"web", *[f"web{i}" for i in range(2, 9)]} and parsed.port == 8000)
+        if not allowed or parsed.scheme != "http" or parsed.username or parsed.password or parsed.query or parsed.fragment or parsed.path not in {"", "/"}:
+            raise RuntimeError("Proxy backend is outside the explicit internal allowlist.")
+    return backends
+
+
+PROXY_MODE = os.getenv("HRMS_PROXY_MODE", "native")
+BACKENDS = configured_backends(os.environ["HRMS_NATIVE_BACKENDS"], PROXY_MODE)
+PROXY_TIMEOUT = int(os.getenv("HRMS_PROXY_TIMEOUT", "30"))
+if not 1 <= PROXY_TIMEOUT <= 180:
+    raise RuntimeError("HRMS_PROXY_TIMEOUT must be 1..180 seconds.")
 AFFINITY_COOKIE = "hrms_affinity"
 HOP_HEADERS = {b"connection", b"keep-alive", b"proxy-authenticate", b"proxy-authorization",
                b"te", b"trailer", b"transfer-encoding", b"upgrade", b"content-length"}
@@ -21,8 +37,9 @@ HOP_HEADERS = {b"connection", b"keep-alive", b"proxy-authenticate", b"proxy-auth
 @asynccontextmanager
 async def lifespan(app):
     async with aiohttp.ClientSession(trust_env=False,
-        timeout=aiohttp.ClientTimeout(total=30, connect=2),
-        connector=aiohttp.TCPConnector(limit=512, keepalive_timeout=15),
+        timeout=aiohttp.ClientTimeout(total=PROXY_TIMEOUT, connect=2),
+        connector=(aiohttp.TCPConnector(limit=512, force_close=True) if PROXY_MODE == "compose"
+                   else aiohttp.TCPConnector(limit=512, keepalive_timeout=15)),
         cookie_jar=aiohttp.DummyCookieJar(), auto_decompress=False) as client:
         # Pinned aiohttp 3.13.2 retries persistent connections for idempotent methods.
         # Disable that too: this proxy must make only one attempt for every method.
@@ -81,7 +98,9 @@ async def forward(request: Request, path: str):
             content = await backend.read()
             status = backend.status
             response_headers = forwarded_headers(backend.raw_headers)
-    except (aiohttp.ClientError, asyncio.TimeoutError):
+    except (aiohttp.ClientError, asyncio.TimeoutError) as exc:
+        logging.getLogger(__name__).warning("Proxy transport failure: method=%s worker=%s error=%s",
+            request.method, index, type(exc).__name__)
         response = Response("سامانه موقتاً در دسترس نیست؛ کمی بعد دوباره تلاش کنید.", status_code=503,
             media_type="text/plain; charset=utf-8", headers={"Retry-After": "2", "Cache-Control": "no-store"})
         return affinity(response, index, new)

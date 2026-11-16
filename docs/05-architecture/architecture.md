@@ -4,17 +4,21 @@
 
 ```mermaid
 flowchart LR
-    Browser["مرورگر فارسی RTL"] -->|"HTTP / فرم / کوکی"| Web["یک پردازه FastAPI + Jinja2"]
+    Browser["مرورگر فارسی RTL"] -->|"native / فرم / کوکی"| Web["native: یک پردازه FastAPI + Jinja2"]
+    Browser -->|"Docker localhost:8001"| Proxy["تقسیم درخواست / affinity"]
+    Proxy --> Replicas["چهار وب Docker / هر وب یک پردازه"]
+    Replicas --> Routes
     Web --> Routes["main.py و modules.py"]
-    Routes -->|"منطق مستقیم اکثر قابلیت‌ها"| DB[("PostgreSQL محلی")]
+    Routes -->|"منطق مستقیم اکثر قابلیت‌ها"| DB[("PostgreSQL مخصوص هر نصب")]
     Routes --> Review["RequestReviewService"]
     Review --> Domain["قواعد مستقل domain"]
     Review --> Repository["RequestReviewRepository"]
     Repository -->|"تراکنش + قفل + audit"| DB
     Web --- Sessions["نشست process-local"]
+    Replicas --- Sessions
 ```
 
-برنامه یک مونولیت با یک PostgreSQL و رندر سمت سرور است. SQLAlchemy رابط داده است. فقط گردش تصمیم درخواست، Domain / Service / Repository دارد. گروه‌بندی هشت حوزهٔ HR یا تعداد فایل‌ها، مرز ماژول معماری در کل برنامه ایجاد نمی‌کند. راه‌انداز native یک وب دارد؛ Compose نیز یک وب و یک DB با network/volume مستقل روی همان میزبان تعریف می‌کند. آزمایش چهار وب و proxy با affinity مسیر جداست و استقرار اصلی یا HA نیست. نشست هر وب در حافظهٔ خودش است.
+برنامه یک مونولیت با PostgreSQL و رندر سمت سرور است. SQLAlchemy رابط داده است. فقط گردش تصمیم درخواست، Domain / Service / Repository دارد. گروه‌بندی هشت حوزهٔ HR یا تعداد فایل‌ها، مرز ماژول معماری در کل برنامه ایجاد نمی‌کند. راه‌انداز native یک وب دارد؛ Docker پس از [شاهد ورود هم‌زمان](experiments/EXP-LOGIN-PROXY-20261117.md) به چهار وب و proxy با affinity ارتقا یافت. [استقرار واقعی](../08-testing/evidence/login500-live-deployment-20261117-a.json) شش سرویس healthy و حفظ همان volume را با sentinel ساختگی ثبت می‌کند. نشست هر وب در حافظهٔ خودش است؛ این topology روی یک میزبان است و HA نیست.
 
 ## سه گزینه و تصمیم
 

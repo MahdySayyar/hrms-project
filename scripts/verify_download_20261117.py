@@ -39,7 +39,7 @@ def verify(name):
         port_probe.bind(("127.0.0.1", 0))
         port = port_probe.getsockname()[1]
     environment["HRMS_HTTP_PORT"] = str(port)
-    compose = ["docker", "compose", "-f", str(source / "deployments/compose.yaml")]
+    compose = ["docker", "compose", "-f", str(source / "deployments/compose.capacity.yaml")]
     checks = {"clean_copy_has_no_private_environment": not (source / ".env").exists(),
               "clean_copy_has_no_host_python": not (source / ".venv").exists(),
               "clean_copy_has_no_runtime": not (source / ".runtime").exists()}

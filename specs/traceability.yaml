@@ -26,6 +26,13 @@ traceability:
   tests:
   - TC-01-01
   - TC-01-03
+  - TC-01-10
+  - TC-01-11
+  - TC-01-12
+  - TC-01-13
+  - TC-01-14
+  - TC-01-15
+  - TC-01-16
   - TC-REG-01
   regression_assertion_indices:
   - 1
@@ -1020,8 +1027,15 @@ test_code_symbols:
   TC-03-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_03_invalid_period_and_missing_profile
   TC-03-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_04_zero_hourly_rate_is_rejected
   TC-03-05: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
+  TC-01-16: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
   TC-01-08: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
   TC-01-09: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  TC-01-10: tests/test_login_capacity.py#PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress
+  TC-01-11: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_11_database_released_and_stale_credentials_denied
+  TC-01-12: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_12_full_login_capacity_preserves_health_and_retry
+  TC-01-13: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_13_expired_csrf_after_password_work_has_no_login
+  TC-01-14: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_14_failed_audit_never_issues_authenticated_cookie
+  TC-01-15: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_15_proxy_internal_backend_allowlist_boundaries
   TC-01-05: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved
   TC-01-06: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried
   TC-01-07: tests/test_native_proxy.py#NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary

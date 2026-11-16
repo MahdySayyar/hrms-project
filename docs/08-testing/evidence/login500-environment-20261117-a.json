@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-11-16T23:02:53.074413+00:00",
+  "scope": "Environment metadata captured after the isolated login runs; not a resource sample from inside those runs",
+  "os": "Windows-10-10.0.19045-SP0",
+  "host_physical_cores": 4,
+  "host_logical_cpus": 8,
+  "host_ram_bytes": 25623654400,
+  "docker_cpu_count": 8,
+  "docker_memory_bytes": 12471402496
+}

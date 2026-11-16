@@ -22,10 +22,15 @@ sequenceDiagram
       Route-->>Browser: 403
     else فرم معتبر
       Route->>DB: read active account
+      DB-->>Route: snapshot id/hash/active and close session
+      Route->>Security: bounded private password queue
       Route->>Security: verify_password
       alt حساب یا رمز نامعتبر
         Route-->>Browser: 401 generic message
       else حساب فعال و رمز صحیح
+        Route->>Security: recheck current CSRF session
+        Route->>DB: recheck active account and same hash
+        alt current account and CSRF still valid
         Route->>DB: INSERT login audit + COMMIT
         Route->>Security: discard old + new authenticated session
         Route-->>Browser: 303 / + rotated cookie
@@ -38,6 +43,9 @@ sequenceDiagram
         Route->>DB: INSERT logout audit + COMMIT
         Route->>Security: discard_session
         Route-->>Browser: 303 /login + delete cookie
+        else changed account or expired CSRF
+          Route-->>Browser: 401 or 403 without a new session
+        end
       end
     end
 ```
@@ -51,9 +59,16 @@ flowchart TD
     Page --> Submit["POST نام کاربری، رمز و CSRF"]
     Submit --> CSRF{"CSRF معتبر؟"}
     CSRF -->|"خیر"| E403["403؛ بدون ورود"]
-    CSRF -->|"بله"| Valid{"حساب فعال و رمز صحیح؟"}
+    CSRF -->|"بله"| Snapshot["snapshot حساب / بستن اتصال DB"]
+    Snapshot --> Queue{"ظرفیت خصوصی رمز آزاد؟"}
+    Queue -->|"خیر"| Busy["503 / بدون ورود / تلاش مجدد"]
+    Queue -->|"بله"| Hash["PBKDF2 در thread خصوصی"]
+    Hash --> Valid{"حساب فعال و رمز صحیح؟"}
     Valid -->|"خیر"| E401["401؛ پیام عمومی"]
-    Valid -->|"بله"| Audit["ثبت audit و commit"]
+    Valid -->|"بله"| Recheck{"CSRF و active/hash هنوز معتبر؟"}
+    Recheck -->|"بله"| Audit["ثبت audit و commit"]
+    Recheck -->|"خیر"| Stale["401 یا 403 / بدون ورود"]
+    Stale --> Page
     Audit --> Rotate["ابطال نشست قدیمی؛ نشست جدید"]
     Rotate --> Dashboard["303 سپس داشبورد"]
     Dashboard --> Logout["POST logout با CSRF"]
