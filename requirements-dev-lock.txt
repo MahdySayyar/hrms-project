@@ -5,6 +5,8 @@ aiosignal==1.4.0
 annotated-doc==0.0.5
 annotated-types==0.8.0
 anyio==4.16.0
+argon2-cffi-bindings==26.2.0
+argon2-cffi==25.1.0
 attrs==26.1.0
 bidict==0.24.1
 blinker==1.9.0
@@ -54,6 +56,7 @@ python-socketio==5.18.1
 pywin32==312
 PyYAML==6.0.3
 pyzmq==27.3.0
+redis==6.4.0
 requests==2.34.2
 simple-websocket==1.1.0
 SQLAlchemy==2.0.44

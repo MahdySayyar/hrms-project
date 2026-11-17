@@ -1,0 +1,82 @@
+{
+  "platform": "Linux",
+  "python": "3.12.16",
+  "openssl": "OpenSSL 3.0.22 25 Aug 2026",
+  "synthetic_only": true,
+  "timings_exclude_web_database_and_queue": true,
+  "parameters_source": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html",
+  "measurements": [
+    {
+      "algorithm": "pbkdf2_sha256_600000",
+      "workers": 1,
+      "checks": 32,
+      "elapsed_ms": 15865.13,
+      "checks_per_second": 2.02,
+      "execution_p50_ms": 456.97,
+      "execution_p95_ms": 743.85
+    },
+    {
+      "algorithm": "pbkdf2_sha256_600000",
+      "workers": 2,
+      "checks": 32,
+      "elapsed_ms": 8717.37,
+      "checks_per_second": 3.67,
+      "execution_p50_ms": 523.78,
+      "execution_p95_ms": 665.64
+    },
+    {
+      "algorithm": "pbkdf2_sha256_600000",
+      "workers": 4,
+      "checks": 32,
+      "elapsed_ms": 6825.91,
+      "checks_per_second": 4.69,
+      "execution_p50_ms": 769.03,
+      "execution_p95_ms": 1561.69
+    },
+    {
+      "algorithm": "pbkdf2_sha256_600000",
+      "workers": 8,
+      "checks": 32,
+      "elapsed_ms": 6729.61,
+      "checks_per_second": 4.76,
+      "execution_p50_ms": 1472.58,
+      "execution_p95_ms": 2486.98
+    },
+    {
+      "algorithm": "argon2id_m19456_t2_p1",
+      "workers": 1,
+      "checks": 32,
+      "elapsed_ms": 1266.8,
+      "checks_per_second": 25.26,
+      "execution_p50_ms": 38.9,
+      "execution_p95_ms": 46.82
+    },
+    {
+      "algorithm": "argon2id_m19456_t2_p1",
+      "workers": 2,
+      "checks": 32,
+      "elapsed_ms": 676.67,
+      "checks_per_second": 47.29,
+      "execution_p50_ms": 41.17,
+      "execution_p95_ms": 49.58
+    },
+    {
+      "algorithm": "argon2id_m19456_t2_p1",
+      "workers": 4,
+      "checks": 32,
+      "elapsed_ms": 457.89,
+      "checks_per_second": 69.89,
+      "execution_p50_ms": 54.37,
+      "execution_p95_ms": 72.87
+    },
+    {
+      "algorithm": "argon2id_m19456_t2_p1",
+      "workers": 8,
+      "checks": 32,
+      "elapsed_ms": 374.6,
+      "checks_per_second": 85.43,
+      "execution_p50_ms": 84.1,
+      "execution_p95_ms": 106.36
+    }
+  ]
+}

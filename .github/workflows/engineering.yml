@@ -6,10 +6,19 @@ on:
 jobs:
   docker-startup:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - compose: compose.capacity.yaml
+            launcher_args: '4'
+          - compose: compose.shared.yaml
+            launcher_args: '4 shared'
+    env:
+      HRMS_CI_COMPOSE: ${{ matrix.compose }}
     steps:
       - uses: actions/checkout@v4
       - name: Start downloaded project without host Python
-        run: bash scripts/start-docker.sh
+        run: bash scripts/start-docker.sh ${{ matrix.launcher_args }}
       - name: Verify health, login form and repeat initialization
         shell: bash
         run: |
@@ -17,12 +26,12 @@ jobs:
           curl --fail --silent http://localhost:8001/health | grep -q '"status":"ok"'
           curl --fail --silent http://localhost:8001/login | grep -q 'id="username"'
           before=$(sha256sum .runtime/docker-hrms-secrets/*)
-          docker compose -f deployments/compose.capacity.yaml --profile tools run --rm --no-deps init-secrets
+          docker compose -f "deployments/$HRMS_CI_COMPOSE" --profile tools run --rm --no-deps init-secrets
           after=$(sha256sum .runtime/docker-hrms-secrets/*)
           test "$before" = "$after"
       - name: Stop CI containers
         if: always()
-        run: docker compose -f deployments/compose.capacity.yaml down
+        run: docker compose -f "deployments/$HRMS_CI_COMPOSE" down
   core:
     runs-on: ubuntu-latest
     services:

@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audit_publication_20261117 import ROOT, candidates
 
 
-def verify(name):
+def verify(name, shared=False):
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{2,45}", name):
         raise ValueError("Choose a unique lowercase verification name.")
     raw = ROOT / "artifacts" / name
@@ -39,7 +39,8 @@ def verify(name):
         port_probe.bind(("127.0.0.1", 0))
         port = port_probe.getsockname()[1]
     environment["HRMS_HTTP_PORT"] = str(port)
-    compose = ["docker", "compose", "-f", str(source / "deployments/compose.capacity.yaml")]
+    compose_file = "compose.shared.yaml" if shared else "compose.capacity.yaml"
+    compose = ["docker", "compose", "-f", str(source / "deployments" / compose_file)]
     checks = {"clean_copy_has_no_private_environment": not (source / ".env").exists(),
               "clean_copy_has_no_host_python": not (source / ".venv").exists(),
               "clean_copy_has_no_runtime": not (source / ".runtime").exists()}
@@ -56,9 +57,13 @@ def verify(name):
 
         try:
             launcher = ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(source / "scripts/start-docker.ps1")]
+            expected_secrets = {"db_password", "admin_password"}
+            if shared:
+                launcher.append("-SharedSessions")
+                expected_secrets.add("redis_password")
             run(launcher)
             before = secret_hashes()
-            checks["fresh_secret_files"] = set(before) == {"db_password", "admin_password"} and all(
+            checks["fresh_secret_files"] = set(before) == expected_secrets and all(
                 len((source / ".runtime/docker-hrms-secrets" / key).read_text().strip()) >= 12 for key in before)
             run(launcher)
             checks["repeated_start_preserves_secrets"] = before == secret_hashes()
@@ -68,6 +73,9 @@ def verify(name):
             checks["bash_launcher_syntax"] = True
             with httpx.Client(base_url=f"http://127.0.0.1:{port}", trust_env=False, follow_redirects=False, timeout=10) as client:
                 checks["database_health"] = client.get("/health").json().get("status") == "ok"
+                if shared:
+                    instance = client.get("/instance").json()
+                    checks["shared_four_web_proxy"] = instance.get("session_storage") == "shared Redis" and instance.get("web_processes") == 4
                 page = client.get("/login")
                 checks["login_form"] = page.status_code == 200 and 'id="username"' in page.text
                 token = re.search(r'name="csrf_token" value="([^"]+)"', page.text).group(1)
@@ -116,6 +124,7 @@ def verify(name):
               "all_passed": all(checks.values()), "checks": checks,
               "isolation": "Clean source copy; unique disposable Compose project/volume and free loopback port; synthetic seed and schemas only",
               "human_review": "pending", "fresh_visual_test": False, "capacity_500_verified": False,
+              "compose_file": compose_file,
               "platform_verified": "Windows PowerShell launcher; Bash syntax locally; Linux execution covered by GitHub CI"}
     evidence = ROOT / "docs/08-testing/evidence" / (name + ".json")
     with evidence.open("x", encoding="utf-8") as output:
@@ -127,4 +136,6 @@ def verify(name):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", required=True)
-    raise SystemExit(verify(parser.parse_args().name))
+    parser.add_argument("--shared", action="store_true")
+    args = parser.parse_args()
+    raise SystemExit(verify(args.name, args.shared))

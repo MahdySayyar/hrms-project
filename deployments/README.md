@@ -34,6 +34,23 @@ docker compose -f deployments/compose.capacity.yaml start
 
 Dockerfile فقط requirements، app، templates، static و entrypoint را کپی می‌کند. .env، .runtime، tests، docs و artifacts از build کنار گذاشته شده‌اند. core/regression با منابع تستی که موقتاً جدا mount می‌شوند و schema disposable اجرا می‌شوند؛ secrets فقط داخل فرایند خوانده می‌شوند و در خروجی آزمون نیستند.
 
+## فعال‌کردن نشست مشترک
+
+برای اجرای چهار وب با Redis مشترک، از ریشهٔ پروژه در ویندوز `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/start-docker.ps1 -SharedSessions` و در macOS/Linux فرمان `bash scripts/start-docker.sh 4 shared` را بزنید. Redis فقط در شبکهٔ داخلی Compose اجرا می‌شود و راه‌انداز رمز مستقل آن را در `.runtime` می‌سازد. در این حالت درخواست‌ها بدون چسبندگی مرورگر بین وب‌ها پخش می‌شوند.
+
+برای تغییر حالت در نصب فعلی، ابتدا `docker compose -f deployments/compose.capacity.yaml down` را اجرا کنید تا کانتینرهای قبلی متوقف شوند و volume PostgreSQL حفظ شود. سپس راه‌انداز نشست مشترک را بزنید. برای توقف این حالت از `docker compose -f deployments/compose.shared.yaml stop` استفاده کنید. کاربران پس از تغییر حالت یک بار دوباره وارد می‌شوند.
+
+## اجرای وب روی دستگاه‌های مستقل
+
+این الگو برای استقرار آینده است. هر دستگاه همان image وب از یک نسخهٔ پروژه را اجرا می‌کند. یک بار روی وب اول `python entrypoint.py` را برای آماده‌سازی پایگاه اجرا کنید. وب‌های دیگر با `python entrypoint.py --web-only` راه می‌افتند و seed اجرا نمی‌کنند. فایل‌های رمز را روی هر میزبان به‌صورت خصوصی mount کنید و مسیر آن‌ها را در `DB_PASSWORD_FILE`، `ADMIN_PASSWORD_FILE` (الزام فعلی entrypoint) و `HRMS_REDIS_PASSWORD_FILE` قرار دهید.
+
+- `DB_HOST` را نشانی خصوصی PostgreSQL و `DB_PORT`، `DB_NAME` و `DB_USER` را مشخصات نصب مشترک بگذارید.
+- برای هر وب `HRMS_SESSION_BACKEND=redis`، `HRMS_REDIS_HOST` و `HRMS_REDIS_PORT` را روی سرویس مشترک تنظیم کنید. همهٔ وب‌های همان سامانه باید `HRMS_REDIS_NAMESPACE` و `SESSION_HOURS` یکسان داشته باشند. برای Redis با TLS، `HRMS_REDIS_TLS=true` را تنظیم کنید.
+- `INSTANCE_ID` برای هر وب یکتا باشد. دسترسی به پورت 8000 وب‌ها فقط از پراکسی ورودی روی شبکهٔ خصوصی باشد. PostgreSQL و Redis روی اینترنت منتشر نشوند.
+- پراکسی ورودی بیرونی با TLS، فهرست upstream صریح از نشانی خصوصی وب‌ها و بررسی `/health` داشته باشد. `COOKIE_SECURE=true` روی وب‌ها تنظیم شود. درخواست‌های نوشتنی را در پراکسی خودکار تکرار نکنید. نشست مشترک امکان توزیع درخواست بدون affinity را می‌دهد.
+
+اجرای این الگو روی چند میزبان فیزیکی و بازیابی پس از خرابی PostgreSQL یا Redis هنوز آزمایش نشده است. Redis این Compose نشست را روی دیسک ذخیره نمی‌کند. پس از راه‌اندازی مجدد Redis، کاربران دوباره وارد می‌شوند.
+
 [ADR-10](../docs/05-architecture/ADRs/ADR-10-docker-compose-baseline.md) طرح قبل از کد را ثبت می‌کند. این baseline، ظرفیت 500 کاربر یا HA نیست؛ آزمایش مشترک وب+DB و monitoring هنوز انجام نشده‌اند. create_all و seed موجود migration نسخه‌دار نیستند. تاریخ‌ها میلادی و حقوق آموزشی‌اند.
 
 [گزارش اجرای واقعی](../docs/05-architecture/experiments/EXP-DOCKER-COMPOSE.md): دو سرویس healthy، 41 آزمون اصلی، 98 بررسی رگرسیون و حفظ marker ساختگی پس از stop/start. verifier موقت و schema آزمون حذف شدند؛ دو سرویس کاربردی روشن مانده‌اند. آزمون‌ها با نام جدید قابل تکرارند:

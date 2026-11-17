@@ -9,6 +9,15 @@ current_audit:
   topology_change: None; single-process baseline and process-local sessions preserved
   data_migration: None
 deployment: single native FastAPI process + local PostgreSQL
+shared_login_plan:
+  recorded_at: '2026-11-17'
+  decisions: [ADR-18, ADR-19]
+  status: specified_before_implementation_pending_experiments
+  model: models/design/shared-login.mmd
+  password: Argon2id m19456 t2 p1 plus unchanged legacy PBKDF2 verification and successful-login-only migration
+  sessions: Bounded Redis pool, token digest keys, TTL, conditional rotation, cross-worker logout; no local fallback
+  deployment: Four existing web processes and one shared store in isolated lab before promotion; external server configuration only
+  hardware: User has only this computer; independent physical servers and full HA are not claimed
 docker_login_capacity:
   recorded_at: '2026-11-17'
   provenance: ADR-15/16/17 and FR/BR/UC/design were specified before each corresponding implementation; current deployment promoted after successful isolated login experiment

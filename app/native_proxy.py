@@ -1,4 +1,4 @@
-"""Explicit native/Compose capacity proxy with browser affinity and process-local sessions."""
+"""Explicit proxy: legacy browser affinity or shared-session per-request round robin."""
 import json
 import os
 import asyncio
@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse, Response
 
 def configured_backends(encoded, mode="native"):
     backends = json.loads(encoded)
-    if mode not in {"native", "compose"} or not isinstance(backends, list) or not 1 <= len(backends) <= 8:
+    if mode not in {"native", "compose", "shared"} or not isinstance(backends, list) or not 1 <= len(backends) <= 8:
         raise RuntimeError("Choose 1..8 explicit native or Compose proxy backends.")
     for url in backends:
         parsed = urlsplit(url)
@@ -38,7 +38,7 @@ HOP_HEADERS = {b"connection", b"keep-alive", b"proxy-authenticate", b"proxy-auth
 async def lifespan(app):
     async with aiohttp.ClientSession(trust_env=False,
         timeout=aiohttp.ClientTimeout(total=PROXY_TIMEOUT, connect=2),
-        connector=(aiohttp.TCPConnector(limit=512, force_close=True) if PROXY_MODE == "compose"
+        connector=(aiohttp.TCPConnector(limit=512, force_close=True) if PROXY_MODE in {"compose", "shared"}
                    else aiohttp.TCPConnector(limit=512, keepalive_timeout=15)),
         cookie_jar=aiohttp.DummyCookieJar(), auto_decompress=False) as client:
         # Pinned aiohttp 3.13.2 retries persistent connections for idempotent methods.
@@ -62,11 +62,11 @@ def forwarded_headers(raw_headers):
 
 def assignment(request):
     value = request.cookies.get(AFFINITY_COOKIE, "")
-    if value.isascii() and value.isdigit() and len(value) == 1 and int(value) < len(BACKENDS):
+    if PROXY_MODE != "shared" and value.isascii() and value.isdigit() and len(value) == 1 and int(value) < len(BACKENDS):
         return int(value), False
     index = request.app.state.next_worker
     request.app.state.next_worker = (index + 1) % len(BACKENDS)
-    return index, True
+    return index, PROXY_MODE != "shared"
 
 
 def affinity(response, index, new):
@@ -81,7 +81,7 @@ def affinity(response, index, new):
 async def instance(request: Request):
     index, new = assignment(request)
     return affinity(JSONResponse({"instance": os.getenv("INSTANCE_ID", "hrms-local-1"),
-        "web_processes": len(BACKENDS), "session_storage": "process-local with browser affinity"}), index, new)
+        "web_processes": len(BACKENDS), "session_storage": "shared Redis" if PROXY_MODE == "shared" else "process-local with browser affinity"}), index, new)
 
 
 @app.api_route("/{path:path}", methods=["GET", "POST", "HEAD", "PUT", "PATCH", "DELETE", "OPTIONS"])

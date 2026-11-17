@@ -16,7 +16,7 @@ paths:
             application/json:
               schema: {}
         '503':
-          description: PostgreSQL connection unavailable
+          description: PostgreSQL or configured shared session storage unavailable
           content:
             application/json:
               schema:
@@ -47,6 +47,12 @@ paths:
             text/html:
               schema:
                 type: string
+        '503':
+          description: Shared session storage unavailable
+          content:
+            text/plain:
+              schema:
+                type: string
       x-code-symbol: app/main.py#login_page
       x-hrms-contracts:
       - id: API-01
@@ -56,6 +62,8 @@ paths:
         - 200
         - 303
         auth: optional
+        errors:
+        - 503
         side_effect: Issue an anonymous cookie and CSRF if absent
     post:
       summary: Login
@@ -82,9 +90,13 @@ paths:
         '500':
           description: Unexpected persistence/server failure
         '503':
-          description: Documented browser error 503; see x-hrms-contracts conditions
+          description: Shared session storage unavailable or private password queue
+            full
           content:
             text/html:
+              schema:
+                type: string
+            text/plain:
               schema:
                 type: string
       x-code-symbol: app/main.py#login
@@ -165,6 +177,12 @@ paths:
                 type: string
         '500':
           description: Unexpected persistence/server failure
+        '503':
+          description: Shared session storage unavailable
+          content:
+            text/plain:
+              schema:
+                type: string
       x-code-symbol: app/main.py#logout
       security:
       - SessionCookie: []
@@ -203,6 +221,7 @@ paths:
         errors:
         - 403
         - 500
+        - 503
         redirect: /login
   /:
     get:
@@ -2401,5 +2420,5 @@ components:
       type: apiKey
       in: cookie
       name: hrms_session
-      description: Process-local opaque session; POST additionally requires a session-bound
-        CSRF form token
+      description: Opaque session stored in process memory or shared Redis; POST additionally
+        requires a session-bound CSRF form token

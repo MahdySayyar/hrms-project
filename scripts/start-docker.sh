@@ -2,10 +2,11 @@
 set -euo pipefail
 hrms_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 hrms_workers="${1:-4}"
-case "$hrms_workers" in
-  4) hrms_compose="$hrms_root/deployments/compose.capacity.yaml" ;;
-  1) hrms_compose="$hrms_root/deployments/compose.yaml" ;;
-  *) echo 'Choose 1 or 4 web workers.' >&2; exit 1 ;;
+case "$hrms_workers:${2:-}" in
+  4:) hrms_compose="$hrms_root/deployments/compose.capacity.yaml" ;;
+  4:shared) hrms_compose="$hrms_root/deployments/compose.shared.yaml" ;;
+  1:) hrms_compose="$hrms_root/deployments/compose.yaml" ;;
+  *) echo 'Choose 1, 4, or 4 shared.' >&2; exit 1 ;;
 esac
 if ! command -v docker >/dev/null 2>&1; then
   echo 'Install and start Docker with Compose v2, then try again.' >&2

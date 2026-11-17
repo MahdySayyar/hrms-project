@@ -1,0 +1,11 @@
+flowchart LR
+  Browser["Browser: opaque cookie + CSRF"] --> Proxy["Explicit round-robin proxy"]
+  Proxy --> W1["Web 1: bounded private KDF"]
+  Proxy --> W2["Web 2..4: bounded private KDF"]
+  W1 --> Sessions[("Shared Redis: token digest + TTL")]
+  W2 --> Sessions
+  W1 --> DB[("PostgreSQL: account revalidation + audit")]
+  W2 --> DB
+  Legacy["Legacy PBKDF2 verifier"] --> W1
+  New["Argon2id m19456 t2 p1"] --> W2
+  Failure["Redis failure: Persian 503; no local fallback"] --> Sessions

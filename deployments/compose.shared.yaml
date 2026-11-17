@@ -1,0 +1,131 @@
+name: hrms-docker
+
+x-web: &web
+  image: hrms-web:docker-baseline
+  restart: unless-stopped
+  environment: &web-env
+    DB_HOST: db
+    DB_PORT: "5432"
+    DB_NAME: hrms_docker
+    DB_USER: hrms_docker
+    DB_PASSWORD_FILE: /run/secrets/db_password
+    ADMIN_PASSWORD_FILE: /run/secrets/admin_password
+    ADMIN_USERNAME: hradmin
+    ADMIN_DISPLAY_NAME: مدیر نمونهٔ Docker
+    INSTANCE_ID: hrms-docker-web-1
+    COOKIE_SECURE: "false"
+    HRMS_THREADS: "8"
+    HRMS_DB_POOL_SIZE: "5"
+    HRMS_DB_MAX_OVERFLOW: "5"
+    HRMS_PASSWORD_WORKERS: "1"
+    HRMS_PASSWORD_PENDING: "512"
+    HRMS_SESSION_BACKEND: redis
+    HRMS_REDIS_HOST: redis
+    HRMS_REDIS_PASSWORD_FILE: /run/secrets/redis_password
+  secrets: [db_password, admin_password, redis_password]
+  networks: [backend]
+  healthcheck:
+    test: [CMD, python, -c, "import urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3); assert r.status == 200"]
+    interval: 10s
+    timeout: 5s
+    retries: 12
+    start_period: 30s
+  security_opt: ["no-new-privileges:true"]
+  cap_drop: [ALL]
+
+services:
+  init-secrets:
+    extends:
+      file: compose.yaml
+      service: init-secrets
+    volumes:
+      - ../scripts/init_shared_secrets_20261117.py:/bootstrap/scripts/init_shared_secrets_20261117.py:ro
+    command: [python, /bootstrap/scripts/init_shared_secrets_20261117.py]
+  db:
+    extends:
+      file: compose.yaml
+      service: db
+  redis:
+    image: redis:7.4.7-bookworm
+    restart: unless-stopped
+    user: redis
+    command: [sh, /bootstrap/redis-start.sh]
+    volumes: ["./redis/start.sh:/bootstrap/redis-start.sh:ro"]
+    secrets: [redis_password]
+    networks: [backend]
+    healthcheck:
+      test: [CMD-SHELL, "REDISCLI_AUTH=$$(cat /run/secrets/redis_password) redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+  web:
+    <<: *web
+    build:
+      context: ..
+      dockerfile: deployments/app/Dockerfile
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  web2:
+    <<: *web
+    environment:
+      <<: *web-env
+      INSTANCE_ID: hrms-docker-web-2
+    command: [python, entrypoint.py, --web-only]
+    depends_on:
+      web: {condition: service_healthy}
+  web3:
+    <<: *web
+    environment:
+      <<: *web-env
+      INSTANCE_ID: hrms-docker-web-3
+    command: [python, entrypoint.py, --web-only]
+    depends_on:
+      web: {condition: service_healthy}
+  web4:
+    <<: *web
+    environment:
+      <<: *web-env
+      INSTANCE_ID: hrms-docker-web-4
+    command: [python, entrypoint.py, --web-only]
+    depends_on:
+      web: {condition: service_healthy}
+  proxy:
+    image: hrms-web:docker-baseline
+    command: [python, -m, uvicorn, "app.native_proxy:app", --host, 0.0.0.0, --port, "8000"]
+    restart: unless-stopped
+    environment:
+      HRMS_PROXY_MODE: shared
+      HRMS_PROXY_TIMEOUT: "180"
+      HRMS_NATIVE_BACKENDS: '["http://web:8000","http://web2:8000","http://web3:8000","http://web4:8000"]'
+      INSTANCE_ID: hrms-docker-1
+      COOKIE_SECURE: "false"
+    depends_on:
+      web: {condition: service_healthy}
+      web2: {condition: service_healthy}
+      web3: {condition: service_healthy}
+      web4: {condition: service_healthy}
+    ports: ["127.0.0.1:${HRMS_HTTP_PORT:-8001}:8000"]
+    networks: [backend]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3); assert r.status == 200"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+
+networks:
+  backend:
+volumes:
+  postgres_data:
+secrets:
+  db_password:
+    file: ../.runtime/docker-hrms-secrets/db_password
+  admin_password:
+    file: ../.runtime/docker-hrms-secrets/admin_password
+  redis_password:
+    file: ../.runtime/docker-hrms-secrets/redis_password

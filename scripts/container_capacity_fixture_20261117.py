@@ -23,7 +23,7 @@ def configure(create=False):
         owner = create_engine(url)
         try:
             with owner.begin() as connection:
-                connection.execute(CreateSchema(schema))
+                connection.execute(CreateSchema(schema, if_not_exists=True))
         finally:
             owner.dispose()
     os.environ["DATABASE_URL"] = url.update_query_dict({"options": "-csearch_path=" + schema}).render_as_string(hide_password=False)
@@ -32,8 +32,7 @@ def configure(create=False):
 def seed(worker=False):
     configure(create=not worker)
     if worker:
-        os.environ.pop("ADMIN_PASSWORD", None)
-        os.execv(sys.executable, [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"])
+        return
     from app.database import Admin, Base, Branch, Employee, Position, SessionLocal, Unit, engine
     from app import hr_models
     from app.security import hash_password
@@ -42,8 +41,12 @@ def seed(worker=False):
     employees = int(os.environ["HRMS_CAPACITY_EMPLOYEES"])
     if not 1 <= users <= 500 or not users < employees <= 10000:
         raise RuntimeError("Invalid synthetic fixture bounds")
-    password_hash = hash_password(os.environ["ADMIN_PASSWORD"])
     with SessionLocal.begin() as db:
+        existing = db.scalar(select(func.count()).select_from(Admin))
+        if existing:
+            if existing != users + 1 or db.scalar(select(func.count()).select_from(Employee)) != employees:
+                raise RuntimeError("Unexpected contents in the disposable fixture schema")
+            return
         branch = Branch(name="شعبهٔ ساختگی آزمون ظرفیت")
         position = Position(title="سمت ساختگی آزمون ظرفیت", description="Synthetic lab only")
         db.add_all([branch, position])
@@ -52,13 +55,12 @@ def seed(worker=False):
         db.add(unit)
         db.flush()
         db.execute(insert(Admin), [{"username": f"capacity-{i:04d}", "display_name": f"حساب آزمایش {i:04d}",
-            "password_hash": password_hash, "role": "hr", "is_active": True} for i in range(users + 1)])
+            "password_hash": hash_password(os.environ["ADMIN_PASSWORD"]), "role": "hr", "is_active": True}
+            for i in range(users + 1)])
         db.execute(insert(Employee), [{"employee_code": f"CAP-{i:06d}", "first_name": "آزمون", "last_name": "ساختگی",
             "national_id": "9900000000", "phone": "09000000000", "email": "capacity@example.invalid",
             "hire_date": date(2025, 1, 1), "branch_id": branch.id, "unit_id": unit.id, "position_id": position.id,
             "contract_type": "دائم", "active": True} for i in range(1, employees + 1)])
-    os.environ.pop("ADMIN_PASSWORD", None)
-    os.execv(sys.executable, [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"])
 
 
 def inspect():
@@ -74,4 +76,9 @@ def inspect():
 
 
 if __name__ == "__main__":
-    inspect() if "--inspect" in sys.argv else seed(worker="--worker" in sys.argv)
+    if "--inspect" in sys.argv:
+        inspect()
+    else:
+        seed(worker="--worker" in sys.argv)
+        os.environ.pop("ADMIN_PASSWORD", None)
+        os.execv(sys.executable, [sys.executable, "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"])

@@ -16,7 +16,10 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Unit, engine
 from .access import audit, check_scope, current_user, render, require_admin, require_hr, scoped, scoped_employee, sync_assignment
 from .security import (COOKIE_NAME, check_csrf, current_session, discard_session,
-                       new_session, require_login, set_session_cookie, verify_password)
+                       hash_password, new_session, password_needs_upgrade, require_login,
+                       rotate_session, set_session_cookie, verify_password)
+from . import security
+from .session_store import SessionStoreUnavailable
 from .pagination import PageRequest, paginate
 from .login_capacity import PasswordCapacity, PasswordCapacityFull
 
@@ -61,7 +64,7 @@ async def read_form(request: Request) -> dict:
 async def protected_form(request: Request) -> dict:
     await run_in_threadpool(require_login, request)
     form = await read_form(request)
-    check_csrf(request, form)
+    await run_in_threadpool(check_csrf, request, form)
     return form
 
 
@@ -86,13 +89,21 @@ def http_error(request: Request, exc: HTTPException):
     return render(request, "error.html", exc.status_code, title="خطا", message=message)
 
 
+@app.exception_handler(SessionStoreUnavailable)
+def session_error(_request, _exc):
+    from fastapi.responses import PlainTextResponse
+    return PlainTextResponse("سامانهٔ ورود موقتاً در دسترس نیست؛ کمی بعد دوباره تلاش کنید.",
+        status_code=503, headers={"Retry-After": "2", "Cache-Control": "no-store"})
+
+
 @app.get("/health")
 def health():
     try:
         with engine.connect() as connection:
             connection.execute(text("SELECT 1"))
+        security.session_store.ping()
         return {"status": "ok"}
-    except SQLAlchemyError:
+    except (SQLAlchemyError, SessionStoreUnavailable):
         from fastapi.responses import JSONResponse
         return JSONResponse({"status": "unavailable"}, status_code=503)
 
@@ -117,27 +128,25 @@ def login_page(request: Request):
 
 @app.post("/login")
 async def login(request: Request, form: dict = Depends(read_form)):
-    check_csrf(request, form)
+    await run_in_threadpool(check_csrf, request, form)
     username = normalized(form.get("username"))
     password = str(form.get("password", ""))
     account = await run_in_threadpool(login_account_snapshot, username)
     valid = False
+    replacement_hash = None
     if account and account.is_active:
         try:
-            valid = await password_capacity.verify(verify_password, password, account.password_hash)
+            valid, replacement_hash = await password_capacity.verify(verify_login_password, password, account.password_hash)
         except PasswordCapacityFull:
-            response = render(request, "login.html", 503, title="ورود مدیر",
+            response = await run_in_threadpool(render, request, "login.html", 503, title="ورود مدیر",
                 errors=["سامانه در حال پردازش ورود کاربران است؛ کمی بعد دوباره تلاش کنید."], username=username)
             response.headers["Retry-After"] = "2"
             return response
     if not valid:
-        return render(request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
-    check_csrf(request, form)
-    admin_id = await run_in_threadpool(commit_verified_login, request, account.id, account.password_hash)
-    if admin_id is None:
-        return render(request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
-    discard_session(request)
-    token, _ = new_session(admin_id)
+        return await run_in_threadpool(render, request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
+    token = await run_in_threadpool(commit_verified_login, request, form, account.id, account.password_hash, replacement_hash)
+    if token is None:
+        return await run_in_threadpool(render, request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
     response = redirect("/")
     set_session_cookie(response, token)
     return response
@@ -148,15 +157,28 @@ def login_account_snapshot(username):
         return db.execute(select(Admin.id, Admin.password_hash, Admin.is_active).where(Admin.username == username)).first()
 
 
-def commit_verified_login(request, account_id, expected_hash):
+def verify_login_password(password, stored_hash):
+    valid = verify_password(password, stored_hash)
+    return valid, hash_password(password) if valid and password_needs_upgrade(stored_hash) else None
+
+
+def commit_verified_login(request, form, account_id, expected_hash, replacement_hash):
     with SessionLocal() as db:
         admin = db.scalar(select(Admin).where(Admin.id == account_id).with_for_update())
         if not admin or not admin.is_active or admin.password_hash != expected_hash:
             return None
+        check_csrf(request, form)
         admin_id = admin.id
+        if replacement_hash is not None:
+            admin.password_hash = replacement_hash
         audit(db, request, "login", "admins", admin_id, actor_id=admin_id)
-        db.commit()
-        return admin_id
+        token = rotate_session(request, admin_id)
+        try:
+            db.commit()
+        except BaseException:
+            security.session_store.delete(token)
+            raise
+        return token
 
 
 @app.post("/logout")

@@ -5,6 +5,7 @@ notes:
 - Browser operations return HTML, redirects or CSV; they are not JSON CRUD endpoints
 - POST is form-urlencoded or multipart with session-bound csrf_token
 - Missing session redirects to login with 303 for protected routes
+- Shared-session dependency failure returns a Persian plain-text 503 on routes that access the session
 - FastAPI path/query validation can additionally return framework 422
 - Unexpected persistence failure is a server 500; this is not a new typed JSON API
 - All routes are inventoried by export_engineering_artifacts.py; generic forms are
@@ -19,6 +20,8 @@ contracts:
     - 200
     - 303
     auth: optional
+    errors:
+    - 503
     side_effect: Issue an anonymous cookie and CSRF if absent
   - method: POST
     path: /login
@@ -54,6 +57,7 @@ contracts:
     errors:
     - 403
     - 500
+    - 503
     redirect: /login
 - id: API-02
   use_case: UC-02

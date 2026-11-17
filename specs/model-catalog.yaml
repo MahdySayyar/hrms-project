@@ -2,6 +2,12 @@ id: MODEL-CAT-01
 version: 1
 status: reconstructed_current_behavior_except_declared_boundary_target_pending_human_review
 models:
+- id: SEQ-LOGIN-SHARED-01
+  name: Password migration and shared-session rotation
+  path: models/design/shared-login.mmd
+  use_cases:
+  - UC-01
+  provenance: Design from ADR-18 and ADR-19; human review pending
 - id: READ-CAT-01
   name: Bounded catalog reference reads
   path: models/design/read-catalog.mmd

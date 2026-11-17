@@ -88,7 +88,8 @@ steps:
     status: pending
   - id: EXP-05
     change: Reproduce local-session loss, then introduce shared Redis sessions
-    status: pending
+    status: verified_on_one_docker_host_pending_human_review
+    evidence: docs/05-architecture/experiments/EXP-SHARED-SESSIONS-20261117.md
   - id: EXP-06
     change: Measured cache and read-replica experiment, including stale-data checks
     status: pending

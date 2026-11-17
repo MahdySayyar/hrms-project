@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-16T23:04:02.144256+00:00",
+  "captured_at": "2026-11-17T06:05:55.361997+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -25,7 +25,7 @@
     },
     {
       "path": "app/main.py",
-      "sha256": "7c00f5fa25f7ccb298d78d55036a8fedb1970eb8f9624090f520b3e68ec1cc9a"
+      "sha256": "89704ff608cc2e4638845fde23c52e36ea9b2a0121a962eaa929ee03b2549bc3"
     },
     {
       "path": "app/module_forms.py",
@@ -33,11 +33,11 @@
     },
     {
       "path": "app/modules.py",
-      "sha256": "2026fa4de1473b97c1023fc21e9f4a13d3935a3b68d79f6a15c0e1acde3b42f2"
+      "sha256": "d518253aacea6bac27787542359b8462a25d837a1a3919d1d90e49016e93295a"
     },
     {
       "path": "app/native_proxy.py",
-      "sha256": "4bf31a6314b2ffb901d3ea675b1eb20f285eca824141bade7a1ef61a9b233760"
+      "sha256": "8643880d73efa5c5aedf172e966a1cee3af868f30f70228ece6a3c87769d6d43"
     },
     {
       "path": "app/pagination.py",
@@ -61,15 +61,19 @@
     },
     {
       "path": "app/security.py",
-      "sha256": "3eecae166ba5e720fc4920d44f5d092e8b7b78d4b0fbc9da89f845b3d398b96d"
+      "sha256": "96488c73dfb8fb8f68fd1862f5cfca86664b71b5ebb4aac60c197738b1707fb7"
     },
     {
       "path": "app/seed.py",
       "sha256": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
     },
     {
+      "path": "app/session_store.py",
+      "sha256": "02f81e7f24d641b525c81eb0ac2d7615ddfa4c0cf774118c0923a6c679c7d55e"
+    },
+    {
       "path": "specs/architecture.yaml",
-      "sha256": "15d2cfe2dfb394e93d733f2c130510826be2cca52b9f98b819484d38d4417188"
+      "sha256": "c37167f39223f14a8c6cdf1299c05d5ecf576e3a356c60709353345c2a47bc9b"
     },
     {
       "path": "specs/functional-specifications.yaml",
@@ -77,19 +81,19 @@
     },
     {
       "path": "specs/http-contracts.yaml",
-      "sha256": "d6297b76cbc59158dd301b6852118c399e2184205ccb130d913d8eda8e2defce"
+      "sha256": "0be788b763b743e24a9ff1f608bca1e575ba6e7d1c0bf1c420a702d209e754e0"
     },
     {
       "path": "specs/model-catalog.yaml",
-      "sha256": "bb05a71c9e1a74f379d57bd91fb6f219bc20b944288082bb6ed31afe3e4d92aa"
+      "sha256": "f900bfc7aebc81d6beb33e99bff4c6caed97a8eb2027ed8adf681d3d93113c26"
     },
     {
       "path": "specs/requirements.yaml",
-      "sha256": "554af3e634884d5860430d9c09454f42d85132e27081035b9d8f143745a1fe84"
+      "sha256": "3479b3fa6231279b901de8b34f77355bfcb92cae385dcd3022e82662452488b0"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "6dcf9a12448d718d0422988eeb7c86ac1df4fd328186c5fb869d8e26e8e91afa"
+      "sha256": "a171c5ee0dc64bcae6703ad2077a9d273af439b814571fcf98829855b05a0b13"
     },
     {
       "path": "specs/UC-02.yaml",
@@ -126,6 +130,10 @@
     {
       "path": "tests/test_docker_entrypoint.py",
       "sha256": "69812bd7060103ca5c2008c74dd1a02c0256501e1b6491eaae402c2b5da764ba"
+    },
+    {
+      "path": "tests/test_fast_login.py",
+      "sha256": "d0ac4fa3b7fcacc4be41b5da58b8d43a88ff138517625d37340b0d80883f3204"
     },
     {
       "path": "tests/test_login_capacity.py",

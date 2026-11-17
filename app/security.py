@@ -1,45 +1,60 @@
-"""رمزهای هش‌شده و نشست‌های حافظه‌ای برای اجرای تک‌پردازه‌ای."""
+"""رمزهای استاندارد و نشست opaque در حافظه یا store مشترک صریح."""
 import hashlib
 import hmac
 import os
 import secrets
 import threading
 import time
-from dataclasses import dataclass
+
+from argon2 import PasswordHasher, Type, extract_parameters
+from argon2.exceptions import InvalidHashError, VerificationError
 
 from fastapi import HTTPException, Request
+from .session_store import Session, configured_store
 
 COOKIE_NAME = "hrms_session"
 SESSION_SECONDS = int(os.getenv("SESSION_HOURS", "8")) * 3600
 COOKIE_SECURE = os.getenv("COOKIE_SECURE", "false").lower() == "true"
+PASSWORD_HASHER = PasswordHasher(memory_cost=19456, time_cost=2, parallelism=1,
+    salt_len=16, hash_len=32, type=Type.ID)
 
 
 def hash_password(password: str) -> str:
-    salt = secrets.token_hex(16)
-    digest = hashlib.pbkdf2_hmac("sha256", password.encode(), bytes.fromhex(salt), 600_000)
-    return f"pbkdf2_sha256$600000${salt}${digest.hex()}"
+    return PASSWORD_HASHER.hash(password)
 
 
 def verify_password(password: str, stored: str) -> bool:
+    if not isinstance(password, str) or not isinstance(stored, str):
+        return False
     try:
+        if stored.startswith("$argon2id$"):
+            parameters = extract_parameters(stored)
+            if parameters.type != Type.ID or parameters.version != 19 \
+                    or not 1 <= parameters.time_cost <= 10 or not 8 <= parameters.memory_cost <= 262144 \
+                    or not 1 <= parameters.parallelism <= 16:
+                return False
+            return PASSWORD_HASHER.verify(stored, password)
         algorithm, iterations, salt, expected = stored.split("$")
         if algorithm != "pbkdf2_sha256":
             return False
         digest = hashlib.pbkdf2_hmac("sha256", password.encode(), bytes.fromhex(salt), int(iterations))
         return hmac.compare_digest(digest.hex(), expected)
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, InvalidHashError, VerificationError):
         return False
 
 
-@dataclass
-class Session:
-    admin_id: int | None
-    csrf_token: str
-    expires_at: float
+def password_needs_upgrade(stored: str) -> bool:
+    if stored.startswith("pbkdf2_sha256$"):
+        return True
+    parameters = extract_parameters(stored)
+    # Stronger stored parameters are not downgraded merely because they differ.
+    return parameters.memory_cost < 19456 or parameters.time_cost < 2 \
+        or parameters.hash_len < 32 or parameters.salt_len < 16
 
 
 sessions: dict[str, Session] = {}
 session_lock = threading.Lock()
+session_store = configured_store(sessions, session_lock)
 
 
 def new_session(admin_id: int | None = None) -> tuple[str, Session]:
@@ -47,27 +62,32 @@ def new_session(admin_id: int | None = None) -> tuple[str, Session]:
     lifetime = SESSION_SECONDS if admin_id is not None else 1800
     token = secrets.token_urlsafe(32)
     session = Session(admin_id, secrets.token_urlsafe(32), now + lifetime)
-    with session_lock:
-        for old_token in list(sessions):
-            if sessions[old_token].expires_at <= now:
-                del sessions[old_token]
-        sessions[token] = session
+    session_store.put(token, session)
     return token, session
 
 
 def current_session(request: Request) -> Session | None:
     token = request.cookies.get(COOKIE_NAME, "")
-    with session_lock:
-        session = sessions.get(token)
-        if session and session.expires_at > time.time():
-            return session
-        sessions.pop(token, None)
-    return None
+    session = session_store.get(token)
+    if session is not None:
+        snapshot = getattr(request.state, "session_snapshot", None)
+        # Preserve same-request identity only after rereading the store for revocation.
+        if snapshot == session:
+            return snapshot
+        request.state.session_snapshot = session
+    return session
 
 
 def discard_session(request: Request) -> None:
-    with session_lock:
-        sessions.pop(request.cookies.get(COOKIE_NAME, ""), None)
+    session_store.delete(request.cookies.get(COOKIE_NAME, ""))
+
+
+def rotate_session(request: Request, admin_id: int) -> str:
+    token = secrets.token_urlsafe(32)
+    session = Session(admin_id, secrets.token_urlsafe(32), time.time() + SESSION_SECONDS)
+    if not session_store.rotate(request.cookies.get(COOKIE_NAME, ""), token, session):
+        raise HTTPException(403, "اعتبار فرم منقضی شده است؛ صفحه را تازه کنید و دوباره تلاش کنید.")
+    return token
 
 
 def set_session_cookie(response, token: str, authenticated: bool = True) -> None:

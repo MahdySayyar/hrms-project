@@ -32,7 +32,7 @@ def audit():
         if password:
             secret_values.append(password)
     folder = ROOT / ".runtime/docker-hrms-secrets"
-    for name in ("db_password", "admin_password"):
+    for name in ("db_password", "admin_password", "redis_password"):
         if (folder / name).exists():
             secret_values.append((folder / name).read_text(encoding="utf-8").strip())
     secrets = [value.encode("utf-8") for value in secret_values if len(value) >= 12 and not value.startswith("CHANGE_ME")]

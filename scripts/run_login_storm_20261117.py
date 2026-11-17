@@ -19,6 +19,8 @@ from pathlib import Path
 import psutil
 import yaml
 
+from run_shared_session_lab_20261117 import enable_shared_sessions
+
 ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -36,7 +38,10 @@ def run(args):
     for folder in ("app", "templates", "static", "deployments"):
         shutil.copytree(ROOT / folder, source / folder, ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     (source / "scripts").mkdir()
-    for name in ("init_docker_secrets.py", "container_capacity_fixture_20261117.py"):
+    scripts = ["init_docker_secrets.py", "container_capacity_fixture_20261117.py"]
+    if args.shared:
+        scripts.append("init_shared_secrets_20261117.py")
+    for name in scripts:
         shutil.copy2(ROOT / "scripts" / name, source / "scripts" / name)
     for name in ("requirements-lock.txt", ".dockerignore"):
         shutil.copy2(ROOT / name, source / name)
@@ -55,7 +60,10 @@ def run(args):
     web.update(image="hrms-web:" + args.name, command=["python", "/lab/bootstrap.py"],
         volumes=["../scripts/container_capacity_fixture_20261117.py:/lab/bootstrap.py:ro"])
     web["environment"].update(INSTANCE_ID=marker, HRMS_CAPACITY_SCHEMA="hrms_test_" + uuid.uuid4().hex,
-        HRMS_CAPACITY_USERS=str(args.users), HRMS_CAPACITY_EMPLOYEES="10000")
+        HRMS_CAPACITY_USERS=str(args.users), HRMS_CAPACITY_EMPLOYEES="10000",
+        HRMS_PASSWORD_WORKERS=str(args.password_workers))
+    if args.shared:
+        enable_shared_sessions(config, source, args.name)
     if args.web_workers == 4:
         ports = web.pop("ports")
         web["environment"].update(HRMS_THREADS="8", HRMS_DB_POOL_SIZE="5", HRMS_DB_MAX_OVERFLOW="5")
@@ -66,7 +74,7 @@ def run(args):
             additional["depends_on"] = {"web": {"condition": "service_healthy"}}
             config["services"][f"web{index}"] = additional
         config["services"]["proxy"] = {"image": web["image"], "command": ["python", "-m", "uvicorn", "app.native_proxy:app", "--host", "0.0.0.0", "--port", "8000"],
-            "environment": {"HRMS_PROXY_MODE": "compose", "HRMS_PROXY_TIMEOUT": "180", "INSTANCE_ID": marker,
+            "environment": {"HRMS_PROXY_MODE": "shared" if args.shared else "compose", "HRMS_PROXY_TIMEOUT": "180", "INSTANCE_ID": marker,
                 "HRMS_NATIVE_BACKENDS": json.dumps(["http://web:8000", "http://web2:8000", "http://web3:8000", "http://web4:8000"])},
             "networks": ["backend"], "ports": ports, "healthcheck": copy.deepcopy(web["healthcheck"]),
             "depends_on": {name: {"condition": "service_healthy"} for name in ("web", "web2", "web3", "web4")}}
@@ -75,7 +83,9 @@ def run(args):
     started = datetime.now(timezone.utc)
     report = {"started_at": started.isoformat(), "source_parent_commit": subprocess.check_output(
         ["git", "-c", f"safe.directory={ROOT.as_posix()}", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
-        "captured_source_files": captured, "topology": f"{args.web_workers} Docker Uvicorn processes and PostgreSQL; explicit affinity proxy for four workers; fresh disposable schema, synthetic accounts only",
+        "captured_source_files": captured,
+        "topology": f"{args.web_workers} Docker Uvicorn processes, PostgreSQL and {'Redis shared sessions' if args.shared else 'memory sessions'}; fresh disposable schema, synthetic accounts only",
+        "shared_sessions": args.shared, "password_workers_per_web": args.password_workers,
         "users_requested": args.users, "employees": 10000, "human_review": "pending", "nfr_500_mixed_workload_verified": False,
         "load_generator_source_sha256": hashlib.sha256((raw / "login_storm.py").read_bytes()).hexdigest(),
         "limitations": ["Generator and Docker share this physical host", "Simultaneous login workload only; no 300-second mixed-load/HA certification"],
@@ -127,18 +137,23 @@ def run(args):
             container = marker + "-web-1"
             report["container_state"] = json.loads(command(["docker", "inspect", container, "--format", "{{json .State}}"], capture=True))
             report["restart_count"] = int(command(["docker", "inspect", container, "--format", "{{.RestartCount}}"], capture=True))
+            extra_services = [f"web{i}" for i in range(2, args.web_workers + 1)]
+            if args.web_workers > 1:
+                extra_services.append("proxy")
+            report["secondary_restart_counts"] = {service: int(command(["docker", "inspect",
+                f"{marker}-{service}-1", "--format", "{{.RestartCount}}"], capture=True))
+                for service in extra_services}
             metrics = report["metrics"]
             report["all_passed"] = bool(metrics["login"]["failures"] == 0 and metrics["probes"]["failures"] == 0
                 and metrics["unique_authenticated_cookies"] == args.users
                 and metrics["session_checks"]["failures"] == 0 and report["database_checks"]["each_account_one_login_audit"]
-                and report["restart_count"] == 0)
+                and report["restart_count"] == 0 and not any(report["secondary_restart_counts"].values()))
         except Exception as exc:
             report.update(all_passed=False, failure_type=type(exc).__name__)
             raise
         finally:
             command(compose + ["logs", "--no-color", "--tail", "100"])
-            command(compose + ["down"])
-            command(["docker", "volume", "rm", marker + "_postgres_data"])
+            command(compose + ["down", "--volumes"])
             report["finished_at"] = datetime.now(timezone.utc).isoformat()
             report["test_resources_removed"] = True
             with evidence.open("x", encoding="utf-8") as output:
@@ -152,4 +167,6 @@ if __name__ == "__main__":
     parser.add_argument("--name", required=True)
     parser.add_argument("--users", type=int, default=500)
     parser.add_argument("--web-workers", type=int, choices=(1, 4), default=1)
+    parser.add_argument("--password-workers", type=int, choices=(1, 2), default=1)
+    parser.add_argument("--shared", action="store_true")
     raise SystemExit(run(parser.parse_args()))

@@ -38,7 +38,7 @@ def redirect(path):
 async def browser_form(request: Request):
     await run_in_threadpool(require_login, request)
     form = dict(await request.form())
-    check_csrf(request, form)
+    await run_in_threadpool(check_csrf, request, form)
     return form
 
 

@@ -1,0 +1,41 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-16T23:29:44.980563+00:00",
+  "finished_at": "2026-11-16T23:30:11.135351+00:00",
+  "git_parent_commit": "89c3e622d5ed389361da54a02910fcb5dccdb085",
+  "source_revision_available": true,
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 7,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_fast_login.PasswordMigration.test_tc_01_18_legacy_upgrade_is_atomic_and_only_after_success",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisLoginContracts.test_tc_01_21_shared_login_csrf_revoke_and_store_failure",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisLoginContracts.test_tc_01_22_revoked_during_commit_has_no_audit_or_session",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisLoginContracts.test_tc_01_23_failed_sql_commit_removes_unissued_shared_session",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisStorageContracts.test_tc_01_19_cross_client_ttl_digest_rotation_and_revocation",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisStorageContracts.test_tc_01_20_store_error_and_malformed_payload_fail_closed",
+      "status": "passed"
+    }
+  ]
+}

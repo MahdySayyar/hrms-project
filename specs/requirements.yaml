@@ -14,6 +14,9 @@ functional_requirements:
   compose_login_experiment: ADR-15; 500 independent concurrent login attempts with browser affinity, successful audit/session rotation and responsive observer; lab acceptance precedes deployment promotion.
   password_capacity_contract: ADR-16; unchanged PBKDF2 in a private bounded executor without a database session; recheck active/hash and CSRF before audit/rotation; full capacity returns 503 with Retry-After and no session/audit.
   compose_transport_contract: ADR-17; separate outgoing connection per request without retry; current account locked only during final revalidation/audit transaction
+  password_agility: ADR-18; Argon2id m19456 t2 p1 for new hashes; verify existing PBKDF2 unchanged and rehash only on successful login, atomically with audit after active/hash/CSRF revalidation
+  shared_session_experiment: ADR-19; demonstrate memory-session transfer/restart failure first; Redis token digests, TTL, conditional rotation and cross-worker logout; fail-closed 503 without local fallback; promotion after isolated evidence
+  latency_goal: P95 login below 1000ms for 500 independent synchronized attempts; target only, current evidence is about 100000ms
   use_case: UC-01
   business_rules:
   - BR-01
@@ -443,6 +446,7 @@ business_rules:
 - id: BR-01
   name: Only active valid accounts authenticate
   concurrent_login_rule: ADR-16; an account deactivated/deleted or with a changed hash during queued password work must not authenticate from the older snapshot.
+  password_migration_rule: ADR-18; no rewrite on incorrect password, stale account or failed audit; older stored PBKDF2 iteration count preserved during verification
   rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است؛ وضعیت حساب در هر HTTP request تازه از پایگاه بررسی شود و تکرار داخلی همان request نیازمند خواندن دوباره نیست.
   requirements:
   - FR-01
@@ -456,6 +460,7 @@ business_rules:
 - id: BR-02
   name: CSRF in forms
   rule: POST مرورگر token وابسته به نشست می‌خواهد؛ login نیز مستثنا نیست.
+  shared_session_rule: ADR-19; session revocation/expiry visible on all workers; never restore an invalidated anonymous token during login rotation
   requirements:
   - FR-01
   - FR-02

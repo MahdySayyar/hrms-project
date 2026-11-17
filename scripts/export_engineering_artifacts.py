@@ -88,7 +88,7 @@ def export(refresh=False):
     browser_api = copy.deepcopy(api)
     browser_api.setdefault("components", {}).setdefault("securitySchemes", {})["SessionCookie"] = {
         "type": "apiKey", "in": "cookie", "name": COOKIE_NAME,
-        "description": "Process-local opaque session; POST additionally requires a session-bound CSRF form token",
+        "description": "Opaque session stored in process memory or shared Redis; POST additionally requires a session-bound CSRF form token",
     }
     browser_api["info"]["description"] = "Current HRMS browser contracts: HTML/forms/cookie/redirects. Exported offline; the runtime OpenAPI endpoint is disabled."
     route_inventory = []
@@ -139,8 +139,16 @@ def export(refresh=False):
             for code in record.get("errors", []):
                 operation["responses"][str(code)] = ({"description": "Unexpected persistence/server failure"} if code == 500
                                                         else html_response(f"Documented browser error {code}; see x-hrms-contracts conditions"))
+    for path, method in (("/login", "get"), ("/login", "post"), ("/logout", "post")):
+        failure = browser_api["paths"][path][method]["responses"]["503"]
+        failure["description"] = "Shared session storage unavailable"
+        if method == "post" and path == "/login":
+            failure["description"] += " or private password queue full"
+        else:
+            failure["content"].clear()
+        failure["content"]["text/plain"] = {"schema": {"type": "string"}}
     browser_api["paths"]["/health"]["get"]["responses"]["503"] = {
-        "description": "PostgreSQL connection unavailable",
+        "description": "PostgreSQL or configured shared session storage unavailable",
         "content": {"application/json": {"schema": {"type": "object", "properties": {"status": {"const": "unavailable"}}}}},
     }
     browser_api["paths"]["/reports/employees.csv"]["get"]["responses"]["200"] = {

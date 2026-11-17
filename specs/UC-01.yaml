@@ -1,5 +1,5 @@
 id: UC-01
-version: 3
+version: 4
 name: Authenticate and end an active account session
 status: reconstructed_from_current_code_pending_student_review
 requirements:
@@ -20,14 +20,16 @@ input:
   csrf_token: token bound to the current session
 main_flow:
 - Check CSRF before authenticating
-- Read the account and verify its active flag and PBKDF2 password hash
-- Release the account-reading database session before private queued PBKDF2 work; preserve the stored iteration count
+- Read the active account and release the database session before private queued password verification
+- Verify Argon2id or legacy PBKDF2 with the stored parameters; prepare an Argon2id replacement for a successfully verified legacy hash outside the database transaction
 - After a matching password, recheck the current CSRF session and the active account with the same hash before auditing
-- Persist the login audit entry
-- Discard the anonymous session and issue a new authenticated session
+- Prepare any verified legacy hash replacement and audit, atomically rotate the still-present anonymous session, then commit SQL; delete unissued new token if commit fails
+- Issue the new authenticated cookie only after audit commit; expired or revoked anonymous session cannot be revived
 - Redirect to the dashboard
 - On logout, validate CSRF, record audit, invalidate session and remove the cookie
 alternatives:
+- condition: shared_session_store_unavailable
+  response: Persian 503 with Retry-After; no memory fallback and no authenticated cookie
 - condition: private_password_capacity_full
   response: 503 Persian login form with Retry-After=2; no login audit or authenticated session
 - condition: account_deleted_deactivated_or_hash_changed_during_password_check
@@ -48,6 +50,8 @@ success:
 failure:
 - No authenticated session is granted
 limitations:
+- Current measured deployment uses affinity and memory; ADR-19 Redis/round-robin is promoted only after isolated before/after evidence
+- Multiple physical servers unavailable; no subsecond 500-login or complete HA guarantee
 - Sessions are process-local and disappear on restart
 - COOKIE_SECURE is false for the localhost HTTP development environment
 - Docker baseline retains one web process, the same opaque cookie/CSRF contract and process-local session loss on restart
@@ -95,6 +99,13 @@ secondary_actors: []
 quality_attributes:
 - NFR-S-01
 - NFR-S-02
+new_login_experiments:
+  specified_at: '2026-11-17'
+  decisions: [ADR-18, ADR-19]
+  password: Argon2id m19456 t2 p1; legacy rehash only after successful verification and revalidation, committed with audit
+  sessions: Redis shared store with token digests and TTL; cross-worker validity/revocation; conditional rotation; no fallback on failure
+  proxy: Per-request round robin in the explicit shared-session deployment; legacy affinity preserved in existing modes
+  status: specified_before_implementation_pending_isolated_evidence
 request_authentication_contract:
   recorded_at: '2026-11-12'
   provenance: ADR-06 and D-01 were specified before code; this UC detail was recorded immediately after the small implementation

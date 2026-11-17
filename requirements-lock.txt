@@ -32,3 +32,8 @@ typing-inspection==0.4.5
 typing_extensions==4.16.0
 tzdata==2026.6
 uvicorn==0.38.0
+argon2-cffi==25.1.0
+argon2-cffi-bindings==26.2.0
+cffi==2.1.1
+pycparser==3.12
+redis==6.4.0

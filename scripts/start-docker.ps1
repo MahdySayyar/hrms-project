@@ -1,7 +1,8 @@
-param([ValidateSet(1, 4)][int]$WebWorkers = 4)
+param([ValidateSet(1, 4)][int]$WebWorkers = 4, [switch]$SharedSessions)
 $ErrorActionPreference = 'Stop'
 $hrmsRoot = Split-Path -Parent $PSScriptRoot
-$hrmsCompose = Join-Path $hrmsRoot $(if ($WebWorkers -eq 4) { 'deployments/compose.capacity.yaml' } else { 'deployments/compose.yaml' })
+if ($SharedSessions -and $WebWorkers -ne 4) { throw 'Shared sessions require four web workers in this launcher.' }
+$hrmsCompose = Join-Path $hrmsRoot $(if ($SharedSessions) { 'deployments/compose.shared.yaml' } elseif ($WebWorkers -eq 4) { 'deployments/compose.capacity.yaml' } else { 'deployments/compose.yaml' })
 
 if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     throw 'Install and start Docker Desktop with Linux containers, then try again.'
