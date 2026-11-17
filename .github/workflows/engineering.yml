@@ -15,23 +15,44 @@ jobs:
             launcher_args: '4 shared'
     env:
       HRMS_CI_COMPOSE: ${{ matrix.compose }}
+      COMPOSE_PROJECT_NAME: hrms-demo-ci-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
+      - name: Extract clean source ZIP
+        run: |
+          git archive --format=zip HEAD -o "$RUNNER_TEMP/hrms-source.zip"
+          unzip -q "$RUNNER_TEMP/hrms-source.zip" -d "$RUNNER_TEMP/hrms-source"
       - name: Start downloaded project without host Python
-        run: bash scripts/start-docker.sh ${{ matrix.launcher_args }}
+        run: bash "$RUNNER_TEMP/hrms-source/scripts/start-docker.sh" ${{ matrix.launcher_args }}
       - name: Verify health, login form and repeat initialization
         shell: bash
         run: |
           set -euo pipefail
+          cd "$RUNNER_TEMP/hrms-source"
           curl --fail --silent http://localhost:8001/health | grep -q '"status":"ok"'
           curl --fail --silent http://localhost:8001/login | grep -q 'id="username"'
           before=$(sha256sum .runtime/docker-hrms-secrets/*)
           docker compose -f "deployments/$HRMS_CI_COMPOSE" --profile tools run --rm --no-deps init-secrets
           after=$(sha256sum .runtime/docker-hrms-secrets/*)
           test "$before" = "$after"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify account, leave review and reporting demo
+        run: |
+          cd "$RUNNER_TEMP/hrms-source"
+          python -m pip install 'httpx==0.28.1'
+          python scripts/verify_delivery_demo_20261117.py --output "$RUNNER_TEMP/demo.json"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: delivery-demo-${{ matrix.compose }}
+          path: ${{ runner.temp }}/demo.json
       - name: Stop CI containers
         if: always()
-        run: docker compose -f "deployments/$HRMS_CI_COMPOSE" down
+        run: |
+          compose="$RUNNER_TEMP/hrms-source/deployments/$HRMS_CI_COMPOSE"
+          if [ -f "$compose" ]; then docker compose -f "$compose" down --volumes; fi
   core:
     runs-on: ubuntu-latest
     services:

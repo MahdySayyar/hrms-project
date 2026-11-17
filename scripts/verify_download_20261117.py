@@ -16,6 +16,7 @@ import httpx
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audit_publication_20261117 import ROOT, candidates
+from verify_delivery_demo_20261117 import verify_demo
 
 
 def verify(name, shared=False):
@@ -85,6 +86,7 @@ def verify(name, shared=False):
                 del password
                 checks["dashboard_after_login"] = client.get("/").status_code == 200
                 checks["csrf_required_403"] = client.post("/logout", data={}).status_code == 403
+            checks.update(verify_demo(port, source / ".runtime/docker-hrms-secrets/admin_password"))
             spec = importlib.util.spec_from_file_location("download_marker", source / "scripts/verify_docker_deployment_20261116.py")
             marker_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(marker_module)
