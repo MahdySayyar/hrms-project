@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if module == 'users' and user.role == 'admin' and record.id != user.id %}<p><a class="text-link" href="/hr/users/{{ record.id }}/reset-password">بازنشانی رمز عبور</a></p>{% endif %}
 {% if saved %}<div class="alert success" role="status">اطلاعات با موفقیت ذخیره شد.</div>{% endif %}
 <div class="page-heading"><div><p class="eyebrow">{{ config.title }}</p><h1>{{ title }} · {{ record.id|fa }}</h1></div><div class="heading-actions"><a class="button secondary" href="/hr/{{ module }}">بازگشت به فهرست</a>{% if not (module == 'candidates' and record.employee_id) and not (module in ['leave','travel','administrative'] and record.status != 'pending') and not (module == 'contracts' and record.status != 'draft') %}<a class="button primary" href="/hr/{{ module }}/{{ record.id }}/edit">ویرایش اطلاعات</a>{% endif %}</div></div>
 {% include 'module_tabs.html' %}

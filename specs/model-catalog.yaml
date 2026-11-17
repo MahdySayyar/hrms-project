@@ -137,6 +137,7 @@ models:
     review
 domain_mapping:
   UserAccount: admins
+  LoginAttempt: login_attempts
   Branch: branches
   Unit: units
   Position: positions

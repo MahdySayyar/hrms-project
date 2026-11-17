@@ -1,0 +1,403 @@
+{
+  "run_id": "9a8651d9",
+  "database": "PostgreSQL",
+  "checks": [
+    {
+      "check": "login synthetic_smoke_admin",
+      "passed": true
+    },
+    {
+      "check": "candidates list and form render",
+      "passed": true
+    },
+    {
+      "check": "interviews list and form render",
+      "passed": true
+    },
+    {
+      "check": "shifts list and form render",
+      "passed": true
+    },
+    {
+      "check": "attendance list and form render",
+      "passed": true
+    },
+    {
+      "check": "leave list and form render",
+      "passed": true
+    },
+    {
+      "check": "administrative list and form render",
+      "passed": true
+    },
+    {
+      "check": "travel list and form render",
+      "passed": true
+    },
+    {
+      "check": "payroll-rules list and form render",
+      "passed": true
+    },
+    {
+      "check": "payroll-profiles list and form render",
+      "passed": true
+    },
+    {
+      "check": "contracts list and form render",
+      "passed": true
+    },
+    {
+      "check": "evaluations list and form render",
+      "passed": true
+    },
+    {
+      "check": "trainings list and form render",
+      "passed": true
+    },
+    {
+      "check": "enrollments list and form render",
+      "passed": true
+    },
+    {
+      "check": "career list and form render",
+      "passed": true
+    },
+    {
+      "check": "users list and form render",
+      "passed": true
+    },
+    {
+      "check": "module overview shows eight functional sections",
+      "passed": true
+    },
+    {
+      "check": "new module forms reject forged CSRF",
+      "passed": true
+    },
+    {
+      "check": "create disposable position for history test",
+      "passed": true
+    },
+    {
+      "check": "candidates creation",
+      "passed": true
+    },
+    {
+      "check": "candidate requires a passed interview before acceptance",
+      "passed": true
+    },
+    {
+      "check": "interviews creation",
+      "passed": true
+    },
+    {
+      "check": "passed interview permits candidate acceptance",
+      "passed": true
+    },
+    {
+      "check": "candidate hiring succeeds",
+      "passed": true
+    },
+    {
+      "check": "hiring creates one employee and three onboarding tasks",
+      "passed": true
+    },
+    {
+      "check": "repeated hiring does not duplicate employee",
+      "passed": true
+    },
+    {
+      "check": "onboarding task completion succeeds",
+      "passed": true
+    },
+    {
+      "check": "hired candidate demographics cannot be overwritten",
+      "passed": true
+    },
+    {
+      "check": "candidate detail shows employee link and checklist",
+      "passed": true
+    },
+    {
+      "check": "shifts creation",
+      "passed": true
+    },
+    {
+      "check": "attendance creation",
+      "passed": true
+    },
+    {
+      "check": "attendance computes 600 worked minutes and 120 overtime minutes",
+      "passed": true
+    },
+    {
+      "check": "duplicate employee-day attendance rejected",
+      "passed": true
+    },
+    {
+      "check": "presence requires clock-in and clock-out",
+      "passed": true
+    },
+    {
+      "check": "attendance creation",
+      "passed": true
+    },
+    {
+      "check": "absence persists without fabricated work or overtime",
+      "passed": true
+    },
+    {
+      "check": "shifts creation",
+      "passed": true
+    },
+    {
+      "check": "attendance creation",
+      "passed": true
+    },
+    {
+      "check": "night shift crosses midnight correctly",
+      "passed": true
+    },
+    {
+      "check": "leave creation",
+      "passed": true
+    },
+    {
+      "check": "leave approval succeeds with administrator",
+      "passed": true
+    },
+    {
+      "check": "request stores approver and review time",
+      "passed": true
+    },
+    {
+      "check": "reviewed request cannot be overwritten",
+      "passed": true
+    },
+    {
+      "check": "travel creation",
+      "passed": true
+    },
+    {
+      "check": "overlapping approved travel and leave rejected",
+      "passed": true
+    },
+    {
+      "check": "rejection requires a reason",
+      "passed": true
+    },
+    {
+      "check": "travel rejection with reason succeeds",
+      "passed": true
+    },
+    {
+      "check": "administrative creation",
+      "passed": true
+    },
+    {
+      "check": "administrative request can be approved",
+      "passed": true
+    },
+    {
+      "check": "payroll-profiles creation",
+      "passed": true
+    },
+    {
+      "check": "payroll-rules creation",
+      "passed": true
+    },
+    {
+      "check": "educational monthly payroll calculation succeeds",
+      "passed": true
+    },
+    {
+      "check": "monthly payroll formula produces expected 55015000 rial",
+      "passed": true
+    },
+    {
+      "check": "payslip is labeled educational and displays saved input rates",
+      "passed": true
+    },
+    {
+      "check": "payroll rule can be changed",
+      "passed": true
+    },
+    {
+      "check": "same-period payroll preserves original payslip and rule snapshot",
+      "passed": true
+    },
+    {
+      "check": "attendance creation",
+      "passed": true
+    },
+    {
+      "check": "hourly payroll counts regular and overtime hours once",
+      "passed": true
+    },
+    {
+      "check": "contracts creation",
+      "passed": true
+    },
+    {
+      "check": "contract activation succeeds",
+      "passed": true
+    },
+    {
+      "check": "activation updates current contract and payroll base",
+      "passed": true
+    },
+    {
+      "check": "active contract cannot be rewritten",
+      "passed": true
+    },
+    {
+      "check": "contract renewal creates a preserved draft",
+      "passed": true
+    },
+    {
+      "check": "renewal activation succeeds",
+      "passed": true
+    },
+    {
+      "check": "renewal retains previous contract with closed date range",
+      "passed": true
+    },
+    {
+      "check": "termination retains records and deactivates employee",
+      "passed": true
+    },
+    {
+      "check": "terminated contract is retained in PostgreSQL",
+      "passed": true
+    },
+    {
+      "check": "evaluations creation",
+      "passed": true
+    },
+    {
+      "check": "invalid performance score rejected",
+      "passed": true
+    },
+    {
+      "check": "trainings creation",
+      "passed": true
+    },
+    {
+      "check": "enrollments creation",
+      "passed": true
+    },
+    {
+      "check": "training capacity cannot be exceeded",
+      "passed": true
+    },
+    {
+      "check": "career creation",
+      "passed": true
+    },
+    {
+      "check": "organizational assignment change succeeds",
+      "passed": true
+    },
+    {
+      "check": "position can be renamed without rewriting historical assignment",
+      "passed": true
+    },
+    {
+      "check": "history retains previous assignment and exactly one current assignment",
+      "passed": true
+    },
+    {
+      "check": "history preserves position title as recorded before later renaming",
+      "passed": true
+    },
+    {
+      "check": "history and aggregate reports render",
+      "passed": true
+    },
+    {
+      "check": "CSV export excludes national ID and phone",
+      "passed": true
+    },
+    {
+      "check": "users creation",
+      "passed": true
+    },
+    {
+      "check": "users creation",
+      "passed": true
+    },
+    {
+      "check": "login hr_9a8651d9",
+      "passed": true
+    },
+    {
+      "check": "scoped HR cannot read employee moved to another branch",
+      "passed": true
+    },
+    {
+      "check": "scoped HR cannot access payroll, audit or user management",
+      "passed": true
+    },
+    {
+      "check": "HR cannot approve administrative requests",
+      "passed": true
+    },
+    {
+      "check": "HR cannot create candidates in another branch",
+      "passed": true
+    },
+    {
+      "check": "administrator can deactivate an HR account",
+      "passed": true
+    },
+    {
+      "check": "deactivated HR account immediately loses its session",
+      "passed": true
+    },
+    {
+      "check": "administrator can reactivate the same HR account",
+      "passed": true
+    },
+    {
+      "check": "administrator cannot disable own management access",
+      "passed": true
+    },
+    {
+      "check": "login view_9a8651d9",
+      "passed": true
+    },
+    {
+      "check": "viewer can see aggregate dashboard and reports",
+      "passed": true
+    },
+    {
+      "check": "viewer cannot see employee records, CSV, recruitment or payroll",
+      "passed": true
+    },
+    {
+      "check": "viewer dashboard does not leak employee names",
+      "passed": true
+    },
+    {
+      "check": "contract termination creates an audit entry",
+      "passed": true
+    },
+    {
+      "check": "audit UI renders",
+      "passed": true
+    },
+    {
+      "check": "login synthetic_smoke_admin",
+      "passed": true
+    },
+    {
+      "check": "recruitment, requests, payslips and contract history survive web restart",
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "isolation": "Disposable PostgreSQL schema; all accounts and records are synthetic",
+  "raw_evidence_directory": "artifacts/evidence/full-smoke-20261117T073116-3e6532",
+  "recorded_at": "2026-11-17T07:31:34.592230+00:00",
+  "docker_raw_evidence_directory": "artifacts/docker-checks-https-demo-20261117-b"
+}

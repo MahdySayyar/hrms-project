@@ -3,7 +3,8 @@ import os
 import re
 import socket
 from contextlib import asynccontextmanager
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
+from math import ceil
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -13,7 +14,7 @@ from sqlalchemy import func, or_, select, text
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Unit, engine
+from .database import Admin, Branch, Employee, LoginAttempt, Position, ROOT, SessionLocal, Unit, engine
 from .access import (audit, check_scope, current_user, protected_form, read_form, render,
                      require_admin, require_hr, scoped, scoped_employee, sync_assignment)
 from .security import (COOKIE_NAME, check_csrf, current_session, discard_session,
@@ -26,6 +27,8 @@ from .login_capacity import PasswordCapacity, PasswordCapacityFull
 
 password_capacity = PasswordCapacity(workers=int(os.getenv("HRMS_PASSWORD_WORKERS", "1")),
     max_pending=int(os.getenv("HRMS_PASSWORD_PENDING", "512")))
+LOGIN_FAILURE_LIMIT = 5
+LOGIN_FAILURE_WINDOW = timedelta(minutes=5)
 
 @asynccontextmanager
 async def lifespan(_app):
@@ -34,7 +37,14 @@ async def lifespan(_app):
     if not 1 <= threads <= 40:
         raise RuntimeError("HRMS_THREADS must be 1..40.")
     anyio.to_thread.current_default_thread_limiter().total_tokens = threads
+    await run_in_threadpool(ensure_login_attempts_table)
     yield
+
+
+def ensure_login_attempts_table():
+    with engine.begin() as connection:
+        connection.execute(select(func.pg_advisory_xact_lock(704812)))
+        LoginAttempt.__table__.create(connection, checkfirst=True)
 
 
 app = FastAPI(title="سامانه مدیریت منابع انسانی", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
@@ -74,7 +84,9 @@ def http_error(request: Request, exc: HTTPException):
     message = exc.detail if isinstance(exc.detail, str) else "درخواست قابل پردازش نیست."
     if exc.status_code == 404:
         message = "صفحه یا رکورد موردنظر پیدا نشد."
-    return render(request, "error.html", exc.status_code, title="خطا", message=message)
+    response = render(request, "error.html", exc.status_code, title="خطا", message=message)
+    response.headers.update(exc.headers or {})
+    return response
 
 
 @app.exception_handler(SessionStoreUnavailable)
@@ -104,7 +116,8 @@ def instance():
 @app.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
     return guest_auth_page(request, "login.html", "ورود به سامانه",
-        registration_submitted=request.query_params.get("registered") == "1")
+        registration_submitted=request.query_params.get("registered") == "1",
+        password_changed=request.query_params.get("password_changed") == "1")
 
 
 @app.get("/register", response_class=HTMLResponse)
@@ -181,6 +194,7 @@ async def login(request: Request, form: dict = Depends(read_form)):
     valid = False
     replacement_hash = None
     if account and account.is_active:
+        check_login_delay(account.blocked_until)
         try:
             valid, replacement_hash = await password_capacity.verify(verify_login_password, password, account.password_hash)
         except PasswordCapacityFull:
@@ -188,6 +202,8 @@ async def login(request: Request, form: dict = Depends(read_form)):
                 errors=["سامانه در حال پردازش ورود کاربران است؛ کمی بعد دوباره تلاش کنید."], username=username)
             response.headers["Retry-After"] = "2"
             return response
+        if not valid:
+            await run_in_threadpool(record_login_failure, account.id, account.password_hash)
     if not valid:
         return await run_in_threadpool(render, request, "login.html", 401, title="ورود مدیر", errors=["نام کاربری یا رمز عبور درست نیست."], username=username)
     token = await run_in_threadpool(commit_verified_login, request, form, account.id, account.password_hash, replacement_hash)
@@ -199,8 +215,46 @@ async def login(request: Request, form: dict = Depends(read_form)):
 
 
 def login_account_snapshot(username):
+    if not 1 <= len(username) <= 50 or "\x00" in username:
+        return None
     with SessionLocal() as db:
-        return db.execute(select(Admin.id, Admin.password_hash, Admin.is_active).where(Admin.username == username)).first()
+        return db.execute(select(Admin.id, Admin.password_hash, Admin.is_active, LoginAttempt.blocked_until)
+            .outerjoin(LoginAttempt, LoginAttempt.admin_id == Admin.id).where(Admin.username == username)).first()
+
+
+def check_login_delay(blocked_until):
+    if blocked_until is not None:
+        seconds = ceil((blocked_until - datetime.now(timezone.utc)).total_seconds())
+        if seconds > 0:
+            raise HTTPException(429, "تلاش‌های ورود بیش از حد مجاز است. چند دقیقه بعد دوباره تلاش کنید.",
+                headers={"Retry-After": str(seconds)})
+
+
+def record_login_failure(account_id, expected_hash):
+    with SessionLocal.begin() as db:
+        account = db.get(Admin, account_id, with_for_update=True)
+        if not account or not account.is_active or account.password_hash != expected_hash:
+            return
+        attempt = db.get(LoginAttempt, account_id)
+        now = datetime.now(timezone.utc)
+        if attempt is None:
+            attempt = LoginAttempt(admin_id=account_id, failure_count=0, window_started_at=now)
+            db.add(attempt)
+        elif attempt.blocked_until and attempt.blocked_until > now:
+            return
+        elif attempt.blocked_until or now >= attempt.window_started_at + LOGIN_FAILURE_WINDOW:
+            attempt.failure_count, attempt.window_started_at, attempt.blocked_until = 0, now, None
+        attempt.failure_count += 1
+        if attempt.failure_count >= LOGIN_FAILURE_LIMIT:
+            attempt.blocked_until = now + LOGIN_FAILURE_WINDOW
+
+
+def clear_login_failures(db, account_id, *, enforce_delay=False):
+    attempt = db.get(LoginAttempt, account_id)
+    if attempt is not None:
+        if enforce_delay:
+            check_login_delay(attempt.blocked_until)
+        db.delete(attempt)
 
 
 def verify_login_password(password, stored_hash):
@@ -215,16 +269,94 @@ def commit_verified_login(request, form, account_id, expected_hash, replacement_
             return None
         check_csrf(request, form)
         admin_id = admin.id
+        clear_login_failures(db, admin_id, enforce_delay=True)
         if replacement_hash is not None:
             admin.password_hash = replacement_hash
         audit(db, request, "login", "admins", admin_id, actor_id=admin_id)
-        token = rotate_session(request, admin_id)
+        token = rotate_session(request, admin_id, admin.password_hash)
         try:
             db.commit()
         except BaseException:
             security.session_store.delete(token)
             raise
         return token
+
+
+@app.get("/account/password", dependencies=[Depends(require_login)])
+def change_password_page(request: Request):
+    return render(request, "password.html", title="تغییر رمز عبور", action="/account/password")
+
+
+@app.get("/hr/users/{account_id}/reset-password")
+def reset_password_page(request: Request, account_id: int):
+    actor = require_admin(request)
+    if actor.id == account_id:
+        return redirect("/account/password")
+    with SessionLocal() as db:
+        target = db.get(Admin, account_id)
+        if not target:
+            raise HTTPException(404)
+    return render(request, "password.html", title="بازنشانی رمز عبور", target_name=target.display_name,
+        action=f"/hr/users/{account_id}/reset-password")
+
+
+@app.post("/account/password")
+async def change_password(request: Request, form: dict = Depends(protected_form)):
+    actor = current_user(request)
+    await update_account_password(request, form, actor, actor.id)
+    response = redirect("/login?password_changed=1")
+    response.delete_cookie(COOKIE_NAME, path="/", secure=security.COOKIE_SECURE, httponly=True, samesite="lax")
+    return response
+
+
+@app.post("/hr/users/{account_id}/reset-password")
+async def reset_password(request: Request, account_id: int, form: dict = Depends(protected_form)):
+    actor = await run_in_threadpool(require_admin, request)
+    if actor.id == account_id:
+        raise HTTPException(400, "برای حساب خود از تغییر رمز عبور استفاده کنید.")
+    await update_account_password(request, form, actor, account_id)
+    return redirect(f"/hr/users/{account_id}?saved=1")
+
+
+async def update_account_password(request, form, actor, account_id):
+    current = form.get("current_password")
+    replacement = form.get("new_password")
+    if not isinstance(current, str) or not current or not isinstance(replacement, str) or not 12 <= len(replacement) <= 128:
+        raise HTTPException(400, "رمز فعلی و رمز جدید ۱۲ تا ۱۲۸ نویسه‌ای وارد کنید.")
+    if replacement != form.get("password_confirmation") or replacement == current:
+        raise HTTPException(400, "تکرار رمز باید مطابق رمز جدید باشد و رمز جدید با رمز فعلی فرق کند.")
+    snapshot = await run_in_threadpool(login_account_snapshot, actor.username)
+    if not snapshot or snapshot.password_hash != actor.password_hash or not snapshot.is_active:
+        raise HTTPException(403)
+    check_login_delay(snapshot.blocked_until)
+    try:
+        verified = await password_capacity.verify(verify_password, current, actor.password_hash)
+        if not verified:
+            await run_in_threadpool(record_login_failure, actor.id, actor.password_hash)
+            raise HTTPException(403, "رمز فعلی درست نیست.")
+        new_hash = await password_capacity.run(hash_password, replacement)
+    except PasswordCapacityFull:
+        raise HTTPException(503, "سامانه مشغول است. کمی بعد دوباره تلاش کنید.", headers={"Retry-After": "2"}) from None
+    await run_in_threadpool(commit_password_change, request, form, actor, account_id, new_hash)
+
+
+def commit_password_change(request, form, actor, account_id, new_hash):
+    change_self = actor.id == account_id
+    with SessionLocal.begin() as db:
+        accounts = {account.id: account for account in db.scalars(select(Admin)
+            .where(Admin.id.in_({actor.id, account_id})).order_by(Admin.id).with_for_update())}
+        current = accounts.get(actor.id)
+        if not current or not current.is_active or current.password_hash != actor.password_hash or (not change_self and current.role != "admin"):
+            raise HTTPException(403)
+        target = accounts.get(account_id)
+        if target is None:
+            raise HTTPException(404)
+        check_csrf(request, form)
+        clear_login_failures(db, actor.id, enforce_delay=True)
+        if not change_self:
+            clear_login_failures(db, account_id)
+        target.password_hash = new_hash
+        audit(db, request, "password_change" if change_self else "password_reset", "admins", account_id, actor_id=actor.id)
 
 
 @app.post("/logout")
@@ -234,7 +366,7 @@ def logout(request: Request, form: dict = Depends(protected_form)):
         db.commit()
     discard_session(request)
     response = redirect("/login")
-    response.delete_cookie(COOKIE_NAME, path="/", httponly=True, samesite="lax")
+    response.delete_cookie(COOKIE_NAME, path="/", secure=security.COOKIE_SECURE, httponly=True, samesite="lax")
     return response
 
 

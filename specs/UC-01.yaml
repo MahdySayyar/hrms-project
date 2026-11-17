@@ -13,6 +13,11 @@ business_rules:
 - BR-03
 primary_actor: admin_or_hr_or_viewer
 trigger: Submit the login form
+password_management:
+  change: Active user supplies the current and new password with confirmation and CSRF
+  recovery: Active administrator reauthenticates to reset another account; role and activation stay as stored
+  success: New Argon2id hash and audit commit together; earlier authenticated sessions are invalid on next use
+  login_throttle: Five failed checks per active account trigger a five-minute lockout shared across web replicas; no extension during lockout
 registration:
   entry: GET /register from the sign-in page; POST /register with anonymous session CSRF
   validation: Unique normalized username of 3–50 Latin letters, digits, dots, hyphens or underscores; display name of 1–100 characters; password of 12–128 characters and matching confirmation
@@ -92,6 +97,8 @@ traceability:
   - TC-01-16
   - TC-01-24
   - TC-01-25
+  - TC-01-26
+  - TC-01-27
 goal: Grant an active account a scoped authenticated session and end it safely
 compose_replica_experiment:
   specified_at: '2026-11-17'

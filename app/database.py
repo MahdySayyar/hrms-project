@@ -1,10 +1,10 @@
 """تنظیم اتصال و جدول‌های کوچک مرحلهٔ اول."""
 import os
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime
 
 from dotenv import load_dotenv
-from sqlalchemy import Boolean, Date, ForeignKey, ForeignKeyConstraint, Integer, String, Text, UniqueConstraint, create_engine
+from sqlalchemy import Boolean, Date, DateTime, ForeignKey, ForeignKeyConstraint, Integer, String, Text, UniqueConstraint, create_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,6 +32,14 @@ class Admin(Base):
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     branch_scope_id: Mapped[int | None] = mapped_column(ForeignKey("branches.id"), default=None)
     unit_scope_id: Mapped[int | None] = mapped_column(ForeignKey("units.id"), default=None)
+
+
+class LoginAttempt(Base):
+    __tablename__ = "login_attempts"
+    admin_id: Mapped[int] = mapped_column(ForeignKey("admins.id", ondelete="CASCADE"), primary_key=True)
+    failure_count: Mapped[int] = mapped_column(Integer)
+    window_started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    blocked_until: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
 class Branch(Base):

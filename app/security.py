@@ -57,11 +57,21 @@ session_lock = threading.Lock()
 session_store = configured_store(sessions, session_lock)
 
 
+def credential_marker(password_hash: str) -> str:
+    return hashlib.sha256(password_hash.encode()).hexdigest()
+
+
 def new_session(admin_id: int | None = None) -> tuple[str, Session]:
     now = time.time()
     lifetime = SESSION_SECONDS if admin_id is not None else 1800
     token = secrets.token_urlsafe(32)
-    session = Session(admin_id, secrets.token_urlsafe(32), now + lifetime)
+    marker = None
+    if admin_id is not None:
+        from .database import Admin, SessionLocal
+        with SessionLocal() as db:
+            user = db.get(Admin, admin_id)
+            marker = credential_marker(user.password_hash) if user else None
+    session = Session(admin_id, secrets.token_urlsafe(32), now + lifetime, marker)
     session_store.put(token, session)
     return token, session
 
@@ -82,9 +92,9 @@ def discard_session(request: Request) -> None:
     session_store.delete(request.cookies.get(COOKIE_NAME, ""))
 
 
-def rotate_session(request: Request, admin_id: int) -> str:
+def rotate_session(request: Request, admin_id: int, password_hash: str) -> str:
     token = secrets.token_urlsafe(32)
-    session = Session(admin_id, secrets.token_urlsafe(32), time.time() + SESSION_SECONDS)
+    session = Session(admin_id, secrets.token_urlsafe(32), time.time() + SESSION_SECONDS, credential_marker(password_hash))
     if not session_store.rotate(request.cookies.get(COOKIE_NAME, ""), token, session):
         raise HTTPException(403, "اعتبار فرم منقضی شده است؛ صفحه را تازه کنید و دوباره تلاش کنید.")
     return token
@@ -104,7 +114,7 @@ def require_login(request: Request) -> Session:
     from .database import Admin, SessionLocal
     with SessionLocal() as db:
         user = db.get(Admin, session.admin_id)
-    if not user or not user.is_active:
+    if not user or not user.is_active or session.credential_marker != credential_marker(user.password_hash):
         discard_session(request)
         raise HTTPException(status_code=303, headers={"Location": "/login"})
     request.state.user = user

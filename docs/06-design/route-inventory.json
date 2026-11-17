@@ -1,6 +1,6 @@
 {
   "id": "ROUTE-CAT-01",
-  "route_count": 42,
+  "route_count": 46,
   "routes": [
     {
       "method": "GET",
@@ -31,6 +31,26 @@
       "method": "POST",
       "path": "/login",
       "code": "app/main.py#login"
+    },
+    {
+      "method": "GET",
+      "path": "/account/password",
+      "code": "app/main.py#change_password_page"
+    },
+    {
+      "method": "GET",
+      "path": "/hr/users/{account_id}/reset-password",
+      "code": "app/main.py#reset_password_page"
+    },
+    {
+      "method": "POST",
+      "path": "/account/password",
+      "code": "app/main.py#change_password"
+    },
+    {
+      "method": "POST",
+      "path": "/hr/users/{account_id}/reset-password",
+      "code": "app/main.py#reset_password"
     },
     {
       "method": "POST",

@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-17T06:44:31.104182+00:00",
+  "captured_at": "2026-11-17T07:23:59.847430+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "path": "app/database.py",
-      "sha256": "849928d6b1c46b250df164a418b76ace4be596803cc426869d1b9cf60074d032"
+      "sha256": "0b8f70493fd05821f5e82ae7b4e73389807639135aab394761ab3e7bc1fffa88"
     },
     {
       "path": "app/hr_models.py",
@@ -25,7 +25,7 @@
     },
     {
       "path": "app/main.py",
-      "sha256": "d8b008c8a43945a113d8eb2ce9898f9dfffe321c5f6a323811fb8a3b38a98da1"
+      "sha256": "b21e6ef4670e536d610ba45458343edb625b2c9c7dd059b6dd639df64b06ff72"
     },
     {
       "path": "app/module_forms.py",
@@ -33,7 +33,7 @@
     },
     {
       "path": "app/modules.py",
-      "sha256": "ecce4e160e042ab374a4e3fe768531b9fc1d04eb69f30dcc52e658798934b194"
+      "sha256": "e7e5130f911b0bf797b77bb61e02feb7b700f85a93e371009e2226ee32c76698"
     },
     {
       "path": "app/native_proxy.py",
@@ -61,7 +61,7 @@
     },
     {
       "path": "app/security.py",
-      "sha256": "35128e218c42321326fedbd6092693302fa4167309516780b38329fb545f97b8"
+      "sha256": "12d9075175ba89cbb58ef63ff96c0084fdc85c457c4bbbe83541c490e0f6f430"
     },
     {
       "path": "app/seed.py",
@@ -69,7 +69,7 @@
     },
     {
       "path": "app/session_store.py",
-      "sha256": "bff7ac4dd549cf9eeff41d06df631d462359a02783ae394af9d03e35b4574153"
+      "sha256": "a5cc39b9eec83a81f2dc9b62f0e988da8a37537db8cd64fa7a394fa614073a1e"
     },
     {
       "path": "specs/architecture.yaml",
@@ -81,19 +81,19 @@
     },
     {
       "path": "specs/http-contracts.yaml",
-      "sha256": "e49fc5056868a9cd0b69b70ef11c86bdc2c6e4f47443e7eb3c1c062b10996fd6"
+      "sha256": "9a0a971c07ca41dda7f38b5f47be2886815586705d434e9b0a191f524bda929d"
     },
     {
       "path": "specs/model-catalog.yaml",
-      "sha256": "f900bfc7aebc81d6beb33e99bff4c6caed97a8eb2027ed8adf681d3d93113c26"
+      "sha256": "3747e53d35e9b875937689dfbff7cdfb8ac4c0e28504c81cbfa4b165c818b9d6"
     },
     {
       "path": "specs/requirements.yaml",
-      "sha256": "fb4cad5bd1fab3ec6d4061dd5efe8cf69a6a4beaa1f00fc1976b3bc14cf3b6e7"
+      "sha256": "d610a938ea53561ae9ce772de9651f9ad40f6572255ad48179eef85573e1a36e"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "d6170ab67d172ef61fe839194b77671c9dfb50cb91ca6516df8140fda6ddf2ce"
+      "sha256": "ca2bdb5bbcf714ec7be36916e60d50c8f73183211071b93ee008d231748609dc"
     },
     {
       "path": "specs/UC-02.yaml",
@@ -125,7 +125,7 @@
     },
     {
       "path": "tests/test_core_workflows.py",
-      "sha256": "84c49dc3a5b54b2bb3b3dd57fa09ad8597ca7481b6ed4e1f746e10e8da421fde"
+      "sha256": "99fb05e75626d1db23d42f57c1d68f6358b175d3379d1337b02f90f2ace0a546"
     },
     {
       "path": "tests/test_docker_entrypoint.py",

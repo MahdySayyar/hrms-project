@@ -18,13 +18,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audit_publication_20261117 import ROOT, candidates
 from verify_delivery_demo_20261117 import verify_demo
 from verify_database_restore_20261117 import verify_restore
+from verify_https_delivery_20261117 import verify_https
 
 
-def verify(name, shared=False, restore=False):
+def verify(name, shared=False, restore=False, https=False):
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{2,45}", name):
         raise ValueError("Choose a unique lowercase verification name.")
     if restore and not name.startswith("restore-"):
         raise ValueError("Use a unique restore- name for the recovery run.")
+    if https and not name.startswith("https-"):
+        raise ValueError("Use a unique https- name for the TLS run.")
     raw = ROOT / "artifacts" / name
     raw.mkdir(parents=True, exist_ok=False)
     source = raw / "downloaded project"
@@ -125,6 +128,8 @@ def verify(name, shared=False, restore=False):
             core = json.loads((ROOT / "docs/08-testing/evidence" / f"core-docker-{name}.json").read_text())
             checks["core_postgresql_passed"] = core["all_passed"]
             checks["core_tests_run"] = core["tests_run"] > 0
+            if https:
+                checks.update(verify_https(compose, source, environment, port, run))
         finally:
             # Only this verifier's new project and synthetic volume are removed; native/existing projects are untouched.
             run(compose + ["down"])
@@ -148,6 +153,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", required=True)
     parser.add_argument("--shared", action="store_true")
-    parser.add_argument("--restore", action="store_true")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--restore", action="store_true")
+    modes.add_argument("--https", action="store_true")
     args = parser.parse_args()
-    raise SystemExit(verify(args.name, args.shared, args.restore))
+    raise SystemExit(verify(args.name, args.shared, args.restore, args.https))

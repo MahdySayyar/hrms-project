@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }} | سامانه مدیریت منابع انسانی</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', path='modules.css') }}">
-  <script src="{{ url_for('static', path='forms.js') }}" defer></script>
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css').path }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='modules.css').path }}">
+  <script src="{{ url_for('static', path='forms.js').path }}" defer></script>
 </head>
 <body class="{% if admin_name %}app-layout{% else %}guest-layout{% endif %}">
 {% if admin_name %}
@@ -27,6 +27,7 @@
     <a href="/hr/evaluations" class="{% if '/evaluations' in request.url.path or '/trainings' in request.url.path or '/enrollments' in request.url.path or '/career' in request.url.path %}selected{% endif %}"><span>◇</span> عملکرد و آموزش</a>
     {% endif %}
     <a href="/reports" class="{% if '/reports' in request.url.path %}selected{% endif %}"><span>▦</span> گزارش‌ها</a>
+    <a href="/account/password" class="{% if request.url.path == '/account/password' %}selected{% endif %}"><span>◇</span> تغییر رمز عبور</a>
     {% if user.role == 'admin' %}<a href="/hr/users" class="{% if '/users' in request.url.path or '/audit' in request.url.path %}selected{% endif %}"><span>◉</span> دسترسی و سابقه</a>{% endif %}
   </nav>
   <div class="sidebar-note">اطلاعات اولیهٔ این سامانه ساختگی است و برای تمرین آموزشی ثبت شده است.</div>

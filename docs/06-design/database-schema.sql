@@ -73,8 +73,8 @@ CREATE TABLE admins (
 	username VARCHAR(50) NOT NULL,
 	display_name VARCHAR(100) NOT NULL,
 	password_hash VARCHAR(256) NOT NULL,
-	role VARCHAR(20) DEFAULT 'admin'::character varying NOT NULL,
-	is_active BOOLEAN DEFAULT true NOT NULL,
+	role VARCHAR(20) NOT NULL,
+	is_active BOOLEAN NOT NULL,
 	branch_scope_id INTEGER,
 	unit_scope_id INTEGER,
 	CONSTRAINT admins_pkey PRIMARY KEY (id),
@@ -115,9 +115,9 @@ CREATE TABLE assignment_history (
 	start_date DATE NOT NULL,
 	end_date DATE,
 	reason TEXT NOT NULL,
-	branch_name VARCHAR(100) DEFAULT ''::character varying NOT NULL,
-	unit_name VARCHAR(100) DEFAULT ''::character varying NOT NULL,
-	position_title VARCHAR(100) DEFAULT ''::character varying NOT NULL,
+	branch_name VARCHAR(100) NOT NULL,
+	unit_name VARCHAR(100) NOT NULL,
+	position_title VARCHAR(100) NOT NULL,
 	CONSTRAINT assignment_history_pkey PRIMARY KEY (id),
 	CONSTRAINT assignment_history_branch_id_fkey FOREIGN KEY(branch_id) REFERENCES branches (id),
 	CONSTRAINT assignment_history_employee_id_fkey FOREIGN KEY(employee_id) REFERENCES employees (id),
@@ -132,13 +132,13 @@ CREATE TABLE attendance (
 	employee_id INTEGER NOT NULL,
 	work_date DATE NOT NULL,
 	shift_id INTEGER NOT NULL,
+	presence_status VARCHAR(20) NOT NULL,
 	clock_in TIME WITHOUT TIME ZONE,
 	clock_out TIME WITHOUT TIME ZONE,
 	worked_minutes INTEGER NOT NULL,
 	overtime_minutes INTEGER NOT NULL,
 	required_minutes INTEGER NOT NULL,
 	notes TEXT NOT NULL,
-	presence_status VARCHAR(20) DEFAULT 'present'::character varying NOT NULL,
 	CONSTRAINT attendance_pkey PRIMARY KEY (id),
 	CONSTRAINT attendance_employee_id_fkey FOREIGN KEY(employee_id) REFERENCES employees (id),
 	CONSTRAINT attendance_shift_id_fkey FOREIGN KEY(shift_id) REFERENCES shifts (id),
@@ -242,6 +242,15 @@ CREATE TABLE hr_requests (
 	CONSTRAINT hr_requests_pkey PRIMARY KEY (id),
 	CONSTRAINT hr_requests_employee_id_fkey FOREIGN KEY(employee_id) REFERENCES employees (id),
 	CONSTRAINT hr_requests_reviewed_by_fkey FOREIGN KEY(reviewed_by) REFERENCES admins (id)
+);
+
+CREATE TABLE login_attempts (
+	admin_id INTEGER NOT NULL,
+	failure_count INTEGER NOT NULL,
+	window_started_at TIMESTAMP WITH TIME ZONE NOT NULL,
+	blocked_until TIMESTAMP WITH TIME ZONE,
+	CONSTRAINT login_attempts_pkey PRIMARY KEY (admin_id),
+	CONSTRAINT login_attempts_admin_id_fkey FOREIGN KEY(admin_id) REFERENCES admins (id) ON DELETE CASCADE
 );
 
 CREATE TABLE payroll_profiles (

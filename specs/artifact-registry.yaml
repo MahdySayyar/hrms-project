@@ -536,6 +536,9 @@ entries:
 - id: ADR-23
   target: docs/05-architecture/ADRs/ADR-23-memory-session-sweeps.md
   kind: architecture_decision
+- id: ADR-24
+  target: docs/05-architecture/ADRs/ADR-24-password-management-and-throttling.md
+  kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
   kind: design
@@ -625,6 +628,12 @@ entries:
   kind: automated_test
 - id: TC-01-02
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope
+  kind: automated_test
+- id: TC-01-26
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_26_password_change_and_admin_reset_revoke_existing_sessions
+  kind: automated_test
+- id: TC-01-27
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_27_account_throttle_is_shared_and_cooldown_expires
   kind: automated_test
 - id: TC-01-03
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_03_inactive_account_is_rejected

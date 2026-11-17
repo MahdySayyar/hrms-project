@@ -40,6 +40,16 @@ Dockerfile فقط requirements، app، templates، static و entrypoint را ک�
 
 برای تغییر حالت در نصب فعلی، ابتدا `docker compose -f deployments/compose.capacity.yaml down` را اجرا کنید تا کانتینرهای قبلی متوقف شوند و volume PostgreSQL حفظ شود. سپس راه‌انداز نشست مشترک را بزنید. برای توقف این حالت از `docker compose -f deployments/compose.shared.yaml stop` استفاده کنید. کاربران پس از تغییر حالت یک بار دوباره وارد می‌شوند.
 
+## اجرای اختیاری HTTPS
+
+گواهی `cert.pem` و کلید `key.pem` مربوط به میزبان را در `.runtime/tls` قرار دهید یا `HRMS_TLS_DIR` را به پوشهٔ خصوصی گواهی تنظیم کنید. کلید برای کاربر پراکسی با UID 10001 خواندنی باشد. secretهای عادی را با راه‌انداز موجود آماده کنید و سپس از ریشهٔ پروژه اجرا کنید.
+
+```powershell
+docker compose -f deployments/compose.capacity.yaml -f deployments/compose.https.yaml up --build -d --wait
+```
+
+همان پورت با `https://` کار می‌کند و کوکی نشست و کوکی پراکسی Secure می‌شوند. برای حالت Redis، فایل اول `deployments/compose.shared.yaml` است. گواهی و کلید در پوشهٔ خصوصی نصب می‌مانند. گواهی واقعی باید نام دامنهٔ مقصد را پوشش دهد و برای مرورگر کاربران قابل اعتماد باشد.
+
 ## اجرای وب روی دستگاه‌های مستقل
 
 این الگو برای استقرار آینده است. هر دستگاه همان image وب از یک نسخهٔ پروژه را اجرا می‌کند. یک بار روی وب اول `python entrypoint.py` را برای آماده‌سازی پایگاه اجرا کنید. وب‌های دیگر با `python entrypoint.py --web-only` راه می‌افتند و seed اجرا نمی‌کنند. فایل‌های رمز را روی هر میزبان به‌صورت خصوصی mount کنید و مسیر آن‌ها را در `DB_PASSWORD_FILE`، `ADMIN_PASSWORD_FILE` (الزام فعلی entrypoint) و `HRMS_REDIS_PASSWORD_FILE` قرار دهید.

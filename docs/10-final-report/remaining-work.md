@@ -11,7 +11,7 @@
 | EXP-03/04 | replicas/Service، failure زیر بار، storage و بازیابی واقعی |
 | EXP-05/06 | نشست مشترک، cache/read replica؛ مشاهدهٔ مشکل، fix و تکرار |
 | EXP-07/08/09 | gateway/rate-limit، queue/worker و failure با سند هر تغییر |
-| امنیت و recovery | [بازیابی زمان‌سنجی‌شده با دادهٔ ساختگی](../05-architecture/experiments/EXP-DATABASE-RESTORE-20261117.md) انجام شد؛ TLS متناسب با استقرار، محدودیت ورود و scan بازند |
+| امنیت و recovery | [بازیابی زمان‌سنجی‌شده با دادهٔ ساختگی](../05-architecture/experiments/EXP-DATABASE-RESTORE-20261117.md) انجام شد؛ مدیریت رمز و محدودیت ورود در [ADR-24](../05-architecture/ADRs/ADR-24-password-management-and-throttling.md) ثبت شدند؛ گواهی استقرار واقعی و scan جامع بازند |
 | ارائه و مشارکت | [راهنمای دموی نهایی](delivery-demo-20261117.md)؛ مشارکت واقعی اعضا و review شفاهی ثبت شود |
 | قالب تحویل دانشگاه | Word/PDF یا فرم استاد اگر لازم شد از همین مدارک تهیه و بازبینی شود |
 

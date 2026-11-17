@@ -17,6 +17,7 @@ class Session:
     admin_id: int | None
     csrf_token: str
     expires_at: float
+    credential_marker: str | None = None
 
 
 class SessionStoreUnavailable(Exception):
@@ -110,7 +111,8 @@ class RedisSessionStore:
             session = Session(**value)
             if (session.admin_id is not None and (type(session.admin_id) is not int or session.admin_id <= 0)) \
                     or not re.fullmatch(r"[A-Za-z0-9_-]{43}", session.csrf_token) \
-                    or not isinstance(session.expires_at, (float, int)) or not math.isfinite(session.expires_at):
+                    or not isinstance(session.expires_at, (float, int)) or not math.isfinite(session.expires_at) \
+                    or (session.credential_marker is not None and not re.fullmatch(r"[0-9a-f]{64}", session.credential_marker)):
                 return None
             return session if session.expires_at > time.time() else None
         except (ValueError, TypeError):

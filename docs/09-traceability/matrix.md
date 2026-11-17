@@ -6,7 +6,7 @@
 
 | TR / FR | Spec / UC | Model / Design | API / Code | Test |
 |---|---|---|---|---|
-| TR-01 / FR-01 | FS-01 / UC-01 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01 | API-01<br>[login](../../app/main.py#login) | TC-01-01, TC-01-03, TC-01-07, TC-01-10, TC-01-11, TC-01-12, TC-01-13, TC-01-14, TC-01-15, TC-01-16, TC-REG-01 |
+| TR-01 / FR-01 | FS-01 / UC-01 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01 | API-01<br>[login](../../app/main.py#login) | TC-01-01, TC-01-03, TC-01-07, TC-01-10, TC-01-11, TC-01-12, TC-01-13, TC-01-14, TC-01-15, TC-01-16, TC-01-27, TC-REG-01 |
 | TR-02 / FR-02 | FS-02 / UC-01 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01 | API-01<br>[logout](../../app/main.py#logout) | TC-01-01 |
 | TR-03 / FR-03 | FS-03 / UC-01, UC-02, UC-03 | ACT-01, ACT-02, ACT-03, DM-01, SEQ-01, SEQ-02, SEQ-03, ST-01, ST-02, ST-03, UCM-01 / D-01, D-02, D-03 | API-01, API-02, API-03<br>[require_hr](../../app/access.py#require_hr)<br>[require_admin](../../app/access.py#require_admin)<br>[scoped_employee](../../app/access.py#scoped_employee) | TC-01-02, TC-REG-01 |
 | TR-04 / FR-04 | FS-04 / UC-04 | DM-01, UCM-01 / D-04 | API-04<br>[dashboard](../../app/main.py#dashboard)<br>[employee_create](../../app/main.py#employee_create)<br>[employee_edit](../../app/main.py#employee_edit) | TC-04-09, TC-HIST-01, TC-REG-01 |
@@ -30,7 +30,7 @@
 | TR-22 / FR-22 | FS-22 / UC-11 | DM-01, UCM-01 / D-04 | API-11<br>[reports](../../app/modules.py#reports) | TC-01-02, TC-11-04, TC-11-05, TC-REG-01 |
 | TR-23 / FR-23 | FS-23 / UC-11 | DM-01, UCM-01 / D-04 | API-11<br>[export_employees](../../app/modules.py#export_employees)<br>[safe_csv](../../app/modules.py#safe_csv) | TC-01-02, TC-11-01, TC-11-02, TC-11-03, TC-REG-01 |
 | TR-24 / FR-24 | FS-24 / UC-02, UC-03, UC-12 | ACT-02, ACT-03, DM-01, SEQ-02, SEQ-03, ST-02, ST-03, UCM-01 / D-02, D-03, D-04 | API-02, API-03, API-12<br>[audit](../../app/access.py#audit)<br>[audit_page](../../app/modules.py#audit_page)<br>[RequestReviewRepository.save_decision](../../app/request_workflow/repository.py#RequestReviewRepository.save_decision) | TC-02-02, TC-02-08, TC-REG-01 |
-| TR-25 / FR-25 | FS-25 / UC-01, UC-04, UC-12 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01, D-04 | API-01, API-04, API-12<br>[register](../../app/main.py#register)<br>[validate_record](../../app/modules.py#validate_record)<br>[Admin](../../app/database.py#Admin) | TC-01-24, TC-REG-01 |
+| TR-25 / FR-25 | FS-25 / UC-01, UC-04, UC-12 | ACT-01, DM-01, SEQ-01, ST-01, UCM-01 / D-01, D-04 | API-01, API-04, API-12<br>[register](../../app/main.py#register)<br>[change_password](../../app/main.py#change_password)<br>[reset_password](../../app/main.py#reset_password)<br>[validate_record](../../app/modules.py#validate_record)<br>[Admin](../../app/database.py#Admin) | TC-01-24, TC-01-26, TC-REG-01 |
 
 TC-REG-01 = 98 assertion رگرسیون فعلی؛ index دقیق مرتبط در YAML. TC-HIST-01 = 45 بررسی قدیمی Stage 1؛ اجرای تازه نیست. TC-PERF-01 = بار native سبک. TC-01..03 = آزمون‌های Core با نتیجهٔ نهایی؛ TC-02-U و TC-M قواعد و مرز معماری.
 

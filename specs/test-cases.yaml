@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/core-runtime-speed-20261117-a.json
-current_coverage_evidence: docs/08-testing/evidence/coverage-runtime-speed-20261117-a.json
+current_suite_evidence: docs/08-testing/evidence/core-account-hardening-20261117-a.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-account-hardening-20261117-a.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
@@ -14,6 +14,16 @@ transport_tests:
     - id: TC-01-07
       scenario: Encoded path and query, gzip bytes and length, HEAD and 304 metadata, 204 without length, Connection-nominated headers, redirect and invalid affinity boundary
 core_tests:
+- id: TC-01-26
+  use_case: UC-01
+  requirements: [FR-25]
+  scenario: Self-service password change and admin-assisted reset across separate browser sessions
+  expected: Reauthentication, scope and CSRF enforced; former sessions revoked and audit recorded without secrets
+- id: TC-01-27
+  use_case: UC-01
+  requirements: [FR-01]
+  scenario: Submit five incorrect passwords from two browser sessions and retry before and after the cooldown
+  expected: Shared account limit returns 429 and Retry-After, then a successful login clears the counter
 - id: TC-04-09
   use_case: UC-04
   requirements: [FR-04]

@@ -10,6 +10,7 @@ catalog_reference_read_contract:
 functional_requirements:
 - id: FR-01
   name: Authenticate
+  throttle: ADR-24; shared account throttle after five failures, with HTTP 429 and Retry-After during cooldown.
   acceptance: حساب فعال با رمز صحیح وارد شود؛ ورودی نادرست 401 و CSRF نامعتبر 403.
   compose_login_experiment: ADR-15; 500 independent concurrent login attempts with browser affinity, successful audit/session rotation and responsive observer; lab acceptance precedes deployment promotion.
   password_capacity_contract: ADR-16; unchanged PBKDF2 in a private bounded executor without a database session; recheck active/hash and CSRF before audit/rotation; full capacity returns 503 with Retry-After and no session/audit.
@@ -35,6 +36,7 @@ functional_requirements:
   - TC-01-14
   - TC-01-15
   - TC-01-16
+  - TC-01-27
   source:
   - SRC-C01
   priority: core
@@ -433,6 +435,7 @@ functional_requirements:
   status: implemented_reconstructed_pending_human_review
 - id: FR-25
   name: Manage accounts
+  password_management: ADR-24; authenticated self-change and admin-assisted reset require the acting account password, CSRF, audit and revocation of stale sessions.
   signup: گزینهٔ صفحهٔ ورود نام نمایشی، نام کاربری و رمز را برای ساخت حساب غیرفعال مشاهده‌گر می‌پذیرد؛ فعال‌سازی با مدیر است.
   acceptance: admin حساب/نقش/محدوده مدیریت کند؛ حذف آخرین مدیر/تنزل خود و تغییر نام/رمز
     موجود رد شود.
@@ -441,9 +444,11 @@ functional_requirements:
   - BR-22
   code:
   - app/main.py#register
+  - app/main.py#change_password
+  - app/main.py#reset_password
   - app/modules.py#validate_record
   - app/database.py#Admin
-  core_tests: [TC-01-24]
+  core_tests: [TC-01-24, TC-01-26]
   source:
   - SRC-C01
   priority: extended
@@ -451,6 +456,7 @@ functional_requirements:
 business_rules:
 - id: BR-01
   name: Only active valid accounts authenticate
+  session_credentials: ADR-24; credential changes invalidate existing sessions on their next protected request.
   memory_expiry: ADR-23; bound full expiry sweeps without changing token validity at get or rotate.
   signup: Self-registration always creates an inactive viewer. The submitter cannot assign privileges, activate the account or acquire a session.
   concurrent_login_rule: ADR-16; an account deactivated/deleted or with a changed hash during queued password work must not authenticate from the older snapshot.
@@ -767,7 +773,7 @@ nonfunctional_requirements:
   status: partially_verified
   tests:
   - TC-01-01
-  limitation: No full OWASP scan, TLS or login rate limiting yet
+  limitation: Full OWASP scan and certificates for a real deployment are pending; optional Docker TLS and shared per-account throttling are available.
 - id: NFR-AU-01
   name: Audit atomicity
   criterion: Each changed request decision has one actor/time audit; identical retry

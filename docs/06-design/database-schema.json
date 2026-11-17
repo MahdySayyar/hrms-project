@@ -1,10 +1,10 @@
 {
   "id": "DB-01",
-  "captured_at": "2026-11-17T06:44:31.104182+00:00",
+  "captured_at": "2026-11-17T07:23:59.847430+00:00",
   "origin": "Read-only SQLAlchemy reflection of the running PostgreSQL schema; no row data",
-  "postgresql_version": "17.6",
+  "postgresql_version": "17.6 (Debian 17.6-2.pgdg12+1)",
   "schema": "public",
-  "table_count": 21,
+  "table_count": 22,
   "tables": [
     {
       "name": "admins",
@@ -37,13 +37,13 @@
           "name": "role",
           "type": "VARCHAR(20)",
           "nullable": false,
-          "server_default": "'admin'::character varying"
+          "server_default": null
         },
         {
           "name": "is_active",
           "type": "BOOLEAN",
           "nullable": false,
-          "server_default": "true"
+          "server_default": null
         },
         {
           "name": "branch_scope_id",
@@ -180,19 +180,19 @@
           "name": "branch_name",
           "type": "VARCHAR(100)",
           "nullable": false,
-          "server_default": "''::character varying"
+          "server_default": null
         },
         {
           "name": "unit_name",
           "type": "VARCHAR(100)",
           "nullable": false,
-          "server_default": "''::character varying"
+          "server_default": null
         },
         {
           "name": "position_title",
           "type": "VARCHAR(100)",
           "nullable": false,
-          "server_default": "''::character varying"
+          "server_default": null
         }
       ],
       "primary_key": {
@@ -306,6 +306,12 @@
           "server_default": null
         },
         {
+          "name": "presence_status",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "server_default": null
+        },
+        {
           "name": "clock_in",
           "type": "TIME WITHOUT TIME ZONE",
           "nullable": true,
@@ -340,12 +346,6 @@
           "type": "TEXT",
           "nullable": false,
           "server_default": null
-        },
-        {
-          "name": "presence_status",
-          "type": "VARCHAR(20)",
-          "nullable": false,
-          "server_default": "'present'::character varying"
         }
       ],
       "primary_key": {
@@ -1450,6 +1450,65 @@
             "id"
           ],
           "options": {},
+          "comment": null
+        }
+      ],
+      "unique_constraints": [],
+      "check_constraints": [],
+      "indexes": []
+    },
+    {
+      "name": "login_attempts",
+      "columns": [
+        {
+          "name": "admin_id",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "failure_count",
+          "type": "INTEGER",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "window_started_at",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": false,
+          "server_default": null
+        },
+        {
+          "name": "blocked_until",
+          "type": "TIMESTAMP WITH TIME ZONE",
+          "nullable": true,
+          "server_default": null
+        }
+      ],
+      "primary_key": {
+        "constrained_columns": [
+          "admin_id"
+        ],
+        "name": "login_attempts_pkey",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      },
+      "foreign_keys": [
+        {
+          "name": "login_attempts_admin_id_fkey",
+          "constrained_columns": [
+            "admin_id"
+          ],
+          "referred_schema": "public",
+          "referred_table": "admins",
+          "referred_columns": [
+            "id"
+          ],
+          "options": {
+            "ondelete": "CASCADE"
+          },
           "comment": null
         }
       ],

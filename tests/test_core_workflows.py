@@ -2,14 +2,14 @@
 import re
 import uuid
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date, time
+from datetime import date, datetime, time, timedelta, timezone
 from decimal import Decimal
 
 from fastapi.testclient import TestClient
 from sqlalchemy import event, func, select
 
 from app import main
-from app.database import Admin, Branch, Employee, Position, Unit
+from app.database import Admin, Branch, Employee, LoginAttempt, Position, Unit
 from app.hr_models import Attendance, AuditLog, HrRequest, PayrollProfile, PayrollRule, Payslip, Shift
 from app.security import COOKIE_NAME, hash_password, verify_password
 from tests.support import PostgresTestCase
@@ -169,6 +169,64 @@ class CoreWorkflows(PostgresTestCase):
         self.assertEqual(viewer.get("/employees").status_code, 403)
         self.assertEqual(viewer.get("/reports/employees.csv").status_code, 403)
         self.assertEqual(self.post(hr, "/requests/999999/review", {"decision": "approved"}).status_code, 403)
+
+    def test_tc_01_26_password_change_and_admin_reset_revoke_existing_sessions(self):
+        hr, other_hr, admin = self.client("hr"), self.client("hr"), self.client("admin")
+        change = "/account/password"
+        reset = f"/hr/users/{self.credentials['hr'][1]}/reset-password"
+        new = "Synthetic-Changed-Password-Only"
+        reset_value = "Synthetic-Reset-Password-Only"
+        self.assertEqual(hr.get(reset).status_code, 403)
+        self.assertEqual(admin.get(reset).status_code, 200)
+        self.assertEqual(hr.get(change).status_code, 200)
+        change_data = {"new_password": new, "password_confirmation": new, "current_password": self.password}
+        self.assertEqual(hr.post(change, data=change_data).status_code, 403)
+        self.assertEqual(self.post(hr, change, {**change_data, "current_password": "incorrect"}).status_code, 403)
+        self.assertEqual(self.post(hr, change, change_data).status_code, 303)
+        self.assertEqual(other_hr.get("/", follow_redirects=False).status_code, 303)
+
+        def sign_in(client, password):
+            token = self.csrf(client.get("/login").text)
+            return client.post("/login", data={"username": self.credentials["hr"][0], "password": password,
+                "csrf_token": token}, follow_redirects=False)
+
+        self.assertEqual(sign_in(hr, self.password).status_code, 401)
+        self.assertEqual(sign_in(hr, new).status_code, 303)
+        reset_data = {"current_password": self.password, "new_password": reset_value, "password_confirmation": reset_value}
+        self.assertEqual(self.post(hr, reset, reset_data).status_code, 403)
+        self.assertEqual(self.post(admin, reset, {**reset_data, "current_password": "incorrect"}).status_code, 403)
+        self.assertEqual(self.post(admin, reset, reset_data).status_code, 303)
+        self.assertEqual(hr.get("/", follow_redirects=False).status_code, 303)
+        self.assertEqual(sign_in(hr, reset_value).status_code, 303)
+        with self.factory() as db:
+            account = db.get(Admin, self.credentials["hr"][1])
+            self.assertEqual((account.role, account.is_active), ("hr", True))
+            rows = list(db.scalars(select(AuditLog).where(AuditLog.record_id == account.id,
+                AuditLog.action.in_(("password_change", "password_reset"))).order_by(AuditLog.id)))
+            self.assertEqual([(row.action, row.actor_id, row.details) for row in rows], [
+                ("password_change", account.id, {}), ("password_reset", self.credentials["admin"][1], {})])
+
+    def test_tc_01_27_account_throttle_is_shared_and_cooldown_expires(self):
+        clients = [self.client(), self.client()]
+        tokens = [self.csrf(client.get("/login").text) for client in clients]
+        username, account_id = self.credentials["hr"]
+
+        def sign_in(index, password):
+            return clients[index].post("/login", data={"username": username, "password": password,
+                "csrf_token": tokens[index]}, follow_redirects=False)
+
+        for index in range(5):
+            self.assertEqual(sign_in(index % 2, "incorrect").status_code, 401)
+        blocked = sign_in(1, self.password)
+        self.assertEqual(blocked.status_code, 429)
+        self.assertGreater(int(blocked.headers["Retry-After"]), 0)
+        with self.factory.begin() as db:
+            attempt = db.get(LoginAttempt, account_id)
+            self.assertEqual(attempt.failure_count, 5)
+            attempt.blocked_until = datetime.now(timezone.utc) - timedelta(seconds=1)
+        self.assertEqual(sign_in(0, self.password).status_code, 303)
+        with self.factory() as db:
+            self.assertIsNone(db.get(LoginAttempt, account_id))
 
     def test_tc_01_03_inactive_account_is_rejected(self):
         client = self.client("hr")

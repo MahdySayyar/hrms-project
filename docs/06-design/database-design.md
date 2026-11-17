@@ -1,6 +1,6 @@
 # DB-01 — طراحی دادهٔ واقعی
 
-این export از reflection فقط‌خواندنی PostgreSQL 17.6 در schema public ساخته شده؛ هیچ سطر HR، رمز یا URL اتصال صادر نشده است. تعداد جدول‌ها 21 است و نام/ستون/نوع/nullability با مدل‌های ORM و نگاشت مفهومی تطبیق داده شد.
+این export از reflection فقط‌خواندنی PostgreSQL 17.6 (Debian 17.6-2.pgdg12+1) در schema public ساخته شده؛ هیچ سطر HR، رمز یا URL اتصال صادر نشده است. تعداد جدول‌ها 22 است و نام/ستون/نوع/nullability با مدل‌های ORM و نگاشت مفهومی تطبیق داده شد.
 
 [DDL فعلی](database-schema.sql)، [metadata و constraints](database-schema.json)، [منبع و hash کد](export-source.json)، [نمودار ER editable](../../models/data-model.mmd).
 
@@ -18,6 +18,7 @@
 | evaluations | 6 | 1 |
 | hr_requests | 13 | 2 |
 | interviews | 6 | 1 |
+| login_attempts | 4 | 1 |
 | onboarding_tasks | 5 | 1 |
 | payroll_profiles | 6 | 1 |
 | payroll_rules | 8 | 0 |

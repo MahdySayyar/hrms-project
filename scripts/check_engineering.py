@@ -178,7 +178,7 @@ def check_engineering():
     database = json.loads((ROOT / "docs/06-design/database-schema.json").read_text(encoding="utf-8"))
     table_names = {t["name"] for t in database["tables"]}
     model = load("specs/model-catalog.yaml")
-    check("Domain covers 21 reflected tables", database["table_count"] == 21 and set(model["domain_mapping"].values()) == table_names == set(Base.metadata.tables))
+    check("Domain covers reflected tables", database["table_count"] == len(table_names) and set(model["domain_mapping"].values()) == table_names == set(Base.metadata.tables))
     conceptual_names = set(re.findall(r"\bclass\s+(\w+)\s*\{", (ROOT / "models/domain.mmd").read_text(encoding="utf-8")))
     check("Conceptual domain entities match mapping", conceptual_names == set(model["domain_mapping"]))
     for table in database["tables"]:
@@ -188,7 +188,7 @@ def check_engineering():
         good = good and all(actual[c.name]["nullable"] == c.nullable and actual[c.name]["type"] == str(c.type.compile(dialect=engine.dialect)) for c in expected.columns)
         check("Reflected columns match ORM " + table["name"], good)
     ddl = (ROOT / "docs/06-design/database-schema.sql").read_text(encoding="utf-8")
-    check("DDL contains all 21 tables", set(re.findall(r"CREATE TABLE (\w+)", ddl)) == table_names)
+    check("DDL contains all reflected tables", set(re.findall(r"CREATE TABLE (\w+)", ddl)) == table_names)
     source = json.loads((ROOT / "docs/06-design/export-source.json").read_text(encoding="utf-8"))
     for item in source["files"]:
         digest = hashlib.sha256((ROOT / item["path"]).read_text(encoding="utf-8").encode("utf-8")).hexdigest()

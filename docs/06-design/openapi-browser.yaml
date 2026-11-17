@@ -87,6 +87,12 @@ paths:
             text/html:
               schema:
                 type: string
+        '429':
+          description: Documented browser error 429; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
         '500':
           description: Unexpected persistence/server failure
         '503':
@@ -153,6 +159,7 @@ paths:
         errors:
         - 401
         - 403
+        - 429
         - 500
         - 503
         overload: ADR-16; private password work capacity full, Retry-After=2 and no
@@ -288,6 +295,301 @@ paths:
         - 403
         - 409
         - 500
+        - 503
+  /account/password:
+    get:
+      summary: Change Password Page
+      operationId: change_password_page_account_password_get
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#change_password_page
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-01
+        method: GET
+        path: /account/password
+        auth: active_session
+        success:
+        - 200
+    post:
+      summary: Change Password
+      operationId: change_password_account_password_post
+      responses:
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '429':
+          description: Documented browser error 429; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '503':
+          description: Documented browser error 503; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#change_password
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                new_password:
+                  type: string
+                password_confirmation:
+                  type: string
+                csrf_token:
+                  type: string
+              required:
+              - current_password
+              - new_password
+              - password_confirmation
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                new_password:
+                  type: string
+                password_confirmation:
+                  type: string
+                csrf_token:
+                  type: string
+              required:
+              - current_password
+              - new_password
+              - password_confirmation
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-01
+        method: POST
+        path: /account/password
+        auth: active_session_csrf
+        fields: &id001
+          current_password:
+            type: string
+            required: true
+          new_password:
+            type: string
+            required: true
+          password_confirmation:
+            type: string
+            required: true
+          csrf_token:
+            type: string
+            required: true
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 429
+        - 503
+  /hr/users/{account_id}/reset-password:
+    get:
+      summary: Reset Password Page
+      operationId: reset_password_page_hr_users__account_id__reset_password_get
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '200':
+          description: Rendered Persian HTML page
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Missing/expired/inactive session redirects to /login, or successful
+            mutation redirect
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#reset_password_page
+      security:
+      - SessionCookie: []
+      x-hrms-contracts:
+      - id: API-01
+        method: GET
+        path: /hr/users/{account_id}/reset-password
+        auth: admin
+        success:
+        - 200
+        - 303
+        errors:
+        - 403
+        - 404
+    post:
+      summary: Reset Password
+      operationId: reset_password_hr_users__account_id__reset_password_post
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Account Id
+      responses:
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '303':
+          description: Successful form submission or documented retry; follow Location
+          headers:
+            Location:
+              schema:
+                type: string
+        '403':
+          description: Documented browser error 403; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: Documented browser error 400; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '404':
+          description: Documented browser error 404; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '429':
+          description: Documented browser error 429; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+        '503':
+          description: Documented browser error 503; see x-hrms-contracts conditions
+          content:
+            text/html:
+              schema:
+                type: string
+      x-code-symbol: app/main.py#reset_password
+      security:
+      - SessionCookie: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                new_password:
+                  type: string
+                password_confirmation:
+                  type: string
+                csrf_token:
+                  type: string
+              required:
+              - current_password
+              - new_password
+              - password_confirmation
+              - csrf_token
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                new_password:
+                  type: string
+                password_confirmation:
+                  type: string
+                csrf_token:
+                  type: string
+              required:
+              - current_password
+              - new_password
+              - password_confirmation
+              - csrf_token
+      x-form-inventory: See route-inventory.json and specs/http-contracts.yaml for
+        full or dynamic form fields
+      x-hrms-contracts:
+      - id: API-01
+        method: POST
+        path: /hr/users/{account_id}/reset-password
+        auth: admin_csrf
+        fields: *id001
+        success:
+        - 303
+        errors:
+        - 400
+        - 403
+        - 404
+        - 429
         - 503
   /logout:
     post:
@@ -778,7 +1080,7 @@ paths:
               properties:
                 active:
                   type: string
-                  enum: &id001
+                  enum: &id002
                   - 'true'
                   - 'false'
                 csrf_token:
@@ -810,7 +1112,7 @@ paths:
         fields:
           active:
             type: string
-            enum: *id001
+            enum: *id002
             required: true
           csrf_token:
             type: string
@@ -1680,7 +1982,7 @@ paths:
               properties:
                 completed:
                   type: string
-                  enum: &id002
+                  enum: &id003
                   - 'true'
                   - 'false'
                 csrf_token:
@@ -1712,7 +2014,7 @@ paths:
         fields:
           completed:
             type: string
-            enum: *id002
+            enum: *id003
             required: true
           csrf_token:
             type: string
@@ -1785,7 +2087,7 @@ paths:
               properties:
                 decision:
                   type: string
-                  enum: &id003
+                  enum: &id004
                   - approved
                   - rejected
                 review_notes:
@@ -1823,7 +2125,7 @@ paths:
         fields:
           decision:
             type: string
-            enum: *id003
+            enum: *id004
             required: true
           review_notes:
             type: string

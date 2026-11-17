@@ -754,7 +754,7 @@ def audit_page(request: Request):
     require_admin(request)
     with SessionLocal() as db:
         rows = db.execute(select(AuditLog, Admin.display_name).outerjoin(Admin, Admin.id == AuditLog.actor_id).order_by(AuditLog.id.desc()).limit(300)).all()
-    labels = {"create": "ثبت", "register": "ساخت حساب", "edit": "ویرایش", "status": "تغییر وضعیت", "login": "ورود", "logout": "خروج", "hire": "استخدام", "onboarding": "پذیرش", "review": "بررسی درخواست", "activate": "فعال‌سازی قرارداد", "renew": "تمدید", "terminate": "خاتمهٔ همکاری", "calculate": "محاسبهٔ حقوق", "export": "دریافت گزارش"}
+    labels = {"create": "ثبت", "register": "ساخت حساب", "edit": "ویرایش", "status": "تغییر وضعیت", "login": "ورود", "logout": "خروج", "password_change": "تغییر رمز", "password_reset": "بازنشانی رمز", "hire": "استخدام", "onboarding": "پذیرش", "review": "بررسی درخواست", "activate": "فعال‌سازی قرارداد", "renew": "تمدید", "terminate": "خاتمهٔ همکاری", "calculate": "محاسبهٔ حقوق", "export": "دریافت گزارش"}
     entities = {"employees": "کارکنان", "admins": "کاربران", "branches": "شعبه‌ها", "units": "واحدها", "positions": "سمت‌ها", "candidates": "متقاضیان", "onboarding_tasks": "پذیرش", "hr_requests": "درخواست‌ها", "employment_contracts": "قراردادها", "payslips": "فیش‌ها", "assignment_history": "تاریخچه"}
     entities.update({config["model"].__tablename__: config["title"] for config in MODULES.values()})
     return render(request, "audit.html", title="سابقهٔ تغییرات", rows=rows, action_labels=labels, entity_labels=entities)

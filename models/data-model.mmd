@@ -28,13 +28,13 @@ erDiagram
         INTEGER employee_id
         DATE work_date
         INTEGER shift_id
+        VARCHAR_20 presence_status
         TIME_WITHOUT_TIME_ZONE clock_in
         TIME_WITHOUT_TIME_ZONE clock_out
         INTEGER worked_minutes
         INTEGER overtime_minutes
         INTEGER required_minutes
         TEXT notes
-        VARCHAR_20 presence_status
     }
     audit_log {
         INTEGER id PK
@@ -132,6 +132,12 @@ erDiagram
         VARCHAR_100 interviewer
         VARCHAR_20 result
         TEXT notes
+    }
+    login_attempts {
+        INTEGER admin_id PK
+        INTEGER failure_count
+        TIMESTAMP_WITH_TIME_ZONE window_started_at
+        TIMESTAMP_WITH_TIME_ZONE blocked_until
     }
     onboarding_tasks {
         INTEGER id PK
@@ -232,6 +238,7 @@ erDiagram
     employees ||--o{ hr_requests : "employee_id"
     admins |o--o{ hr_requests : "reviewed_by"
     candidates ||--o{ interviews : "candidate_id"
+    admins ||--o{ login_attempts : "admin_id"
     candidates ||--o{ onboarding_tasks : "candidate_id"
     employees ||--o{ payroll_profiles : "employee_id"
     admins ||--o{ payslips : "created_by"

@@ -1,0 +1,24 @@
+# Use alongside compose.capacity.yaml or compose.shared.yaml.
+x-secure-cookies: &secure-cookies
+  COOKIE_SECURE: "true"
+
+services:
+  web:
+    environment: *secure-cookies
+  web2:
+    environment: *secure-cookies
+  web3:
+    environment: *secure-cookies
+  web4:
+    environment: *secure-cookies
+  proxy:
+    environment: *secure-cookies
+    command: [python, -m, uvicorn, "app.native_proxy:app", --host, 0.0.0.0, --port, "8000", --ssl-certfile, /tls/cert.pem, --ssl-keyfile, /tls/key.pem]
+    volumes:
+      - type: bind
+        source: ${HRMS_TLS_DIR:-../.runtime/tls}
+        target: /tls
+        read_only: true
+        bind: {create_host_path: false}
+    healthcheck:
+      test: [CMD, python, -c, "import ssl, urllib.request; r=urllib.request.urlopen('https://127.0.0.1:8000/health', timeout=3, context=ssl._create_unverified_context()); assert r.status == 200"]

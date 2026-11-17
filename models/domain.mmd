@@ -5,6 +5,12 @@ classDiagram
       role
       organizationalScope
     }
+    class LoginAttempt {
+      failureCount
+      windowStartedAt
+      blockedUntil
+    }
+    UserAccount "1" -- "0..1" LoginAttempt
     class Branch {
       name
     }
