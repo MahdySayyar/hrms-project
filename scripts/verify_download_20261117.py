@@ -17,11 +17,14 @@ import httpx
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audit_publication_20261117 import ROOT, candidates
 from verify_delivery_demo_20261117 import verify_demo
+from verify_database_restore_20261117 import verify_restore
 
 
-def verify(name, shared=False):
+def verify(name, shared=False, restore=False):
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{2,45}", name):
         raise ValueError("Choose a unique lowercase verification name.")
+    if restore and not name.startswith("restore-"):
+        raise ValueError("Use a unique restore- name for the recovery run.")
     raw = ROOT / "artifacts" / name
     raw.mkdir(parents=True, exist_ok=False)
     source = raw / "downloaded project"
@@ -46,6 +49,7 @@ def verify(name, shared=False):
               "clean_copy_has_no_host_python": not (source / ".venv").exists(),
               "clean_copy_has_no_runtime": not (source / ".runtime").exists()}
     started = datetime.now(timezone.utc)
+    recovery = None
     with (raw / "verification.log").open("x", encoding="utf-8") as log:
         def run(command):
             result = subprocess.run(command, cwd=source, env=environment, stdout=log, stderr=log)
@@ -87,6 +91,9 @@ def verify(name, shared=False):
                 checks["dashboard_after_login"] = client.get("/").status_code == 200
                 checks["csrf_required_403"] = client.post("/logout", data={}).status_code == 403
             checks.update(verify_demo(port, source / ".runtime/docker-hrms-secrets/admin_password"))
+            if restore:
+                recovery = verify_restore(compose, source, environment, raw)
+                checks.update(recovery["checks"])
             spec = importlib.util.spec_from_file_location("download_marker", source / "scripts/verify_docker_deployment_20261116.py")
             marker_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(marker_module)
@@ -128,6 +135,8 @@ def verify(name, shared=False):
               "human_review": "pending", "fresh_visual_test": False, "capacity_500_verified": False,
               "compose_file": compose_file,
               "platform_verified": "Windows PowerShell launcher; Bash syntax locally; Linux execution covered by GitHub CI"}
+    if recovery is not None:
+        report["recovery"] = recovery
     evidence = ROOT / "docs/08-testing/evidence" / (name + ".json")
     with evidence.open("x", encoding="utf-8") as output:
         output.write(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
@@ -139,5 +148,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", required=True)
     parser.add_argument("--shared", action="store_true")
+    parser.add_argument("--restore", action="store_true")
     args = parser.parse_args()
-    raise SystemExit(verify(args.name, args.shared))
+    raise SystemExit(verify(args.name, args.shared, args.restore))

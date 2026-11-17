@@ -1,0 +1,72 @@
+{
+  "isolation": "Disposable verification container and unique synthetic PostgreSQL schemas; no native .env mounted",
+  "all_passed": true,
+  "checks": [
+    {
+      "command": [
+        "-m",
+        "coverage",
+        "run",
+        "--data-file",
+        "/srv/hrms/artifacts/docker-checks/coverage-data",
+        "--source",
+        "app/request_workflow",
+        "scripts/run_core_checks.py",
+        "--phase",
+        "after",
+        "--pattern",
+        "test_*.py",
+        "--output",
+        "artifacts/docker-checks/core.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "-m",
+        "coverage",
+        "report",
+        "--data-file",
+        "/srv/hrms/artifacts/docker-checks/coverage-data",
+        "--fail-under",
+        "80"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "-m",
+        "coverage",
+        "json",
+        "--data-file",
+        "/srv/hrms/artifacts/docker-checks/coverage-data",
+        "-o",
+        "/srv/hrms/artifacts/docker-checks/coverage.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/run_isolated_smoke.py",
+        "--output",
+        "artifacts/docker-checks/regression.json"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "package_versions": {
+    "coverage": "7.17.3",
+    "PyYAML": "6.0.3",
+    "psycopg": "3.2.12",
+    "fastapi": "0.121.0"
+  },
+  "docker_raw_evidence_directory": "artifacts/docker-checks-restore-demo-20261117-a"
+}
