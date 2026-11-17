@@ -26,6 +26,7 @@ traceability:
   tests:
   - TC-01-01
   - TC-01-03
+  - TC-01-07
   - TC-01-10
   - TC-01-11
   - TC-01-12
@@ -865,7 +866,10 @@ traceability:
   - UC-04
   - UC-12
   models:
+  - ACT-01
   - DM-01
+  - SEQ-01
+  - ST-01
   - UCM-01
   design:
   - D-01
@@ -888,7 +892,7 @@ traceability:
   - 87
   - 89
   - 90
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -1015,6 +1019,7 @@ test_code_symbols:
   TC-04-07: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping
   TC-04-08: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks
   TC-01-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
+  TC-01-24: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
   TC-01-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope
   TC-01-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_03_inactive_account_is_rejected
   TC-01-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_04_authentication_is_checked_once_per_http_request
@@ -1033,6 +1038,8 @@ test_code_symbols:
   TC-03-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_04_zero_hourly_rate_is_rejected
   TC-03-05: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
   TC-01-16: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
+  TC-01-08: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
+  TC-01-09: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
   TC-01-17: tests/test_fast_login.py#PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords
   TC-01-18: tests/test_fast_login.py#PasswordMigration.test_tc_01_18_legacy_upgrade_is_atomic_and_only_after_success
   TC-01-19: tests/test_fast_login.py#RedisStorageContracts.test_tc_01_19_cross_client_ttl_digest_rotation_and_revocation
@@ -1040,9 +1047,6 @@ test_code_symbols:
   TC-01-21: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_21_shared_login_csrf_revoke_and_store_failure
   TC-01-22: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_22_revoked_during_commit_has_no_audit_or_session
   TC-01-23: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_23_failed_sql_commit_removes_unissued_shared_session
-  TC-01-24: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
-  TC-01-08: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
-  TC-01-09: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
   TC-01-10: tests/test_login_capacity.py#PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress
   TC-01-11: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_11_database_released_and_stale_credentials_denied
   TC-01-12: tests/test_login_capacity.py#LoginCapacityContracts.test_tc_01_12_full_login_capacity_preserves_health_and_retry

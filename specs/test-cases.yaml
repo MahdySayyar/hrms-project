@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/core-registration-20261117-a.json
-current_coverage_evidence: docs/08-testing/evidence/coverage-registration-20261117-a.json
+current_suite_evidence: docs/08-testing/evidence/core-project-review-20261117-a.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-project-review-20261117-a.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
@@ -12,7 +12,7 @@ transport_tests:
     - id: TC-01-06
       scenario: Backend disconnect on POST and DELETE yields 503, exactly one upstream attempt
     - id: TC-01-07
-      scenario: Gzip bytes and length, Connection-nominated headers, redirect and invalid affinity boundary
+      scenario: Encoded path and query, gzip bytes and length, HEAD and 304 metadata, 204 without length, Connection-nominated headers, redirect and invalid affinity boundary
 core_tests:
 - id: TC-01-24
   use_case: UC-01

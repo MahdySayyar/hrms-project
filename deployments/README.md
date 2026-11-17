@@ -6,13 +6,13 @@
 
 اگر پورت 8001 اشغال است، در PowerShell قبل از launcher فرمان `$env:HRMS_HTTP_PORT='8002'` یا در Bash فرمان `HRMS_HTTP_PORT=8002 bash scripts/start-docker.sh` را اجرا کنید؛ سایت روی localhost:8002 باز می‌شود. برای استفادهٔ بعدی از همان پورت، همین تنظیم را هنگام راه‌اندازی نگه دارید.
 
-برای نسخهٔ دانلودشده در ویندوز `start-docker.cmd` را دوبار کلیک کنید؛ در macOS/Linux فرمان `bash scripts/start-docker.sh` را از ریشه بزنید. فقط Docker با Linux containers و Compose v2 لازم است. کانتینر موقت initializer رمزهای نصب را تولید و حذف می‌شود؛ دو سرویس کاربردی باقی می‌مانند. نصب تازه به `.env`، Python میزبان یا فایل‌های رایانهٔ سازنده نیاز ندارد.
+برای نسخهٔ دانلودشده در ویندوز `start-docker.cmd` را دوبار کلیک کنید؛ در macOS/Linux فرمان `bash scripts/start-docker.sh` را از ریشه بزنید. فقط Docker با Linux containers و Compose v2 لازم است. کانتینر موقت initializer رمزهای نصب را تولید می‌کند و پس از اجرا حذف می‌شود. نصب تازه به `.env` یا Python میزبان نیاز ندارد.
 
 برای بروزرسانی یک clone، در ریشه `git pull --ff-only` و سپس launcher را دوباره اجرا کنید. برای نصب از ZIP، فایل‌های نسخهٔ جدید را جایگزین کنید و پوشهٔ خصوصی `.runtime` را نگه دارید. اگر secretها را حذف کنید ولی volume را نگه دارید، رمزهای تازه با پایگاه موجود سازگار نخواهند بود. تغییر schema قدیمی همچنان نیازمند راهنمای مهاجرت همان نسخه است.
 
 برای رفع مشکل از `docker compose -f deployments/compose.capacity.yaml ps` و `docker compose -f deployments/compose.capacity.yaml logs --tail=100 web db` استفاده کنید. Docker باید روشن باشد و پورت 8001 آزاد باشد. آماده‌شدن اولین build به سرعت اینترنت بستگی دارد.
 
-چهار سرویس وب، proxy و `db` در پروژهٔ Compose به نام `hrms-docker`. وب یک پردازه دارد؛ نشست‌ها حافظه‌ای‌اند. PostgreSQL روی شبکهٔ داخلی Compose و volume مستقل است. دادهٔ اولیه نمونهٔ ساختگی کد است؛ داده یا رمز نسخهٔ native منتقل نشده است.
+در حالت پیش‌فرض، پروژهٔ `hrms-docker` چهار وب تک‌پردازه، پراکسی و PostgreSQL دارد. هر وب نشست‌هایش را در حافظه نگه می‌دارد. PostgreSQL روی شبکهٔ داخلی Compose و volume مستقل است. دادهٔ اولیه از نمونهٔ ساختگی کد می‌آید.
 
 از ریشهٔ پروژه:
 

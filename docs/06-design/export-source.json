@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-17T06:22:34.858979+00:00",
+  "captured_at": "2026-11-17T06:32:04.462622+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "path": "app/access.py",
-      "sha256": "a813075c66b791ce0275a08ec0e6bb1a6183d6d13de51385b44e00b509dc3bf1"
+      "sha256": "be4a05a8701f45d9e90dfdc0683878ae4633a1272d4fa4d3c4e54d12015d9df3"
     },
     {
       "path": "app/database.py",
@@ -25,7 +25,7 @@
     },
     {
       "path": "app/main.py",
-      "sha256": "c3f3d43529f5aec152cd5d650dbeb82acc45e46748553d46c0e8fcc610f3a7bc"
+      "sha256": "6c6dd5a7f53122ae3163abfe318d0b9f3cf700dd835202cb43d661d64534eca5"
     },
     {
       "path": "app/module_forms.py",
@@ -33,11 +33,11 @@
     },
     {
       "path": "app/modules.py",
-      "sha256": "fd2de0119d3bb61516b4315df45c6531cb94d13883c2a91f396ca31c28e640a0"
+      "sha256": "ecce4e160e042ab374a4e3fe768531b9fc1d04eb69f30dcc52e658798934b194"
     },
     {
       "path": "app/native_proxy.py",
-      "sha256": "8643880d73efa5c5aedf172e966a1cee3af868f30f70228ece6a3c87769d6d43"
+      "sha256": "c378bb324b40d50f8144a745dad7c132c5a066051a543b6fef474d50f2df1a5c"
     },
     {
       "path": "app/pagination.py",
@@ -89,11 +89,11 @@
     },
     {
       "path": "specs/requirements.yaml",
-      "sha256": "cb4e534286a7940719097ebffa9852ad9c1b53a015aabf58641fc7ecdb5b757f"
+      "sha256": "1d0cfa57b6f80a1e8cdfb37abba98f123149adf1c9cf18fefe786285efea8f0c"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "62b0cd041f1968ea00b84279a09c06715932c766d19fc1d2c5e1835f575b0311"
+      "sha256": "de87717aed34934dd49cf4dac06b862be9e607de83944a7a8f42eee83e9ef116"
     },
     {
       "path": "specs/UC-02.yaml",
@@ -141,7 +141,7 @@
     },
     {
       "path": "tests/test_native_proxy.py",
-      "sha256": "2731faeafe281572550e65937c326435a60c4f8ff81afeb79c9d068861610380"
+      "sha256": "c3ecfd122081d3257f86f142d16676bbd438dfe515d42172b473ed996757643d"
     },
     {
       "path": "tests/test_report_reads.py",

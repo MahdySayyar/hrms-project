@@ -57,9 +57,9 @@ success:
 failure:
 - No authenticated session is granted
 limitations:
-- Current measured deployment uses affinity and memory; ADR-19 Redis/round-robin is promoted only after isolated before/after evidence
+- Default Docker uses memory and affinity; Redis and per-request balancing are available in an optional Docker configuration
 - Multiple physical servers unavailable; no subsecond 500-login or complete HA guarantee
-- Sessions are process-local and disappear on restart
+- Memory sessions disappear on web restart; shared sessions survive web restart and are lost on Redis restart
 - COOKIE_SECURE is false for the localhost HTTP development environment
 - Docker baseline retains one web process, the same opaque cookie/CSRF contract and process-local session loss on restart
 - Successful login is audited; a comprehensive denied-access security log is a future
@@ -82,6 +82,7 @@ traceability:
   - TC-01-01
   - TC-01-02
   - TC-01-03
+  - TC-01-07
   - TC-01-10
   - TC-01-11
   - TC-01-12
@@ -94,16 +95,17 @@ goal: Grant an active account a scoped authenticated session and end it safely
 compose_replica_experiment:
   specified_at: '2026-11-17'
   decision: ADR-15
-  status: Lab only; current deployment remains single-process until measured acceptance
+  status: Default Docker launcher uses four single-process web replicas; the native and single-web Docker launchers remain available
   workers: Four explicit internal Compose web services; per-browser affinity required for process-local sessions
   proxy_contract: Explicit internal HTTP:8000 allowlist; bounded timeout; no automatic mutation retry; cookie and CSRF preserved
+  proxy_forwarding: Forward the encoded path and query as received; preserve valid upstream length metadata for HEAD and 304 and omit body length on 204.
   compose_connection_policy: ADR-17; force-close each outgoing HTTP connection, no retry of any method, sanitized error-class/method/worker logging
 password_work_contract:
   specified_at: '2026-11-17'
   decision: ADR-16
   workers: Private executor, 1 per web by default; 1..4 allowed; total outstanding work bounded to 512 per web
   database: Short snapshot read, closed during hash and queue; current active/hash revalidated in the audit transaction
-  invariants: No password/result cache, no hash strength reduction, audit commit before rotation, process-local session preserved
+  invariants: No password/result cache; rotate conditionally before SQL commit and issue cookie after commit; remove the unissued token on commit failure
 secondary_actors: []
 quality_attributes:
 - NFR-S-01
@@ -114,7 +116,7 @@ new_login_experiments:
   password: Argon2id m19456 t2 p1; legacy rehash only after successful verification and revalidation, committed with audit
   sessions: Redis shared store with token digests and TTL; cross-worker validity/revocation; conditional rotation; no fallback on failure
   proxy: Per-request round robin in the explicit shared-session deployment; legacy affinity preserved in existing modes
-  status: specified_before_implementation_pending_isolated_evidence
+  status: Tested on one Docker host; subsecond login goal and human review pending
 request_authentication_contract:
   recorded_at: '2026-11-12'
   provenance: ADR-06 and D-01 were specified before code; this UC detail was recorded immediately after the small implementation

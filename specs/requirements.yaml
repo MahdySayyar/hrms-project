@@ -14,9 +14,10 @@ functional_requirements:
   compose_login_experiment: ADR-15; 500 independent concurrent login attempts with browser affinity, successful audit/session rotation and responsive observer; lab acceptance precedes deployment promotion.
   password_capacity_contract: ADR-16; unchanged PBKDF2 in a private bounded executor without a database session; recheck active/hash and CSRF before audit/rotation; full capacity returns 503 with Retry-After and no session/audit.
   compose_transport_contract: ADR-17; separate outgoing connection per request without retry; current account locked only during final revalidation/audit transaction
+  proxy_http_forwarding: ADR-21; encoded path and query stay intact; HEAD, 304 and 204 preserve HTTP representation metadata semantics.
   password_agility: ADR-18; Argon2id m19456 t2 p1 for new hashes; verify existing PBKDF2 unchanged and rehash only on successful login, atomically with audit after active/hash/CSRF revalidation
   shared_session_experiment: ADR-19; demonstrate memory-session transfer/restart failure first; Redis token digests, TTL, conditional rotation and cross-worker logout; fail-closed 503 without local fallback; promotion after isolated evidence
-  latency_goal: P95 login below 1000ms for 500 independent synchronized attempts; target only, current evidence is about 100000ms
+  latency_goal: P95 below 1000ms for 500 synchronized sign-ins; fastest measured Argon2id run reached 15781ms with two observer timeouts
   use_case: UC-01
   business_rules:
   - BR-01
@@ -26,6 +27,7 @@ functional_requirements:
   core_tests:
   - TC-01-01
   - TC-01-03
+  - TC-01-07
   - TC-01-10
   - TC-01-11
   - TC-01-12
@@ -436,9 +438,10 @@ functional_requirements:
   business_rules:
   - BR-22
   code:
+  - app/main.py#register
   - app/modules.py#validate_record
   - app/database.py#Admin
-  core_tests: []
+  core_tests: [TC-01-24]
   source:
   - SRC-C01
   priority: extended

@@ -30,7 +30,8 @@ def upstream(handler):
             self.send_response(status)
             for key, value in headers:
                 self.send_header(key, value)
-            self.send_header("Content-Length", str(len(data)))
+            if status != 204 and not any(key.lower() == "content-length" for key, _ in headers):
+                self.send_header("Content-Length", str(len(data)))
             self.end_headers()
             if self.command != "HEAD":
                 self.wfile.write(data)
@@ -97,6 +98,10 @@ class NativeProxyContracts(TestCase):
         def handler(call):
             if call["path"] == "/redirect":
                 return 303, [("Location", "/must-not-follow")], b""
+            if call["path"] == "/not-modified":
+                return 304, [("Content-Length", str(len(content)))], b""
+            if call["path"] == "/no-content":
+                return 204, [], b""
             return 200, [("Content-Encoding", "gzip"), ("Connection", "X-Upstream-Private"),
                 ("X-Upstream-Private", "remove")], content
         with upstream(handler) as (url, calls), patch.object(self.proxy, "BACKENDS", [url]), \
@@ -107,6 +112,12 @@ class NativeProxyContracts(TestCase):
             self.assertEqual(int(response.headers["Content-Length"]), len(content))
             self.assertNotIn("x-upstream-private", response.headers)
             self.assertNotIn("x-request-private", calls[0]["headers"])
+            client.get("/x%3Fy%23z%2Fpart?q=%2526")
+            self.assertEqual(calls[-1]["path"], "/x%3Fy%23z%2Fpart?q=%2526")
+            for metadata_only in (client.head("/encoded"), client.get("/not-modified")):
+                self.assertEqual(metadata_only.content, b"")
+                self.assertEqual(metadata_only.headers["Content-Length"], str(len(content)))
+            self.assertNotIn("content-length", client.get("/no-content").headers)
             count = len(calls)
             response = client.post("/redirect", follow_redirects=False)
             self.assertEqual(response.status_code, 303)

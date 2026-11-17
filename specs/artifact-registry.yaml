@@ -407,6 +407,9 @@ entries:
 - id: UC-12
   target: docs/03-specifications/use-cases.md
   kind: use_case
+- id: SEQ-LOGIN-SHARED-01
+  target: models/design/shared-login.mmd
+  kind: model
 - id: READ-CAT-01
   target: models/design/read-catalog.mmd
   kind: model
@@ -515,6 +518,18 @@ entries:
 - id: ADR-17
   target: docs/05-architecture/ADRs/ADR-17-compose-proxy-connections.md
   kind: architecture_decision
+- id: ADR-18
+  target: docs/05-architecture/ADRs/ADR-18-memory-hard-passwords.md
+  kind: architecture_decision
+- id: ADR-19
+  target: docs/05-architecture/ADRs/ADR-19-shared-sessions.md
+  kind: architecture_decision
+- id: ADR-20
+  target: docs/05-architecture/ADRs/ADR-20-account-registration.md
+  kind: architecture_decision
+- id: ADR-21
+  target: docs/05-architecture/ADRs/ADR-21-proxy-http-forwarding.md
+  kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
   kind: design
@@ -596,6 +611,9 @@ entries:
 - id: TC-01-01
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
   kind: automated_test
+- id: TC-01-24
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
+  kind: automated_test
 - id: TC-01-02
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope
   kind: automated_test
@@ -650,14 +668,32 @@ entries:
 - id: TC-01-16
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
   kind: automated_test
-- id: TC-01-24
-  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
-  kind: automated_test
 - id: TC-01-08
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
   kind: automated_test
 - id: TC-01-09
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  kind: automated_test
+- id: TC-01-17
+  target: tests/test_fast_login.py#PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords
+  kind: automated_test
+- id: TC-01-18
+  target: tests/test_fast_login.py#PasswordMigration.test_tc_01_18_legacy_upgrade_is_atomic_and_only_after_success
+  kind: automated_test
+- id: TC-01-19
+  target: tests/test_fast_login.py#RedisStorageContracts.test_tc_01_19_cross_client_ttl_digest_rotation_and_revocation
+  kind: automated_test
+- id: TC-01-20
+  target: tests/test_fast_login.py#RedisStorageContracts.test_tc_01_20_store_error_and_malformed_payload_fail_closed
+  kind: automated_test
+- id: TC-01-21
+  target: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_21_shared_login_csrf_revoke_and_store_failure
+  kind: automated_test
+- id: TC-01-22
+  target: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_22_revoked_during_commit_has_no_audit_or_session
+  kind: automated_test
+- id: TC-01-23
+  target: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_23_failed_sql_commit_removes_unissued_shared_session
   kind: automated_test
 - id: TC-01-10
   target: tests/test_login_capacity.py#PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress

@@ -8,16 +8,16 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import RedirectResponse, Response
-from starlette.concurrency import run_in_threadpool
-from sqlalchemy import func, or_, select
+from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 
 from .access import (audit, check_scope, current_user, render, require_admin, require_hr, scoped, scoped_employee, sync_assignment)
+from .access import protected_form as browser_form
 from .database import Admin, Branch, Employee, Position, SessionLocal, Unit
-from .hr_models import (AssignmentHistory, Attendance, AuditLog, Candidate, CareerPlan, EmploymentContract, Evaluation, HrRequest, Interview,
+from .hr_models import (AssignmentHistory, Attendance, AuditLog, Candidate, EmploymentContract, HrRequest, Interview,
                         OnboardingTask, PayrollProfile, PayrollRule, Payslip, Shift, Training, TrainingEnrollment, utc_now)
-from .module_forms import (CANDIDATE_STATES, CONTRACT_STATES, CONTRACT_TYPES, INTERVIEW_RESULTS, LABELS, MODULES, REQUEST_STATES, DATE, EMPLOYEE, field, money, pick)
-from .security import check_csrf, hash_password, require_login
+from .module_forms import (CANDIDATE_STATES, CONTRACT_STATES, CONTRACT_TYPES, INTERVIEW_RESULTS, LABELS, MODULES, REQUEST_STATES, DATE, field, money, pick)
+from .security import hash_password, require_login
 from .request_workflow.domain import ReviewError, Reviewer
 from .request_workflow.repository import RequestReviewRepository
 from .request_workflow.service import RequestReviewService
@@ -33,13 +33,6 @@ def normalized(value):
 
 def redirect(path):
     return RedirectResponse(path, status_code=303)
-
-
-async def browser_form(request: Request):
-    await run_in_threadpool(require_login, request)
-    form = dict(await request.form())
-    await run_in_threadpool(check_csrf, request, form)
-    return form
 
 
 def config_for(module, request):

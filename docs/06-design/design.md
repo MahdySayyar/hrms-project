@@ -17,6 +17,8 @@ main.login فرم را می‌خواند، CSRF را کنترل می‌کند، 
 
 طرح پیش از کد، 2026-11-15، ADR-08: transport خروجی proxy از aiohttp ClientSession با DummyCookieJar استفاده می‌کند؛ کوکی مرورگر فقط از درخواست ورودی انتقال می‌یابد و در proxy ذخیره نمی‌شود. redirect و decompression خودکار خاموش‌اند؛ body/query و headerهای متعدد Set-Cookie حفظ، headerهای hop-by-hop و نام‌های Connection حذف و طول body دوباره محاسبه می‌شود. timeout/قطع backend همان 503 و بدون retry نوشتن است. پذیرش ظرفیت همچنان به اندازه‌گیری وابسته است.
 
+در بازبینی 2026-11-17، قرارداد پراکسی مشخص می‌کند که بایت‌های مسیر و query حفظ شوند. برای HEAD و 304 طول معتبر اعلام‌شده توسط وب حفظ می‌شود و 204 بدون هدر طول است. [ADR-21](../05-architecture/ADRs/ADR-21-proxy-http-forwarding.md)
+
 طرح پیش از کد، 2026-11-16، ADR-10: Compose یک وب و یک PostgreSQL جدا با volume تازه دارد. entrypoint container فایل‌های secret جدید را می‌خواند، URL اتصال را فقط در محیط فرایند می‌سازد، seed نمونه را اجرا و یک Uvicorn را exec می‌کند. DB قبل از وب healthy می‌شود؛ health وب اتصال PostgreSQL را هم بررسی می‌کند. پورت میزبان 8001، دادهٔ نمونه مستقل، runtime غیر root و allowlist فایل‌های image؛ .env و HR native وارد image/volume نمی‌شوند.
 
 طرح پیش از کد، 2026-11-17، [ADR-14](../05-architecture/ADRs/ADR-14-downloadable-startup.md): launcher دانلود ZIP، secret initializer موجود را در کانتینر موقت بدون شبکه با دو mount محدود اجرا می‌کند؛ سپس همان DB و یک وب را build و تا healthyشدن منتظر می‌ماند. به Python میزبان نیاز ندارد و رمز/volume موجود را تغییر نمی‌دهد. FR/BR/UC-01 و رفتار HR محفوظ‌اند.

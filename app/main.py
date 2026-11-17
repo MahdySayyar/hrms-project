@@ -8,14 +8,14 @@ from datetime import date
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from starlette.concurrency import run_in_threadpool
 from sqlalchemy import func, or_, select, text
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Unit, engine
-from .access import audit, check_scope, current_user, render, require_admin, require_hr, scoped, scoped_employee, sync_assignment
+from .access import (audit, check_scope, current_user, protected_form, read_form, render,
+                     require_admin, require_hr, scoped, scoped_employee, sync_assignment)
 from .security import (COOKIE_NAME, check_csrf, current_session, discard_session,
                        hash_password, new_session, password_needs_upgrade, require_login,
                        rotate_session, set_session_cookie, verify_password)
@@ -39,8 +39,6 @@ async def lifespan(_app):
 
 app = FastAPI(title="سامانه مدیریت منابع انسانی", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
 app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
-templates = Jinja2Templates(directory=ROOT / "templates")
-templates.env.filters["fa"] = lambda value: str(value).translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
 CONTRACT_TYPES = ("دائم", "مدت‌معین", "پیمانکاری", "آزمایشی")
 DIGITS = str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩", "01234567890123456789")
 
@@ -56,17 +54,6 @@ def positive_int(value) -> int | None:
 
 def redirect(url: str):
     return RedirectResponse(url, status_code=303)
-
-
-async def read_form(request: Request) -> dict:
-    return dict(await request.form())
-
-
-async def protected_form(request: Request) -> dict:
-    await run_in_threadpool(require_login, request)
-    form = await read_form(request)
-    await run_in_threadpool(check_csrf, request, form)
-    return form
 
 
 @app.middleware("http")

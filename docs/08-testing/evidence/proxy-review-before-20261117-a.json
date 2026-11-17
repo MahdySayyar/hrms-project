@@ -1,0 +1,26 @@
+{
+  "phase": "before",
+  "started_at": "2026-11-17T06:28:17.911712+00:00",
+  "finished_at": "2026-11-17T06:28:19.584588+00:00",
+  "git_parent_commit": "cc65f3913bc45cfbebb21dcac861ad40142ade45",
+  "source_revision_available": true,
+  "database": null,
+  "isolation": "Disposable loopback HTTP servers with synthetic payloads; no database access",
+  "tests_run": 3,
+  "all_passed": false,
+  "checks": [
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary",
+      "status": "failed",
+      "reason": "'/x?y' != '/x%3Fy%23z%2Fpart?q=%2526'\n- /x?y\n+ /x%3Fy%23z%2Fpart?q=%2526\n"
+    }
+  ]
+}

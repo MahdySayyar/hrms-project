@@ -4,15 +4,27 @@ from zoneinfo import ZoneInfo
 from fastapi import HTTPException, Request
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
+from starlette.concurrency import run_in_threadpool
 from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Unit
 from .hr_models import AssignmentHistory, AuditLog
-from .security import current_session, require_login
+from .security import check_csrf, current_session, require_login
 
 ROLE_LABELS = {"admin": "مدیر منابع انسانی", "hr": "کارشناس منابع انسانی", "viewer": "مشاهده‌گر گزارش‌های کلی"}
 templates = Jinja2Templates(directory=ROOT / "templates")
 templates.env.filters["fa"] = lambda value: str(value).translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
 templates.env.filters["money"] = lambda value: f"{int(value):,}".translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
 templates.env.filters["localtime"] = lambda value: value.astimezone(ZoneInfo("Asia/Tehran")).strftime("%Y-%m-%d %H:%M")
+
+
+async def read_form(request: Request) -> dict:
+    return dict(await request.form())
+
+
+async def protected_form(request: Request) -> dict:
+    await run_in_threadpool(require_login, request)
+    form = await read_form(request)
+    await run_in_threadpool(check_csrf, request, form)
+    return form
 
 
 def current_user(request):
