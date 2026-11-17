@@ -4,6 +4,7 @@
 {% include 'module_tabs.html' %}
 {% if description %}<div class="info-note module-info">{{ description }}</div>{% endif %}
 <form method="post" action="{{ action }}" class="panel form-panel">
+{% if return_to_candidate %}<input type="hidden" name="return_to_candidate" value="1">{% endif %}
 <input type="hidden" name="csrf_token" value="{{ csrf_token }}"><div class="form-grid">
 {% for field in fields %}<div class="field {{ 'wide-field' if field.kind == 'textarea' else '' }}"><label for="{{ field.name }}">{{ field.label }} {% if field.required %}<span class="required">*</span>{% endif %}</label>
 {% if field.kind == 'select' %}<select id="{{ field.name }}" name="{{ field.name }}" {% if field.required %}required{% endif %}><option value="">{{ 'انتخاب کنید' if field.required else 'بدون محدودیت / ثبت نشده' }}</option>{% for key,label in field.options %}<option value="{{ key }}" {% if values.get(field.name, field.default|default(''))|string == key|string %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>

@@ -333,6 +333,7 @@ traceability:
   - app/modules.py#hire_candidate
   - app/modules.py#complete_onboarding
   tests:
+  - TC-06-01
   - TC-REG-01
   regression_assertion_indices:
   - 24
@@ -341,7 +342,7 @@ traceability:
   - 27
   - 28
   - 29
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -1026,7 +1027,8 @@ test_code_symbols:
   TC-04-07: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping
   TC-04-08: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks
   TC-01-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
-  TC-01-24: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
+  TC-01-24: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_allows_immediate_member_login
+  TC-06-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_06_01_candidate_detail_guides_interview_to_direct_hire
   TC-01-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope
   TC-01-26: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_26_password_change_and_admin_reset_revoke_existing_sessions
   TC-01-27: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_27_account_throttle_is_shared_and_cooldown_expires

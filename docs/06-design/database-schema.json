@@ -1,6 +1,6 @@
 {
   "id": "DB-01",
-  "captured_at": "2026-11-17T07:23:59.847430+00:00",
+  "captured_at": "2026-11-17T08:07:08.479913+00:00",
   "origin": "Read-only SQLAlchemy reflection of the running PostgreSQL schema; no row data",
   "postgresql_version": "17.6 (Debian 17.6-2.pgdg12+1)",
   "schema": "public",

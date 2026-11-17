@@ -57,3 +57,7 @@ dashboard:
   actors: [admin, hr, viewer]
   scope: Preserve existing staff, branch and unit filtering; viewers receive aggregate counts only
   reads: One aggregate statement for four counts and one five-row projection for non-viewers; authentication remains a separate fresh read
+recruitment_shortcut:
+  actors: [admin, hr]
+  flow: Open an in-scope candidate, save the interview with its candidate selected, then open hiring directly after a passed interview
+  invariant: A passed interview and eligible candidate status are required in the hiring transaction; atomic onboarding and idempotent repeat hire remain

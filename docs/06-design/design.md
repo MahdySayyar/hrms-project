@@ -9,7 +9,7 @@
 
 در حالت حافظه‌ای پیمایش نشست‌های منقضی محدود به هر ۳۰ ثانیه زیر بار درج یا چرخش است. انقضای هر توکن در خواندن و چرخش همان لحظه کنترل می‌شود. [ADR-23](../05-architecture/ADRs/ADR-23-memory-session-sweeps.md)
 
-گزینهٔ ساخت حساب در صفحهٔ ورود به فرم `/register` می‌رود. فرم از نشست ناشناس و CSRF استفاده می‌کند. نتیجهٔ موفق یک حساب مشاهده‌گر غیرفعال و رویداد ممیزی در یک تراکنش است. مدیر از بخش کاربران حساب را فعال می‌کند. [ADR-20](../05-architecture/ADRs/ADR-20-account-registration.md)
+فرم `/register` از نشست ناشناس و CSRF استفاده می‌کند. حساب فعال کاربر عادی و رویداد ممیزی همراه هم ثبت می‌شوند. پس از ورود، کاربر عادی صفحهٔ حساب خود را می‌بیند. پروندهٔ متقاضی برای نقش‌های منابع انسانی اقدام بعدی را نشان می‌دهد. [ADR-25](../05-architecture/ADRs/ADR-25-signup-and-recruitment-flow.md)
 
 طرح پیش از کد، 2026-11-17، ADR-18/19: بررسی دوفرمتی PBKDF2 موجود و Argon2id استاندارد، migration فقط پس از موفقیت در executor خصوصی و commit اتمی با audit؛ هیچ کاهش iteration یا cache رمز. آزمایش نشست memory میان workerها و restart قبل از Redis مشترک؛ حالت native حافظه‌ای محفوظ است. store مشترک با token digest، TTL، rotation شرطی، revocation و خطای فارسی 503 بدون fallback؛ دسترسی Redis sync از async در threadpool. proxy round-robin هر درخواست پس از پذیرش آزمایش؛ مرجع فعال‌بودن حساب PostgreSQL است. [مدل جدید](../../models/design/shared-login.mmd) پیش از این تغییرها نوشته شد. انتقال deployment، P95 میلی‌ثانیه‌ای و HA تا شاهد، pending هستند.
 

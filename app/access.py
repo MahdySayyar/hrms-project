@@ -9,7 +9,7 @@ from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Uni
 from .hr_models import AssignmentHistory, AuditLog
 from .security import check_csrf, current_session, require_login
 
-ROLE_LABELS = {"admin": "مدیر منابع انسانی", "hr": "کارشناس منابع انسانی", "viewer": "مشاهده‌گر گزارش‌های کلی"}
+ROLE_LABELS = {"admin": "مدیر منابع انسانی", "hr": "کارشناس منابع انسانی", "viewer": "مشاهده‌گر گزارش‌های کلی", "member": "کاربر عادی"}
 templates = Jinja2Templates(directory=ROOT / "templates")
 templates.env.filters["fa"] = lambda value: str(value).translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
 templates.env.filters["money"] = lambda value: f"{int(value):,}".translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))

@@ -3,7 +3,7 @@
 <section class="login-card">
   <span class="brand-mark large">م</span><p class="eyebrow">پروژهٔ دانشگاهی</p>
   <h1>سامانه مدیریت منابع انسانی</h1><p class="muted">برای مدیریت پرونده‌های کارکنان وارد شوید.</p>
-  {% if registration_submitted %}<p role="status">حساب ساخته شد. پس از تأیید مدیر می‌توانید وارد شوید.</p>{% endif %}
+  {% if registration_submitted %}<p role="status">حساب ساخته شد. با نام کاربری و رمز خود وارد شوید.</p>{% endif %}
   {% if password_changed %}<p role="status">رمز تغییر کرد. با رمز جدید وارد شوید.</p>{% endif %}
   <form method="post" action="/login" class="login-form">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">

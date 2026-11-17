@@ -69,7 +69,7 @@ MODULES = {
         EMPLOYEE, pick("target_position_id", "سمت هدف", "positions"), DATE("target_date", "تاریخ هدف"), field("progress", "پیشرفت (درصد)", "number", minimum=0, maximum=100), field("actions", "اقدام‌های لازم برای توسعه", "textarea", maximum_length=3000)]},
     "users": {"model": Admin, "title": "کاربران و دسترسی‌ها", "singular": "کاربر", "admin_only": True, "columns": ["username", "display_name", "role", "branch_scope_id", "unit_scope_id", "is_active"], "fields": [
         field("username", "نام کاربری", maximum_length=50), field("display_name", "نام نمایشی", maximum_length=100), field("password", "رمز اولیه؛ در ویرایش خالی بگذارید", "password", False),
-        pick("role", "نقش", choices={"admin": "مدیر منابع انسانی", "hr": "کارشناس منابع انسانی", "viewer": "مشاهده‌گر گزارش‌های کلی"}),
+        pick("role", "نقش", choices={"admin": "مدیر منابع انسانی", "hr": "کارشناس منابع انسانی", "viewer": "مشاهده‌گر گزارش‌های کلی", "member": "کاربر عادی"}),
         pick("branch_scope_id", "محدودهٔ شعبه؛ خالی یعنی کل سازمان", "branches_all", required=False), pick("unit_scope_id", "محدودهٔ واحد؛ اختیاری", "units_all", required=False),
         pick("is_active", "وضعیت حساب", choices={"true": "فعال", "false": "غیرفعال"})],
         "description": "مدیر به همهٔ بخش‌ها دسترسی دارد. کارشناس فقط اطلاعات پرسنلی محدودهٔ خود را مدیریت می‌کند و حقوق، تأیید درخواست، کاربران و سابقهٔ تغییرات را نمی‌بیند. مشاهده‌گر فقط گزارش‌های کلی را می‌بیند."},

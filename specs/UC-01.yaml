@@ -21,9 +21,9 @@ password_management:
 registration:
   entry: GET /register from the sign-in page; POST /register with anonymous session CSRF
   validation: Unique normalized username of 3–50 Latin letters, digits, dots, hyphens or underscores; display name of 1–100 characters; password of 12–128 characters and matching confirmation
-  success: Persist an inactive viewer with an Argon2id hash and an audit record; redirect to login with an activation notice
+  success: Persist an active member with an Argon2id hash and an audit record; redirect to login and allow immediate sign-in to the personal account page
   failures: Invalid fields 400, duplicate username 409, invalid CSRF 403, full password queue 503; no account or audit on failure
-  activation: An administrator reviews and activates the account through the existing users section
+  access: The public form cannot assign an organizational role; existing inactive accounts remain inactive
 preconditions:
 - The login page has issued an anonymous session and a CSRF token
 input:

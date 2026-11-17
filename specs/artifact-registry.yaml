@@ -539,6 +539,9 @@ entries:
 - id: ADR-24
   target: docs/05-architecture/ADRs/ADR-24-password-management-and-throttling.md
   kind: architecture_decision
+- id: ADR-25
+  target: docs/05-architecture/ADRs/ADR-25-signup-and-recruitment-flow.md
+  kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
   kind: design
@@ -624,7 +627,10 @@ entries:
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation
   kind: automated_test
 - id: TC-01-24
-  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_allows_immediate_member_login
+  kind: automated_test
+- id: TC-06-01
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_06_01_candidate_detail_guides_interview_to_direct_hire
   kind: automated_test
 - id: TC-01-02
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_02_roles_and_branch_scope

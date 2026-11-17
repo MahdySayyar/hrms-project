@@ -2,7 +2,7 @@
 {% block content %}
 <section class="login-card">
   <h1>ساخت حساب کاربری</h1>
-  <p class="muted">پس از تأیید مدیر می‌توانید وارد شوید.</p>
+  <p class="muted">پس از ساخت حساب می‌توانید وارد شوید.</p>
   <form method="post" action="/register" class="login-form">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     <label for="display_name">نام نمایشی</label><input id="display_name" name="display_name" value="{{ display_name|default('') }}" autocomplete="name" maxlength="100" required>

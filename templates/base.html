@@ -14,19 +14,22 @@
   <a href="/" class="brand"><span class="brand-mark">م</span><span>مدیریت منابع انسانی<small>پروژهٔ دانشگاهی · نسخهٔ کاربردی</small></span></a>
   <div class="nav-label">محیط کار</div>
   <nav aria-label="ناوبری اصلی">
-    <a href="/" class="{% if request.url.path == '/' %}selected{% endif %}"><span>▦</span> داشبورد</a>
-    <a href="/modules" class="{% if request.url.path == '/modules' %}selected{% endif %}"><span>◇</span> همهٔ بخش‌ها</a>
-    {% if user.role != 'viewer' %}
+    <a href="/" class="{% if request.url.path == '/' %}selected{% endif %}"><span>▦</span> {{ 'حساب من' if user.role == 'member' else 'داشبورد' }}</a>
+    {% if user.role in ('admin', 'hr') %}
     <a href="/employees" class="{% if request.url.path.startswith('/employees') %}selected{% endif %}"><span>◉</span> پروندهٔ کارکنان</a>
-    <a href="/organization/branches" class="{% if request.url.path.startswith('/organization') %}selected{% endif %}"><span>▤</span> ساختار سازمانی</a>
     <a href="/hr/candidates" class="{% if '/candidates' in request.url.path or '/interviews' in request.url.path %}selected{% endif %}"><span>◇</span> استخدام و پذیرش</a>
-    <a href="/hr/attendance" class="{% if '/attendance' in request.url.path or '/shifts' in request.url.path or '/travel' in request.url.path %}selected{% endif %}"><span>◷</span> حضور و مأموریت</a>
     <a href="/hr/leave" class="{% if '/leave' in request.url.path or '/administrative' in request.url.path %}selected{% endif %}"><span>▱</span> مرخصی و درخواست‌ها</a>
-    {% if user.role == 'admin' %}<a href="/payroll" class="{% if '/payroll' in request.url.path %}selected{% endif %}"><span>▤</span> حقوق آموزشی</a>{% endif %}
-    <a href="/hr/contracts" class="{% if '/contracts' in request.url.path %}selected{% endif %}"><span>▱</span> قرارداد و همکاری</a>
-    <a href="/hr/evaluations" class="{% if '/evaluations' in request.url.path or '/trainings' in request.url.path or '/enrollments' in request.url.path or '/career' in request.url.path %}selected{% endif %}"><span>◇</span> عملکرد و آموزش</a>
+    <details class="sidebar-more" {% if request.url.path.startswith(('/modules', '/organization', '/hr/attendance', '/hr/shifts', '/hr/contracts', '/contracts', '/hr/evaluations', '/hr/trainings', '/hr/enrollments', '/hr/career', '/payroll', '/hr/payroll')) %}open{% endif %}>
+      <summary>سایر بخش‌ها</summary>
+      <a href="/modules" class="{% if request.url.path == '/modules' %}selected{% endif %}"><span>◇</span> همهٔ بخش‌ها</a>
+      <a href="/organization/branches" class="{% if request.url.path.startswith('/organization') %}selected{% endif %}"><span>▤</span> ساختار سازمانی</a>
+      <a href="/hr/attendance" class="{% if '/attendance' in request.url.path or '/shifts' in request.url.path or '/travel' in request.url.path %}selected{% endif %}"><span>◷</span> حضور و مأموریت</a>
+      {% if user.role == 'admin' %}<a href="/payroll" class="{% if '/payroll' in request.url.path %}selected{% endif %}"><span>▤</span> حقوق آموزشی</a>{% endif %}
+      <a href="/hr/contracts" class="{% if '/contracts' in request.url.path %}selected{% endif %}"><span>▱</span> قرارداد و همکاری</a>
+      <a href="/hr/evaluations" class="{% if '/evaluations' in request.url.path or '/trainings' in request.url.path or '/enrollments' in request.url.path or '/career' in request.url.path %}selected{% endif %}"><span>◇</span> عملکرد و آموزش</a>
+    </details>
     {% endif %}
-    <a href="/reports" class="{% if '/reports' in request.url.path %}selected{% endif %}"><span>▦</span> گزارش‌ها</a>
+    {% if user.role != 'member' %}<a href="/reports" class="{% if '/reports' in request.url.path %}selected{% endif %}"><span>▦</span> گزارش‌ها</a>{% endif %}
     <a href="/account/password" class="{% if request.url.path == '/account/password' %}selected{% endif %}"><span>◇</span> تغییر رمز عبور</a>
     {% if user.role == 'admin' %}<a href="/hr/users" class="{% if '/users' in request.url.path or '/audit' in request.url.path %}selected{% endif %}"><span>◉</span> دسترسی و سابقه</a>{% endif %}
   </nav>

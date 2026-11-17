@@ -10,7 +10,7 @@ from sqlalchemy import event, func, select
 
 from app import main
 from app.database import Admin, Branch, Employee, LoginAttempt, Position, Unit
-from app.hr_models import Attendance, AuditLog, HrRequest, PayrollProfile, PayrollRule, Payslip, Shift
+from app.hr_models import Attendance, AuditLog, Candidate, HrRequest, OnboardingTask, PayrollProfile, PayrollRule, Payslip, Shift
 from app.security import COOKIE_NAME, hash_password, verify_password
 from tests.support import PostgresTestCase
 
@@ -124,7 +124,7 @@ class CoreWorkflows(PostgresTestCase):
         self.assertEqual(response.status_code, 303)
         self.assertEqual(client.get("/employees", follow_redirects=False).status_code, 303)
 
-    def test_tc_01_24_registration_waits_for_admin_activation(self):
+    def test_tc_01_24_registration_allows_immediate_member_login(self):
         guest = self.client()
         self.assertIn('href="/register"', guest.get("/login").text)
         token = self.csrf(guest.get("/register").text)
@@ -139,25 +139,68 @@ class CoreWorkflows(PostgresTestCase):
             self.assertNotIn(self.password, failed.text)
         result = guest.post("/register", data=payload, follow_redirects=False)
         self.assertEqual((result.status_code, result.headers["location"]), (303, "/login?registered=1"))
-        self.assertIn("پس از تأیید مدیر", guest.get(result.headers["location"]).text)
+        self.assertIn("حساب ساخته شد", guest.get(result.headers["location"]).text)
         self.assertEqual(guest.cookies.get(COOKIE_NAME), old_cookie)
         self.assertEqual(guest.post("/register", data=payload).status_code, 409)
-        self.assertEqual(guest.post("/login", data=payload).status_code, 401)
+        self.assertEqual(guest.post("/login", data=payload, follow_redirects=False).status_code, 303)
+        self.assertIn("حساب من", guest.get("/").text)
+        for path in ("/reports", "/employees", "/hr/candidates", "/hr/users"):
+            self.assertEqual(guest.get(path).status_code, 403)
+        self.assertEqual(guest.get("/account/password").status_code, 200)
         with self.factory() as db:
             account = db.scalars(select(Admin).where(Admin.username == username)).one()
-            self.assertEqual((account.role, account.is_active), ("viewer", False))
+            self.assertEqual((account.role, account.is_active), ("member", True))
             self.assertTrue(verify_password(self.password, account.password_hash))
             event = db.scalars(select(AuditLog).where(AuditLog.action == "register", AuditLog.record_id == account.id)).one()
             self.assertEqual((event.actor_id, event.details), (None, {}))
             edit_path = f"/hr/users/{account.id}/edit"
         admin = self.client("admin")
         self.assertEqual(self.post(admin, "/register", payload).status_code, 403)
-        approved = self.post(admin, edit_path, {"username": username, "display_name": payload["display_name"],
+        assigned = self.post(admin, edit_path, {"username": username, "display_name": payload["display_name"],
                                                "role": "viewer", "is_active": "true"})
-        self.assertEqual(approved.status_code, 303)
-        self.assertEqual(guest.post("/login", data=payload, follow_redirects=False).status_code, 303)
+        self.assertEqual(assigned.status_code, 303)
         self.assertEqual(guest.get("/reports").status_code, 200)
         self.assertEqual(guest.get("/employees").status_code, 403)
+
+    def test_tc_06_01_candidate_detail_guides_interview_to_direct_hire(self):
+        hr, admin, viewer = self.client("hr"), self.client("admin"), self.client("viewer")
+        with self.factory.begin() as db:
+            employee = db.get(Employee, self.employee_id)
+            candidate = Candidate(first_name="متقاضی", last_name="ساختگی", national_id="9900000101", phone="09000000101",
+                branch_id=employee.branch_id, unit_id=employee.unit_id, position_id=employee.position_id,
+                application_date=date(2025, 1, 1), status="new")
+            db.add(candidate)
+            db.flush()
+            candidate_id = candidate.id
+        detail = f"/hr/candidates/{candidate_id}"
+        interview_page = f"/hr/interviews/new?candidate_id={candidate_id}"
+        hire = f"/hire/{candidate_id}"
+        self.assertIn(interview_page, hr.get(detail).text)
+        self.assertEqual(viewer.get(interview_page).status_code, 403)
+        self.assertEqual(admin.get(hire).status_code, 400)
+        self.assertIn(f'value="{candidate_id}" selected', hr.get(interview_page).text)
+        interview = {"candidate_id": str(candidate_id), "scheduled_at": "2025-01-02T10:30",
+                     "interviewer": "مدیر ساختگی", "result": "pending", "return_to_candidate": "1"}
+        created = self.post(hr, "/hr/interviews/new", interview)
+        self.assertEqual(created.headers["location"], detail + "?saved=1")
+        result_link = re.search(r'href="(/hr/interviews/\d+/edit)\?return_to_candidate=1"', hr.get(detail).text)
+        self.assertIsNotNone(result_link)
+        self.assertEqual(self.post(hr, result_link[1], {**interview, "result": "passed"}).headers["location"], detail + "?saved=1")
+        self.assertIn(f'href="{hire}"', admin.get(detail).text)
+        with self.factory.begin() as db:
+            db.get(Candidate, candidate_id).status = "rejected"
+        self.assertEqual(admin.get(hire).status_code, 400)
+        with self.factory.begin() as db:
+            db.get(Candidate, candidate_id).status = "interview"
+        hire_fields = {"employee_code": "HIRE-" + uuid.uuid4().hex[:10], "hire_date": "2025-01-03", "contract_type": "دائم"}
+        self.assertEqual(self.post(admin, hire, hire_fields).status_code, 303)
+        with self.factory() as db:
+            record = db.get(Candidate, candidate_id)
+            self.assertEqual(record.status, "hired")
+            self.assertEqual(db.scalar(select(func.count()).select_from(OnboardingTask).where(OnboardingTask.candidate_id == candidate_id)), 3)
+            employee_path = f"/employees/{record.employee_id}"
+        self.assertEqual(self.post(admin, hire, hire_fields).headers["location"], employee_path)
+        self.assertIn(employee_path, hr.get(detail).text)
 
     def test_tc_01_02_roles_and_branch_scope(self):
         hr, viewer = self.client("hr"), self.client("viewer")

@@ -161,7 +161,7 @@ functional_requirements:
   status: implemented_reconstructed_pending_human_review
 - id: FR-10
   name: Hire and onboard
-  acceptance: accepted به کارمند و سه وظیفهٔ پذیرش تبدیل شود؛ تکرار استخدام رکورد
+  acceptance: متقاضی در مرحلهٔ مصاحبه یا پذیرفته‌شده با مصاحبهٔ قبول به کارمند و سه وظیفهٔ پذیرش تبدیل شود؛ تکرار استخدام رکورد
     دوم نسازد.
   use_case: UC-06
   business_rules:
@@ -171,7 +171,7 @@ functional_requirements:
   code:
   - app/modules.py#hire_candidate
   - app/modules.py#complete_onboarding
-  core_tests: []
+  core_tests: [TC-06-01]
   source:
   - SRC-C01
   priority: extended
@@ -436,7 +436,7 @@ functional_requirements:
 - id: FR-25
   name: Manage accounts
   password_management: ADR-24; authenticated self-change and admin-assisted reset require the acting account password, CSRF, audit and revocation of stale sessions.
-  signup: گزینهٔ صفحهٔ ورود نام نمایشی، نام کاربری و رمز را برای ساخت حساب غیرفعال مشاهده‌گر می‌پذیرد؛ فعال‌سازی با مدیر است.
+  signup: ثبت‌نام حساب فعال کاربر عادی می‌سازد؛ ورود و صفحهٔ حساب بدون اقدام مدیر در دسترس‌اند.
   acceptance: admin حساب/نقش/محدوده مدیریت کند؛ حذف آخرین مدیر/تنزل خود و تغییر نام/رمز
     موجود رد شود.
   use_case: UC-12
@@ -458,7 +458,7 @@ business_rules:
   name: Only active valid accounts authenticate
   session_credentials: ADR-24; credential changes invalidate existing sessions on their next protected request.
   memory_expiry: ADR-23; bound full expiry sweeps without changing token validity at get or rotate.
-  signup: Self-registration always creates an inactive viewer. The submitter cannot assign privileges, activate the account or acquire a session.
+  signup: Self-registration creates an active member with access to their own account and password controls. Staff and aggregate reports require an assigned role.
   concurrent_login_rule: ADR-16; an account deactivated/deleted or with a changed hash during queued password work must not authenticate from the older snapshot.
   password_migration_rule: ADR-18; no rewrite on incorrect password, stale account or failed audit; older stored PBKDF2 iteration count preserved during verification
   rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است؛ وضعیت حساب در هر HTTP request تازه از پایگاه بررسی شود و تکرار داخلی همان request نیازمند خواندن دوباره نیست.
@@ -634,7 +634,7 @@ business_rules:
   status: reconstructed_pending_review
 - id: BR-15
   name: Recruitment eligibility
-  rule: accepted نیازمند interview passed؛ استخدام فقط accepted؛ تکرار استخدام رکورد
+  rule: accepted نیازمند interview passed؛ استخدام متقاضی در مرحلهٔ مصاحبه یا پذیرفته‌شده به نتیجهٔ قبول نیاز دارد؛ تکرار استخدام رکورد
     دوم نسازد.
   requirements:
   - FR-08

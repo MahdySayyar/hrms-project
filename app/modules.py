@@ -134,13 +134,14 @@ def parse_fields(fields, form):
     return values, clean, errors
 
 
-def form_page(request, db, module, values=None, errors=None, record=None, status_code=200, custom_fields=None, custom_title=None, action=None, description=None):
+def form_page(request, db, module, values=None, errors=None, record=None, status_code=200, custom_fields=None, custom_title=None, action=None, description=None, back=None, return_to_candidate=False):
     config = MODULES[module]
-    fields = custom_fields or fields_for(config, db, request)
+    fields = custom_fields or fields_for(config, db, request, submitted=values if return_to_candidate else None)
     return render(request, "module_form.html", status_code, title=custom_title or ("ویرایش " if record else "افزودن ") + config["singular"],
                   fields=fields, values=values or {}, errors=errors or [], module=module, record=record,
                   action=action or (f"/hr/{module}/{record.id}/edit" if record else f"/hr/{module}/new"),
-                  back=f"/hr/{module}/{record.id}" if record else f"/hr/{module}", description=description or config.get("description", ""))
+                  back=back or (f"/hr/{module}/{record.id}" if record else f"/hr/{module}"),
+                  return_to_candidate=return_to_candidate, description=description or config.get("description", ""))
 
 
 def query_for(module, request):
@@ -243,7 +244,7 @@ def validate_record(db, request, module, clean, record):
         if clean["status"] == "accepted" and (not record or not db.scalar(select(Interview.id).where(Interview.candidate_id == record.id, Interview.result == "passed"))):
             errors.append("پذیرش نیاز به حداقل یک مصاحبه با نتیجهٔ قبول دارد.")
     if module == "interviews":
-        candidate = candidate_for(db, request, clean["candidate_id"])
+        candidate = candidate_for(db, request, clean["candidate_id"], lock=True)
         if candidate.employee_id or candidate.status == "rejected":
             errors.append("برای متقاضی ردشده یا استخدام‌شده مصاحبهٔ جدید ثبت نمی‌شود.")
         if clean["result"] != "pending" and clean["scheduled_at"] > datetime.now():
@@ -340,6 +341,8 @@ def minutes_between(start, end):
 
 @router.get("/modules", dependencies=[Depends(require_login)])
 def module_index(request: Request):
+    if current_user(request).role == "member":
+        return redirect("/")
     return render(request, "modules.html", title="بخش‌های منابع انسانی")
 
 
@@ -367,6 +370,17 @@ def module_list(request: Request, module: str, q: str = "", status: str = "", pa
 def module_new(request: Request, module: str):
     config_for(module, request)
     with SessionLocal() as db:
+        if module == "candidates":
+            return form_page(request, db, module, values={"status": "new", "application_date": date.today().isoformat()})
+        candidate_id = request.query_params.get("candidate_id", "") if module == "interviews" else ""
+        if candidate_id:
+            if not re.fullmatch(r"[0-9]{1,10}", candidate_id) or int(candidate_id) > 2_147_483_647:
+                raise HTTPException(400, "شناسهٔ متقاضی معتبر نیست.")
+            candidate = candidate_for(db, request, int(candidate_id))
+            if candidate.employee_id or candidate.status == "rejected":
+                raise HTTPException(400, "برای این متقاضی مصاحبهٔ جدید ثبت نمی‌شود.")
+            return form_page(request, db, module, values={"candidate_id": str(candidate.id), "interviewer": current_user(request).display_name, "result": "pending"},
+                back=f"/hr/candidates/{candidate.id}", return_to_candidate=True)
         return form_page(request, db, module)
 
 
@@ -380,10 +394,11 @@ def module_create(request: Request, module: str, form: dict = Depends(browser_fo
 def save_record(request, db, module, config, form, record=None):
     fields = fields_for(config, db, request, submitted=form)
     values, clean, errors = parse_fields(fields, form)
+    return_to_candidate = module == "interviews" and form.get("return_to_candidate") == "1"
     if not errors:
         errors.extend(validate_record(db, request, module, clean, record))
     if errors:
-        return form_page(request, db, module, values, errors, record, 400)
+        return form_page(request, db, module, values, errors, record, 400, return_to_candidate=return_to_candidate)
     target = record or config["model"]()
     for key, value in clean.items():
         setattr(target, key, value)
@@ -401,7 +416,10 @@ def save_record(request, db, module, config, form, record=None):
         db.commit()
     except IntegrityError:
         db.rollback()
-        return form_page(request, db, module, values, ["این مورد قبلاً ثبت شده یا با اطلاعات وابسته سازگار نیست."], record, 400)
+        return form_page(request, db, module, values, ["این مورد قبلاً ثبت شده یا با اطلاعات وابسته سازگار نیست."], record, 400,
+            return_to_candidate=return_to_candidate)
+    if return_to_candidate:
+        return redirect(f"/hr/candidates/{target.candidate_id}?saved=1")
     return redirect(f"/hr/{module}/{target.id}?saved=1")
 
 
@@ -413,6 +431,11 @@ def module_edit_page(request: Request, module: str, record_id: int):
         values = {column.name: str(getattr(record, column.name)) if getattr(record, column.name) is not None else "" for column in record.__table__.columns}
         if module == "users":
             values["is_active"] = "true" if record.is_active else "false"
+        if module == "interviews":
+            values["scheduled_at"] = record.scheduled_at.isoformat(timespec="minutes")
+        if module == "interviews" and request.query_params.get("return_to_candidate") == "1":
+            return form_page(request, db, module, values=values, record=record,
+                back=f"/hr/candidates/{record.candidate_id}", return_to_candidate=True)
         return form_page(request, db, module, values=values, record=record)
 
 
@@ -434,12 +457,24 @@ def module_detail(request: Request, module: str, record_id: int, saved: str = ""
             if hasattr(record, key) and key not in keys:
                 keys.append(key)
         details = [(LABELS.get(key, key), display_value(db, module, key, getattr(record, key))) for key in keys]
-        interviews, tasks = [], []
+        interviews, tasks, ready_to_hire = [], [], False
         if module == "candidates":
             interviews = db.scalars(select(Interview).where(Interview.candidate_id == record.id).order_by(Interview.scheduled_at)).all()
+            ready_to_hire = can_hire(record, any(item.result == "passed" for item in interviews))
             tasks = db.scalars(select(OnboardingTask).where(OnboardingTask.candidate_id == record.id).order_by(OnboardingTask.id)).all()
     return render(request, "module_detail.html", title=config["singular"], module=module, config=config, record=record, details=details,
-                  interviews=interviews, tasks=tasks, saved=saved == "1", interview_results=INTERVIEW_RESULTS)
+                  interviews=interviews, tasks=tasks, ready_to_hire=ready_to_hire, saved=saved == "1", interview_results=INTERVIEW_RESULTS)
+
+
+def can_hire(candidate, passed_interview):
+    return not candidate.employee_id and candidate.status in ("interview", "accepted") and passed_interview
+
+
+def check_hire_eligibility(db, candidate):
+    passed_interview = db.scalar(select(Interview.id).where(Interview.candidate_id == candidate.id,
+        Interview.result == "passed").limit(1)) is not None
+    if not can_hire(candidate, passed_interview):
+        raise HTTPException(400, "برای ثبت استخدام، متقاضی باید مصاحبهٔ قبول داشته باشد و رد نشده باشد.")
 
 
 def hire_fields(db, request):
@@ -451,10 +486,12 @@ def hire_fields(db, request):
 def hire_page(request: Request, candidate_id: int):
     with SessionLocal() as db:
         candidate = candidate_for(db, request, candidate_id)
-        if candidate.status != "accepted" or candidate.employee_id:
-            raise HTTPException(400, "فقط متقاضی پذیرفته‌شده و استخدام‌نشده قابل تبدیل به کارمند است.")
+        if candidate.employee_id:
+            return redirect(f"/employees/{candidate.employee_id}")
+        check_hire_eligibility(db, candidate)
         return form_page(request, db, "candidates", custom_fields=hire_fields(db, request), custom_title="ثبت استخدام و آغاز پذیرش",
-                         action=f"/hire/{candidate_id}", description="اطلاعات فردی و سازمانی از متقاضی منتقل می‌شود؛ پروندهٔ کارمند و چک‌لیست پذیرش با هم ثبت می‌شوند.")
+                         action=f"/hire/{candidate_id}", back=f"/hr/candidates/{candidate_id}", values={"hire_date": date.today().isoformat()},
+                         description="اطلاعات متقاضی به پروندهٔ کارمند منتقل می‌شود و چک‌لیست شروع کار ساخته می‌شود.")
 
 
 @router.post("/hire/{candidate_id}")
@@ -463,8 +500,7 @@ def hire_candidate(request: Request, candidate_id: int, form: dict = Depends(bro
         candidate = candidate_for(db, request, candidate_id, lock=True)
         if candidate.employee_id:
             return redirect(f"/employees/{candidate.employee_id}")
-        if candidate.status != "accepted":
-            raise HTTPException(400, "متقاضی هنوز پذیرفته نشده است.")
+        check_hire_eligibility(db, candidate)
         fields = hire_fields(db, request)
         values, clean, errors = parse_fields(fields, form)
         code = normalized(clean.get("employee_code")).upper()
@@ -473,7 +509,8 @@ def hire_candidate(request: Request, candidate_id: int, form: dict = Depends(bro
         if db.scalar(select(Employee.id).where(Employee.employee_code == code)):
             errors.append("این کد پرسنلی قبلاً ثبت شده است.")
         if errors:
-            return form_page(request, db, "candidates", values, errors, status_code=400, custom_fields=fields, custom_title="ثبت استخدام", action=f"/hire/{candidate_id}")
+            return form_page(request, db, "candidates", values, errors, status_code=400, custom_fields=fields, custom_title="ثبت استخدام",
+                action=f"/hire/{candidate_id}", back=f"/hr/candidates/{candidate_id}")
         employee = Employee(employee_code=code, hire_date=clean["hire_date"], contract_type=clean["contract_type"], active=True,
                             **{key: getattr(candidate, key) for key in ("first_name", "last_name", "national_id", "phone", "email", "branch_id", "unit_id", "position_id")})
         db.add(employee)
@@ -487,7 +524,8 @@ def hire_candidate(request: Request, candidate_id: int, form: dict = Depends(bro
             db.commit()
         except IntegrityError:
             db.rollback()
-            return form_page(request, db, "candidates", values, ["کد پرسنلی تکراری است یا استخدام هم‌زمان دیگری ثبت شده است."], status_code=400, custom_fields=fields, custom_title="ثبت استخدام", action=f"/hire/{candidate_id}")
+            return form_page(request, db, "candidates", values, ["کد پرسنلی تکراری است یا استخدام هم‌زمان دیگری ثبت شده است."], status_code=400,
+                custom_fields=fields, custom_title="ثبت استخدام", action=f"/hire/{candidate_id}", back=f"/hr/candidates/{candidate_id}")
     return redirect(f"/hr/candidates/{candidate_id}?saved=1")
 
 
@@ -701,6 +739,8 @@ def employee_history(request: Request, employee_id: int):
 @router.get("/reports", dependencies=[Depends(require_login)])
 def reports(request: Request, period: str = ""):
     user = current_user(request)
+    if user.role == "member":
+        raise HTTPException(403, "گزارش‌های سازمانی برای حساب شما در دسترس نیست.")
     if not period:
         period = date.today().strftime("%Y-%m")
     period = normalized(period)

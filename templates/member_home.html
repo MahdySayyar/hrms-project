@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><h1>حساب من</h1><a class="button secondary" href="/account/password">تغییر رمز عبور</a></div>
+<section class="panel detail-panel">
+  <dl class="detail-grid">
+    <div><dt>نام نمایشی</dt><dd>{{ user.display_name }}</dd></div>
+    <div><dt>نام کاربری</dt><dd><bdi>{{ user.username }}</bdi></dd></div>
+  </dl>
+</section>
+{% endblock %}

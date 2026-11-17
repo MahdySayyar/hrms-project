@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/core-account-hardening-20261117-a.json
-current_coverage_evidence: docs/08-testing/evidence/coverage-account-hardening-20261117-a.json
+current_suite_evidence: docs/08-testing/evidence/core-signup-recruitment-20261117-a.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-signup-recruitment-20261117-a.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
@@ -38,8 +38,13 @@ core_tests:
   use_case: UC-01
   requirements: [FR-25]
   business_rules: [BR-01, BR-02, BR-22]
-  scenario: Register from login, reject invalid input and duplicate usernames, then activate through the admin form
-  expected: Only inactive viewer created with a hashed password; admin activation enables scoped sign-in
+  scenario: Register from login, reject invalid input and duplicate usernames, then sign in without approval
+  expected: Active member sees only their account; an administrator can grant another role separately
+- id: TC-06-01
+  use_case: UC-06
+  requirements: [FR-09, FR-10]
+  scenario: Open the candidate interview shortcut, record a passed result and hire directly from the candidate detail
+  expected: Only eligible, scoped users can proceed; employee and onboarding checklist are recorded once
 - id: TC-01-16
   use_case: UC-01
   requirements: [FR-01]

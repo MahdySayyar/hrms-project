@@ -35,17 +35,17 @@ def verify_demo(port, admin_secret):
         name = "کاربر ساختگی دمو"
         registered = post(applicant, "/register", "/register", display_name=name, username=username,
             password=password, password_confirmation=password)
-        check("registration_creates_pending_account", registered.status_code == 303 and registered.headers.get("location") == "/login?registered=1")
-        check("pending_account_cannot_login", post(applicant, "/login", "/login", username=username, password=password).status_code == 401)
+        check("registration_creates_active_member", registered.status_code == 303 and registered.headers.get("location") == "/login?registered=1")
+        check("member_can_login_without_admin", post(applicant, "/login", "/login", username=username, password=password).status_code == 303)
+        check("member_sees_own_account_and_no_reports", "حساب من" in applicant.get("/").text and applicant.get("/reports").status_code == 403)
         check("seeded_admin_can_login", post(admin, "/login", "/login", username="hradmin", password=admin_secret.read_text().strip()).status_code == 303)
         listing = admin.get("/hr/users")
         displayed_username = username.translate(str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹"))
         row = next((row for row in re.findall(r"<tr\b.*?</tr>", listing.text, re.S) if displayed_username in row), "")
         account = re.search(r'href="/hr/users/(\d+)(?:/edit)?"', row)
-        check("admin_can_find_pending_account", listing.status_code == 200 and account is not None)
+        check("admin_can_find_member", listing.status_code == 200 and account is not None)
         edit = f"/hr/users/{account[1]}/edit"
-        check("admin_activates_as_hr", post(admin, edit, edit, username=username, display_name=name, role="hr", is_active="true").status_code == 303)
-        check("activated_account_can_login", post(applicant, "/login", "/login", username=username, password=password).status_code == 303)
+        check("admin_assigns_hr_role", post(admin, edit, edit, username=username, display_name=name, role="hr", is_active="true").status_code == 303)
         new_leave = "/hr/leave/new"
         form = applicant.get(new_leave)
         employees = re.search(r'<select[^>]*name="employee_id"[^>]*>(.*?)</select>', form.text, re.S)

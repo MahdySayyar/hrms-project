@@ -15,7 +15,7 @@
 | TR-07 / FR-07 | FS-07 / UC-05 | DM-01, UCM-01 / D-04 | API-05<br>[save_organization](../../app/main.py#save_organization) | TC-HIST-01, TC-REG-01 |
 | TR-08 / FR-08 | FS-08 / UC-04, UC-06 | DM-01, UCM-01 / D-04 | API-04, API-06<br>[validate_record](../../app/modules.py#validate_record) | TC-REG-01 |
 | TR-09 / FR-09 | FS-09 / UC-04, UC-06 | DM-01, UCM-01 / D-04 | API-04, API-06<br>[save_record](../../app/modules.py#save_record)<br>[validate_record](../../app/modules.py#validate_record) | TC-REG-01 |
-| TR-10 / FR-10 | FS-10 / UC-06 | DM-01, UCM-01 / D-04 | API-06<br>[hire_candidate](../../app/modules.py#hire_candidate)<br>[complete_onboarding](../../app/modules.py#complete_onboarding) | TC-REG-01 |
+| TR-10 / FR-10 | FS-10 / UC-06 | DM-01, UCM-01 / D-04 | API-06<br>[hire_candidate](../../app/modules.py#hire_candidate)<br>[complete_onboarding](../../app/modules.py#complete_onboarding) | TC-06-01, TC-REG-01 |
 | TR-11 / FR-11 | FS-11 / UC-04, UC-07 | DM-01, UCM-01 / D-04 | API-04, API-07<br>[validate_record](../../app/modules.py#validate_record)<br>[minutes_between](../../app/modules.py#minutes_between) | TC-04-05, TC-REG-01 |
 | TR-12 / FR-12 | FS-12 / UC-02, UC-04 | ACT-02, DM-01, SEQ-02, ST-02, UCM-01 / D-02, D-04 | API-02, API-04<br>[save_record](../../app/modules.py#save_record) | TC-02-01, TC-REG-01 |
 | TR-13 / FR-13 | FS-13 / UC-02 | ACT-02, DM-01, SEQ-02, ST-02, UCM-01 / D-02 | API-02<br>[review_request](../../app/modules.py#review_request)<br>[RequestReviewService.review](../../app/request_workflow/service.py#RequestReviewService.review) | TC-02-02, TC-02-03, TC-02-04, TC-02-05, TC-02-06, TC-02-07, TC-02-08, TC-02-09, TC-REG-01 |

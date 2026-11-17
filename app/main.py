@@ -166,18 +166,18 @@ async def register(request: Request, form: dict = Depends(read_form)):
         password_hash = await password_capacity.run(hash_password, password)
     except PasswordCapacityFull:
         raise HTTPException(503, "سامانه مشغول است. کمی بعد دوباره تلاش کنید.") from None
-    created = await run_in_threadpool(create_pending_account, request, form, username, display_name, password_hash)
+    created = await run_in_threadpool(create_member_account, request, form, username, display_name, password_hash)
     if not created:
         return await run_in_threadpool(render, request, "register.html", 409, title="ساخت حساب",
             display_name=display_name, username=username, errors=["این نام کاربری قبلاً ثبت شده است."])
     return redirect("/login?registered=1")
 
 
-def create_pending_account(request, form, username, display_name, password_hash):
+def create_member_account(request, form, username, display_name, password_hash):
     check_registration_session(request, form)
     with SessionLocal.begin() as db:
         account_id = db.scalar(insert(Admin).values(username=username, display_name=display_name,
-            password_hash=password_hash, role="viewer", is_active=False)
+            password_hash=password_hash, role="member", is_active=True)
             .on_conflict_do_nothing(index_elements=[Admin.username]).returning(Admin.id))
         if account_id is None:
             return False
@@ -373,6 +373,8 @@ def logout(request: Request, form: dict = Depends(protected_form)):
 @app.get("/", dependencies=[Depends(require_login)])
 def dashboard(request: Request):
     user = current_user(request)
+    if user.role == "member":
+        return render(request, "member_home.html", title="حساب من")
     with SessionLocal() as db:
         branches = select(func.count()).select_from(Branch)
         units = select(func.count()).select_from(Unit)
