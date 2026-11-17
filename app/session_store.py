@@ -24,9 +24,20 @@ class SessionStoreUnavailable(Exception):
 
 
 class MemorySessionStore:
+    SWEEP_INTERVAL_SECONDS = 30
+
     def __init__(self, sessions=None, lock=None):
         self.sessions = sessions if sessions is not None else {}
         self.lock = lock if lock is not None else threading.Lock()
+        self.next_sweep = float("-inf")
+
+    def _sweep_expired(self, now):
+        tick = time.monotonic()
+        if tick >= self.next_sweep:
+            expired = [token for token, session in self.sessions.items() if session.expires_at <= now]
+            for token in expired:
+                del self.sessions[token]
+            self.next_sweep = tick + self.SWEEP_INTERVAL_SECONDS
 
     def get(self, token):
         with self.lock:
@@ -38,9 +49,7 @@ class MemorySessionStore:
 
     def put(self, token, session):
         with self.lock:
-            for old in list(self.sessions):
-                if self.sessions[old].expires_at <= time.time():
-                    del self.sessions[old]
+            self._sweep_expired(time.time())
             self.sessions[token] = session
 
     def delete(self, token):
@@ -49,10 +58,12 @@ class MemorySessionStore:
 
     def rotate(self, old_token, new_token, session):
         with self.lock:
+            now = time.time()
             previous = self.sessions.get(old_token)
-            if not previous or previous.expires_at <= time.time():
+            if not previous or previous.expires_at <= now:
                 self.sessions.pop(old_token, None)
                 return False
+            self._sweep_expired(now)
             self.sessions.pop(old_token)
             self.sessions[new_token] = session
             return True

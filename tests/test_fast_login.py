@@ -21,7 +21,7 @@ from sqlalchemy.orm import Session as DatabaseSession
 from app import main, security
 from app.database import Admin
 from app.hr_models import AuditLog
-from app.session_store import RedisSessionStore, Session, SessionStoreUnavailable
+from app.session_store import MemorySessionStore, RedisSessionStore, Session, SessionStoreUnavailable
 from tests.support import PostgresTestCase
 
 
@@ -29,6 +29,31 @@ def legacy_hash(password):
     salt = secrets.token_hex(16)
     value = hashlib.pbkdf2_hmac("sha256", password.encode(), bytes.fromhex(salt), 600000)
     return f"pbkdf2_sha256$600000${salt}${value.hex()}"
+
+
+class MemoryExpiryContracts(TestCase):
+    def test_tc_01_25_throttled_sweeps_preserve_expiry_and_rotation(self):
+        store = MemorySessionStore()
+        with patch("app.session_store.time.time", return_value=1000) as wall, \
+             patch("app.session_store.time.monotonic", return_value=50) as tick:
+            expired = Session(None, "synthetic", 1005)
+            active = Session(None, "synthetic", 1100)
+            for token in ("read", "rotate", "sweep"):
+                store.put(token, expired)
+            wall.return_value = 1005
+            tick.return_value = 55
+            store.put("still-valid", active)
+            self.assertIn("sweep", store.sessions)
+            self.assertIsNone(store.get("read"))
+            self.assertFalse(store.rotate("rotate", "unauthorized", active))
+            self.assertIsNone(store.get("unauthorized"))
+            tick.return_value = 80
+            self.assertTrue(store.rotate("still-valid", "new-token", active))
+            self.assertNotIn("sweep", store.sessions)
+            self.assertIsNone(store.get("still-valid"))
+            self.assertEqual(store.get("new-token"), active)
+            store.delete("new-token")
+            self.assertIsNone(store.get("new-token"))
 
 
 class PasswordProfiles(TestCase):

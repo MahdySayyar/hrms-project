@@ -5,6 +5,8 @@
 <a id="d-01"></a>
 ## D-01 — ورود، نشست و دسترسی
 
+در حالت حافظه‌ای پیمایش نشست‌های منقضی محدود به هر ۳۰ ثانیه زیر بار درج یا چرخش است. انقضای هر توکن در خواندن و چرخش همان لحظه کنترل می‌شود. [ADR-23](../05-architecture/ADRs/ADR-23-memory-session-sweeps.md)
+
 گزینهٔ ساخت حساب در صفحهٔ ورود به فرم `/register` می‌رود. فرم از نشست ناشناس و CSRF استفاده می‌کند. نتیجهٔ موفق یک حساب مشاهده‌گر غیرفعال و رویداد ممیزی در یک تراکنش است. مدیر از بخش کاربران حساب را فعال می‌کند. [ADR-20](../05-architecture/ADRs/ADR-20-account-registration.md)
 
 طرح پیش از کد، 2026-11-17، ADR-18/19: بررسی دوفرمتی PBKDF2 موجود و Argon2id استاندارد، migration فقط پس از موفقیت در executor خصوصی و commit اتمی با audit؛ هیچ کاهش iteration یا cache رمز. آزمایش نشست memory میان workerها و restart قبل از Redis مشترک؛ حالت native حافظه‌ای محفوظ است. store مشترک با token digest، TTL، rotation شرطی، revocation و خطای فارسی 503 بدون fallback؛ دسترسی Redis sync از async در threadpool. proxy round-robin هر درخواست پس از پذیرش آزمایش؛ مرجع فعال‌بودن حساب PostgreSQL است. [مدل جدید](../../models/design/shared-login.mmd) پیش از این تغییرها نوشته شد. انتقال deployment، P95 میلی‌ثانیه‌ای و HA تا شاهد، pending هستند.
@@ -66,6 +68,8 @@ calculate_payroll همچنان route با منطق مستقیم است: اعتب
 
 <a id="d-04"></a>
 ## D-04 — سایر حوزه‌ها
+
+داشبورد چهار شمارش هم‌محدوده را در یک دستور SQL می‌خواند. برای مدیر و کارشناس، پنج پروندهٔ اخیر فقط با فیلدهای نمایش واکشی می‌شوند. [ADR-22](../05-architecture/ADRs/ADR-22-dashboard-reads.md)
 
 طرح پیش از اصلاح کد 2026-11-17: [ADR-11](../05-architecture/ADRs/ADR-11-page-reference-reads.md) نام منابع فهرست ماژول را با شناسه‌های همین صفحه و یک projection id/label به ازای هر model می‌خواند. نقشه فقط محلی همان پاسخ است؛ scope/count/page، جزئیات و برچسب‌های موجود حفظ می‌شوند. [مدل خواندن](../../models/design/read-catalog.mmd) قرارداد کم‌کردن SELECTهای وابسته به تعداد سلول‌ها را نشان می‌دهد.
 

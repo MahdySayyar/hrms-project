@@ -17,7 +17,7 @@ functional_requirements:
   proxy_http_forwarding: ADR-21; encoded path and query stay intact; HEAD, 304 and 204 preserve HTTP representation metadata semantics.
   password_agility: ADR-18; Argon2id m19456 t2 p1 for new hashes; verify existing PBKDF2 unchanged and rehash only on successful login, atomically with audit after active/hash/CSRF revalidation
   shared_session_experiment: ADR-19; demonstrate memory-session transfer/restart failure first; Redis token digests, TTL, conditional rotation and cross-worker logout; fail-closed 503 without local fallback; promotion after isolated evidence
-  latency_goal: P95 below 1000ms for 500 synchronized sign-ins; fastest measured Argon2id run reached 15781ms with two observer timeouts
+  latency_goal: P95 below 1000ms for 500 synchronized sign-ins; latest default four-web run reached 15110ms with one observer timeout
   use_case: UC-01
   business_rules:
   - BR-01
@@ -72,6 +72,7 @@ functional_requirements:
   priority: core
   status: implemented_reconstructed_pending_human_review
 - id: FR-04
+  dashboard_read_budget: ADR-22; scoped dashboard totals in one aggregate statement and up to five projected recent employees for non-viewers.
   name: Employee records
   acceptance: ثبت و ویرایش پرونده با کد یکتا و شعبه/واحد سازگار؛ ورودی نامعتبر 400.
   use_case: UC-04
@@ -79,9 +80,10 @@ functional_requirements:
   - BR-05
   - BR-06
   code:
+  - app/main.py#dashboard
   - app/main.py#employee_create
   - app/main.py#employee_edit
-  core_tests: []
+  core_tests: [TC-04-09]
   source:
   - SRC-C01
   priority: extended
@@ -449,6 +451,7 @@ functional_requirements:
 business_rules:
 - id: BR-01
   name: Only active valid accounts authenticate
+  memory_expiry: ADR-23; bound full expiry sweeps without changing token validity at get or rotate.
   signup: Self-registration always creates an inactive viewer. The submitter cannot assign privileges, activate the account or acquire a session.
   concurrent_login_rule: ADR-16; an account deactivated/deleted or with a changed hash during queued password work must not authenticate from the older snapshot.
   password_migration_rule: ADR-18; no rewrite on incorrect password, stale account or failed audit; older stored PBKDF2 iteration count preserved during verification

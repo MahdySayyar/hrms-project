@@ -530,6 +530,12 @@ entries:
 - id: ADR-21
   target: docs/05-architecture/ADRs/ADR-21-proxy-http-forwarding.md
   kind: architecture_decision
+- id: ADR-22
+  target: docs/05-architecture/ADRs/ADR-22-dashboard-reads.md
+  kind: architecture_decision
+- id: ADR-23
+  target: docs/05-architecture/ADRs/ADR-23-memory-session-sweeps.md
+  kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
   kind: design
@@ -598,6 +604,9 @@ entries:
   kind: automated_test
 - id: TC-04-05
   target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_05_reference_cost_is_bounded_at_all_page_sizes
+  kind: automated_test
+- id: TC-04-09
+  target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_09_dashboard_aggregates_counts_and_projects_recent_rows
   kind: automated_test
 - id: TC-04-06
   target: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh
@@ -673,6 +682,9 @@ entries:
   kind: automated_test
 - id: TC-01-09
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  kind: automated_test
+- id: TC-01-25
+  target: tests/test_fast_login.py#MemoryExpiryContracts.test_tc_01_25_throttled_sweeps_preserve_expiry_and_rotation
   kind: automated_test
 - id: TC-01-17
   target: tests/test_fast_login.py#PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords

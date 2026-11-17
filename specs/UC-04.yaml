@@ -46,9 +46,14 @@ traceability:
   design: D-04
   api: API-04
   code: [app/main.py#employee_list, app/modules.py#module_list]
-  tests: [TC-04-01, TC-04-02, TC-04-03, TC-04-04, TC-04-05, TC-04-06, TC-04-07, TC-04-08]
+  tests: [TC-04-01, TC-04-02, TC-04-03, TC-04-04, TC-04-05, TC-04-06, TC-04-07, TC-04-08, TC-04-09]
 related_catalogs:
   route: /hr/{module}
   authorization: Existing MODULES admin_only or hr/admin and organizational scope
   filters: Existing candidate literal name search and module status before count/page
   reference_change: ADR-11, specified before the 2026-11-17 implementation; existing catalog behavior reconstructed from code
+dashboard:
+  route: /
+  actors: [admin, hr, viewer]
+  scope: Preserve existing staff, branch and unit filtering; viewers receive aggregate counts only
+  reads: One aggregate statement for four counts and one five-row projection for non-viewers; authentication remains a separate fresh read

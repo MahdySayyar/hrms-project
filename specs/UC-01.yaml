@@ -91,6 +91,7 @@ traceability:
   - TC-01-15
   - TC-01-16
   - TC-01-24
+  - TC-01-25
 goal: Grant an active account a scoped authenticated session and end it safely
 compose_replica_experiment:
   specified_at: '2026-11-17'
@@ -106,6 +107,7 @@ password_work_contract:
   workers: Private executor, 1 per web by default; 1..4 allowed; total outstanding work bounded to 512 per web
   database: Short snapshot read, closed during hash and queue; current active/hash revalidated in the audit transaction
   invariants: No password/result cache; rotate conditionally before SQL commit and issue cookie after commit; remove the unissued token on commit failure
+memory_expiry_maintenance: ADR-23; throttle full expiry sweeps to one per 30 seconds during activity and always reject expired tokens at lookup or rotation.
 secondary_actors: []
 quality_attributes:
 - NFR-S-01

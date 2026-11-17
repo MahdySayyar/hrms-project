@@ -147,15 +147,17 @@ traceability:
   api:
   - API-04
   code:
+  - app/main.py#dashboard
   - app/main.py#employee_create
   - app/main.py#employee_edit
   tests:
+  - TC-04-09
   - TC-HIST-01
   - TC-REG-01
   regression_assertion_indices:
   - 25
   - 74
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -1015,6 +1017,7 @@ test_code_symbols:
   TC-04-03: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_03_scope_literal_filters_and_navigation
   TC-04-04: tests/test_catalog_pagination.py#CatalogPagination.test_tc_04_04_modules_and_payslips_are_bounded_without_writes
   TC-04-05: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_05_reference_cost_is_bounded_at_all_page_sizes
+  TC-04-09: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_09_dashboard_aggregates_counts_and_projects_recent_rows
   TC-04-06: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh
   TC-04-07: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping
   TC-04-08: tests/test_catalog_reference_reads.py#CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks
@@ -1040,6 +1043,7 @@ test_code_symbols:
   TC-01-16: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
   TC-01-08: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
   TC-01-09: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
+  TC-01-25: tests/test_fast_login.py#MemoryExpiryContracts.test_tc_01_25_throttled_sweeps_preserve_expiry_and_rotation
   TC-01-17: tests/test_fast_login.py#PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords
   TC-01-18: tests/test_fast_login.py#PasswordMigration.test_tc_01_18_legacy_upgrade_is_atomic_and_only_after_success
   TC-01-19: tests/test_fast_login.py#RedisStorageContracts.test_tc_01_19_cross_client_ttl_digest_rotation_and_revocation

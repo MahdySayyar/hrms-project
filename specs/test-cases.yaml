@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/core-project-review-20261117-a.json
-current_coverage_evidence: docs/08-testing/evidence/coverage-project-review-20261117-a.json
+current_suite_evidence: docs/08-testing/evidence/core-runtime-speed-20261117-a.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-runtime-speed-20261117-a.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
@@ -14,6 +14,16 @@ transport_tests:
     - id: TC-01-07
       scenario: Encoded path and query, gzip bytes and length, HEAD and 304 metadata, 204 without length, Connection-nominated headers, redirect and invalid affinity boundary
 core_tests:
+- id: TC-04-09
+  use_case: UC-04
+  requirements: [FR-04]
+  scenario: Measure dashboard reads as admin, scoped HR and scoped viewer
+  expected: Scoped totals, up to five projected employees for authorized roles and no more than three SELECTs including authentication
+- id: TC-01-25
+  use_case: UC-01
+  requirements: [FR-01]
+  scenario: Expire, rotate and revoke controlled-clock memory sessions between full sweeps
+  expected: Expired sessions are unusable immediately and stale entries are reclaimed on the next scheduled sweep under activity
 - id: TC-01-24
   use_case: UC-01
   requirements: [FR-25]

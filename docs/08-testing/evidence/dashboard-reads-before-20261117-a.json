@@ -1,0 +1,29 @@
+{
+  "phase": "before",
+  "started_at": "2026-11-17T06:39:32.969114+00:00",
+  "finished_at": "2026-11-17T06:39:34.068093+00:00",
+  "git_parent_commit": "56d8141bfff3c2806f8305725d652541b40e0559",
+  "source_revision_available": true,
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 5,
+  "all_passed": false,
+  "checks": [
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_05_reference_cost_is_bounded_at_all_page_sizes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks",
+      "status": "passed"
+    }
+  ]
+}

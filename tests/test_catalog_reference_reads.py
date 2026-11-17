@@ -38,7 +38,7 @@ class CatalogReferenceReads(PostgresTestCase):
                 idx = int(i >= 112)
                 employee = Employee(employee_code=f"REF-{i:03}", first_name="کارمند", last_name=f"ساختگی {i}",
                     national_id="9900000000", phone="09000000000", email="test@example.invalid", hire_date=date(2024, 1, 1),
-                    branch_id=branches[idx].id, unit_id=units[idx].id, position_id=position.id, contract_type="دائم", active=True)
+                    branch_id=branches[idx].id, unit_id=units[idx].id, position_id=position.id, contract_type="دائم", active=i != 0)
                 candidate = Candidate(first_name="متقاضی", last_name=f"ساختگی {i}", national_id="9900000000", phone="09000000000",
                     branch_id=branches[idx].id, unit_id=units[idx].id, position_id=position.id, application_date=date(2025, 1, 1), status="new")
                 db.add_all([employee, candidate])
@@ -103,6 +103,26 @@ class CatalogReferenceReads(PostgresTestCase):
                 self.assertEqual(len(references), 2)
                 self.assertTrue(all(" IN (" in sql for sql in references))
                 self.assertTrue(all(private not in "\n".join(references) for private in ("national_id", "phone", "email", "password_hash")))
+
+    def test_tc_04_09_dashboard_aggregates_counts_and_projects_recent_rows(self):
+        for role, total, organizations, latest, select_count in (
+            ("admin", 123, 2, "REF-122", 3), ("hr", 112, 1, "REF-111", 3), ("viewer", 112, 1, None, 2),
+        ):
+            with self.subTest(role=role):
+                response, queries = self.read(self.client(role), "/")
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(dict(response.context["counts"]), {
+                    "employees": total, "active": total - 1, "branches": organizations, "units": organizations,
+                })
+                self.assertEqual(len(queries), select_count)
+                recent = response.context["recent"]
+                if latest:
+                    self.assertEqual(len(recent), 5)
+                    self.assertEqual(recent[0].employee_code, latest)
+                    for private in ("national_id", "phone", "email"):
+                        self.assertNotIn(private, queries[-1][0])
+                else:
+                    self.assertEqual(recent, [])
 
     def test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh(self):
         client = self.client()

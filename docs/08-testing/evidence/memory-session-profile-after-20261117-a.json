@@ -1,0 +1,29 @@
+{
+  "phase": "after",
+  "synthetic_only": true,
+  "scope": "MemorySessionStore.put, excludes HTTP and password hashing",
+  "results": [
+    {
+      "insertions": 500,
+      "sample_ms": [
+        0.383,
+        0.378,
+        0.39,
+        0.382,
+        0.383
+      ],
+      "median_ms": 0.383
+    },
+    {
+      "insertions": 5000,
+      "sample_ms": [
+        4.424,
+        4.776,
+        4.038,
+        4.79,
+        5.058
+      ],
+      "median_ms": 4.776
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-17T06:32:04.462622+00:00",
+  "captured_at": "2026-11-17T06:44:31.104182+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -25,7 +25,7 @@
     },
     {
       "path": "app/main.py",
-      "sha256": "6c6dd5a7f53122ae3163abfe318d0b9f3cf700dd835202cb43d661d64534eca5"
+      "sha256": "d8b008c8a43945a113d8eb2ce9898f9dfffe321c5f6a323811fb8a3b38a98da1"
     },
     {
       "path": "app/module_forms.py",
@@ -69,7 +69,7 @@
     },
     {
       "path": "app/session_store.py",
-      "sha256": "02f81e7f24d641b525c81eb0ac2d7615ddfa4c0cf774118c0923a6c679c7d55e"
+      "sha256": "bff7ac4dd549cf9eeff41d06df631d462359a02783ae394af9d03e35b4574153"
     },
     {
       "path": "specs/architecture.yaml",
@@ -89,11 +89,11 @@
     },
     {
       "path": "specs/requirements.yaml",
-      "sha256": "1d0cfa57b6f80a1e8cdfb37abba98f123149adf1c9cf18fefe786285efea8f0c"
+      "sha256": "fb4cad5bd1fab3ec6d4061dd5efe8cf69a6a4beaa1f00fc1976b3bc14cf3b6e7"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "de87717aed34934dd49cf4dac06b862be9e607de83944a7a8f42eee83e9ef116"
+      "sha256": "d6170ab67d172ef61fe839194b77671c9dfb50cb91ca6516df8140fda6ddf2ce"
     },
     {
       "path": "specs/UC-02.yaml",
@@ -105,7 +105,7 @@
     },
     {
       "path": "specs/UC-04.yaml",
-      "sha256": "b6f303a3ae95a6baf2b7fff71a7b2e96c335a644fb077daaceed11ea5434f794"
+      "sha256": "44443ef99ffbde6964dafe59cd818d263eee0ede9b35473a25b832fd854b77cc"
     },
     {
       "path": "specs/UC-11.yaml",
@@ -121,7 +121,7 @@
     },
     {
       "path": "tests/test_catalog_reference_reads.py",
-      "sha256": "0585c8e2bb6620203f4499d87795a7161d4715832ca5ae66d772c6bec2083950"
+      "sha256": "344e361aa3b0165c883be547c9718afd8cdf159562f27829a14293133468cc71"
     },
     {
       "path": "tests/test_core_workflows.py",
@@ -133,7 +133,7 @@
     },
     {
       "path": "tests/test_fast_login.py",
-      "sha256": "d0ac4fa3b7fcacc4be41b5da58b8d43a88ff138517625d37340b0d80883f3204"
+      "sha256": "93a0e8631f61f062cc59b459fa4a8fe7e258a24628008e430762ee38bc65249e"
     },
     {
       "path": "tests/test_login_capacity.py",

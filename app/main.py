@@ -242,11 +242,21 @@ def logout(request: Request, form: dict = Depends(protected_form)):
 def dashboard(request: Request):
     user = current_user(request)
     with SessionLocal() as db:
-        employees_query = scoped(select(func.count()).select_from(Employee), user)
-        counts = {"employees": db.scalar(employees_query), "active": db.scalar(employees_query.where(Employee.active.is_(True))),
-                  "branches": db.scalar(select(func.count()).select_from(Branch).where(Branch.id == user.branch_scope_id)) if user.branch_scope_id else db.scalar(select(func.count()).select_from(Branch)),
-                  "units": db.scalar(select(func.count()).select_from(Unit).where(Unit.id == user.unit_scope_id)) if user.unit_scope_id else db.scalar(select(func.count()).select_from(Unit).where(Unit.branch_id == user.branch_scope_id)) if user.branch_scope_id else db.scalar(select(func.count()).select_from(Unit))}
-        recent = db.scalars(scoped(select(Employee), user).order_by(Employee.id.desc()).limit(5)).all() if user.role != "viewer" else []
+        branches = select(func.count()).select_from(Branch)
+        units = select(func.count()).select_from(Unit)
+        if user.branch_scope_id:
+            branches = branches.where(Branch.id == user.branch_scope_id)
+        if user.unit_scope_id:
+            units = units.where(Unit.id == user.unit_scope_id)
+        elif user.branch_scope_id:
+            units = units.where(Unit.branch_id == user.branch_scope_id)
+        totals = select(func.count().label("employees"), func.count().filter(Employee.active.is_(True)).label("active"),
+            branches.scalar_subquery().label("branches"), units.scalar_subquery().label("units")).select_from(Employee)
+        counts = db.execute(scoped(totals, user)).mappings().one()
+        recent = []
+        if user.role != "viewer":
+            latest = select(Employee.id, Employee.employee_code, Employee.first_name, Employee.last_name, Employee.active)
+            recent = db.execute(scoped(latest, user).order_by(Employee.id.desc()).limit(5)).all()
     return render(request, "dashboard.html", title="داشبورد", counts=counts, recent=recent)
 
 

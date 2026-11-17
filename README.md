@@ -26,7 +26,7 @@
 
 ## اجرا در Docker
 
-در [آزمون Argon2id](docs/05-architecture/experiments/EXP-ARGON2-LOGIN-20261117.md)، هر ۵۰۰ ورود و نشست تأیید شد. حالت پیش‌فرض چهار وب با نشست حافظه‌ای آزمون را در ۱۸٫۵ ثانیه و سریع‌ترین تنظیم آزمایشگاهی Redis در ۱۷ ثانیه تمام کرد. در هر اجرای جدید دو بررسی هم‌زمان سایت از مهلت دوثانیه‌ای گذشت. [آزمون تاریخی PBKDF2](docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md) حدود ۱۰۷ ثانیه طول کشید و هر ۸۳۰ بررسی سایت موفق بود.
+در [آزمون اخیر چهار وب](docs/05-architecture/experiments/EXP-MEMORY-SESSION-SPEED-20261117.md) هر ۵۰۰ ورود و نشست تأیید شد. تکمیل دسته در حالت پیش‌فرض ۱۶٫۷ ثانیه طول کشید و ۷۹ از ۸۰ بررسی هم‌زمان سایت موفق بودند. [آزمون تاریخی PBKDF2](docs/05-architecture/experiments/EXP-LOGIN-PROXY-20261117.md) حدود ۱۰۷ ثانیه طول کشید و هر ۸۳۰ بررسی سایت موفق بود.
 
 استقرار قابل دانلود با [Compose چهار وب](deployments/compose.capacity.yaml): چهار وب و تقسیم‌کنندهٔ درخواست با affinity مرورگر، PostgreSQL و دادهٔ نمونه در volume مستقل. بررسی رمز در صف خصوصی انجام می‌شود تا اتصال پایگاه و thread عمومی وب اشغال نماند. سایت: [ورود Docker](http://localhost:8001/login). راه‌اندازی/توقف، رمز اختصاصی محلی و حدود در [راهنمای Docker](deployments/README.md) است. [baseline تک‌وب](deployments/compose.yaml) و نسخهٔ native روی 8000 حفظ شده‌اند. نشست‌ها مشترک نیستند و restart ورود دوباره می‌خواهد.
 
