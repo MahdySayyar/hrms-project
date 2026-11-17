@@ -33,7 +33,7 @@
     },
     {
       "path": "app/modules.py",
-      "sha256": "908080ac2936ffdee2d2a9c42a4f51316b20b45d5d11d2f6dc227167114102ab"
+      "sha256": "9ab70e3f10e72aa4a88b79972c4a364886abea87ed535830576782d93837d413"
     },
     {
       "path": "app/native_proxy.py",
@@ -105,7 +105,7 @@
     },
     {
       "path": "specs/UC-04.yaml",
-      "sha256": "8e2baea258eb99da6b67b5bc5cfc9d9d2daa1cfeae0ca0bbbcffb37e12c62f37"
+      "sha256": "5b0a83895ce7fb249632b6ca53da3bcde214def2e6b1f54f5a4824d47d7b75a0"
     },
     {
       "path": "specs/UC-11.yaml",
@@ -125,7 +125,7 @@
     },
     {
       "path": "tests/test_core_workflows.py",
-      "sha256": "d5a69765c2b007b27ad00ead0529287ab373ab32535a64c13eda89d233adb4ae"
+      "sha256": "5297c4a33acd49c4cbed36472a08ab3e43a67924c6ad953dfbd651b13626e9e7"
     },
     {
       "path": "tests/test_docker_entrypoint.py",

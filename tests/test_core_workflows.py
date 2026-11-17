@@ -144,6 +144,10 @@ class CoreWorkflows(PostgresTestCase):
         self.assertEqual(guest.post("/register", data=payload).status_code, 409)
         self.assertEqual(guest.post("/login", data=payload, follow_redirects=False).status_code, 303)
         self.assertIn("حساب من", guest.get("/").text)
+        directory = guest.get("/modules")
+        self.assertEqual(directory.status_code, 200)
+        self.assertEqual(directory.text.count('class="panel module-card"'), 8)
+        self.assertNotIn("باز کردن بخش", directory.text)
         for path in ("/reports", "/employees", "/hr/candidates", "/hr/users"):
             self.assertEqual(guest.get(path).status_code, 403)
         self.assertEqual(guest.get("/account/password").status_code, 200)
@@ -155,6 +159,9 @@ class CoreWorkflows(PostgresTestCase):
             self.assertEqual((event.actor_id, event.details), (None, {}))
             edit_path = f"/hr/users/{account.id}/edit"
         admin = self.client("admin")
+        directory = admin.get("/modules")
+        self.assertEqual(directory.text.count("باز کردن بخش"), 8)
+        self.assertNotIn('class="sidebar-more"', directory.text)
         self.assertEqual(self.post(admin, "/register", payload).status_code, 403)
         assigned = self.post(admin, edit_path, {"username": username, "display_name": payload["display_name"],
                                                "role": "viewer", "is_active": "true"})

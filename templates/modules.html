@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
-{% block content %}<div class="page-heading"><div><p class="eyebrow">چرخهٔ عمر کارکنان</p><h1>بخش‌های منابع انسانی</h1><p class="muted">بخش موردنظر را برای ثبت و پیگیری اطلاعات انتخاب کنید.</p></div></div>
+{% block content %}
+<div class="page-heading"><h1>بخش‌های منابع انسانی</h1></div>
+{% set staff = user.role in ('admin', 'hr') %}
+{% set manager = user.role == 'admin' %}
+{% set areas = [
+  ('کارکنان و ساختار سازمانی', 'پرونده‌ها، شعبه‌ها، واحدها، سمت‌ها و شرح شغل', '/employees', staff, 'کارشناس یا مدیر'),
+  ('استخدام و پذیرش', 'متقاضیان، مصاحبه‌ها و چک‌لیست شروع کار', '/hr/candidates', staff, 'کارشناس یا مدیر'),
+  ('حضور و مأموریت', 'تردد، شیفت‌ها، اضافه‌کاری و مأموریت', '/hr/attendance', staff, 'کارشناس یا مدیر'),
+  ('مرخصی و درخواست‌ها', 'مرخصی، درخواست‌های اداری و پیگیری تأیید', '/hr/leave', staff, 'کارشناس یا مدیر'),
+  ('حقوق و فیش‌ها', 'محاسبه، مزایا، کسورات و فیش حقوقی', '/payroll', manager, 'مدیر'),
+  ('قرارداد و همکاری', 'ثبت، تمدید، تغییر سمت و خاتمهٔ همکاری', '/hr/contracts', staff, 'کارشناس یا مدیر'),
+  ('عملکرد و آموزش', 'ارزیابی، آموزش و توسعهٔ شغلی', '/hr/evaluations', staff, 'کارشناس یا مدیر'),
+  ('گزارش و دسترسی', 'گزارش‌ها، کاربران و سابقهٔ تغییرات', '/reports', staff or user.role == 'viewer', 'مشاهده‌گر، کارشناس یا مدیر')
+] %}
 <div class="module-grid">
-{% if user.role != 'viewer' %}
-{% for title,url,text in [('پرونده و ساختار سازمانی','/employees','کارکنان، شعبه‌ها، واحدها، سمت‌ها و تاریخچهٔ انتساب'),('استخدام و پذیرش','/hr/candidates','متقاضیان، مصاحبه‌ها و چک‌لیست نیروی جدید'),('حضور و مأموریت','/hr/attendance','تردد، شیفت، اضافه‌کاری و درخواست مأموریت'),('مرخصی و درخواست‌ها','/hr/leave','ثبت درخواست و پیگیری تأیید مدیر'),('قرارداد و همکاری','/hr/contracts','پیش‌نویس، فعال‌سازی، تمدید و خاتمهٔ همکاری'),('عملکرد و آموزش','/hr/evaluations','ارزیابی، دوره‌های آموزشی و برنامهٔ توسعهٔ شغلی')] %}<a class="panel module-card" href="{{ url }}"><h2>{{ title }}</h2><p class="muted">{{ text }}</p><span class="text-link">ورود به بخش ←</span></a>{% endfor %}
-{% endif %}
-{% if user.role == 'admin' %}<a class="panel module-card" href="/payroll"><h2>حقوق و فیش‌های آموزشی</h2><p class="muted">قواعد قابل تنظیم، کارکرد، مزایا، کسورات و فیش‌های محفوظ</p><span class="text-link">ورود به بخش ←</span></a>{% endif %}
-<a class="panel module-card" href="/reports"><h2>گزارش و دسترسی</h2><p class="muted">گزارش‌های سازمانی در محدودهٔ دسترسی شما{% if user.role == 'admin' %}؛ کاربران و سابقهٔ تغییرات{% endif %}</p><span class="text-link">ورود به بخش ←</span></a>
-</div>{% endblock %}
+{% for title, url, description, allowed, access in areas %}
+<section class="panel module-card">
+  <h2>{{ title }}</h2><p class="muted">{{ description }}</p>
+  {% if allowed %}
+  <div class="heading-actions">
+    <a class="button secondary" href="{{ url }}">باز کردن بخش</a>
+    {% if url == '/employees' %}<a class="text-link" href="/organization/branches">ساختار سازمانی</a>{% endif %}
+    {% if url == '/hr/attendance' %}<a class="text-link" href="/hr/travel">مأموریت‌ها</a>{% endif %}
+    {% if url == '/reports' and manager %}<a class="text-link" href="/hr/users">کاربران</a><a class="text-link" href="/audit">سابقهٔ تغییرات</a>{% endif %}
+  </div>
+  {% else %}<small class="muted">دسترسی: {{ access }}</small>{% endif %}
+</section>
+{% endfor %}
+</div>
+{% endblock %}

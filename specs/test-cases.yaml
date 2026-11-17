@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/core-signup-recruitment-20261117-a.json
-current_coverage_evidence: docs/08-testing/evidence/coverage-signup-recruitment-20261117-a.json
+current_suite_evidence: docs/08-testing/evidence/core-module-navigation-20261117-b.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-module-navigation-20261117-b.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json

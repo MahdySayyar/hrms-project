@@ -341,8 +341,6 @@ def minutes_between(start, end):
 
 @router.get("/modules", dependencies=[Depends(require_login)])
 def module_index(request: Request):
-    if current_user(request).role == "member":
-        return redirect("/")
     return render(request, "modules.html", title="بخش‌های منابع انسانی")
 
 

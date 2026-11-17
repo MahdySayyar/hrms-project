@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="page-heading"><h1>حساب من</h1><a class="button secondary" href="/account/password">تغییر رمز عبور</a></div>
+<div class="page-heading"><h1>حساب من</h1><div class="heading-actions">
+  <a class="button primary" href="/modules">مشاهدهٔ همهٔ بخش‌ها</a>
+  <a class="button secondary" href="/account/password">تغییر رمز عبور</a>
+</div></div>
 <section class="panel detail-panel">
   <dl class="detail-grid">
     <div><dt>نام نمایشی</dt><dd>{{ user.display_name }}</dd></div>

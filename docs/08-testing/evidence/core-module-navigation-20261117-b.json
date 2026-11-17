@@ -1,0 +1,293 @@
+{
+  "phase": "after",
+  "started_at": "2026-11-17T18:25:24.902877+00:00",
+  "finished_at": "2026-11-17T18:25:49.228412+00:00",
+  "git_parent_commit": "9f2329bbb415712e6968a2401ed0fa9631c2d47b",
+  "source_revision_available": true,
+  "database": "PostgreSQL",
+  "isolation": "Disposable hrms_test_<uuid> schema; synthetic fixtures",
+  "tests_run": 70,
+  "all_passed": true,
+  "checks": [
+    {
+      "test": "tests.test_architecture_boundaries.ArchitectureBoundaries.test_tc_m01_domain_has_no_web_or_storage_dependency",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_architecture_boundaries.ArchitectureBoundaries.test_tc_m02_service_has_no_http_or_direct_sql",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_01_bounded_ordered_pages_and_clamping",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_02_invalid_empty_and_role_boundaries",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_03_scope_literal_filters_and_navigation",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_pagination.CatalogPagination.test_tc_04_04_modules_and_payslips_are_bounded_without_writes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_05_reference_cost_is_bounded_at_all_page_sizes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_06_only_page_references_are_read_and_next_request_is_fresh",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_07_other_catalogs_empty_pages_and_escaping",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_08_optional_scopes_roles_and_reference_fallbacks",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_catalog_reference_reads.CatalogReferenceReads.test_tc_04_09_dashboard_aggregates_counts_and_projects_recent_rows",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_01_login_logout_csrf_and_rotation",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_02_roles_and_branch_scope",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_03_inactive_account_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_04_authentication_is_checked_once_per_http_request",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_24_registration_allows_immediate_member_login",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_26_password_change_and_admin_reset_revoke_existing_sessions",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_01_27_account_throttle_is_shared_and_cooldown_expires",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_01_creation_and_invalid_date_range",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_02_approval_and_atomic_audit",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_03_rejection_requires_reason",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_04_same_decision_is_idempotent",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_05_conflicting_final_decision_is_explicitly_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_06_overlap_includes_shared_boundary_day",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_07_parallel_overlapping_approvals_have_one_winner",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_08_failed_audit_rolls_back_decision",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_02_09_missing_invalid_and_notes_boundary",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_03_01_monthly_formula_and_immutable_retry",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_03_02_hourly_formula_counts_overtime_once",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_03_03_invalid_period_and_missing_profile",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_03_04_zero_hourly_rate_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_core_workflows.CoreWorkflows.test_tc_06_01_candidate_detail_guides_interview_to_direct_hire",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_docker_entrypoint.DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_docker_entrypoint.DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_docker_entrypoint.DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.MemoryExpiryContracts.test_tc_01_25_throttled_sweeps_preserve_expiry_and_rotation",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.PasswordMigration.test_tc_01_18_legacy_upgrade_is_atomic_and_only_after_success",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisLoginContracts.test_tc_01_21_shared_login_csrf_revoke_and_store_failure",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisLoginContracts.test_tc_01_22_revoked_during_commit_has_no_audit_or_session",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisLoginContracts.test_tc_01_23_failed_sql_commit_removes_unissued_shared_session",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisStorageContracts.test_tc_01_19_cross_client_ttl_digest_rotation_and_revocation",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_fast_login.RedisStorageContracts.test_tc_01_20_store_error_and_malformed_payload_fail_closed",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_11_database_released_and_stale_credentials_denied",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_12_full_login_capacity_preserves_health_and_retry",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_13_expired_csrf_after_password_work_has_no_login",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_14_failed_audit_never_issues_authenticated_cookie",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.LoginCapacityContracts.test_tc_01_15_proxy_internal_backend_allowlist_boundaries",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_login_capacity.PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_05_affinity_and_upstream_cookies_are_preserved",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_06_failed_mutation_is_not_retried",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_native_proxy.NativeProxyContracts.test_tc_01_07_encoding_connection_headers_and_redirect_boundary",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_report_reads.ReportReads.test_tc_11_01_csv_contract_and_exact_row_count_audit",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_report_reads.ReportReads.test_tc_11_02_multiple_batches_projection_empty_scope_and_forbidden_role",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_report_reads.ReportReads.test_tc_11_03_failed_export_audit_never_delivers_successful_csv",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_report_reads.ReportReads.test_tc_11_04_equivalent_period_spellings_use_the_actual_snapshot_key",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_report_reads.ReportReads.test_tc_11_05_invalid_default_leap_month_and_role_scope_boundaries",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u01_pending_accepts_both_final_decisions",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u02_final_identical_retry_does_not_change",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u03_both_opposite_final_transitions_are_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u04_unknown_stored_state_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u05_invalid_target_is_rejected",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u06_admin_can_approve_without_notes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u07_rejection_requires_nonblank_reason",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u08_notes_length_boundary",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u09_non_admin_cannot_decide",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_request_rules.RequestRules.test_tc_02_u10_invalid_decision_format",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_submitted_references.SubmittedReferences.test_tc_02_10_successful_post_is_bounded_and_invalid_references_have_no_writes",
+      "status": "passed"
+    },
+    {
+      "test": "tests.test_submitted_references.SubmittedReferences.test_tc_02_11_all_reference_sources_preserve_scope_and_optional_empty_choices",
+      "status": "passed"
+    }
+  ]
+}
