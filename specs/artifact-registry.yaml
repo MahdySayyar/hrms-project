@@ -650,6 +650,9 @@ entries:
 - id: TC-01-16
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
   kind: automated_test
+- id: TC-01-24
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
+  kind: automated_test
 - id: TC-01-08
   target: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
   kind: automated_test

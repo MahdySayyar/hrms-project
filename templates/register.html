@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="login-card">
+  <h1>ساخت حساب کاربری</h1>
+  <p class="muted">پس از تأیید مدیر می‌توانید وارد شوید.</p>
+  <form method="post" action="/register" class="login-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="display_name">نام نمایشی</label><input id="display_name" name="display_name" value="{{ display_name|default('') }}" autocomplete="name" maxlength="100" required>
+    <label for="username">نام کاربری</label><input id="username" name="username" value="{{ username|default('') }}" autocomplete="username" minlength="3" maxlength="50" required dir="ltr">
+    <label for="password">رمز عبور (حداقل ۱۲ نویسه)</label><input id="password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required dir="ltr">
+    <label for="password_confirmation">تکرار رمز عبور</label><input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" minlength="12" maxlength="128" required dir="ltr">
+    <button class="button primary full" type="submit">ساخت حساب</button>
+  </form>
+  <p class="login-note"><a href="/login">بازگشت به ورود</a></p>
+</section>
+{% endblock %}

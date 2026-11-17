@@ -16,10 +16,13 @@ class PasswordCapacity:
         self._executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="hrms-password")
 
     async def verify(self, function, password, stored_hash):
+        return await self.run(function, password, stored_hash)
+
+    async def run(self, function, *args):
         if not self._slots.acquire(blocking=False):
             raise PasswordCapacityFull()
         try:
-            work = self._executor.submit(function, password, stored_hash)
+            work = self._executor.submit(function, *args)
         except BaseException:
             self._slots.release()
             raise

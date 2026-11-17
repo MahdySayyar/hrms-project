@@ -11,7 +11,7 @@ from sqlalchemy import event, func, select
 from app import main
 from app.database import Admin, Branch, Employee, Position, Unit
 from app.hr_models import Attendance, AuditLog, HrRequest, PayrollProfile, PayrollRule, Payslip, Shift
-from app.security import COOKIE_NAME, hash_password
+from app.security import COOKIE_NAME, hash_password, verify_password
 from tests.support import PostgresTestCase
 
 
@@ -123,6 +123,41 @@ class CoreWorkflows(PostgresTestCase):
         response = self.post(client, "/logout", {})
         self.assertEqual(response.status_code, 303)
         self.assertEqual(client.get("/employees", follow_redirects=False).status_code, 303)
+
+    def test_tc_01_24_registration_waits_for_admin_activation(self):
+        guest = self.client()
+        self.assertIn('href="/register"', guest.get("/login").text)
+        token = self.csrf(guest.get("/register").text)
+        username = "fresh_" + uuid.uuid4().hex
+        payload = {"username": username, "display_name": "کاربر آزمایشی", "password": self.password,
+                   "password_confirmation": self.password, "csrf_token": token, "role": "admin", "is_active": "true"}
+        old_cookie = guest.cookies.get(COOKIE_NAME)
+        for invalid, status in (({"csrf_token": "نامعتبر"}, 403), ({"username": "x" * 51}, 400),
+                                ({"password": "x" * 11}, 400), ({"password_confirmation": "mismatch"}, 400)):
+            failed = guest.post("/register", data={**payload, **invalid})
+            self.assertEqual(failed.status_code, status)
+            self.assertNotIn(self.password, failed.text)
+        result = guest.post("/register", data=payload, follow_redirects=False)
+        self.assertEqual((result.status_code, result.headers["location"]), (303, "/login?registered=1"))
+        self.assertIn("پس از تأیید مدیر", guest.get(result.headers["location"]).text)
+        self.assertEqual(guest.cookies.get(COOKIE_NAME), old_cookie)
+        self.assertEqual(guest.post("/register", data=payload).status_code, 409)
+        self.assertEqual(guest.post("/login", data=payload).status_code, 401)
+        with self.factory() as db:
+            account = db.scalars(select(Admin).where(Admin.username == username)).one()
+            self.assertEqual((account.role, account.is_active), ("viewer", False))
+            self.assertTrue(verify_password(self.password, account.password_hash))
+            event = db.scalars(select(AuditLog).where(AuditLog.action == "register", AuditLog.record_id == account.id)).one()
+            self.assertEqual((event.actor_id, event.details), (None, {}))
+            edit_path = f"/hr/users/{account.id}/edit"
+        admin = self.client("admin")
+        self.assertEqual(self.post(admin, "/register", payload).status_code, 403)
+        approved = self.post(admin, edit_path, {"username": username, "display_name": payload["display_name"],
+                                               "role": "viewer", "is_active": "true"})
+        self.assertEqual(approved.status_code, 303)
+        self.assertEqual(guest.post("/login", data=payload, follow_redirects=False).status_code, 303)
+        self.assertEqual(guest.get("/reports").status_code, 200)
+        self.assertEqual(guest.get("/employees").status_code, 403)
 
     def test_tc_01_02_roles_and_branch_scope(self):
         hr, viewer = self.client("hr"), self.client("viewer")

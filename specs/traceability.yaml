@@ -861,20 +861,25 @@ traceability:
   business_rules:
   - BR-22
   use_cases:
+  - UC-01
   - UC-04
   - UC-12
   models:
   - DM-01
   - UCM-01
   design:
+  - D-01
   - D-04
   api:
+  - API-01
   - API-04
   - API-12
   code:
+  - app/main.py#register
   - app/modules.py#validate_record
   - app/database.py#Admin
   tests:
+  - TC-01-24
   - TC-REG-01
   regression_assertion_indices:
   - 16
@@ -1028,6 +1033,14 @@ test_code_symbols:
   TC-03-04: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_04_zero_hourly_rate_is_rejected
   TC-03-05: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_05_negative_net_has_no_payslip
   TC-01-16: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_16_secondary_worker_skips_seed_and_removes_password
+  TC-01-17: tests/test_fast_login.py#PasswordProfiles.test_tc_01_17_argon_profile_unique_salts_wrong_and_legacy_passwords
+  TC-01-18: tests/test_fast_login.py#PasswordMigration.test_tc_01_18_legacy_upgrade_is_atomic_and_only_after_success
+  TC-01-19: tests/test_fast_login.py#RedisStorageContracts.test_tc_01_19_cross_client_ttl_digest_rotation_and_revocation
+  TC-01-20: tests/test_fast_login.py#RedisStorageContracts.test_tc_01_20_store_error_and_malformed_payload_fail_closed
+  TC-01-21: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_21_shared_login_csrf_revoke_and_store_failure
+  TC-01-22: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_22_revoked_during_commit_has_no_audit_or_session
+  TC-01-23: tests/test_fast_login.py#RedisLoginContracts.test_tc_01_23_failed_sql_commit_removes_unissued_shared_session
+  TC-01-24: tests/test_core_workflows.py#CoreWorkflows.test_tc_01_24_registration_waits_for_admin_activation
   TC-01-08: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_08_runtime_secrets_are_required_and_url_encoded
   TC-01-09: tests/test_docker_entrypoint.py#DockerEntrypoint.test_tc_01_09_seed_precedes_exec_and_admin_password_is_removed
   TC-01-10: tests/test_login_capacity.py#PrivatePasswordWork.test_tc_01_10_private_queue_limits_retry_and_async_progress

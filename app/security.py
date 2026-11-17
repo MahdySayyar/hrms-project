@@ -115,5 +115,5 @@ def require_login(request: Request) -> Session:
 def check_csrf(request: Request, form: dict) -> None:
     session = current_session(request)
     token = str(form.get("csrf_token", ""))
-    if not session or not hmac.compare_digest(token, session.csrf_token):
+    if not session or not token.isascii() or not hmac.compare_digest(token, session.csrf_token):
         raise HTTPException(403, "اعتبار فرم منقضی شده است؛ صفحه را تازه کنید و دوباره تلاش کنید.")

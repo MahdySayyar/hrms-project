@@ -92,7 +92,7 @@ def export(refresh=False):
     }
     browser_api["info"]["description"] = "Current HRMS browser contracts: HTML/forms/cookie/redirects. Exported offline; the runtime OpenAPI endpoint is disabled."
     route_inventory = []
-    public_paths = {"/login", "/health", "/instance"}
+    public_paths = {"/login", "/register", "/health", "/instance"}
     for route in app.routes:
         if not isinstance(route, APIRoute):
             continue

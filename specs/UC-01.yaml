@@ -6,12 +6,19 @@ requirements:
 - FR-01
 - FR-02
 - FR-03
+- FR-25
 business_rules:
 - BR-01
 - BR-02
 - BR-03
 primary_actor: admin_or_hr_or_viewer
 trigger: Submit the login form
+registration:
+  entry: GET /register from the sign-in page; POST /register with anonymous session CSRF
+  validation: Unique normalized username of 3–50 Latin letters, digits, dots, hyphens or underscores; display name of 1–100 characters; password of 12–128 characters and matching confirmation
+  success: Persist an inactive viewer with an Argon2id hash and an audit record; redirect to login with an activation notice
+  failures: Invalid fields 400, duplicate username 409, invalid CSRF 403, full password queue 503; no account or audit on failure
+  activation: An administrator reviews and activates the account through the existing users section
 preconditions:
 - The login page has issued an anonymous session and a CSRF token
 input:
@@ -67,6 +74,7 @@ traceability:
   api: API-01
   code:
   - app/main.py#login
+  - app/main.py#register
   - app/main.py#logout
   - app/security.py
   - app/access.py
@@ -81,6 +89,7 @@ traceability:
   - TC-01-14
   - TC-01-15
   - TC-01-16
+  - TC-01-24
 goal: Grant an active account a scoped authenticated session and end it safely
 compose_replica_experiment:
   specified_at: '2026-11-17'

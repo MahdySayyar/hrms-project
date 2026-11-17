@@ -1,6 +1,6 @@
 {
   "id": "EXPORT-SOURCE-01",
-  "captured_at": "2026-11-17T06:05:55.361997+00:00",
+  "captured_at": "2026-11-17T06:22:34.858979+00:00",
   "hash_normalization": "UTF-8 text with LF line endings",
   "files": [
     {
@@ -21,11 +21,11 @@
     },
     {
       "path": "app/login_capacity.py",
-      "sha256": "559b20405c286404a9e6081f907e0e67286960337d68b90c1ff506cc1cea29f1"
+      "sha256": "4c3ac6bd3ea2047484aa1a297507457526e512461550f574a02bb5dda39d409c"
     },
     {
       "path": "app/main.py",
-      "sha256": "89704ff608cc2e4638845fde23c52e36ea9b2a0121a962eaa929ee03b2549bc3"
+      "sha256": "c3f3d43529f5aec152cd5d650dbeb82acc45e46748553d46c0e8fcc610f3a7bc"
     },
     {
       "path": "app/module_forms.py",
@@ -33,7 +33,7 @@
     },
     {
       "path": "app/modules.py",
-      "sha256": "d518253aacea6bac27787542359b8462a25d837a1a3919d1d90e49016e93295a"
+      "sha256": "fd2de0119d3bb61516b4315df45c6531cb94d13883c2a91f396ca31c28e640a0"
     },
     {
       "path": "app/native_proxy.py",
@@ -61,7 +61,7 @@
     },
     {
       "path": "app/security.py",
-      "sha256": "96488c73dfb8fb8f68fd1862f5cfca86664b71b5ebb4aac60c197738b1707fb7"
+      "sha256": "35128e218c42321326fedbd6092693302fa4167309516780b38329fb545f97b8"
     },
     {
       "path": "app/seed.py",
@@ -81,7 +81,7 @@
     },
     {
       "path": "specs/http-contracts.yaml",
-      "sha256": "0be788b763b743e24a9ff1f608bca1e575ba6e7d1c0bf1c420a702d209e754e0"
+      "sha256": "e49fc5056868a9cd0b69b70ef11c86bdc2c6e4f47443e7eb3c1c062b10996fd6"
     },
     {
       "path": "specs/model-catalog.yaml",
@@ -89,11 +89,11 @@
     },
     {
       "path": "specs/requirements.yaml",
-      "sha256": "3479b3fa6231279b901de8b34f77355bfcb92cae385dcd3022e82662452488b0"
+      "sha256": "cb4e534286a7940719097ebffa9852ad9c1b53a015aabf58641fc7ecdb5b757f"
     },
     {
       "path": "specs/UC-01.yaml",
-      "sha256": "a171c5ee0dc64bcae6703ad2077a9d273af439b814571fcf98829855b05a0b13"
+      "sha256": "62b0cd041f1968ea00b84279a09c06715932c766d19fc1d2c5e1835f575b0311"
     },
     {
       "path": "specs/UC-02.yaml",
@@ -125,7 +125,7 @@
     },
     {
       "path": "tests/test_core_workflows.py",
-      "sha256": "2686adb1759975714bddf8cd18f0e6bba56b87e820c48a859c3fb07dba01c1bc"
+      "sha256": "84c49dc3a5b54b2bb3b3dd57fa09ad8597ca7481b6ed4e1f746e10e8da421fde"
     },
     {
       "path": "tests/test_docker_entrypoint.py",

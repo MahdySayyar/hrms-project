@@ -429,6 +429,7 @@ functional_requirements:
   status: implemented_reconstructed_pending_human_review
 - id: FR-25
   name: Manage accounts
+  signup: گزینهٔ صفحهٔ ورود نام نمایشی، نام کاربری و رمز را برای ساخت حساب غیرفعال مشاهده‌گر می‌پذیرد؛ فعال‌سازی با مدیر است.
   acceptance: admin حساب/نقش/محدوده مدیریت کند؛ حذف آخرین مدیر/تنزل خود و تغییر نام/رمز
     موجود رد شود.
   use_case: UC-12
@@ -445,6 +446,7 @@ functional_requirements:
 business_rules:
 - id: BR-01
   name: Only active valid accounts authenticate
+  signup: Self-registration always creates an inactive viewer. The submitter cannot assign privileges, activate the account or acquire a session.
   concurrent_login_rule: ADR-16; an account deactivated/deleted or with a changed hash during queued password work must not authenticate from the older snapshot.
   password_migration_rule: ADR-18; no rewrite on incorrect password, stale account or failed audit; older stored PBKDF2 iteration count preserved during verification
   rule: حساب فعال، hash صحیح و token نشست منقضی‌نشده لازم است؛ وضعیت حساب در هر HTTP request تازه از پایگاه بررسی شود و تکرار داخلی همان request نیازمند خواندن دوباره نیست.

@@ -11,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.concurrency import run_in_threadpool
 from sqlalchemy import func, or_, select, text
+from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from .database import Admin, Branch, Employee, Position, ROOT, SessionLocal, Unit, engine
@@ -115,15 +116,73 @@ def instance():
 
 @app.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
+    return guest_auth_page(request, "login.html", "ورود به سامانه",
+        registration_submitted=request.query_params.get("registered") == "1")
+
+
+@app.get("/register", response_class=HTMLResponse)
+def registration_page(request: Request):
+    return guest_auth_page(request, "register.html", "ساخت حساب")
+
+
+def guest_auth_page(request, template, title, **context):
     session = current_session(request)
     if session and session.admin_id is not None:
         return redirect("/")
     if session is None:
         token, session = new_session()
-        response = render(request, "login.html", title="ورود مدیر", csrf_token=session.csrf_token)
+        response = render(request, template, title=title, csrf_token=session.csrf_token, **context)
         set_session_cookie(response, token, authenticated=False)
         return response
-    return render(request, "login.html", title="ورود مدیر")
+    return render(request, template, title=title, **context)
+
+
+def check_registration_session(request, form):
+    check_csrf(request, form)
+    session = current_session(request)
+    if session is None or session.admin_id is not None:
+        raise HTTPException(403, "برای ساخت حساب از صفحهٔ ورود اقدام کنید.")
+
+
+@app.post("/register")
+async def register(request: Request, form: dict = Depends(read_form)):
+    await run_in_threadpool(check_registration_session, request, form)
+    username = normalized(form.get("username")) if isinstance(form.get("username"), str) else ""
+    display_name = normalized(form.get("display_name")) if isinstance(form.get("display_name"), str) else ""
+    password = form.get("password")
+    errors = []
+    if not re.fullmatch(r"[a-zA-Z0-9_.-]{3,50}", username):
+        errors.append("نام کاربری باید ۳ تا ۵۰ نویسه و شامل حرف لاتین، عدد، نقطه، خط تیره یا زیرخط باشد.")
+    if not 1 <= len(display_name) <= 100 or "\x00" in display_name:
+        errors.append("نام نمایشی معتبر و حداکثر ۱۰۰ نویسه وارد کنید.")
+    if not isinstance(password, str) or not 12 <= len(password) <= 128:
+        errors.append("رمز عبور باید ۱۲ تا ۱۲۸ نویسه باشد.")
+    elif password != form.get("password_confirmation"):
+        errors.append("رمز عبور و تکرار آن یکسان نیستند.")
+    if errors:
+        return await run_in_threadpool(render, request, "register.html", 400, title="ساخت حساب",
+            display_name=display_name[:100], username=username[:50], errors=errors)
+    try:
+        password_hash = await password_capacity.run(hash_password, password)
+    except PasswordCapacityFull:
+        raise HTTPException(503, "سامانه مشغول است. کمی بعد دوباره تلاش کنید.") from None
+    created = await run_in_threadpool(create_pending_account, request, form, username, display_name, password_hash)
+    if not created:
+        return await run_in_threadpool(render, request, "register.html", 409, title="ساخت حساب",
+            display_name=display_name, username=username, errors=["این نام کاربری قبلاً ثبت شده است."])
+    return redirect("/login?registered=1")
+
+
+def create_pending_account(request, form, username, display_name, password_hash):
+    check_registration_session(request, form)
+    with SessionLocal.begin() as db:
+        account_id = db.scalar(insert(Admin).values(username=username, display_name=display_name,
+            password_hash=password_hash, role="viewer", is_active=False)
+            .on_conflict_do_nothing(index_elements=[Admin.username]).returning(Admin.id))
+        if account_id is None:
+            return False
+        audit(db, request, "register", "admins", account_id)
+        return True
 
 
 @app.post("/login")

@@ -1,6 +1,6 @@
 {
   "id": "ROUTE-CAT-01",
-  "route_count": 40,
+  "route_count": 42,
   "routes": [
     {
       "method": "GET",
@@ -16,6 +16,16 @@
       "method": "GET",
       "path": "/login",
       "code": "app/main.py#login_page"
+    },
+    {
+      "method": "GET",
+      "path": "/register",
+      "code": "app/main.py#registration_page"
+    },
+    {
+      "method": "POST",
+      "path": "/register",
+      "code": "app/main.py#register"
     },
     {
       "method": "POST",
