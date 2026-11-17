@@ -210,6 +210,7 @@ def run(args):
             "HRMS_LAB_EMPLOYEE_IDS_PATH": str(ids_path), "HRMS_LAB_EXPECTED_USERS": str(args.users),
             "HRMS_LAB_WARMUP_TIMEOUT": str(args.warmup_timeout), "HRMS_LAB_STEADY_SECONDS": str(args.steady_seconds),
             "HRMS_LAB_PROFILE": args.profile, "HRMS_LAB_SEED": "20261108",
+            "HRMS_LAB_STEADY_WRITES": args.steady_writes,
             "HRMS_LAB_BURST": args.burst,
             "HRMS_LAB_ABORT_PATH": str(raw / "abort.json"),
             "HRMS_LAB_METRICS_PATH": str(raw / "workload.json"), "HRMS_LAB_WINDOW_MARKER": str(raw / "steady.json")})
@@ -269,6 +270,10 @@ def run(args):
         metrics = json.loads((raw / "workload.json").read_text(encoding="utf-8"))
         with sandbox.session_factory() as db:
             audit_writes = db.scalar(select(func.count()).select_from(AuditLog).where(AuditLog.action == "status", AuditLog.entity == "employees"))
+            leave_ids = select(HrRequest.id).where(HrRequest.kind == "leave", HrRequest.description == "Synthetic mixed " + marker)
+            steady_leave_rows = db.scalar(select(func.count()).select_from(leave_ids.subquery()))
+            steady_leave_audits = db.scalar(select(func.count()).select_from(AuditLog).where(AuditLog.action == "create",
+                AuditLog.entity == "hr_requests", AuditLog.record_id.in_(leave_ids)))
             burst = metrics.get("burst", {"mode": "none", "outcomes": []})
             checks = []
             for outcome in burst["outcomes"]:
@@ -291,6 +296,7 @@ def run(args):
                 and len({r["employee_id"] for r in checks}) == args.users
                 and all(r["acknowledged"] and r["persisted_once_with_audit"] for r in checks))
         acknowledged_writes = sum(e["count"] for e in metrics["all_window_and_setup_outcomes"] if e["name"] == "write.employee_status" and e["status"] == 303 and not e["failed"])
+        acknowledged_leaves = sum(e["count"] for e in metrics["all_window_and_setup_outcomes"] if e["name"] == "write.leave" and e["status"] == 303 and not e["failed"])
         enough_load = args.profile == "mixed" and args.users == 500 and args.employees == 10000 and metrics["authenticated_users_peak"] == 500 and metrics["steady_seconds"] >= 300 and metrics["finish_reason"] == "steady_completed"
         passed_latency = bool(metrics["requests"] and metrics["p95_ms"] < 2000 and metrics["failure_fraction"] < .01)
         report = {"id": ident, "started_at": started.isoformat(), "finished_at": datetime.now(timezone.utc).isoformat(),
@@ -309,10 +315,12 @@ def run(args):
             "runtime_packages": {name: importlib.metadata.version(name) for name in ("aiohttp", "httpx", "uvicorn", "psycopg")},
             "initial_employee_count": args.employees, "users_requested": args.users, "spawn_rate": args.spawn_rate,
             "steady_seconds_requested": args.steady_seconds, "warmup_timeout_seconds": args.warmup_timeout,
+            "steady_writes": args.steady_writes,
             "python_version": platform.python_version(), "locust_version": importlib.metadata.version("locust"),
             "os": platform.platform(), "logical_cpus": os.cpu_count(), "host_ram_bytes": psutil.virtual_memory().total,
             "database_max_connections": int(max_connections), "metrics": metrics,
             "burst": burst,
+            "steady_leave_observation": {"acknowledged": acknowledged_leaves, "persisted_rows": steady_leave_rows, "create_audits": steady_leave_audits},
             "resources": summarize_resources(raw / "resources.jsonl", metrics), "generator_exit_code": generator.returncode,
             "audit_observation": {"acknowledged_status_writes_all_windows": acknowledged_writes, "persisted_status_audits": audit_writes,
                 "all_acknowledgements_have_at_least_an_audit": audit_writes >= acknowledged_writes,
@@ -338,6 +346,7 @@ if __name__ == "__main__":
     parser.add_argument("--employees", type=int, default=10000)
     parser.add_argument("--profile", choices=("mixed", "login"), default="mixed")
     parser.add_argument("--burst", choices=("none", "status", "requests"), default="none")
+    parser.add_argument("--steady-writes", choices=("status", "leave"), default="status")
     parser.add_argument("--web-workers", type=int, default=1)
     parser.add_argument("--web-threads", type=int, default=8)
     parser.add_argument("--db-pool-size", type=int, default=10)

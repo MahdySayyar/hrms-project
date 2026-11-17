@@ -6,7 +6,7 @@
 | سیاست واقعی HR | حقوق تاریخی، تقویم، گزارش انتساب تاریخی، ساعات خدمت و SLA روشن و spec اصلاح شود |
 | coverage رفتاری Extended | مثبت/منفی/مرزهای قواعدِ خارج از سه Core با evidence مستقل |
 | CI واقعی | [اجراهای ثبت‌شده در GitHub Actions](https://github.com/MahdySayyar/hrms-project/actions) |
-| ظرفیت و فشار ورود | بار login جدا و NFR-01 با شرایط کامل، CPU/RAM/DB connections و raw data |
+| ظرفیت و فشار ورود | [آزمون پنج‌دقیقه‌ای](../05-architecture/experiments/EXP-MIXED-LEAVE-500-20261117.md) ثبت شد؛ هدف تأخیر NFR-01 باز است |
 | EXP-01/02 | کانتینر مشترک سپس Compose/پایش و مقایسهٔ منصفانه |
 | EXP-03/04 | replicas/Service، failure زیر بار، storage و بازیابی واقعی |
 | EXP-05/06 | نشست مشترک، cache/read replica؛ مشاهدهٔ مشکل، fix و تکرار |

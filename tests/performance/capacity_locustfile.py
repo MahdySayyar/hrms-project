@@ -183,6 +183,8 @@ class HrmsCapacityUser(LabUser):
         self.employee_ids = json.loads(Path(os.environ["HRMS_LAB_EMPLOYEE_IDS_PATH"]).read_text(encoding="utf-8"))
         self.ordinal = user_ordinal
         user_ordinal += 1
+        self.leave_workload = os.environ.get("HRMS_LAB_STEADY_WRITES") == "leave"
+        self.extra_login_pending = self.leave_workload and self.ordinal % 10 == 0
         if os.environ.get("HRMS_LAB_BURST", "none") != "none":
             reserved = int(os.environ["HRMS_LAB_EXPECTED_USERS"])
             self.burst_employee_id = self.employee_ids[self.ordinal]
@@ -222,8 +224,28 @@ class HrmsCapacityUser(LabUser):
     def read_records(self):
         if self.burst_after_steady():
             return
+        if self.extra_login_pending and time.time() >= window_start + 60:
+            self.extra_login_pending = False
+            original_cookies = self.client.cookies
+            self.client.cookies = type(original_cookies)()
+            try:
+                with self.client.get("/login", name="login.extra_form", timeout=10, catch_response=True) as response:
+                    token = re.search(r'name="csrf_token" value="([^"]+)"', response.text)
+                    if response.status_code != 200 or not token:
+                        response.failure("Additional anonymous login form unavailable")
+                        return
+                with self.client.post("/login", name="login.extra_submit", timeout=10, allow_redirects=False,
+                        data={"username": os.environ["HRMS_LAB_USERNAME"], "password": os.environ["HRMS_LAB_PASSWORD"],
+                              "csrf_token": token[1]}, catch_response=True) as response:
+                    if response.status_code != 303 or response.headers.get("Location") != "/":
+                        response.failure("Additional sign-in failed")
+            finally:
+                self.client.cookies = original_cookies
+            return
         name, path = random.choice((("employees", "/employees"), ("dashboard", "/"),
                                    ("reports", "/reports"), ("requests", "/hr/leave")))
+        if self.leave_workload and name == "employees":
+            path = "/employees?q=CAP-00"
         with self.client.get(path, name="read." + name, timeout=10, catch_response=True) as response:
             if response.status_code != 200 or 'id="username"' in response.text:
                 response.failure("Protected read did not return the expected authenticated page")
@@ -233,6 +255,14 @@ class HrmsCapacityUser(LabUser):
         if self.burst_after_steady():
             return
         employee_id = random.choice(self.employee_ids)
+        if self.leave_workload:
+            with self.client.post("/hr/leave/new", name="write.leave", timeout=10, allow_redirects=False,
+                    data={"employee_id": employee_id, "start_date": "2035-04-10", "end_date": "2035-04-11",
+                          "leave_type": "annual", "description": "Synthetic mixed " + os.environ["HRMS_LAB_INSTANCE"],
+                          "csrf_token": self.csrf_token}, catch_response=True) as response:
+                if response.status_code != 303 or not re.fullmatch(r"/hr/leave/\d+\?saved=1", response.headers.get("Location", "")):
+                    response.failure("Synthetic leave mutation did not acknowledge creation")
+            return
         with self.client.post(f"/employees/{employee_id}/status", name="write.employee_status", timeout=10,
             data={"active": random.choice(("true", "false")), "csrf_token": self.csrf_token},
             allow_redirects=False, catch_response=True) as response:
