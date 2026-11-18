@@ -77,7 +77,7 @@
     },
     {
       "path": "specs/functional-specifications.yaml",
-      "sha256": "ef03dadd48f4ebcda435bbe3b9db376a7f41e43be5e5422f1751812cb79cffff"
+      "sha256": "2aef4cfb1a9270a778fb0208f74f685388ca342623878a953d6f5d5801cbf8f6"
     },
     {
       "path": "specs/http-contracts.yaml",
