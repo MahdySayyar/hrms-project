@@ -90,3 +90,9 @@ module_forms.MODULES مشخصات فرم و model را انتخاب می‌کن�
 Repository و Service در تصمیم درخواست، SRP و تزریق وابستگی برای آزمون قواعد و حفظ تراکنش. Enum و state transition برای جلوگیری از تصمیم متناقض. Snapshot برای ثبات فیش؛ DB unique/partial index و row locking برای invariants هم‌زمانی. Generic form configuration برای کاهش تکرار HTML، با هزینهٔ متمرکز شدن اعتبارسنجی‌ها.
 
 Factory/Strategy/Microservices/Outbox/CQRS در این پروژه به‌عنوان پیاده‌سازی ادعا نمی‌شوند. افزودن الگو باید مسئله‌ای را حل کند و شاهد داشته باشد. [API](api-design.md)، [DB](database-design.md)، [spec معماری](../../specs/architecture.yaml) و [traceability](../09-traceability/matrix.md) مرجع تغییرند.
+
+
+## مسئولیت و تراکنش در جذب و فیش
+
+- استخدام، متقاضی را قفل می‌کند و پس از کنترل مصاحبهٔ قبول و کد پرسنلی، کارمند فعال، سه وظیفهٔ پذیرش، انتساب و ممیزی را با هم ثبت می‌کند. درخواست تکراری به پروندهٔ موجود می‌رود. تعارض یکپارچگی rollback و فرم 400 دارد. [FS-10](../../specs/functional-specifications.yaml)
+- فیش، کارمند را قفل می‌کند. فیش موجود همان ماه از snapshot بازگردانده می‌شود. محاسبهٔ جدید و ممیزی در یک commit ذخیره می‌شوند. ورودی نامعتبر، نبود پروفایل یا قاعده، نرخ ساعتی غیرمثبت و خالص منفی 400 دارند. [UC-03](../../specs/UC-03.yaml)

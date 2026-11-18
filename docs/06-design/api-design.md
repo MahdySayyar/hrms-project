@@ -26,3 +26,26 @@ GET /health وضعیت اتصال DB را با 200/503 JSON می‌دهد؛ GET 
 بررسی 2026-11-17: GET `/hr/{module}` همچنان HTML و همان نقش/محدوده/صفحه‌بندی را دارد؛ ADR-11 فقط queryهای نام منابع را دسته‌ای می‌کند. API-11 از همان کلید استاندارد ماه برای ارقام فارسی/عربی/لاتین استفاده می‌کند و CSV هشت‌ستونی با BOM و پاسخ buffered را پس از audit تحویل می‌دهد. endpoint یا نوع پاسخ جدیدی اضافه نشده؛ [UC-11](../../specs/UC-11.yaml) و ADR-12/13 اثر را پیش از کد ثبت کرده‌اند.
 
 قرارداد Core شامل شرط notes غیرخالی برای رد، حفظ تصمیم در retry یکسان، بازهٔ inclusive، ماه میلادی واقعی و immutable payslip است. این شروط با [آزمون‌ها](../08-testing/test-cases.md) مرتبط‌اند. OpenAPI خروجی، قرارداد توصیفی است؛ آزمون schema قراردادیِ کامل همهٔ فرم‌ها هنوز ساخته نشده است.
+
+
+## ردیابی عملیات مرورگری و بهره‌برداری
+
+۳۱ عملیات در [قرارداد دستی](../../specs/http-contracts.yaml) جزئیات دارند. جدول زیر ۱۵ عملیات دیگر [فهرست تولیدشده](route-inventory.json) را به کاربرد یا هدف بهره‌برداری وصل می‌کند. فرم‌های مشترک، تعریف فیلد، نقش و scope را از ماژول مقصد می‌گیرند. مسیرهای ویرایش POST قرارداد CSRF، اعتبارسنجی و redirect فرم همان ماژول را دارند.
+
+| روش | مسیر | منشأ | محل پیاده‌سازی |
+|---|---|---|---|
+| GET | `/health` | بهره‌برداری؛ بررسی سلامت وب | `app/main.py#health` |
+| GET | `/instance` | بهره‌برداری؛ تشخیص نمونهٔ پاسخ‌گو | `app/main.py#instance` |
+| GET | `/` | UC-04 · FR-04؛ عضو: UC-01 · FR-25 | `app/main.py#dashboard` |
+| GET | `/employees/new` | UC-04 · FR-04 | `app/main.py#employee_new` |
+| GET | `/employees/{employee_id}/edit` | UC-04 · FR-04 | `app/main.py#employee_edit_page` |
+| GET | `/organization/{kind}/new` | UC-05 · FR-07 | `app/main.py#organization_new` |
+| GET | `/organization/{kind}/{record_id}/edit` | UC-05 · FR-07 | `app/main.py#organization_edit_page` |
+| POST | `/organization/{kind}/{record_id}/edit` | UC-05 · FR-07 | `app/main.py#organization_edit` |
+| GET | `/modules` | UC-04 · FR-03 | `app/modules.py#module_index` |
+| GET | `/hr/{module}/new` | UC-04 · قرارداد مشترک فرم؛ UC/FR اختصاصی تابع ماژول | `app/modules.py#module_new` |
+| GET | `/hr/{module}/{record_id}/edit` | UC-04 · قرارداد مشترک فرم؛ UC/FR اختصاصی تابع ماژول | `app/modules.py#module_edit_page` |
+| POST | `/hr/{module}/{record_id}/edit` | UC-04 · قرارداد مشترک فرم؛ UC/FR اختصاصی تابع ماژول | `app/modules.py#module_edit` |
+| GET | `/hr/{module}/{record_id}` | UC-04 · قرارداد مشترک فرم؛ UC/FR اختصاصی تابع ماژول | `app/modules.py#module_detail` |
+| GET | `/hire/{candidate_id}` | UC-06 · FR-10 | `app/modules.py#hire_page` |
+| GET | `/contracts/{contract_id}/renew` | UC-08 · FR-17 | `app/modules.py#renew_contract_page` |
