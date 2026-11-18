@@ -542,6 +542,9 @@ entries:
 - id: ADR-25
   target: docs/05-architecture/ADRs/ADR-25-signup-and-recruitment-flow.md
   kind: architecture_decision
+- id: ADR-26
+  target: docs/05-architecture/ADRs/ADR-26-module-navigation.md
+  kind: architecture_decision
 - id: D-01
   target: docs/06-design/design.md#d-01
   kind: design
@@ -673,6 +676,21 @@ entries:
   kind: automated_test
 - id: TC-02-09
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_09_missing_invalid_and_notes_boundary
+  kind: automated_test
+- id: TC-06-02
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_06_02_candidate_requires_passed_interview_for_acceptance
+  kind: automated_test
+- id: TC-09-02
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_09_02_training_enforces_capacity_and_releases_cancelled_place
+  kind: automated_test
+- id: TC-10-01
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_10_01_assignment_changes_once_and_is_scoped
+  kind: automated_test
+- id: TC-08-01
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_08_01_contract_rejects_second_active_contract
+  kind: automated_test
+- id: TC-09-01
+  target: tests/test_core_workflows.py#CoreWorkflows.test_tc_09_01_evaluation_and_career_percent_boundaries
   kind: automated_test
 - id: TC-03-01
   target: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_01_monthly_formula_and_immutable_retry

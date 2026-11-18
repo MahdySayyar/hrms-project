@@ -89,7 +89,7 @@
     },
     {
       "path": "specs/requirements.yaml",
-      "sha256": "1e119f564f0103604bab291f0e3134d2585bfdd31a1c4d1230a31c24d3bd8519"
+      "sha256": "0a76915a839f1e9242759a6e89a0ab584ea4dd28ba2a50e02c35b2c4ef57b006"
     },
     {
       "path": "specs/UC-01.yaml",
@@ -125,7 +125,7 @@
     },
     {
       "path": "tests/test_core_workflows.py",
-      "sha256": "5297c4a33acd49c4cbed36472a08ab3e43a67924c6ad953dfbd651b13626e9e7"
+      "sha256": "079887e3029902ff2e19b6b2023ba3ff9ae2564c87d82d678ca650952cf19fff"
     },
     {
       "path": "tests/test_docker_entrypoint.py",

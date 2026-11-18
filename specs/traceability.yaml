@@ -269,6 +269,7 @@ traceability:
   code:
   - app/modules.py#validate_record
   tests:
+  - TC-06-02
   - TC-REG-01
   regression_assertion_indices:
   - 2
@@ -276,7 +277,7 @@ traceability:
   - 21
   - 23
   - 28
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -302,12 +303,13 @@ traceability:
   - app/modules.py#save_record
   - app/modules.py#validate_record
   tests:
+  - TC-06-01
   - TC-REG-01
   regression_assertion_indices:
   - 3
   - 22
   - 23
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -611,6 +613,7 @@ traceability:
   - app/modules.py#renew_contract
   - app/modules.py#terminate_contract
   tests:
+  - TC-08-01
   - TC-REG-01
   regression_assertion_indices:
   - 59
@@ -622,7 +625,7 @@ traceability:
   - 65
   - 66
   - 67
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -648,11 +651,12 @@ traceability:
   - app/module_forms.py
   - app/hr_models.py#Evaluation
   tests:
+  - TC-09-01
   - TC-REG-01
   regression_assertion_indices:
   - 68
   - 69
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -678,12 +682,13 @@ traceability:
   - app/modules.py#validate_record
   - app/hr_models.py#TrainingEnrollment
   tests:
+  - TC-09-02
   - TC-REG-01
   regression_assertion_indices:
   - 70
   - 71
   - 72
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -709,10 +714,11 @@ traceability:
   - app/module_forms.py
   - app/hr_models.py#CareerPlan
   tests:
+  - TC-09-01
   - TC-REG-01
   regression_assertion_indices:
   - 73
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -736,6 +742,7 @@ traceability:
   - app/access.py#sync_assignment
   - app/modules.py#employee_history
   tests:
+  - TC-10-01
   - TC-REG-01
   regression_assertion_indices:
   - 74
@@ -743,7 +750,7 @@ traceability:
   - 76
   - 77
   - 78
-  verification: extended_partial_or_historical_evidence
+  verification: core_test_samples_and_broad_regression
   human_review: pending
   coverage_limit: Links identify actual evidence; they do not certify all positive/negative/boundary
     paths
@@ -1043,6 +1050,11 @@ test_code_symbols:
   TC-02-07: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_07_parallel_overlapping_approvals_have_one_winner
   TC-02-08: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_08_failed_audit_rolls_back_decision
   TC-02-09: tests/test_core_workflows.py#CoreWorkflows.test_tc_02_09_missing_invalid_and_notes_boundary
+  TC-06-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_06_02_candidate_requires_passed_interview_for_acceptance
+  TC-09-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_09_02_training_enforces_capacity_and_releases_cancelled_place
+  TC-10-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_10_01_assignment_changes_once_and_is_scoped
+  TC-08-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_08_01_contract_rejects_second_active_contract
+  TC-09-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_09_01_evaluation_and_career_percent_boundaries
   TC-03-01: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_01_monthly_formula_and_immutable_retry
   TC-03-02: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_02_hourly_formula_counts_overtime_once
   TC-03-03: tests/test_core_workflows.py#CoreWorkflows.test_tc_03_03_invalid_period_and_missing_profile

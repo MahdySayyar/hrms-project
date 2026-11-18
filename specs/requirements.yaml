@@ -140,7 +140,7 @@ functional_requirements:
   - BR-15
   code:
   - app/modules.py#validate_record
-  core_tests: []
+  core_tests: [TC-06-02]
   source:
   - SRC-C01
   priority: extended
@@ -154,7 +154,7 @@ functional_requirements:
   code:
   - app/modules.py#save_record
   - app/modules.py#validate_record
-  core_tests: []
+  core_tests: [TC-06-01]
   source:
   - SRC-C01
   priority: extended
@@ -306,7 +306,7 @@ functional_requirements:
   - app/modules.py#activate_contract
   - app/modules.py#renew_contract
   - app/modules.py#terminate_contract
-  core_tests: []
+  core_tests: [TC-08-01]
   source:
   - SRC-C01
   priority: extended
@@ -320,7 +320,7 @@ functional_requirements:
   code:
   - app/module_forms.py
   - app/hr_models.py#Evaluation
-  core_tests: []
+  core_tests: [TC-09-01]
   source:
   - SRC-C01
   priority: extended
@@ -334,7 +334,7 @@ functional_requirements:
   code:
   - app/modules.py#validate_record
   - app/hr_models.py#TrainingEnrollment
-  core_tests: []
+  core_tests: [TC-09-02]
   source:
   - SRC-C01
   priority: extended
@@ -348,7 +348,7 @@ functional_requirements:
   code:
   - app/module_forms.py
   - app/hr_models.py#CareerPlan
-  core_tests: []
+  core_tests: [TC-09-01]
   source:
   - SRC-C01
   priority: extended
@@ -363,7 +363,7 @@ functional_requirements:
   code:
   - app/access.py#sync_assignment
   - app/modules.py#employee_history
-  core_tests: []
+  core_tests: [TC-10-01]
   source:
   - SRC-C01
   priority: extended

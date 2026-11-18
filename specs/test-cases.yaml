@@ -1,8 +1,8 @@
 id: TEST-CAT-01
 version: 1
 human_review: pending
-current_suite_evidence: docs/08-testing/evidence/core-module-navigation-20261117-b.json
-current_coverage_evidence: docs/08-testing/evidence/coverage-module-navigation-20261117-b.json
+current_suite_evidence: docs/08-testing/evidence/core-extended-followup-20261118-a.json
+current_coverage_evidence: docs/08-testing/evidence/coverage-extended-followup-20261118-a.json
 transport_tests:
   provenance: Scenarios specified in ADR-08 before implementation; YAML inventory reconstructed after tests on 2026-11-15
   evidence: docs/08-testing/evidence/proxy-transport-20261115-b.json
@@ -14,6 +14,31 @@ transport_tests:
     - id: TC-01-07
       scenario: Encoded path and query, gzip bytes and length, HEAD and 304 metadata, 204 without length, Connection-nominated headers, redirect and invalid affinity boundary
 core_tests:
+- id: TC-06-02
+  use_case: UC-06
+  requirements: [FR-08]
+  scenario: Exercise the UC-06 browser form and verify its boundaries.
+  expected: Reject acceptance without a passed interview; persist one new candidate.
+- id: TC-08-01
+  use_case: UC-08
+  requirements: [FR-17]
+  scenario: Exercise the UC-08 browser form and verify its boundaries.
+  expected: Activate the in-date draft and reject the unrelated second draft.
+- id: TC-09-01
+  use_case: UC-09
+  requirements: [FR-18, FR-20]
+  scenario: Exercise the UC-09 browser form and verify its boundaries.
+  expected: Accept 0 and 100 and reject -1 and 101 for evaluation and career.
+- id: TC-09-02
+  use_case: UC-09
+  requirements: [FR-19]
+  scenario: Exercise the UC-09 browser form and verify its boundaries.
+  expected: Reject a full course and allow another employee after cancellation.
+- id: TC-10-01
+  use_case: UC-10
+  requirements: [FR-21]
+  scenario: Exercise the UC-10 browser form and verify its boundaries.
+  expected: Preserve one current assignment on repeat and hide out-of-scope history.
 - id: TC-01-26
   use_case: UC-01
   requirements: [FR-25]

@@ -10,7 +10,7 @@ from sqlalchemy import event, func, select
 
 from app import main
 from app.database import Admin, Branch, Employee, LoginAttempt, Position, Unit
-from app.hr_models import Attendance, AuditLog, Candidate, HrRequest, OnboardingTask, PayrollProfile, PayrollRule, Payslip, Shift
+from app.hr_models import AssignmentHistory, Attendance, AuditLog, Candidate, EmploymentContract, HrRequest, OnboardingTask, PayrollProfile, PayrollRule, Payslip, Shift
 from app.security import COOKIE_NAME, hash_password, verify_password
 from tests.support import PostgresTestCase
 
@@ -401,6 +401,94 @@ class CoreWorkflows(PostgresTestCase):
         self.assertEqual(self.post(client, f"/requests/{request_id}/review", {"decision": "pending"}).status_code, 400)
         self.assertEqual(self.post(client, f"/requests/{request_id}/review", {"decision": "approved", "review_notes": "x" * 3001}).status_code, 400)
         self.assertEqual(self.post(client, f"/requests/{request_id}/review", {"decision": "approved", "review_notes": "x" * 3000}).status_code, 303)
+
+    def test_tc_06_02_candidate_requires_passed_interview_for_acceptance(self):
+        hr = self.client("hr")
+        with self.factory() as db:
+            employee = db.get(Employee, self.employee_id)
+            branch, unit, position = employee.branch_id, employee.unit_id, employee.position_id
+        data = {"first_name": "متقاضی", "last_name": "ساختگی", "national_id": "9900000101",
+                "phone": "09000000101", "branch_id": str(branch), "unit_id": str(unit),
+                "position_id": str(position), "application_date": date.today().isoformat()}
+        self.assertEqual(self.post(hr, "/hr/candidates/new", {**data, "status": "accepted"}).status_code, 400)
+        self.assertEqual(self.post(hr, "/hr/candidates/new", {**data, "status": "new"}).status_code, 303)
+        with self.factory() as db:
+            candidates = db.scalars(select(Candidate).where(Candidate.branch_id == branch)).all()
+            self.assertEqual([candidate.status for candidate in candidates], ["new"])
+
+    def test_tc_09_02_training_enforces_capacity_and_releases_cancelled_place(self):
+        admin = self.client("admin")
+        data = {"title": "دورهٔ مصنوعی", "training_date": date.today().isoformat(),
+                "capacity": "1", "description": "آزمون ظرفیت"}
+        training = self.post(admin, "/hr/trainings/new", data)
+        self.assertEqual(training.status_code, 303)
+        training_id = training.headers["location"].split("/")[-1].split("?")[0]
+        enrollment = {"training_id": training_id, "status": "planned", "employee_id": str(self.employee_id)}
+        first = self.post(admin, "/hr/enrollments/new", enrollment)
+        self.assertEqual(first.status_code, 303)
+        alternate = {**enrollment, "employee_id": str(self.outside_id)}
+        self.assertEqual(self.post(admin, "/hr/enrollments/new", alternate).status_code, 400)
+        edit = first.headers["location"].split("?")[0] + "/edit"
+        self.assertEqual(self.post(admin, edit, {**enrollment, "status": "cancelled"}).status_code, 303)
+        self.assertEqual(self.post(admin, "/hr/enrollments/new", alternate).status_code, 303)
+
+    def test_tc_10_01_assignment_changes_once_and_is_scoped(self):
+        hr = self.client("hr")
+        with self.factory.begin() as db:
+            employee = db.get(Employee, self.employee_id)
+            position = Position(title=f"test-transfer-{uuid.uuid4().hex}", description="Synthetic transfer")
+            db.add(position)
+            db.flush()
+            data = {key: str(getattr(employee, key)) for key in
+                    ("employee_code", "first_name", "last_name", "national_id", "phone", "email",
+                     "hire_date", "branch_id", "unit_id", "position_id", "contract_type")}
+            new_position = str(position.id)
+        path = f"/employees/{self.employee_id}/edit"
+        self.assertEqual(self.post(hr, path, data).status_code, 303)
+        data["position_id"] = new_position
+        self.assertEqual(self.post(hr, path, data).status_code, 303)
+        self.assertEqual(self.post(hr, path, data).status_code, 303)
+        self.assertEqual(hr.get(f"/history/{self.outside_id}").status_code, 404)
+        with self.factory() as db:
+            history = db.scalars(select(AssignmentHistory).where(
+                AssignmentHistory.employee_id == self.employee_id).order_by(AssignmentHistory.id)).all()
+            self.assertEqual(len(history), 2)
+            self.assertIsNotNone(history[0].end_date)
+            self.assertEqual(history[1].position_id, int(new_position))
+            self.assertIsNone(history[1].end_date)
+
+    def test_tc_08_01_contract_rejects_second_active_contract(self):
+        hr = self.client("hr")
+        today = date.today().isoformat()
+        data = {"employee_id": str(self.employee_id), "contract_type": "آزمایشی",
+                "start_date": today, "end_date": today, "base_salary": "100000"}
+        first = self.post(hr, "/hr/contracts/new", data)
+        second = self.post(hr, "/hr/contracts/new", data)
+        self.assertEqual(first.status_code, 303)
+        self.assertEqual(second.status_code, 303)
+        first_id = first.headers["location"].split("/")[-1].split("?")[0]
+        second_id = second.headers["location"].split("/")[-1].split("?")[0]
+        self.assertEqual(self.post(hr, f"/contracts/{first_id}/activate", {}).status_code, 303)
+        self.assertEqual(self.post(hr, f"/contracts/{second_id}/activate", {}).status_code, 400)
+        with self.factory() as db:
+            self.assertEqual(db.get(EmploymentContract, int(first_id)).status, "active")
+            self.assertEqual(db.get(EmploymentContract, int(second_id)).status, "draft")
+
+    def test_tc_09_01_evaluation_and_career_percent_boundaries(self):
+        hr = self.client("hr")
+        today = date.today().isoformat()
+        with self.factory() as db:
+            position = db.get(Employee, self.employee_id).position_id
+        cases = [
+            ("evaluations", "score", {"review_date": today, "feedback": "بازخورد", "goals": "هدف"}),
+            ("career", "progress", {"target_date": today, "target_position_id": str(position), "actions": "برنامه"}),
+        ]
+        for module, key, fields in cases:
+            for value, status in [(0, 303), (100, 303), (-1, 400), (101, 400)]:
+                with self.subTest(module=module, value=value):
+                    response = self.post(hr, f"/hr/{module}/new",
+                                         {"employee_id": str(self.employee_id), **fields, key: str(value)})
+                    self.assertEqual(response.status_code, status)
 
     def test_tc_03_01_monthly_formula_and_immutable_retry(self):
         client = self.client("admin")
