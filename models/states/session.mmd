@@ -1,19 +1,26 @@
 %% ST-01 — Session lifecycle
 stateDiagram-v2
-    [*] --> Anonymous: GET login
+    [*] --> Anonymous: GET login or register
     Anonymous --> Authenticated: valid active credentials + CSRF + audit
     Anonymous --> Anonymous: invalid credentials / 401
     Anonymous --> Anonymous: invalid CSRF / 403
+    Anonymous --> Anonymous: registered member / redirect to login
+    Anonymous --> Anonymous: account cooldown / 429
     Anonymous --> Expired: anonymous lifetime ends
     Authenticated --> Invalidated: logout + CSRF + audit
     Authenticated --> Expired: configured lifetime ends
     Authenticated --> Invalidated: account inactive or missing
-    Authenticated --> Lost: process restart
+    Authenticated --> Invalidated: password changed or reset, on next validation
+    Authenticated --> Lost: memory profile web restart
+    Authenticated --> Authenticated: Redis profile web restart while store and token are valid
+    Authenticated --> Lost: Redis store loses token
     Invalidated --> Anonymous: next login page
     Expired --> Anonymous: next login page
     Lost --> Anonymous: next login page
     note right of Authenticated
       New cookie after login
-      Session is process-local
+      Memory belongs to one web process
+      Redis shares sessions across workers
+      Redis outage returns 503 without memory fallback
       Roles live in account data
     end note

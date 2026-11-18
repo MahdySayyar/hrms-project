@@ -5,6 +5,12 @@ sequenceDiagram
     participant Route as main.py
     participant Security as security.py
     participant DB as PostgreSQL
+    opt ساخت حساب پیش از ورود
+      Browser->>Route: GET /register + anonymous CSRF
+      Browser->>Route: POST /register + CSRF
+      Route->>DB: commit active member + registration audit
+      Route-->>Browser: 303 /login?registered=1
+    end
     User->>Browser: بازکردن login
     Browser->>Route: GET /login
     Route->>Security: anonymous session + CSRF
@@ -18,24 +24,34 @@ sequenceDiagram
       DB-->>Route: snapshot id/hash/active and close session
       Route->>Security: bounded private password queue
       Route->>Security: verify_password
-      alt حساب یا رمز نامعتبر
+      alt account cooldown
+        Route-->>Browser: 429 + Retry-After
+      else hash capacity or shared session store unavailable
+        Route-->>Browser: 503
+      else حساب یا رمز نامعتبر
         Route-->>Browser: 401 generic message
       else حساب فعال و رمز صحیح
         Route->>Security: recheck current CSRF session
         Route->>DB: recheck active account and same hash
         alt current account and CSRF still valid
-        Route->>DB: INSERT login audit + COMMIT
-        Route->>Security: discard old + new authenticated session
+        Route->>DB: stage login audit and any verified hash upgrade
+        Route->>Security: rotate session in memory or Redis
+        alt database commit succeeds
+        Route->>DB: COMMIT
         Route-->>Browser: 303 / + rotated cookie
         Browser->>Route: GET /
         Route->>Security: require_login
         Security->>DB: verify account still active
-        Route-->>Browser: 200 dashboard
+        Route-->>Browser: 200 dashboard or member account by role
         Browser->>Route: POST /logout + CSRF
         Route->>Security: validate session + CSRF
         Route->>DB: INSERT logout audit + COMMIT
         Route->>Security: discard_session
         Route-->>Browser: 303 /login + delete cookie
+        else database commit fails
+          Route->>Security: delete unissued rotated token
+          Route-->>Browser: 500 without authenticated cookie
+        end
         else changed account or expired CSRF
           Route-->>Browser: 401 or 403 without a new session
         end
