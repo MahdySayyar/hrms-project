@@ -69,3 +69,12 @@ docker compose -f deployments/compose.capacity.yaml -f deployments/compose.https
 .\.venv\Scripts\python.exe scripts/run_docker_checks_20261116.py --name docker-next-run
 .\.venv\Scripts\python.exe scripts/verify_docker_deployment_20261116.py --output docs/08-testing/evidence/docker-deployment-next.json
 ```
+
+## آزمایش ایزولهٔ اندازهٔ گروه وب
+
+برای مقایسهٔ چهار و شش وب با ۵۰۰ ورود هم‌زمان، از همان ابزار Docker استفاده کنید. هر نام باید تازه باشد. ابزار برای هر اجرا پروژه، پورت، volume و دادهٔ آزمایشی جدا می‌سازد و منابع Docker همان اجرا را پس از پایان جمع می‌کند. [پروتکل و نتایج](../docs/05-architecture/experiments/EXP-DOCKER-LOGIN-WEB-SCALE.md)
+
+```powershell
+.\.venv\Scripts\python.exe scripts/run_login_storm_20261117.py --name compare-four-new --web-workers 4
+.\.venv\Scripts\python.exe scripts/run_login_storm_20261117.py --name compare-six-new --web-workers 6
+```

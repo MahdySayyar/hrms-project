@@ -64,20 +64,21 @@ def run(args):
         HRMS_PASSWORD_WORKERS=str(args.password_workers))
     if args.shared:
         enable_shared_sessions(config, source, args.name)
-    if args.web_workers == 4:
+    if args.web_workers > 1:
+        web_names = ["web", *(f"web{index}" for index in range(2, args.web_workers + 1))]
         ports = web.pop("ports")
         web["environment"].update(HRMS_THREADS="8", HRMS_DB_POOL_SIZE="5", HRMS_DB_MAX_OVERFLOW="5")
-        for index in range(2, 5):
+        for name in web_names[1:]:
             additional = copy.deepcopy(web)
             additional.pop("build")
             additional["command"] = ["python", "/lab/bootstrap.py", "--worker"]
             additional["depends_on"] = {"web": {"condition": "service_healthy"}}
-            config["services"][f"web{index}"] = additional
+            config["services"][name] = additional
         config["services"]["proxy"] = {"image": web["image"], "command": ["python", "-m", "uvicorn", "app.native_proxy:app", "--host", "0.0.0.0", "--port", "8000"],
             "environment": {"HRMS_PROXY_MODE": "shared" if args.shared else "compose", "HRMS_PROXY_TIMEOUT": "180", "INSTANCE_ID": marker,
-                "HRMS_NATIVE_BACKENDS": json.dumps(["http://web:8000", "http://web2:8000", "http://web3:8000", "http://web4:8000"])},
+                "HRMS_NATIVE_BACKENDS": json.dumps([f"http://{name}:8000" for name in web_names])},
             "networks": ["backend"], "ports": ports, "healthcheck": copy.deepcopy(web["healthcheck"]),
-            "depends_on": {name: {"condition": "service_healthy"} for name in ("web", "web2", "web3", "web4")}}
+            "depends_on": {name: {"condition": "service_healthy"} for name in web_names}}
     override.write_text(json.dumps(config, indent=2), encoding="utf-8")
     compose = ["docker", "compose", "-f", str(override)]
     started = datetime.now(timezone.utc)
@@ -166,7 +167,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", required=True)
     parser.add_argument("--users", type=int, default=500)
-    parser.add_argument("--web-workers", type=int, choices=(1, 4), default=1)
+    parser.add_argument("--web-workers", type=int, choices=(1, 4, 6), default=1)
     parser.add_argument("--password-workers", type=int, choices=(1, 2), default=1)
     parser.add_argument("--shared", action="store_true")
     raise SystemExit(run(parser.parse_args()))

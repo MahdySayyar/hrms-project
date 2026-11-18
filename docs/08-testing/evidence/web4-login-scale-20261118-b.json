@@ -1,0 +1,374 @@
+{
+  "started_at": "2026-11-18T09:25:00.995185+00:00",
+  "source_parent_commit": "eedd44e25020aea8e081fc6124e1d04dcd4009c0",
+  "captured_source_files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "43457142ab707a5dde5fde8a5f180c05fd22cea34b89732579294c104e9da73e"
+    },
+    {
+      "path": "app/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "app/access.py",
+      "sha256": "71232ecc5ddc80efc40e0e1bb3dc7b18d4a08eb80cb3a433a5efa6aa334fa387"
+    },
+    {
+      "path": "app/database.py",
+      "sha256": "0b8f70493fd05821f5e82ae7b4e73389807639135aab394761ab3e7bc1fffa88"
+    },
+    {
+      "path": "app/hr_models.py",
+      "sha256": "3137db2e75a7ed50f452d313efd470eac76d52ba1063f27b2e3fd3b13b641a06"
+    },
+    {
+      "path": "app/login_capacity.py",
+      "sha256": "4c3ac6bd3ea2047484aa1a297507457526e512461550f574a02bb5dda39d409c"
+    },
+    {
+      "path": "app/main.py",
+      "sha256": "eec34072a62934710675fa923109cafcdb8ca85c92519d0a2be43183fddf42f8"
+    },
+    {
+      "path": "app/module_forms.py",
+      "sha256": "69ca4c2525c6ed20b29cb20e1ad6c323768e2e1edc8f5b77e0c6db1cb68436a4"
+    },
+    {
+      "path": "app/modules.py",
+      "sha256": "9ab70e3f10e72aa4a88b79972c4a364886abea87ed535830576782d93837d413"
+    },
+    {
+      "path": "app/native_proxy.py",
+      "sha256": "c378bb324b40d50f8144a745dad7c132c5a066051a543b6fef474d50f2df1a5c"
+    },
+    {
+      "path": "app/pagination.py",
+      "sha256": "61dc6266a31453ab40d9141f803a3fb0e77b620cdab791ef0be367880b6cec4d"
+    },
+    {
+      "path": "app/request_workflow/__init__.py",
+      "sha256": "fa9da7c4f002ad9c8ecad1f999aa1eea2b1976169999b900d1c9d9475425c111"
+    },
+    {
+      "path": "app/request_workflow/domain.py",
+      "sha256": "e96f64b324bba1fc49d5b7d8b2d4a536f16fd1e678bd9e58fa21f6c1b2501824"
+    },
+    {
+      "path": "app/request_workflow/repository.py",
+      "sha256": "eb13642ff79087e9aaeec1c43d0dec82d88457d0edef5b89770622fdb96405d1"
+    },
+    {
+      "path": "app/request_workflow/service.py",
+      "sha256": "1a7db8bc65b3750778b7e41d45b7a0c4ee64613959a391b642400e314f9332f8"
+    },
+    {
+      "path": "app/security.py",
+      "sha256": "12d9075175ba89cbb58ef63ff96c0084fdc85c457c4bbbe83541c490e0f6f430"
+    },
+    {
+      "path": "app/seed.py",
+      "sha256": "c2d6ef68fd1f98b2dfbca24149eda2b5d12eb410a44d1f8860fdb3ac32d94024"
+    },
+    {
+      "path": "app/session_store.py",
+      "sha256": "a5cc39b9eec83a81f2dc9b62f0e988da8a37537db8cd64fa7a394fa614073a1e"
+    },
+    {
+      "path": "deployments/app/Dockerfile",
+      "sha256": "fd7948b7328fefd204571e214c368363ae6aae4b5205f1af4c54f9cada29f29c"
+    },
+    {
+      "path": "deployments/app/entrypoint.py",
+      "sha256": "156f14d351a78c73b672ae7fc54e4e953d07e1ff4d9cc1135b773b4a3f8abb8a"
+    },
+    {
+      "path": "deployments/compose.capacity.yaml",
+      "sha256": "25e6ca8631dd34ff19b06bd1fdc70d15cf2ec304b008b1f098b36dd39233b191"
+    },
+    {
+      "path": "deployments/compose.https.yaml",
+      "sha256": "6d1f87a54d62cccea90572b67f0ca23861dca6d95f66b9aa357817a6c86668f3"
+    },
+    {
+      "path": "deployments/compose.shared.yaml",
+      "sha256": "d79232c77288031cf35cfc9fb8ada5ca0f3d06fba9a594bceaa327a99332d62a"
+    },
+    {
+      "path": "deployments/compose.yaml",
+      "sha256": "0824492e2cec4ed902bc6119607317ddf2bd93a2439f1c2841b4f7e20b5f7749"
+    },
+    {
+      "path": "deployments/README.md",
+      "sha256": "3fcb0498f72003c2fa1b4e696cf7558634da50c718b200e8645511392f716d92"
+    },
+    {
+      "path": "deployments/redis/start.sh",
+      "sha256": "d3723bdac93df6bafbf15a7ae882c08a9dead71c3543550a4e7ccf563819804f"
+    },
+    {
+      "path": "requirements-lock.txt",
+      "sha256": "8ba20d72aff69cda6b0340f0a9559fbc8b59c0075acdfd5ca8b02d61d5d85be1"
+    },
+    {
+      "path": "scripts/container_capacity_fixture_20261117.py",
+      "sha256": "3b8d7f4cd867f235b63da0827b15122808ae2d5916b4d5ba8d4c6614691784f2"
+    },
+    {
+      "path": "scripts/init_docker_secrets.py",
+      "sha256": "a6c488d77052e2fe3de29c15a5dac33b1e5106c632097e4256c3bbb11b19e171"
+    },
+    {
+      "path": "static/forms.js",
+      "sha256": "d8a8dc520858a67bebd43e58f73c1e7452cbf68e128783a0dfc88b96d5ce3bd7"
+    },
+    {
+      "path": "static/modules.css",
+      "sha256": "98bd82ca6fa9479af345f1b375212a391e490774b54b50985eeb78883b2a3fe4"
+    },
+    {
+      "path": "static/style.css",
+      "sha256": "1831881451b25cc154e3e38944022c996a17aee465337b4ec551ed73ed424b46"
+    },
+    {
+      "path": "templates/audit.html",
+      "sha256": "ccab1b5743e9012b5b6b298b7c9d78dc5b160dd5214b771e8c92933bb92122e4"
+    },
+    {
+      "path": "templates/base.html",
+      "sha256": "ec2a58db5986d6d09933d6f4fde82a5c800ecbb5cb65a177c9ad5cd0d384b2ef"
+    },
+    {
+      "path": "templates/dashboard.html",
+      "sha256": "8620d4dbb0531c08f471d3f4e3a03f76030610882a354e6bb25cb94e90d4d6bd"
+    },
+    {
+      "path": "templates/employee_detail.html",
+      "sha256": "d24e0fbf58e68fed243f866914b20b06e01223fcbd2bd33620dd693560acc06f"
+    },
+    {
+      "path": "templates/employee_form.html",
+      "sha256": "8b3969a6ee7b78210f090c94934a85307e036ee787f066ae8eea9da38bf472d2"
+    },
+    {
+      "path": "templates/employees.html",
+      "sha256": "bee11ffe0d49d43a5bbb88abbd144d2dcba8063858c095971a0fdf7223f0130f"
+    },
+    {
+      "path": "templates/error.html",
+      "sha256": "40a6efcb9ab763a95b9a81ff52ad8da488242df4f355cc2fcd2e8ddb2bfaf5e1"
+    },
+    {
+      "path": "templates/history.html",
+      "sha256": "933e0f55454269c3168879e520c25ed25507221c66adfdbac4c0f5a5301f3233"
+    },
+    {
+      "path": "templates/login.html",
+      "sha256": "b427709dabc3089fbb2825aa8cb6d948a9f97c2b7c0558aab5f0170d43274a96"
+    },
+    {
+      "path": "templates/member_home.html",
+      "sha256": "39a648bfd1cfd1b2957b3a84f993fd48a822b128d127c5c78014fd8460989374"
+    },
+    {
+      "path": "templates/module_detail.html",
+      "sha256": "597154b629d3691fa8ca2c4ea383fbe13a177dbf1b8ea9eeb1535e748f61bd28"
+    },
+    {
+      "path": "templates/module_form.html",
+      "sha256": "cf93c48ca8ff8ff147854b51b60e22f82921169f1f1a45293f98dfc3f8fa894a"
+    },
+    {
+      "path": "templates/module_list.html",
+      "sha256": "b24e82f2665970aa165a0defe0014cbc94f5aacad913ef8b504b145c04518c3f"
+    },
+    {
+      "path": "templates/module_tabs.html",
+      "sha256": "b61b509adb3cdc47d3e214c9ee64eae78660ccb134c52f7c2cf3c05f70a86f8b"
+    },
+    {
+      "path": "templates/modules.html",
+      "sha256": "7eb66584f08668339cd0e807d522df480cc5ebca677ee7c491295989d49c3e70"
+    },
+    {
+      "path": "templates/organization.html",
+      "sha256": "0f1ab7fed28a9d8b39168397d85b627db1b418b8f53b8ce82bf39e2824a2501d"
+    },
+    {
+      "path": "templates/organization_form.html",
+      "sha256": "3956d673d24872d681f2578f19b416473b858c3623482e1c20603ad770e3fa4c"
+    },
+    {
+      "path": "templates/page_navigation.html",
+      "sha256": "14728ad8c764abf355756398861502fb179dea44a9d364875aa394d9659afd86"
+    },
+    {
+      "path": "templates/password.html",
+      "sha256": "985fb320516e6c6a352204f5275f92a3c31a804afb3a3e718707dca1bb0e95f8"
+    },
+    {
+      "path": "templates/payroll.html",
+      "sha256": "ac0d7b6137224e737147c62207787ba50e48224668088085c6e1029c7732eb04"
+    },
+    {
+      "path": "templates/payslip.html",
+      "sha256": "9fe79ce3c605e3b60a77e989d2f476acf6ac05cd0161e45d686092526f77fe0a"
+    },
+    {
+      "path": "templates/register.html",
+      "sha256": "916c01669a75002ff8af14d210d7e6ab8cd3624a69c439d5ea17c2c289d26965"
+    },
+    {
+      "path": "templates/reports.html",
+      "sha256": "2aa7684d9128bacdc3cae99c5880b9b494e14f3a54aa105d844c609d09523eb5"
+    }
+  ],
+  "topology": "4 Docker Uvicorn processes, PostgreSQL and memory sessions; fresh disposable schema, synthetic accounts only",
+  "shared_sessions": false,
+  "password_workers_per_web": 1,
+  "users_requested": 500,
+  "employees": 10000,
+  "human_review": "pending",
+  "nfr_500_mixed_workload_verified": false,
+  "load_generator_source_sha256": "933f380422e06be4eb4e5ec9aafa61f27d9e31fe0bbe4d418964037e4c4c324a",
+  "limitations": [
+    "Generator and Docker share this physical host",
+    "Simultaneous login workload only; no 300-second mixed-load/HA certification"
+  ],
+  "raw_evidence_directory": "artifacts/web4-login-scale-20261118-b",
+  "metrics": {
+    "users": 500,
+    "prepared_cookie_csrf_pairs": 500,
+    "unique_authenticated_cookies": 500,
+    "login": {
+      "requests": 500,
+      "failures": 0,
+      "statuses": {
+        "303": 500
+      },
+      "p50_ms": 7156.0,
+      "p95_ms": 12313.0,
+      "max_ms": 13250.0
+    },
+    "dispatch_spread_ms": 578.0,
+    "burst_elapsed_seconds": 14.078,
+    "probes": {
+      "requests": 78,
+      "failures": 0,
+      "statuses": {
+        "200": 78
+      },
+      "p50_ms": 47.0,
+      "p95_ms": 141.0,
+      "max_ms": 1343.0
+    },
+    "health_probes": {
+      "requests": 39,
+      "failures": 0,
+      "statuses": {
+        "200": 39
+      },
+      "p50_ms": 31.0,
+      "p95_ms": 172.0,
+      "max_ms": 1343.0
+    },
+    "dashboard_probes": {
+      "requests": 39,
+      "failures": 0,
+      "statuses": {
+        "200": 39
+      },
+      "p50_ms": 47.0,
+      "p95_ms": 141.0,
+      "max_ms": 1235.0
+    },
+    "session_checks": {
+      "requests": 500,
+      "failures": 0,
+      "statuses": {
+        "200": 500
+      },
+      "p50_ms": 2750.0,
+      "p95_ms": 4203.0,
+      "max_ms": 4938.0
+    },
+    "workers_observed": {
+      "2": 125,
+      "3": 125,
+      "1": 125,
+      "0": 125
+    },
+    "login_request_timeout_seconds": 180,
+    "probe_timeout_seconds": 2
+  },
+  "resources": {
+    "samples": 22,
+    "peak_host_cpu_percent": 97.1,
+    "minimum_available_ram_bytes": 10919968768,
+    "peak_generator_cpu_one_core_100": 97.7
+  },
+  "database_checks": {
+    "distinct_login_accounts": 500,
+    "each_account_one_login_audit": true,
+    "status_audits": 0
+  },
+  "container_state": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 46550,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-11-18T09:25:10.375586438Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "Health": {
+      "Status": "healthy",
+      "FailingStreak": 0,
+      "Log": [
+        {
+          "Start": "2026-11-18T09:25:32.302756891Z",
+          "End": "2026-11-18T09:25:32.795261398Z",
+          "ExitCode": 1,
+          "Output": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1357, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1386, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1432, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1381, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1141, in _send_output\n    self.send(msg)\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1085, in send\n    self.connect()\n  File \"/usr/local/lib/python3.12/http/client.py\", line 1051, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/socket.py\", line 865, in create_connection\n    raise exceptions[0]\n  File \"/usr/local/lib/python3.12/socket.py\", line 850, in create_connection\n    sock.connect(sa)\nConnectionRefusedError: [Errno 111] Connection refused\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1386, in http_open\n    return self.do_open(http.client.HTTPConnection, req)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/urllib/request.py\", line 1360, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno 111] Connection refused>\n"
+        },
+        {
+          "Start": "2026-11-18T09:25:37.796757795Z",
+          "End": "2026-11-18T09:25:38.246825712Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-18T09:25:48.248619175Z",
+          "End": "2026-11-18T09:25:48.687914615Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-18T09:25:58.690173434Z",
+          "End": "2026-11-18T09:25:59.693292427Z",
+          "ExitCode": 0,
+          "Output": ""
+        },
+        {
+          "Start": "2026-11-18T09:26:09.694781025Z",
+          "End": "2026-11-18T09:26:12.487977856Z",
+          "ExitCode": 0,
+          "Output": ""
+        }
+      ]
+    }
+  },
+  "restart_count": 0,
+  "secondary_restart_counts": {
+    "web2": 0,
+    "web3": 0,
+    "web4": 0,
+    "proxy": 0
+  },
+  "all_passed": true,
+  "finished_at": "2026-11-18T09:26:20.463886+00:00",
+  "test_resources_removed": true
+}
